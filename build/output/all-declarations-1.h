@@ -9,6 +9,311 @@
 #include "all-declarations-0.h"
 
 //--------------------------------------------------------------------------------------------------
+// Phase 1: @tableViewBindingGenerationList list enumerator
+//--------------------------------------------------------------------------------------------------
+
+class DownEnumerator_tableViewBindingGenerationList final {
+  public: DownEnumerator_tableViewBindingGenerationList (const class GGS_tableViewBindingGenerationList & inList) ;
+
+  public: ~ DownEnumerator_tableViewBindingGenerationList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
+
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_string current_mTableValueBindingOutletName (LOCATION_ARGS) const ;
+  public: class GGS_string current_mTableValueBindingControllerName (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_tableViewBindingGenerationList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_tableViewBindingGenerationList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_tableViewBindingGenerationList (const DownEnumerator_tableViewBindingGenerationList &) = delete ;
+  private: DownEnumerator_tableViewBindingGenerationList & operator = (const DownEnumerator_tableViewBindingGenerationList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class UpEnumerator_tableViewBindingGenerationList final {
+  public: UpEnumerator_tableViewBindingGenerationList (const class GGS_tableViewBindingGenerationList & inList)  ;
+
+  public: ~ UpEnumerator_tableViewBindingGenerationList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_string current_mTableValueBindingOutletName (LOCATION_ARGS) const ;
+  public: class GGS_string current_mTableValueBindingControllerName (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_tableViewBindingGenerationList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_tableViewBindingGenerationList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_tableViewBindingGenerationList (const UpEnumerator_tableViewBindingGenerationList &) = delete ;
+  private: UpEnumerator_tableViewBindingGenerationList & operator = (const UpEnumerator_tableViewBindingGenerationList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @tableViewBindingGenerationList list
+//--------------------------------------------------------------------------------------------------
+
+class GGS_tableViewBindingGenerationList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_tableViewBindingGenerationList_2E_element> mArray ;
+
+//--- Default constructor
+  public: GGS_tableViewBindingGenerationList (void) ;
+
+//--- Destructor
+  public: virtual ~ GGS_tableViewBindingGenerationList (void) = default ;
+
+//--- Copy
+  public: GGS_tableViewBindingGenerationList (const GGS_tableViewBindingGenerationList &) = default ;
+  public: GGS_tableViewBindingGenerationList & operator = (const GGS_tableViewBindingGenerationList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_tableViewBindingGenerationList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_tableViewBindingGenerationList subList (const int32_t inStart,
+                                                       const int32_t inLength,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
+  public: GGS_tableViewBindingGenerationList (const CollectionElementArray & inSharedArray) ;
+
+//--- Element constructor
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
+                                                 const class GGS_string & in_mTableValueBindingOutletName,
+                                                 const class GGS_string & in_mTableValueBindingControllerName
+                                                 COMMA_LOCATION_ARGS) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_tableViewBindingGenerationList init (Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GGS_tableViewBindingGenerationList class_func_listWithValue (const class GGS_string & inOperand0,
+                                                                                    const class GGS_string & inOperand1
+                                                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with expression)
+  public: void plusAssignOperation (const GGS_tableViewBindingGenerationList inOperand,
+                                    class Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with list of field expressions)
+  public: void addAssignOperation (const class GGS_string & inOperand0,
+                                   const class GGS_string & inOperand1
+                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- ++= operator, collection value
+  public: void plusPlusAssignOperation (const GGS_tableViewBindingGenerationList_2E_element & inOperand
+                                        COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: GGS_tableViewBindingGenerationList add_operation (const GGS_tableViewBindingGenerationList & inOperand,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Setters
+  public: void setter_append (class GGS_string constinArgument0,
+                              class GGS_string constinArgument1,
+                              Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) ;
+
+  public: void setter_insertAtIndex (class GGS_string constinArgument0,
+                                     class GGS_string constinArgument1,
+                                     class GGS_uint constinArgument2,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
+
+  public: void setter_popFirst (class GGS_string & outArgument0,
+                                class GGS_string & outArgument1,
+                                Compiler * inCompiler
+                                COMMA_LOCATION_ARGS) ;
+
+  public: void setter_popLast (class GGS_string & outArgument0,
+                               class GGS_string & outArgument1,
+                               Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
+
+  public: void setter_removeAtIndex (class GGS_string & outArgument0,
+                                     class GGS_string & outArgument1,
+                                     class GGS_uint constinArgument2,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMTableValueBindingControllerNameAtIndex (class GGS_string constinArgument0,
+                                                                  class GGS_uint constinArgument1,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMTableValueBindingOutletNameAtIndex (class GGS_string constinArgument0,
+                                                              class GGS_uint constinArgument1,
+                                                              Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public: void method_first (class GGS_string & outArgument0,
+                             class GGS_string & outArgument1,
+                             Compiler * inCompiler
+                             COMMA_LOCATION_ARGS) const ;
+
+  public: void method_last (class GGS_string & outArgument0,
+                            class GGS_string & outArgument1,
+                            Compiler * inCompiler
+                            COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
+
+  public: class GGS_string getter_mTableValueBindingControllerNameAtIndex (const class GGS_uint & constinOperand0,
+                                                                           Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_string getter_mTableValueBindingOutletNameAtIndex (const class GGS_uint & constinOperand0,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_range getter_range (LOCATION_ARGS) const ;
+
+  public: class GGS_tableViewBindingGenerationList getter_subListFromIndex (const class GGS_uint & constinOperand0,
+                                                                            Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_tableViewBindingGenerationList getter_subListToIndex (const class GGS_uint & constinOperand0,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_tableViewBindingGenerationList getter_subListWithRange (const class GGS_range & constinOperand0,
+                                                                            Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+//--------------------------------- Friend
+  friend class UpEnumerator_tableViewBindingGenerationList ;
+  friend class DownEnumerator_tableViewBindingGenerationList ;
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_tableViewBindingGenerationList ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @tableViewBindingGenerationList_2E_element struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_tableViewBindingGenerationList_2E_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_string mProperty_mTableValueBindingOutletName ;
+  public: inline GGS_string readProperty_mTableValueBindingOutletName (void) const {
+    return mProperty_mTableValueBindingOutletName ;
+  }
+
+  public: GGS_string mProperty_mTableValueBindingControllerName ;
+  public: inline GGS_string readProperty_mTableValueBindingControllerName (void) const {
+    return mProperty_mTableValueBindingControllerName ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GGS_tableViewBindingGenerationList_2E_element (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setMTableValueBindingOutletName (const GGS_string & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mTableValueBindingOutletName = inValue ;
+  }
+
+  public: inline void setter_setMTableValueBindingControllerName (const GGS_string & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mTableValueBindingControllerName = inValue ;
+  }
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GGS_tableViewBindingGenerationList_2E_element (const GGS_string & in_mTableValueBindingOutletName,
+                                                         const GGS_string & in_mTableValueBindingControllerName) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_tableViewBindingGenerationList_2E_element (const GGS_tableViewBindingGenerationList_2E_element & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_tableViewBindingGenerationList_2E_element & operator = (const GGS_tableViewBindingGenerationList_2E_element & inSource) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_tableViewBindingGenerationList_2E_element init_21__21_ (const class GGS_string & inOperand0,
+                                                                             const class GGS_string & inOperand1,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
+//--------------------------------- Implementation of func 'description'
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_tableViewBindingGenerationList_2E_element ;
+
+//--------------------------------------------------------------------------------------------------
 // Phase 1: @ebViewGraphicControllerBindingGenerationList list enumerator
 //--------------------------------------------------------------------------------------------------
 
@@ -312,743 +617,6 @@ class GGS_ebViewGraphicControllerBindingGenerationList_2E_element : public AC_GA
 //--------------------------------------------------------------------------------------------------
 
 extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ebViewGraphicControllerBindingGenerationList_2E_element ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @viewGenerationList list enumerator
-//--------------------------------------------------------------------------------------------------
-
-class DownEnumerator_viewGenerationList final {
-  public: DownEnumerator_viewGenerationList (const class GGS_viewGenerationList & inList) ;
-
-  public: ~ DownEnumerator_viewGenerationList (void) = default ;
-
-  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
-
-  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
-
-  public: inline void rewind (void) { mIndex = 0 ; }
-
-  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
-
-  public: class GGS_string current_mViewName (LOCATION_ARGS) const ;
-  public: class GGS_abstractViewGeneration current_mView (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_viewGenerationList_2E_element current (LOCATION_ARGS) const ;
-
-  private: GenericArray <GGS_viewGenerationList_2E_element> mArray ;
-  private: int32_t mIndex ;
-
-  private: DownEnumerator_viewGenerationList (const DownEnumerator_viewGenerationList &) = delete ;
-  private: DownEnumerator_viewGenerationList & operator = (const DownEnumerator_viewGenerationList &) = delete ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-class UpEnumerator_viewGenerationList final {
-  public: UpEnumerator_viewGenerationList (const class GGS_viewGenerationList & inList)  ;
-
-  public: ~ UpEnumerator_viewGenerationList (void) = default ;
-
-  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
-
-  public: inline void gotoNextObject (void) { mIndex += 1 ; }
-
-  public: inline void rewind (void) { mIndex = 0 ; }
-
-  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
-
-  public: class GGS_string current_mViewName (LOCATION_ARGS) const ;
-  public: class GGS_abstractViewGeneration current_mView (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_viewGenerationList_2E_element current (LOCATION_ARGS) const ;
-
-  private: GenericArray <GGS_viewGenerationList_2E_element> mArray ;
-  private: int32_t mIndex ;
-
-  private: UpEnumerator_viewGenerationList (const UpEnumerator_viewGenerationList &) = delete ;
-  private: UpEnumerator_viewGenerationList & operator = (const UpEnumerator_viewGenerationList &) = delete ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// @viewGenerationList list
-//--------------------------------------------------------------------------------------------------
-
-class GGS_viewGenerationList : public AC_GALGAS_root {
-//--- Private property
-  private: GenericArray <GGS_viewGenerationList_2E_element> mArray ;
-
-//--- Default constructor
-  public: GGS_viewGenerationList (void) ;
-
-//--- Destructor
-  public: virtual ~ GGS_viewGenerationList (void) = default ;
-
-//--- Copy
-  public: GGS_viewGenerationList (const GGS_viewGenerationList &) = default ;
-  public: GGS_viewGenerationList & operator = (const GGS_viewGenerationList &) = default ;
-
-//--- Is valid
-  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
-
-//--- Drop
-  public: inline virtual void drop (void) override { mArray.removeAll () ; }
-
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Count
-  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
- 
-//--- sortedElementArray
-  public : inline GenericArray <GGS_viewGenerationList_2E_element> sortedElementArray (void) const {
-    return mArray ;
-  }
-
-//--- subList
-  private: GGS_viewGenerationList subList (const int32_t inStart,
-                                           const int32_t inLength,
-                                           Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) const ;
-
-
-//--- List constructor for graph
-  public: GGS_viewGenerationList (const CollectionElementArray & inSharedArray) ;
-
-//--- Element constructor
-  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
-                                                 const class GGS_string & in_mViewName,
-                                                 const class GGS_abstractViewGeneration & in_mView
-                                                 COMMA_LOCATION_ARGS) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_viewGenerationList init (Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) ;
-//--------------------------------- GALGAS class functions
-  public: static class GGS_viewGenerationList class_func_listWithValue (const class GGS_string & inOperand0,
-                                                                        const class GGS_abstractViewGeneration & inOperand1
-                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with expression)
-  public: void plusAssignOperation (const GGS_viewGenerationList inOperand,
-                                    class Compiler * inCompiler
-                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with list of field expressions)
-  public: void addAssignOperation (const class GGS_string & inOperand0,
-                                   const class GGS_abstractViewGeneration & inOperand1
-                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- ++= operator, collection value
-  public: void plusPlusAssignOperation (const GGS_viewGenerationList_2E_element & inOperand
-                                        COMMA_LOCATION_ARGS) ;
-//--------------------------------- + operator
-  public: GGS_viewGenerationList add_operation (const GGS_viewGenerationList & inOperand,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Setters
-  public: void setter_append (class GGS_string constinArgument0,
-                              class GGS_abstractViewGeneration constinArgument1,
-                              Compiler * inCompiler
-                              COMMA_LOCATION_ARGS) ;
-
-  public: void setter_insertAtIndex (class GGS_string constinArgument0,
-                                     class GGS_abstractViewGeneration constinArgument1,
-                                     class GGS_uint constinArgument2,
-                                     Compiler * inCompiler
-                                     COMMA_LOCATION_ARGS) ;
-
-  public: void setter_popFirst (class GGS_string & outArgument0,
-                                class GGS_abstractViewGeneration & outArgument1,
-                                Compiler * inCompiler
-                                COMMA_LOCATION_ARGS) ;
-
-  public: void setter_popLast (class GGS_string & outArgument0,
-                               class GGS_abstractViewGeneration & outArgument1,
-                               Compiler * inCompiler
-                               COMMA_LOCATION_ARGS) ;
-
-  public: void setter_removeAtIndex (class GGS_string & outArgument0,
-                                     class GGS_abstractViewGeneration & outArgument1,
-                                     class GGS_uint constinArgument2,
-                                     Compiler * inCompiler
-                                     COMMA_LOCATION_ARGS) ;
-
-  public: void setter_setMViewAtIndex (class GGS_abstractViewGeneration constinArgument0,
-                                       class GGS_uint constinArgument1,
-                                       Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) ;
-
-  public: void setter_setMViewNameAtIndex (class GGS_string constinArgument0,
-                                           class GGS_uint constinArgument1,
-                                           Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-  public: void method_first (class GGS_string & outArgument0,
-                             class GGS_abstractViewGeneration & outArgument1,
-                             Compiler * inCompiler
-                             COMMA_LOCATION_ARGS) const ;
-
-  public: void method_last (class GGS_string & outArgument0,
-                            class GGS_abstractViewGeneration & outArgument1,
-                            Compiler * inCompiler
-                            COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
-
-  public: class GGS_abstractViewGeneration getter_mViewAtIndex (const class GGS_uint & constinOperand0,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) const ;
-
-  public: class GGS_string getter_mViewNameAtIndex (const class GGS_uint & constinOperand0,
-                                                    Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) const ;
-
-  public: class GGS_range getter_range (LOCATION_ARGS) const ;
-
-  public: class GGS_viewGenerationList getter_subListFromIndex (const class GGS_uint & constinOperand0,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) const ;
-
-  public: class GGS_viewGenerationList getter_subListToIndex (const class GGS_uint & constinOperand0,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const ;
-
-  public: class GGS_viewGenerationList getter_subListWithRange (const class GGS_range & constinOperand0,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
-//--------------------------------- Friend
-  friend class UpEnumerator_viewGenerationList ;
-  friend class DownEnumerator_viewGenerationList ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_viewGenerationList ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @abstractViewGeneration reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_abstractViewGeneration : public AC_GALGAS_reference_class {
-//--------------------------------- Default constructor
-  public: GGS_abstractViewGeneration (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_abstractViewGeneration (const class cPtr_abstractViewGeneration * inSourcePtr) ;
-
-//--------------------------------- Property access
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_abstractViewGeneration init (Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_abstractViewGeneration & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_abstractViewGeneration ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @abstractViewGeneration class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_abstractViewGeneration : public AbstractStrongPtrClass {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void abstractViewGeneration_init (Compiler * inCompiler) ;
-
-
-//--- Extension func generateViewBuilder
-  public: virtual class GGS_string getter_generateViewBuilder (const class GGS_bool inPreferences,
-           const class GGS_string inViewName,
-           Compiler * COMMA_LOCATION_ARGS) const = 0 ;
-
-//--- Properties
-
-
-
-//--- Constructor
-  public: cPtr_abstractViewGeneration (Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override = 0 ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override = 0 ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @viewGenerationList_2E_element struct
-//--------------------------------------------------------------------------------------------------
-
-class GGS_viewGenerationList_2E_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public: GGS_string mProperty_mViewName ;
-  public: inline GGS_string readProperty_mViewName (void) const {
-    return mProperty_mViewName ;
-  }
-
-  public: GGS_abstractViewGeneration mProperty_mView ;
-  public: inline GGS_abstractViewGeneration readProperty_mView (void) const {
-    return mProperty_mView ;
-  }
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
-  public: VIRTUAL_IN_DEBUG void drop (void) override ;
-
-//--------------------------------- Default constructor
-  public: GGS_viewGenerationList_2E_element (void) ;
-
-//--------------------------------- Property setters
-  public: inline void setter_setMViewName (const GGS_string & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mViewName = inValue ;
-  }
-
-  public: inline void setter_setMView (const GGS_abstractViewGeneration & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mView = inValue ;
-  }
-
-//--------------------------------- Set initialized properties
-  private: void setInitializedProperties (Compiler * inCompiler) ;
-
-//--------------------------------- Native constructor
-  public: GGS_viewGenerationList_2E_element (const GGS_string & in_mViewName,
-                                             const GGS_abstractViewGeneration & in_mView) ;
-
-//--------------------------------- Copy constructor
-  public: GGS_viewGenerationList_2E_element (const GGS_viewGenerationList_2E_element & inSource) ;
-
-//--------------------------------- Assignment operator
-  public: GGS_viewGenerationList_2E_element & operator = (const GGS_viewGenerationList_2E_element & inSource) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_viewGenerationList_2E_element init_21__21_ (const class GGS_string & inOperand0,
-                                                                 const class GGS_abstractViewGeneration & inOperand1,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-//--------------------------------- Implementation of func 'description'
-  public: void description (String & ioString,
-                            const int32_t inIndentation) const override ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_viewGenerationList_2E_element ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @implicitViewFunctionGenerationList list enumerator
-//--------------------------------------------------------------------------------------------------
-
-class DownEnumerator_implicitViewFunctionGenerationList final {
-  public: DownEnumerator_implicitViewFunctionGenerationList (const class GGS_implicitViewFunctionGenerationList & inList) ;
-
-  public: ~ DownEnumerator_implicitViewFunctionGenerationList (void) = default ;
-
-  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
-
-  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
-
-  public: inline void rewind (void) { mIndex = 0 ; }
-
-  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
-
-  public: class GGS_abstractViewInstructionGeneration current_mInstruction (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_implicitViewFunctionGenerationList_2E_element current (LOCATION_ARGS) const ;
-
-  private: GenericArray <GGS_implicitViewFunctionGenerationList_2E_element> mArray ;
-  private: int32_t mIndex ;
-
-  private: DownEnumerator_implicitViewFunctionGenerationList (const DownEnumerator_implicitViewFunctionGenerationList &) = delete ;
-  private: DownEnumerator_implicitViewFunctionGenerationList & operator = (const DownEnumerator_implicitViewFunctionGenerationList &) = delete ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-class UpEnumerator_implicitViewFunctionGenerationList final {
-  public: UpEnumerator_implicitViewFunctionGenerationList (const class GGS_implicitViewFunctionGenerationList & inList)  ;
-
-  public: ~ UpEnumerator_implicitViewFunctionGenerationList (void) = default ;
-
-  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
-
-  public: inline void gotoNextObject (void) { mIndex += 1 ; }
-
-  public: inline void rewind (void) { mIndex = 0 ; }
-
-  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
-
-  public: class GGS_abstractViewInstructionGeneration current_mInstruction (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_implicitViewFunctionGenerationList_2E_element current (LOCATION_ARGS) const ;
-
-  private: GenericArray <GGS_implicitViewFunctionGenerationList_2E_element> mArray ;
-  private: int32_t mIndex ;
-
-  private: UpEnumerator_implicitViewFunctionGenerationList (const UpEnumerator_implicitViewFunctionGenerationList &) = delete ;
-  private: UpEnumerator_implicitViewFunctionGenerationList & operator = (const UpEnumerator_implicitViewFunctionGenerationList &) = delete ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// @implicitViewFunctionGenerationList list
-//--------------------------------------------------------------------------------------------------
-
-class GGS_implicitViewFunctionGenerationList : public AC_GALGAS_root {
-//--- Private property
-  private: GenericArray <GGS_implicitViewFunctionGenerationList_2E_element> mArray ;
-
-//--- Default constructor
-  public: GGS_implicitViewFunctionGenerationList (void) ;
-
-//--- Destructor
-  public: virtual ~ GGS_implicitViewFunctionGenerationList (void) = default ;
-
-//--- Copy
-  public: GGS_implicitViewFunctionGenerationList (const GGS_implicitViewFunctionGenerationList &) = default ;
-  public: GGS_implicitViewFunctionGenerationList & operator = (const GGS_implicitViewFunctionGenerationList &) = default ;
-
-//--- Is valid
-  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
-
-//--- Drop
-  public: inline virtual void drop (void) override { mArray.removeAll () ; }
-
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Count
-  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
- 
-//--- sortedElementArray
-  public : inline GenericArray <GGS_implicitViewFunctionGenerationList_2E_element> sortedElementArray (void) const {
-    return mArray ;
-  }
-
-//--- subList
-  private: GGS_implicitViewFunctionGenerationList subList (const int32_t inStart,
-                                                           const int32_t inLength,
-                                                           Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) const ;
-
-
-//--- List constructor for graph
-  public: GGS_implicitViewFunctionGenerationList (const CollectionElementArray & inSharedArray) ;
-
-//--- Element constructor
-  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
-                                                 const class GGS_abstractViewInstructionGeneration & in_mInstruction
-                                                 COMMA_LOCATION_ARGS) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_implicitViewFunctionGenerationList init (Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
-//--------------------------------- GALGAS class functions
-  public: static class GGS_implicitViewFunctionGenerationList class_func_listWithValue (const class GGS_abstractViewInstructionGeneration & inOperand0
-                                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with expression)
-  public: void plusAssignOperation (const GGS_implicitViewFunctionGenerationList inOperand,
-                                    class Compiler * inCompiler
-                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with list of field expressions)
-  public: void addAssignOperation (const class GGS_abstractViewInstructionGeneration & inOperand0
-                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- ++= operator, collection value
-  public: void plusPlusAssignOperation (const GGS_implicitViewFunctionGenerationList_2E_element & inOperand
-                                        COMMA_LOCATION_ARGS) ;
-//--------------------------------- + operator
-  public: GGS_implicitViewFunctionGenerationList add_operation (const GGS_implicitViewFunctionGenerationList & inOperand,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Setters
-  public: void setter_append (class GGS_abstractViewInstructionGeneration constinArgument0,
-                              Compiler * inCompiler
-                              COMMA_LOCATION_ARGS) ;
-
-  public: void setter_insertAtIndex (class GGS_abstractViewInstructionGeneration constinArgument0,
-                                     class GGS_uint constinArgument1,
-                                     Compiler * inCompiler
-                                     COMMA_LOCATION_ARGS) ;
-
-  public: void setter_popFirst (class GGS_abstractViewInstructionGeneration & outArgument0,
-                                Compiler * inCompiler
-                                COMMA_LOCATION_ARGS) ;
-
-  public: void setter_popLast (class GGS_abstractViewInstructionGeneration & outArgument0,
-                               Compiler * inCompiler
-                               COMMA_LOCATION_ARGS) ;
-
-  public: void setter_removeAtIndex (class GGS_abstractViewInstructionGeneration & outArgument0,
-                                     class GGS_uint constinArgument1,
-                                     Compiler * inCompiler
-                                     COMMA_LOCATION_ARGS) ;
-
-  public: void setter_setMInstructionAtIndex (class GGS_abstractViewInstructionGeneration constinArgument0,
-                                              class GGS_uint constinArgument1,
-                                              Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-  public: void method_first (class GGS_abstractViewInstructionGeneration & outArgument0,
-                             Compiler * inCompiler
-                             COMMA_LOCATION_ARGS) const ;
-
-  public: void method_last (class GGS_abstractViewInstructionGeneration & outArgument0,
-                            Compiler * inCompiler
-                            COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
-
-  public: class GGS_abstractViewInstructionGeneration getter_mInstructionAtIndex (const class GGS_uint & constinOperand0,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) const ;
-
-  public: class GGS_range getter_range (LOCATION_ARGS) const ;
-
-  public: class GGS_implicitViewFunctionGenerationList getter_subListFromIndex (const class GGS_uint & constinOperand0,
-                                                                                Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) const ;
-
-  public: class GGS_implicitViewFunctionGenerationList getter_subListToIndex (const class GGS_uint & constinOperand0,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) const ;
-
-  public: class GGS_implicitViewFunctionGenerationList getter_subListWithRange (const class GGS_range & constinOperand0,
-                                                                                Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
-//--------------------------------- Friend
-  friend class UpEnumerator_implicitViewFunctionGenerationList ;
-  friend class DownEnumerator_implicitViewFunctionGenerationList ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_implicitViewFunctionGenerationList ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @abstractViewInstructionGeneration reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_abstractViewInstructionGeneration : public AC_GALGAS_reference_class {
-//--------------------------------- Default constructor
-  public: GGS_abstractViewInstructionGeneration (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_abstractViewInstructionGeneration (const class cPtr_abstractViewInstructionGeneration * inSourcePtr) ;
-
-//--------------------------------- Property access
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_abstractViewInstructionGeneration init (Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) ;
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_abstractViewInstructionGeneration & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_abstractViewInstructionGeneration ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @abstractViewInstructionGeneration class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_abstractViewInstructionGeneration : public AbstractStrongPtrClass {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void abstractViewInstructionGeneration_init (Compiler * inCompiler) ;
-
-
-//--- Extension func generateAppendViewInstruction
-  public: virtual class GGS_string getter_generateAppendViewInstruction (const class GGS_bool inPreferences,
-           const class GGS_string inReceiverViewName,
-           const class GGS_string inIndentation,
-           Compiler * COMMA_LOCATION_ARGS) const = 0 ;
-
-//--- Extension func generateViewInstruction
-  public: virtual class GGS_string getter_generateViewInstruction (const class GGS_bool inPreferences,
-           const class GGS_string inName,
-           const class GGS_string inIndentation,
-           Compiler * COMMA_LOCATION_ARGS) const = 0 ;
-
-//--- Properties
-
-
-
-//--- Constructor
-  public: cPtr_abstractViewInstructionGeneration (Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override = 0 ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override = 0 ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @implicitViewFunctionGenerationList_2E_element struct
-//--------------------------------------------------------------------------------------------------
-
-class GGS_implicitViewFunctionGenerationList_2E_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public: GGS_abstractViewInstructionGeneration mProperty_mInstruction ;
-  public: inline GGS_abstractViewInstructionGeneration readProperty_mInstruction (void) const {
-    return mProperty_mInstruction ;
-  }
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
-  public: VIRTUAL_IN_DEBUG void drop (void) override ;
-
-//--------------------------------- Default constructor
-  public: GGS_implicitViewFunctionGenerationList_2E_element (void) ;
-
-//--------------------------------- Property setters
-  public: inline void setter_setMInstruction (const GGS_abstractViewInstructionGeneration & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mInstruction = inValue ;
-  }
-
-//--------------------------------- Set initialized properties
-  private: void setInitializedProperties (Compiler * inCompiler) ;
-
-//--------------------------------- Native constructor
-  public: GGS_implicitViewFunctionGenerationList_2E_element (const GGS_abstractViewInstructionGeneration & in_mInstruction) ;
-
-//--------------------------------- Copy constructor
-  public: GGS_implicitViewFunctionGenerationList_2E_element (const GGS_implicitViewFunctionGenerationList_2E_element & inSource) ;
-
-//--------------------------------- Assignment operator
-  public: GGS_implicitViewFunctionGenerationList_2E_element & operator = (const GGS_implicitViewFunctionGenerationList_2E_element & inSource) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_implicitViewFunctionGenerationList_2E_element init_21_ (const class GGS_abstractViewInstructionGeneration & inOperand0,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) ;
-//--------------------------------- Implementation of func 'description'
-  public: void description (String & ioString,
-                            const int32_t inIndentation) const override ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_implicitViewFunctionGenerationList_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @autoLayoutConfiguratorMap map
@@ -1415,9 +983,9 @@ class GGS_autoLayoutDocumentFileGeneration : public GGS_abstractFileGeneration {
 
   public: class GGS_ebViewGraphicControllerBindingGenerationList readProperty_mEBViewBindingGenerationList (void) const ;
 
-  public: class GGS_viewGenerationList readProperty_mViewDeclarationList (void) const ;
+  public: class GGS__5B_viewGeneration_5D_ readProperty_mViewDeclarationList (void) const ;
 
-  public: class GGS_implicitViewFunctionGenerationList readProperty_mImplicitViewFunctionGenerationList (void) const ;
+  public: class GGS__5B_abstractViewInstructionGeneration_5D_ readProperty_mImplicitViewFunctionGenerationList (void) const ;
 
   public: class GGS_autoLayoutConfiguratorMap readProperty_mConfiguratorMap (void) const ;
 
@@ -1439,8 +1007,8 @@ class GGS_autoLayoutDocumentFileGeneration : public GGS_abstractFileGeneration {
                                                                                                                             const class GGS__5B_multipleBindingGeneration_5D_ & inOperand8,
                                                                                                                             const class GGS_tableViewBindingGenerationList & inOperand9,
                                                                                                                             const class GGS_ebViewGraphicControllerBindingGenerationList & inOperand10,
-                                                                                                                            const class GGS_viewGenerationList & inOperand11,
-                                                                                                                            const class GGS_implicitViewFunctionGenerationList & inOperand12,
+                                                                                                                            const class GGS__5B_viewGeneration_5D_ & inOperand11,
+                                                                                                                            const class GGS__5B_abstractViewInstructionGeneration_5D_ & inOperand12,
                                                                                                                             const class GGS_autoLayoutConfiguratorMap & inOperand13,
                                                                                                                             const class GGS_string & inOperand14,
                                                                                                                             const class GGS__5B_autoLayoutOutletLinkerGeneration_5D_ & inOperand15,
@@ -1490,8 +1058,8 @@ class cPtr_autoLayoutDocumentFileGeneration : public cPtr_abstractFileGeneration
                                                                                                                       const class GGS__5B_multipleBindingGeneration_5D_ & inOperand8,
                                                                                                                       const class GGS_tableViewBindingGenerationList & inOperand9,
                                                                                                                       const class GGS_ebViewGraphicControllerBindingGenerationList & inOperand10,
-                                                                                                                      const class GGS_viewGenerationList & inOperand11,
-                                                                                                                      const class GGS_implicitViewFunctionGenerationList & inOperand12,
+                                                                                                                      const class GGS__5B_viewGeneration_5D_ & inOperand11,
+                                                                                                                      const class GGS__5B_abstractViewInstructionGeneration_5D_ & inOperand12,
                                                                                                                       const class GGS_autoLayoutConfiguratorMap & inOperand13,
                                                                                                                       const class GGS_string & inOperand14,
                                                                                                                       const class GGS__5B_autoLayoutOutletLinkerGeneration_5D_ & inOperand15,
@@ -1524,8 +1092,8 @@ class cPtr_autoLayoutDocumentFileGeneration : public cPtr_abstractFileGeneration
   public: GGS__5B_multipleBindingGeneration_5D_ mProperty_multipleBindingGenerationList ;
   public: GGS_tableViewBindingGenerationList mProperty_mTableViewBindingGenerationList ;
   public: GGS_ebViewGraphicControllerBindingGenerationList mProperty_mEBViewBindingGenerationList ;
-  public: GGS_viewGenerationList mProperty_mViewDeclarationList ;
-  public: GGS_implicitViewFunctionGenerationList mProperty_mImplicitViewFunctionGenerationList ;
+  public: GGS__5B_viewGeneration_5D_ mProperty_mViewDeclarationList ;
+  public: GGS__5B_abstractViewInstructionGeneration_5D_ mProperty_mImplicitViewFunctionGenerationList ;
   public: GGS_autoLayoutConfiguratorMap mProperty_mConfiguratorMap ;
   public: GGS_string mProperty_mCustomSuperClassName ;
   public: GGS__5B_autoLayoutOutletLinkerGeneration_5D_ mProperty_mOutletLinkerGenerationList ;
@@ -1546,8 +1114,8 @@ class cPtr_autoLayoutDocumentFileGeneration : public cPtr_abstractFileGeneration
                                                  const GGS__5B_multipleBindingGeneration_5D_ & in_multipleBindingGenerationList,
                                                  const GGS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
                                                  const GGS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList,
-                                                 const GGS_viewGenerationList & in_mViewDeclarationList,
-                                                 const GGS_implicitViewFunctionGenerationList & in_mImplicitViewFunctionGenerationList,
+                                                 const GGS__5B_viewGeneration_5D_ & in_mViewDeclarationList,
+                                                 const GGS__5B_abstractViewInstructionGeneration_5D_ & in_mImplicitViewFunctionGenerationList,
                                                  const GGS_autoLayoutConfiguratorMap & in_mConfiguratorMap,
                                                  const GGS_string & in_mCustomSuperClassName,
                                                  const GGS__5B_autoLayoutOutletLinkerGeneration_5D_ & in_mOutletLinkerGenerationList,
@@ -2529,9 +2097,9 @@ class GGS_preferencesForGeneration : public GGS_abstractFileGeneration {
 
   public: class GGS_ebViewGraphicControllerBindingGenerationList readProperty_mEBViewBindingGenerationList (void) const ;
 
-  public: class GGS_viewGenerationList readProperty_mViewGenerationList (void) const ;
+  public: class GGS__5B_viewGeneration_5D_ readProperty_mViewGenerationList (void) const ;
 
-  public: class GGS_implicitViewFunctionGenerationList readProperty_mImplicitViewFunctionGenerationList (void) const ;
+  public: class GGS__5B_abstractViewInstructionGeneration_5D_ readProperty_mImplicitViewFunctionGenerationList (void) const ;
 
   public: class GGS_autoLayoutConfiguratorMap readProperty_mConfiguratorMap (void) const ;
 
@@ -2549,8 +2117,8 @@ class GGS_preferencesForGeneration : public GGS_abstractFileGeneration {
                                                                                                         const class GGS_externSwiftFunctionList & inOperand6,
                                                                                                         const class GGS_tableViewBindingGenerationList & inOperand7,
                                                                                                         const class GGS_ebViewGraphicControllerBindingGenerationList & inOperand8,
-                                                                                                        const class GGS_viewGenerationList & inOperand9,
-                                                                                                        const class GGS_implicitViewFunctionGenerationList & inOperand10,
+                                                                                                        const class GGS__5B_viewGeneration_5D_ & inOperand9,
+                                                                                                        const class GGS__5B_abstractViewInstructionGeneration_5D_ & inOperand10,
                                                                                                         const class GGS_autoLayoutConfiguratorMap & inOperand11,
                                                                                                         const class GGS_autoLayoutOutletMap & inOperand12,
                                                                                                         Compiler * inCompiler
@@ -2597,8 +2165,8 @@ class cPtr_preferencesForGeneration : public cPtr_abstractFileGeneration {
                                                                                                   const class GGS_externSwiftFunctionList & inOperand6,
                                                                                                   const class GGS_tableViewBindingGenerationList & inOperand7,
                                                                                                   const class GGS_ebViewGraphicControllerBindingGenerationList & inOperand8,
-                                                                                                  const class GGS_viewGenerationList & inOperand9,
-                                                                                                  const class GGS_implicitViewFunctionGenerationList & inOperand10,
+                                                                                                  const class GGS__5B_viewGeneration_5D_ & inOperand9,
+                                                                                                  const class GGS__5B_abstractViewInstructionGeneration_5D_ & inOperand10,
                                                                                                   const class GGS_autoLayoutConfiguratorMap & inOperand11,
                                                                                                   const class GGS_autoLayoutOutletMap & inOperand12,
                                                                                                   Compiler * inCompiler) ;
@@ -2628,8 +2196,8 @@ class cPtr_preferencesForGeneration : public cPtr_abstractFileGeneration {
   public: GGS_externSwiftFunctionList mProperty_mExternSwiftFunctionList ;
   public: GGS_tableViewBindingGenerationList mProperty_mTableViewBindingGenerationList ;
   public: GGS_ebViewGraphicControllerBindingGenerationList mProperty_mEBViewBindingGenerationList ;
-  public: GGS_viewGenerationList mProperty_mViewGenerationList ;
-  public: GGS_implicitViewFunctionGenerationList mProperty_mImplicitViewFunctionGenerationList ;
+  public: GGS__5B_viewGeneration_5D_ mProperty_mViewGenerationList ;
+  public: GGS__5B_abstractViewInstructionGeneration_5D_ mProperty_mImplicitViewFunctionGenerationList ;
   public: GGS_autoLayoutConfiguratorMap mProperty_mConfiguratorMap ;
   public: GGS_autoLayoutOutletMap mProperty_mAutoLayoutOutletMap ;
 
@@ -2647,8 +2215,8 @@ class cPtr_preferencesForGeneration : public cPtr_abstractFileGeneration {
                                          const GGS_externSwiftFunctionList & in_mExternSwiftFunctionList,
                                          const GGS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
                                          const GGS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList,
-                                         const GGS_viewGenerationList & in_mViewGenerationList,
-                                         const GGS_implicitViewFunctionGenerationList & in_mImplicitViewFunctionGenerationList,
+                                         const GGS__5B_viewGeneration_5D_ & in_mViewGenerationList,
+                                         const GGS__5B_abstractViewInstructionGeneration_5D_ & in_mImplicitViewFunctionGenerationList,
                                          const GGS_autoLayoutConfiguratorMap & in_mConfiguratorMap,
                                          const GGS_autoLayoutOutletMap & in_mAutoLayoutOutletMap,
                                          Compiler * inCompiler

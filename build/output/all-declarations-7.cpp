@@ -8,379 +8,6 @@
 #include "all-declarations-7.h"
 
 //--------------------------------------------------------------------------------------------------
-
-GGS_outletClassBindingSpecification::GGS_outletClassBindingSpecification (void) :
-mProperty_mOutletClassName (),
-mProperty_mBindingName (),
-mProperty_mOutletClassBindingSpecificationModelList (),
-mProperty_mBindingOptionList () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassBindingSpecification::GGS_outletClassBindingSpecification (const GGS_outletClassBindingSpecification & inSource) :
-mProperty_mOutletClassName (inSource.mProperty_mOutletClassName),
-mProperty_mBindingName (inSource.mProperty_mBindingName),
-mProperty_mOutletClassBindingSpecificationModelList (inSource.mProperty_mOutletClassBindingSpecificationModelList),
-mProperty_mBindingOptionList (inSource.mProperty_mBindingOptionList) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassBindingSpecification & GGS_outletClassBindingSpecification::operator = (const GGS_outletClassBindingSpecification & inSource) {
-  mProperty_mOutletClassName = inSource.mProperty_mOutletClassName ;
-  mProperty_mBindingName = inSource.mProperty_mBindingName ;
-  mProperty_mOutletClassBindingSpecificationModelList = inSource.mProperty_mOutletClassBindingSpecificationModelList ;
-  mProperty_mBindingOptionList = inSource.mProperty_mBindingOptionList ;
-  return *this ;
-}
-
-//---Synthetized initializer -----------------------------------------------------------------------
-
-GGS_outletClassBindingSpecification GGS_outletClassBindingSpecification::init_21__21__21__21_ (const GGS_lstring & in_mOutletClassName,
-                                                                                               const GGS_lstring & in_mBindingName,
-                                                                                               const GGS__5B_outletClassBindingSpecificationModel_5D_ & in_mOutletClassBindingSpecificationModelList,
-                                                                                               const GGS__5B_controllerBindingOption_5D_ & in_mBindingOptionList,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_outletClassBindingSpecification result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mOutletClassName = in_mOutletClassName ;
-  result.mProperty_mBindingName = in_mBindingName ;
-  result.mProperty_mOutletClassBindingSpecificationModelList = in_mOutletClassBindingSpecificationModelList ;
-  result.mProperty_mBindingOptionList = in_mBindingOptionList ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassBindingSpecification::setInitializedProperties (Compiler * /* inCompiler */) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassBindingSpecification::GGS_outletClassBindingSpecification (const GGS_lstring & inOperand0,
-                                                                          const GGS_lstring & inOperand1,
-                                                                          const GGS__5B_outletClassBindingSpecificationModel_5D_ & inOperand2,
-                                                                          const GGS__5B_controllerBindingOption_5D_ & inOperand3) :
-mProperty_mOutletClassName (inOperand0),
-mProperty_mBindingName (inOperand1),
-mProperty_mOutletClassBindingSpecificationModelList (inOperand2),
-mProperty_mBindingOptionList (inOperand3) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_outletClassBindingSpecification::isValid (void) const {
-  return mProperty_mOutletClassName.isValid () && mProperty_mBindingName.isValid () && mProperty_mOutletClassBindingSpecificationModelList.isValid () && mProperty_mBindingOptionList.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassBindingSpecification::drop (void) {
-  mProperty_mOutletClassName.drop () ;
-  mProperty_mBindingName.drop () ;
-  mProperty_mOutletClassBindingSpecificationModelList.drop () ;
-  mProperty_mBindingOptionList.drop () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassBindingSpecification::description (String & ioString,
-                                                       const int32_t inIndentation) const {
-  ioString.appendCString ("<struct @outletClassBindingSpecification:") ;
-  if (! isValid ()) {
-    ioString.appendCString (" not built") ;
-  }else{
-    mProperty_mOutletClassName.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mBindingName.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mOutletClassBindingSpecificationModelList.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mBindingOptionList.description (ioString, inIndentation+1) ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @outletClassBindingSpecification generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_outletClassBindingSpecification ("outletClassBindingSpecification",
-                                                                                    nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_outletClassBindingSpecification::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_outletClassBindingSpecification ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewClassBindingSpecification::GGS_autoLayoutViewClassBindingSpecification (void) :
-mProperty_mOutletClassName (),
-mProperty_mBindingName (),
-mProperty_mOutletClassBindingSpecificationModelList (),
-mProperty_mBindingOptionList () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewClassBindingSpecification::GGS_autoLayoutViewClassBindingSpecification (const GGS_autoLayoutViewClassBindingSpecification & inSource) :
-mProperty_mOutletClassName (inSource.mProperty_mOutletClassName),
-mProperty_mBindingName (inSource.mProperty_mBindingName),
-mProperty_mOutletClassBindingSpecificationModelList (inSource.mProperty_mOutletClassBindingSpecificationModelList),
-mProperty_mBindingOptionList (inSource.mProperty_mBindingOptionList) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewClassBindingSpecification & GGS_autoLayoutViewClassBindingSpecification::operator = (const GGS_autoLayoutViewClassBindingSpecification & inSource) {
-  mProperty_mOutletClassName = inSource.mProperty_mOutletClassName ;
-  mProperty_mBindingName = inSource.mProperty_mBindingName ;
-  mProperty_mOutletClassBindingSpecificationModelList = inSource.mProperty_mOutletClassBindingSpecificationModelList ;
-  mProperty_mBindingOptionList = inSource.mProperty_mBindingOptionList ;
-  return *this ;
-}
-
-//---Synthetized initializer -----------------------------------------------------------------------
-
-GGS_autoLayoutViewClassBindingSpecification GGS_autoLayoutViewClassBindingSpecification::init_21__21__21__21_ (const GGS_lstring & in_mOutletClassName,
-                                                                                                               const GGS_lstring & in_mBindingName,
-                                                                                                               const GGS__5B_outletClassBindingSpecificationModel_5D_ & in_mOutletClassBindingSpecificationModelList,
-                                                                                                               const GGS__5B_controllerBindingOption_5D_ & in_mBindingOptionList,
-                                                                                                               Compiler * inCompiler
-                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_autoLayoutViewClassBindingSpecification result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mOutletClassName = in_mOutletClassName ;
-  result.mProperty_mBindingName = in_mBindingName ;
-  result.mProperty_mOutletClassBindingSpecificationModelList = in_mOutletClassBindingSpecificationModelList ;
-  result.mProperty_mBindingOptionList = in_mBindingOptionList ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_autoLayoutViewClassBindingSpecification::setInitializedProperties (Compiler * /* inCompiler */) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewClassBindingSpecification::GGS_autoLayoutViewClassBindingSpecification (const GGS_lstring & inOperand0,
-                                                                                          const GGS_lstring & inOperand1,
-                                                                                          const GGS__5B_outletClassBindingSpecificationModel_5D_ & inOperand2,
-                                                                                          const GGS__5B_controllerBindingOption_5D_ & inOperand3) :
-mProperty_mOutletClassName (inOperand0),
-mProperty_mBindingName (inOperand1),
-mProperty_mOutletClassBindingSpecificationModelList (inOperand2),
-mProperty_mBindingOptionList (inOperand3) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_autoLayoutViewClassBindingSpecification::isValid (void) const {
-  return mProperty_mOutletClassName.isValid () && mProperty_mBindingName.isValid () && mProperty_mOutletClassBindingSpecificationModelList.isValid () && mProperty_mBindingOptionList.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_autoLayoutViewClassBindingSpecification::drop (void) {
-  mProperty_mOutletClassName.drop () ;
-  mProperty_mBindingName.drop () ;
-  mProperty_mOutletClassBindingSpecificationModelList.drop () ;
-  mProperty_mBindingOptionList.drop () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_autoLayoutViewClassBindingSpecification::description (String & ioString,
-                                                               const int32_t inIndentation) const {
-  ioString.appendCString ("<struct @autoLayoutViewClassBindingSpecification:") ;
-  if (! isValid ()) {
-    ioString.appendCString (" not built") ;
-  }else{
-    mProperty_mOutletClassName.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mBindingName.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mOutletClassBindingSpecificationModelList.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mBindingOptionList.description (ioString, inIndentation+1) ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @autoLayoutViewClassBindingSpecification generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutViewClassBindingSpecification ("autoLayoutViewClassBindingSpecification",
-                                                                                            nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_autoLayoutViewClassBindingSpecification::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_autoLayoutViewClassBindingSpecification ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astDeclarationStruct::GGS_astDeclarationStruct (void) :
-mProperty_mUnifiedDeclarationList (),
-mProperty_mBindingSpecificationListMap (),
-mProperty_mAutoLayoutBindingSpecificationList (),
-mProperty_mPreferences (),
-mProperty_mXcodeProject (),
-mProperty_mGraphvizList (),
-mProperty_mAutoLayoutVStackFunctionMap (),
-mProperty_mAutoLayoutHStackFunctionMap (),
-mProperty_mEnumerationFunctionListAST () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astDeclarationStruct::GGS_astDeclarationStruct (const GGS_astDeclarationStruct & inSource) :
-mProperty_mUnifiedDeclarationList (inSource.mProperty_mUnifiedDeclarationList),
-mProperty_mBindingSpecificationListMap (inSource.mProperty_mBindingSpecificationListMap),
-mProperty_mAutoLayoutBindingSpecificationList (inSource.mProperty_mAutoLayoutBindingSpecificationList),
-mProperty_mPreferences (inSource.mProperty_mPreferences),
-mProperty_mXcodeProject (inSource.mProperty_mXcodeProject),
-mProperty_mGraphvizList (inSource.mProperty_mGraphvizList),
-mProperty_mAutoLayoutVStackFunctionMap (inSource.mProperty_mAutoLayoutVStackFunctionMap),
-mProperty_mAutoLayoutHStackFunctionMap (inSource.mProperty_mAutoLayoutHStackFunctionMap),
-mProperty_mEnumerationFunctionListAST (inSource.mProperty_mEnumerationFunctionListAST) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astDeclarationStruct & GGS_astDeclarationStruct::operator = (const GGS_astDeclarationStruct & inSource) {
-  mProperty_mUnifiedDeclarationList = inSource.mProperty_mUnifiedDeclarationList ;
-  mProperty_mBindingSpecificationListMap = inSource.mProperty_mBindingSpecificationListMap ;
-  mProperty_mAutoLayoutBindingSpecificationList = inSource.mProperty_mAutoLayoutBindingSpecificationList ;
-  mProperty_mPreferences = inSource.mProperty_mPreferences ;
-  mProperty_mXcodeProject = inSource.mProperty_mXcodeProject ;
-  mProperty_mGraphvizList = inSource.mProperty_mGraphvizList ;
-  mProperty_mAutoLayoutVStackFunctionMap = inSource.mProperty_mAutoLayoutVStackFunctionMap ;
-  mProperty_mAutoLayoutHStackFunctionMap = inSource.mProperty_mAutoLayoutHStackFunctionMap ;
-  mProperty_mEnumerationFunctionListAST = inSource.mProperty_mEnumerationFunctionListAST ;
-  return *this ;
-}
-
-//---Synthetized initializer -----------------------------------------------------------------------
-
-GGS_astDeclarationStruct GGS_astDeclarationStruct::init (Compiler * inCompiler
-                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_astDeclarationStruct result ;
-  result.setInitializedProperties (inCompiler) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_astDeclarationStruct::setInitializedProperties (Compiler * inCompiler) {
-GGS__5B_abstractDeclarationAST_5D_ temp_0 = GGS__5B_abstractDeclarationAST_5D_::init (inCompiler COMMA_SOURCE_FILE ("grammar-syntax.galgas4", 15)) ;
-  mProperty_mUnifiedDeclarationList = temp_0 ;
-GGS__5B_outletClassBindingSpecification_5D_ temp_1 = GGS__5B_outletClassBindingSpecification_5D_::init (inCompiler COMMA_SOURCE_FILE ("grammar-syntax.galgas4", 16)) ;
-  mProperty_mBindingSpecificationListMap = temp_1 ;
-GGS__5B_autoLayoutViewClassBindingSpecification_5D_ temp_2 = GGS__5B_autoLayoutViewClassBindingSpecification_5D_::init (inCompiler COMMA_SOURCE_FILE ("grammar-syntax.galgas4", 17)) ;
-  mProperty_mAutoLayoutBindingSpecificationList = temp_2 ;
-  mProperty_mPreferences = GGS_prefDeclaration::init (inCompiler COMMA_HERE) ;
-  mProperty_mXcodeProject = GGS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("grammar-syntax.galgas4", 19)) ;
-GGS__5B_lstring_5D_ temp_3 = GGS__5B_lstring_5D_::init (inCompiler COMMA_SOURCE_FILE ("grammar-syntax.galgas4", 20)) ;
-  mProperty_mGraphvizList = temp_3 ;
-  mProperty_mAutoLayoutVStackFunctionMap = GGS_astAutoLayoutViewFunctionMap::init (inCompiler COMMA_HERE) ;
-  mProperty_mAutoLayoutHStackFunctionMap = GGS_astAutoLayoutViewFunctionMap::init (inCompiler COMMA_HERE) ;
-GGS_enumerationFunctionListAST temp_4 = GGS_enumerationFunctionListAST::init (inCompiler COMMA_SOURCE_FILE ("grammar-syntax.galgas4", 23)) ;
-  mProperty_mEnumerationFunctionListAST = temp_4 ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astDeclarationStruct::GGS_astDeclarationStruct (const GGS__5B_abstractDeclarationAST_5D_ & inOperand0,
-                                                    const GGS__5B_outletClassBindingSpecification_5D_ & inOperand1,
-                                                    const GGS__5B_autoLayoutViewClassBindingSpecification_5D_ & inOperand2,
-                                                    const GGS_prefDeclaration & inOperand3,
-                                                    const GGS_lstring & inOperand4,
-                                                    const GGS__5B_lstring_5D_ & inOperand5,
-                                                    const GGS_astAutoLayoutViewFunctionMap & inOperand6,
-                                                    const GGS_astAutoLayoutViewFunctionMap & inOperand7,
-                                                    const GGS_enumerationFunctionListAST & inOperand8) :
-mProperty_mUnifiedDeclarationList (inOperand0),
-mProperty_mBindingSpecificationListMap (inOperand1),
-mProperty_mAutoLayoutBindingSpecificationList (inOperand2),
-mProperty_mPreferences (inOperand3),
-mProperty_mXcodeProject (inOperand4),
-mProperty_mGraphvizList (inOperand5),
-mProperty_mAutoLayoutVStackFunctionMap (inOperand6),
-mProperty_mAutoLayoutHStackFunctionMap (inOperand7),
-mProperty_mEnumerationFunctionListAST (inOperand8) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_astDeclarationStruct::isValid (void) const {
-  return mProperty_mUnifiedDeclarationList.isValid () && mProperty_mBindingSpecificationListMap.isValid () && mProperty_mAutoLayoutBindingSpecificationList.isValid () && mProperty_mPreferences.isValid () && mProperty_mXcodeProject.isValid () && mProperty_mGraphvizList.isValid () && mProperty_mAutoLayoutVStackFunctionMap.isValid () && mProperty_mAutoLayoutHStackFunctionMap.isValid () && mProperty_mEnumerationFunctionListAST.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_astDeclarationStruct::drop (void) {
-  mProperty_mUnifiedDeclarationList.drop () ;
-  mProperty_mBindingSpecificationListMap.drop () ;
-  mProperty_mAutoLayoutBindingSpecificationList.drop () ;
-  mProperty_mPreferences.drop () ;
-  mProperty_mXcodeProject.drop () ;
-  mProperty_mGraphvizList.drop () ;
-  mProperty_mAutoLayoutVStackFunctionMap.drop () ;
-  mProperty_mAutoLayoutHStackFunctionMap.drop () ;
-  mProperty_mEnumerationFunctionListAST.drop () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_astDeclarationStruct::description (String & ioString,
-                                            const int32_t inIndentation) const {
-  ioString.appendCString ("<struct @astDeclarationStruct:") ;
-  if (! isValid ()) {
-    ioString.appendCString (" not built") ;
-  }else{
-    mProperty_mUnifiedDeclarationList.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mBindingSpecificationListMap.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mAutoLayoutBindingSpecificationList.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mPreferences.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mXcodeProject.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mGraphvizList.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mAutoLayoutVStackFunctionMap.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mAutoLayoutHStackFunctionMap.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mEnumerationFunctionListAST.description (ioString, inIndentation+1) ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @astDeclarationStruct generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astDeclarationStruct ("astDeclarationStruct",
-                                                                         nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_astDeclarationStruct::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astDeclarationStruct ;
-}
-
-//--------------------------------------------------------------------------------------------------
 // @arrayControllerDeclarationAST reference class
 //--------------------------------------------------------------------------------------------------
 
@@ -740,179 +367,6 @@ const GALGAS_TypeDescriptor * GGS_selectionControllerForGeneration::staticTypeDe
 }
 
 //--------------------------------------------------------------------------------------------------
-// @astComputedHorizontalViewDeclaration reference class
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_astComputedHorizontalViewDeclaration::objectCompare (const GGS_astComputedHorizontalViewDeclaration & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astComputedHorizontalViewDeclaration::GGS_astComputedHorizontalViewDeclaration (void) :
-GGS_astAbstractViewDeclaration () {
-}
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-GGS_astComputedHorizontalViewDeclaration GGS_astComputedHorizontalViewDeclaration::
-init_21__21__21_ (const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                  const GGS_astViewInstructionList & in_mInstructionList,
-                  const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                  Compiler * inCompiler
-                  COMMA_LOCATION_ARGS) {
-  cPtr_astComputedHorizontalViewDeclaration * object = nullptr ;
-  macroMyNew (object, cPtr_astComputedHorizontalViewDeclaration (inCompiler COMMA_THERE)) ;
-  object->astComputedHorizontalViewDeclaration_init_21__21__21_ (in_mFunctionCallList, in_mInstructionList, in_mNewStackViewDeclarationList, inCompiler) ;
-  const GGS_astComputedHorizontalViewDeclaration result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_astComputedHorizontalViewDeclaration::
-astComputedHorizontalViewDeclaration_init_21__21__21_ (const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                                                       const GGS_astViewInstructionList & in_mInstructionList,
-                                                       const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                                                       Compiler * /* inCompiler */) {
-  mProperty_mFunctionCallList = in_mFunctionCallList ;
-  mProperty_mInstructionList = in_mInstructionList ;
-  mProperty_mNewStackViewDeclarationList = in_mNewStackViewDeclarationList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astComputedHorizontalViewDeclaration::GGS_astComputedHorizontalViewDeclaration (const cPtr_astComputedHorizontalViewDeclaration * inSourcePtr) :
-GGS_astAbstractViewDeclaration (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_astComputedHorizontalViewDeclaration) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GGS_astAutoLayoutViewFunctionCallList GGS_astComputedHorizontalViewDeclaration::readProperty_mFunctionCallList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_astAutoLayoutViewFunctionCallList () ;
-  }else{
-    cPtr_astComputedHorizontalViewDeclaration * p = (cPtr_astComputedHorizontalViewDeclaration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedHorizontalViewDeclaration) ;
-    return p->mProperty_mFunctionCallList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astViewInstructionList GGS_astComputedHorizontalViewDeclaration::readProperty_mInstructionList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_astViewInstructionList () ;
-  }else{
-    cPtr_astComputedHorizontalViewDeclaration * p = (cPtr_astComputedHorizontalViewDeclaration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedHorizontalViewDeclaration) ;
-    return p->mProperty_mInstructionList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astNewStackViewDeclarationList GGS_astComputedHorizontalViewDeclaration::readProperty_mNewStackViewDeclarationList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_astNewStackViewDeclarationList () ;
-  }else{
-    cPtr_astComputedHorizontalViewDeclaration * p = (cPtr_astComputedHorizontalViewDeclaration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedHorizontalViewDeclaration) ;
-    return p->mProperty_mNewStackViewDeclarationList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @astComputedHorizontalViewDeclaration class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_astComputedHorizontalViewDeclaration::cPtr_astComputedHorizontalViewDeclaration (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_astAbstractViewDeclaration (inCompiler COMMA_THERE),
-mProperty_mFunctionCallList (),
-mProperty_mInstructionList (),
-mProperty_mNewStackViewDeclarationList () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cPtr_astComputedHorizontalViewDeclaration::cPtr_astComputedHorizontalViewDeclaration (const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                                                                                      const GGS_astViewInstructionList & in_mInstructionList,
-                                                                                      const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                                                                                      Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) :
-cPtr_astAbstractViewDeclaration (inCompiler COMMA_THERE),
-mProperty_mFunctionCallList (),
-mProperty_mInstructionList (),
-mProperty_mNewStackViewDeclarationList () {
-  mProperty_mFunctionCallList = in_mFunctionCallList ;
-  mProperty_mInstructionList = in_mInstructionList ;
-  mProperty_mNewStackViewDeclarationList = in_mNewStackViewDeclarationList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * cPtr_astComputedHorizontalViewDeclaration::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astComputedHorizontalViewDeclaration ;
-}
-
-void cPtr_astComputedHorizontalViewDeclaration::description (String & ioString,
-                                                             const int32_t inIndentation) const {
-  ioString.appendCString ("[@astComputedHorizontalViewDeclaration:") ;
-  mProperty_mFunctionCallList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mInstructionList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mNewStackViewDeclarationList.description (ioString, inIndentation+1) ;
-  ioString.appendCString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AbstractPtrClass * cPtr_astComputedHorizontalViewDeclaration::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  AbstractPtrClass * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_astComputedHorizontalViewDeclaration (mProperty_mFunctionCallList, mProperty_mInstructionList, mProperty_mNewStackViewDeclarationList, inCompiler COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_astComputedHorizontalViewDeclaration::printNonNullClassInstanceProperties (void) const {
-    cPtr_astAbstractViewDeclaration::printNonNullClassInstanceProperties () ;
-    mProperty_mFunctionCallList.printNonNullClassInstanceProperties ("mFunctionCallList") ;
-    mProperty_mInstructionList.printNonNullClassInstanceProperties ("mInstructionList") ;
-    mProperty_mNewStackViewDeclarationList.printNonNullClassInstanceProperties ("mNewStackViewDeclarationList") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-//     @astComputedHorizontalViewDeclaration generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astComputedHorizontalViewDeclaration ("astComputedHorizontalViewDeclaration",
-                                                                                         & kTypeDescriptor_GALGAS_astAbstractViewDeclaration) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_astComputedHorizontalViewDeclaration::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astComputedHorizontalViewDeclaration ;
-}
-
-//--------------------------------------------------------------------------------------------------
 // @astComputedViewInstruction reference class
 //--------------------------------------------------------------------------------------------------
 
@@ -942,8 +396,8 @@ GGS_astAbstractViewInstructionDeclaration () {
 
 GGS_astComputedViewInstruction GGS_astComputedViewInstruction::
 init_21__21__21__21__21__21__21__21__21__21__21__21_ (const GGS_lstring & in_mAutoLayoutViewClassName,
-                                                      const GGS_astAutoLayoutViewInstructionParameterList & in_mParameterList,
-                                                      const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+                                                      const GGS__5B_astAutoLayoutViewInstructionParameter_5D_ & in_mParameterList,
+                                                      const GGS__5B_astAutoLayoutViewFunctionCall_5D_ & in_mFunctionCallList,
                                                       const GGS_tableValueBinding & in_mTableValueBinding,
                                                       const GGS_runActionDescriptor & in_mRunActionDescriptor,
                                                       const GGS_multipleBindingDescriptor & in_mEnabledBindingDescriptor,
@@ -967,8 +421,8 @@ init_21__21__21__21__21__21__21__21__21__21__21__21_ (const GGS_lstring & in_mAu
 
 void cPtr_astComputedViewInstruction::
 astComputedViewInstruction_init_21__21__21__21__21__21__21__21__21__21__21__21_ (const GGS_lstring & in_mAutoLayoutViewClassName,
-                                                                                 const GGS_astAutoLayoutViewInstructionParameterList & in_mParameterList,
-                                                                                 const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+                                                                                 const GGS__5B_astAutoLayoutViewInstructionParameter_5D_ & in_mParameterList,
+                                                                                 const GGS__5B_astAutoLayoutViewFunctionCall_5D_ & in_mFunctionCallList,
                                                                                  const GGS_tableValueBinding & in_mTableValueBinding,
                                                                                  const GGS_runActionDescriptor & in_mRunActionDescriptor,
                                                                                  const GGS_multipleBindingDescriptor & in_mEnabledBindingDescriptor,
@@ -1013,9 +467,9 @@ GGS_lstring GGS_astComputedViewInstruction::readProperty_mAutoLayoutViewClassNam
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_astAutoLayoutViewInstructionParameterList GGS_astComputedViewInstruction::readProperty_mParameterList (void) const {
+GGS__5B_astAutoLayoutViewInstructionParameter_5D_ GGS_astComputedViewInstruction::readProperty_mParameterList (void) const {
   if (nullptr == mObjectPtr) {
-    return GGS_astAutoLayoutViewInstructionParameterList () ;
+    return GGS__5B_astAutoLayoutViewInstructionParameter_5D_ () ;
   }else{
     cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
@@ -1025,9 +479,9 @@ GGS_astAutoLayoutViewInstructionParameterList GGS_astComputedViewInstruction::re
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_astAutoLayoutViewFunctionCallList GGS_astComputedViewInstruction::readProperty_mFunctionCallList (void) const {
+GGS__5B_astAutoLayoutViewFunctionCall_5D_ GGS_astComputedViewInstruction::readProperty_mFunctionCallList (void) const {
   if (nullptr == mObjectPtr) {
-    return GGS_astAutoLayoutViewFunctionCallList () ;
+    return GGS__5B_astAutoLayoutViewFunctionCall_5D_ () ;
   }else{
     cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
@@ -1166,8 +620,8 @@ mProperty_mOutletIsArray () {
 //--------------------------------------------------------------------------------------------------
 
 cPtr_astComputedViewInstruction::cPtr_astComputedViewInstruction (const GGS_lstring & in_mAutoLayoutViewClassName,
-                                                                  const GGS_astAutoLayoutViewInstructionParameterList & in_mParameterList,
-                                                                  const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+                                                                  const GGS__5B_astAutoLayoutViewInstructionParameter_5D_ & in_mParameterList,
+                                                                  const GGS__5B_astAutoLayoutViewFunctionCall_5D_ & in_mFunctionCallList,
                                                                   const GGS_tableValueBinding & in_mTableValueBinding,
                                                                   const GGS_runActionDescriptor & in_mRunActionDescriptor,
                                                                   const GGS_multipleBindingDescriptor & in_mEnabledBindingDescriptor,
@@ -1284,6 +738,194 @@ const GALGAS_TypeDescriptor * GGS_astComputedViewInstruction::staticTypeDescript
 }
 
 //--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutViewInstructionGenerationFuncCall::GGS_autoLayoutViewInstructionGenerationFuncCall (void) :
+mProperty_mFunctionName (),
+mProperty_mParameters () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutViewInstructionGenerationFuncCall::GGS_autoLayoutViewInstructionGenerationFuncCall (const GGS_autoLayoutViewInstructionGenerationFuncCall & inSource) :
+mProperty_mFunctionName (inSource.mProperty_mFunctionName),
+mProperty_mParameters (inSource.mProperty_mParameters) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutViewInstructionGenerationFuncCall & GGS_autoLayoutViewInstructionGenerationFuncCall::operator = (const GGS_autoLayoutViewInstructionGenerationFuncCall & inSource) {
+  mProperty_mFunctionName = inSource.mProperty_mFunctionName ;
+  mProperty_mParameters = inSource.mProperty_mParameters ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_autoLayoutViewInstructionGenerationFuncCall GGS_autoLayoutViewInstructionGenerationFuncCall::init_21__21_ (const GGS_string & in_mFunctionName,
+                                                                                                               const GGS__5B_autoLayoutViewInstructionGenerationParameter_5D_ & in_mParameters,
+                                                                                                               Compiler * inCompiler
+                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_autoLayoutViewInstructionGenerationFuncCall result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mFunctionName = in_mFunctionName ;
+  result.mProperty_mParameters = in_mParameters ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_autoLayoutViewInstructionGenerationFuncCall::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutViewInstructionGenerationFuncCall::GGS_autoLayoutViewInstructionGenerationFuncCall (const GGS_string & inOperand0,
+                                                                                                  const GGS__5B_autoLayoutViewInstructionGenerationParameter_5D_ & inOperand1) :
+mProperty_mFunctionName (inOperand0),
+mProperty_mParameters (inOperand1) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_autoLayoutViewInstructionGenerationFuncCall::isValid (void) const {
+  return mProperty_mFunctionName.isValid () && mProperty_mParameters.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_autoLayoutViewInstructionGenerationFuncCall::drop (void) {
+  mProperty_mFunctionName.drop () ;
+  mProperty_mParameters.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_autoLayoutViewInstructionGenerationFuncCall::description (String & ioString,
+                                                                   const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @autoLayoutViewInstructionGenerationFuncCall:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mFunctionName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mParameters.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @autoLayoutViewInstructionGenerationFuncCall generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutViewInstructionGenerationFuncCall ("autoLayoutViewInstructionGenerationFuncCall",
+                                                                                                nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_autoLayoutViewInstructionGenerationFuncCall::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_autoLayoutViewInstructionGenerationFuncCall ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutRegularBindingsGeneration::GGS_autoLayoutRegularBindingsGeneration (void) :
+mProperty_mBindingName (),
+mProperty_mBoundObjectList (),
+mProperty_mBindingOptionsString () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutRegularBindingsGeneration::GGS_autoLayoutRegularBindingsGeneration (const GGS_autoLayoutRegularBindingsGeneration & inSource) :
+mProperty_mBindingName (inSource.mProperty_mBindingName),
+mProperty_mBoundObjectList (inSource.mProperty_mBoundObjectList),
+mProperty_mBindingOptionsString (inSource.mProperty_mBindingOptionsString) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutRegularBindingsGeneration & GGS_autoLayoutRegularBindingsGeneration::operator = (const GGS_autoLayoutRegularBindingsGeneration & inSource) {
+  mProperty_mBindingName = inSource.mProperty_mBindingName ;
+  mProperty_mBoundObjectList = inSource.mProperty_mBoundObjectList ;
+  mProperty_mBindingOptionsString = inSource.mProperty_mBindingOptionsString ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_autoLayoutRegularBindingsGeneration GGS_autoLayoutRegularBindingsGeneration::init_21__21__21_ (const GGS_string & in_mBindingName,
+                                                                                                   const GGS_boundObjectList & in_mBoundObjectList,
+                                                                                                   const GGS_string & in_mBindingOptionsString,
+                                                                                                   Compiler * inCompiler
+                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_autoLayoutRegularBindingsGeneration result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mBindingName = in_mBindingName ;
+  result.mProperty_mBoundObjectList = in_mBoundObjectList ;
+  result.mProperty_mBindingOptionsString = in_mBindingOptionsString ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_autoLayoutRegularBindingsGeneration::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutRegularBindingsGeneration::GGS_autoLayoutRegularBindingsGeneration (const GGS_string & inOperand0,
+                                                                                  const GGS_boundObjectList & inOperand1,
+                                                                                  const GGS_string & inOperand2) :
+mProperty_mBindingName (inOperand0),
+mProperty_mBoundObjectList (inOperand1),
+mProperty_mBindingOptionsString (inOperand2) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_autoLayoutRegularBindingsGeneration::isValid (void) const {
+  return mProperty_mBindingName.isValid () && mProperty_mBoundObjectList.isValid () && mProperty_mBindingOptionsString.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_autoLayoutRegularBindingsGeneration::drop (void) {
+  mProperty_mBindingName.drop () ;
+  mProperty_mBoundObjectList.drop () ;
+  mProperty_mBindingOptionsString.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_autoLayoutRegularBindingsGeneration::description (String & ioString,
+                                                           const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @autoLayoutRegularBindingsGeneration:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mBindingName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mBoundObjectList.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mBindingOptionsString.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @autoLayoutRegularBindingsGeneration generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutRegularBindingsGeneration ("autoLayoutRegularBindingsGeneration",
+                                                                                        nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_autoLayoutRegularBindingsGeneration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_autoLayoutRegularBindingsGeneration ;
+}
+
+//--------------------------------------------------------------------------------------------------
 // @computedHorizontalViewGeneration reference class
 //--------------------------------------------------------------------------------------------------
 
@@ -1312,9 +954,9 @@ GGS_abstractViewGeneration () {
 //--- Synthetized initializer ----------------------------------------------------------------------
 
 GGS_computedHorizontalViewGeneration GGS_computedHorizontalViewGeneration::
-init_21__21__21_ (const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
+init_21__21__21_ (const GGS__5B_autoLayoutViewInstructionGenerationFuncCall_5D_ & in_mFuncCallList,
                   const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
-                  const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
+                  const GGS__5B_astNewStackViewDeclaration_5D_ & in_mNewStackViewDeclarationList,
                   Compiler * inCompiler
                   COMMA_LOCATION_ARGS) {
   cPtr_computedHorizontalViewGeneration * object = nullptr ;
@@ -1328,9 +970,9 @@ init_21__21__21_ (const GGS_autoLayoutViewInstructionGenerationFuncCallList & in
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_computedHorizontalViewGeneration::
-computedHorizontalViewGeneration_init_21__21__21_ (const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
+computedHorizontalViewGeneration_init_21__21__21_ (const GGS__5B_autoLayoutViewInstructionGenerationFuncCall_5D_ & in_mFuncCallList,
                                                    const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
-                                                   const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
+                                                   const GGS__5B_astNewStackViewDeclaration_5D_ & in_mNewStackViewDeclarationList,
                                                    Compiler * /* inCompiler */) {
   mProperty_mFuncCallList = in_mFuncCallList ;
   mProperty_mInstructionList = in_mInstructionList ;
@@ -1345,9 +987,9 @@ GGS_abstractViewGeneration (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutViewInstructionGenerationFuncCallList GGS_computedHorizontalViewGeneration::readProperty_mFuncCallList (void) const {
+GGS__5B_autoLayoutViewInstructionGenerationFuncCall_5D_ GGS_computedHorizontalViewGeneration::readProperty_mFuncCallList (void) const {
   if (nullptr == mObjectPtr) {
-    return GGS_autoLayoutViewInstructionGenerationFuncCallList () ;
+    return GGS__5B_autoLayoutViewInstructionGenerationFuncCall_5D_ () ;
   }else{
     cPtr_computedHorizontalViewGeneration * p = (cPtr_computedHorizontalViewGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_computedHorizontalViewGeneration) ;
@@ -1369,9 +1011,9 @@ GGS_autoLayoutViewInstructionGenerationList GGS_computedHorizontalViewGeneration
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_astNewStackViewDeclarationList GGS_computedHorizontalViewGeneration::readProperty_mNewStackViewDeclarationList (void) const {
+GGS__5B_astNewStackViewDeclaration_5D_ GGS_computedHorizontalViewGeneration::readProperty_mNewStackViewDeclarationList (void) const {
   if (nullptr == mObjectPtr) {
-    return GGS_astNewStackViewDeclarationList () ;
+    return GGS__5B_astNewStackViewDeclaration_5D_ () ;
   }else{
     cPtr_computedHorizontalViewGeneration * p = (cPtr_computedHorizontalViewGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_computedHorizontalViewGeneration) ;
@@ -1392,9 +1034,9 @@ mProperty_mNewStackViewDeclarationList () {
 
 //--------------------------------------------------------------------------------------------------
 
-cPtr_computedHorizontalViewGeneration::cPtr_computedHorizontalViewGeneration (const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
+cPtr_computedHorizontalViewGeneration::cPtr_computedHorizontalViewGeneration (const GGS__5B_autoLayoutViewInstructionGenerationFuncCall_5D_ & in_mFuncCallList,
                                                                               const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
-                                                                              const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
+                                                                              const GGS__5B_astNewStackViewDeclaration_5D_ & in_mNewStackViewDeclarationList,
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) :
 cPtr_abstractViewGeneration (inCompiler COMMA_THERE),
@@ -1454,550 +1096,6 @@ const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_computedHorizontalViewGenerat
 
 const GALGAS_TypeDescriptor * GGS_computedHorizontalViewGeneration::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_computedHorizontalViewGeneration ;
-}
-
-//--------------------------------------------------------------------------------------------------
-// @hStackViewInstructionGeneration reference class
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_hStackViewInstructionGeneration::objectCompare (const GGS_hStackViewInstructionGeneration & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_hStackViewInstructionGeneration::GGS_hStackViewInstructionGeneration (void) :
-GGS_abstractViewInstructionGeneration () {
-}
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-GGS_hStackViewInstructionGeneration GGS_hStackViewInstructionGeneration::
-init_21__21__21__21_ (const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
-                      const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
-                      const GGS_autoLayoutMultipleBindingGenerationList & in_mMultipleBindingGenerationList,
-                      const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                      Compiler * inCompiler
-                      COMMA_LOCATION_ARGS) {
-  cPtr_hStackViewInstructionGeneration * object = nullptr ;
-  macroMyNew (object, cPtr_hStackViewInstructionGeneration (inCompiler COMMA_THERE)) ;
-  object->hStackViewInstructionGeneration_init_21__21__21__21_ (in_mFuncCallList, in_mInstructionList, in_mMultipleBindingGenerationList, in_mNewStackViewDeclarationList, inCompiler) ;
-  const GGS_hStackViewInstructionGeneration result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_hStackViewInstructionGeneration::
-hStackViewInstructionGeneration_init_21__21__21__21_ (const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
-                                                      const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
-                                                      const GGS_autoLayoutMultipleBindingGenerationList & in_mMultipleBindingGenerationList,
-                                                      const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                                                      Compiler * /* inCompiler */) {
-  mProperty_mFuncCallList = in_mFuncCallList ;
-  mProperty_mInstructionList = in_mInstructionList ;
-  mProperty_mMultipleBindingGenerationList = in_mMultipleBindingGenerationList ;
-  mProperty_mNewStackViewDeclarationList = in_mNewStackViewDeclarationList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_hStackViewInstructionGeneration::GGS_hStackViewInstructionGeneration (const cPtr_hStackViewInstructionGeneration * inSourcePtr) :
-GGS_abstractViewInstructionGeneration (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_hStackViewInstructionGeneration) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewInstructionGenerationFuncCallList GGS_hStackViewInstructionGeneration::readProperty_mFuncCallList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_autoLayoutViewInstructionGenerationFuncCallList () ;
-  }else{
-    cPtr_hStackViewInstructionGeneration * p = (cPtr_hStackViewInstructionGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_hStackViewInstructionGeneration) ;
-    return p->mProperty_mFuncCallList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewInstructionGenerationList GGS_hStackViewInstructionGeneration::readProperty_mInstructionList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_autoLayoutViewInstructionGenerationList () ;
-  }else{
-    cPtr_hStackViewInstructionGeneration * p = (cPtr_hStackViewInstructionGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_hStackViewInstructionGeneration) ;
-    return p->mProperty_mInstructionList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutMultipleBindingGenerationList GGS_hStackViewInstructionGeneration::readProperty_mMultipleBindingGenerationList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_autoLayoutMultipleBindingGenerationList () ;
-  }else{
-    cPtr_hStackViewInstructionGeneration * p = (cPtr_hStackViewInstructionGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_hStackViewInstructionGeneration) ;
-    return p->mProperty_mMultipleBindingGenerationList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astNewStackViewDeclarationList GGS_hStackViewInstructionGeneration::readProperty_mNewStackViewDeclarationList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_astNewStackViewDeclarationList () ;
-  }else{
-    cPtr_hStackViewInstructionGeneration * p = (cPtr_hStackViewInstructionGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_hStackViewInstructionGeneration) ;
-    return p->mProperty_mNewStackViewDeclarationList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @hStackViewInstructionGeneration class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_hStackViewInstructionGeneration::cPtr_hStackViewInstructionGeneration (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_abstractViewInstructionGeneration (inCompiler COMMA_THERE),
-mProperty_mFuncCallList (),
-mProperty_mInstructionList (),
-mProperty_mMultipleBindingGenerationList (),
-mProperty_mNewStackViewDeclarationList () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cPtr_hStackViewInstructionGeneration::cPtr_hStackViewInstructionGeneration (const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
-                                                                            const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
-                                                                            const GGS_autoLayoutMultipleBindingGenerationList & in_mMultipleBindingGenerationList,
-                                                                            const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) :
-cPtr_abstractViewInstructionGeneration (inCompiler COMMA_THERE),
-mProperty_mFuncCallList (),
-mProperty_mInstructionList (),
-mProperty_mMultipleBindingGenerationList (),
-mProperty_mNewStackViewDeclarationList () {
-  mProperty_mFuncCallList = in_mFuncCallList ;
-  mProperty_mInstructionList = in_mInstructionList ;
-  mProperty_mMultipleBindingGenerationList = in_mMultipleBindingGenerationList ;
-  mProperty_mNewStackViewDeclarationList = in_mNewStackViewDeclarationList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * cPtr_hStackViewInstructionGeneration::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_hStackViewInstructionGeneration ;
-}
-
-void cPtr_hStackViewInstructionGeneration::description (String & ioString,
-                                                        const int32_t inIndentation) const {
-  ioString.appendCString ("[@hStackViewInstructionGeneration:") ;
-  mProperty_mFuncCallList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mInstructionList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mMultipleBindingGenerationList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mNewStackViewDeclarationList.description (ioString, inIndentation+1) ;
-  ioString.appendCString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AbstractPtrClass * cPtr_hStackViewInstructionGeneration::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  AbstractPtrClass * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_hStackViewInstructionGeneration (mProperty_mFuncCallList, mProperty_mInstructionList, mProperty_mMultipleBindingGenerationList, mProperty_mNewStackViewDeclarationList, inCompiler COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_hStackViewInstructionGeneration::printNonNullClassInstanceProperties (void) const {
-    cPtr_abstractViewInstructionGeneration::printNonNullClassInstanceProperties () ;
-    mProperty_mFuncCallList.printNonNullClassInstanceProperties ("mFuncCallList") ;
-    mProperty_mInstructionList.printNonNullClassInstanceProperties ("mInstructionList") ;
-    mProperty_mMultipleBindingGenerationList.printNonNullClassInstanceProperties ("mMultipleBindingGenerationList") ;
-    mProperty_mNewStackViewDeclarationList.printNonNullClassInstanceProperties ("mNewStackViewDeclarationList") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-//     @hStackViewInstructionGeneration generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_hStackViewInstructionGeneration ("hStackViewInstructionGeneration",
-                                                                                    & kTypeDescriptor_GALGAS_abstractViewInstructionGeneration) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_hStackViewInstructionGeneration::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_hStackViewInstructionGeneration ;
-}
-
-//--------------------------------------------------------------------------------------------------
-// @autoLayoutComputedViewInstructionGeneration reference class
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_autoLayoutComputedViewInstructionGeneration::objectCompare (const GGS_autoLayoutComputedViewInstructionGeneration & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutComputedViewInstructionGeneration::GGS_autoLayoutComputedViewInstructionGeneration (void) :
-GGS_abstractViewInstructionGeneration () {
-}
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-GGS_autoLayoutComputedViewInstructionGeneration GGS_autoLayoutComputedViewInstructionGeneration::
-init_21__21__21__21__21__21__21__21__21__21__21_ (const GGS_lstring & in_mAutoLayoutViewClassName,
-                                                  const GGS_autoLayoutViewInstructionGenerationParameterList & in_mParameterList,
-                                                  const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFunctionCallList,
-                                                  const GGS_autoLayoutRegularBindingsGenerationList & in_mRegularBindingsGenerationList,
-                                                  const GGS_autoLayoutMultipleBindingGenerationList & in_mMultipleBindingGenerationList,
-                                                  const GGS_autolayoutRunBindingForGeneration & in_mRunBindingGeneration,
-                                                  const GGS_string & in_mTableViewBindingGeneration,
-                                                  const GGS_autoLayoutViewGraphicControllerBindingGeneration & in_mEBViewGraphicControllerBindingGeneration,
-                                                  const GGS_string & in_mConfiguratorName,
-                                                  const GGS_string & in_mOutletName,
-                                                  const GGS_bool & in_mOutletIsArray,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) {
-  cPtr_autoLayoutComputedViewInstructionGeneration * object = nullptr ;
-  macroMyNew (object, cPtr_autoLayoutComputedViewInstructionGeneration (inCompiler COMMA_THERE)) ;
-  object->autoLayoutComputedViewInstructionGeneration_init_21__21__21__21__21__21__21__21__21__21__21_ (in_mAutoLayoutViewClassName, in_mParameterList, in_mFunctionCallList, in_mRegularBindingsGenerationList, in_mMultipleBindingGenerationList, in_mRunBindingGeneration, in_mTableViewBindingGeneration, in_mEBViewGraphicControllerBindingGeneration, in_mConfiguratorName, in_mOutletName, in_mOutletIsArray, inCompiler) ;
-  const GGS_autoLayoutComputedViewInstructionGeneration result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_autoLayoutComputedViewInstructionGeneration::
-autoLayoutComputedViewInstructionGeneration_init_21__21__21__21__21__21__21__21__21__21__21_ (const GGS_lstring & in_mAutoLayoutViewClassName,
-                                                                                              const GGS_autoLayoutViewInstructionGenerationParameterList & in_mParameterList,
-                                                                                              const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFunctionCallList,
-                                                                                              const GGS_autoLayoutRegularBindingsGenerationList & in_mRegularBindingsGenerationList,
-                                                                                              const GGS_autoLayoutMultipleBindingGenerationList & in_mMultipleBindingGenerationList,
-                                                                                              const GGS_autolayoutRunBindingForGeneration & in_mRunBindingGeneration,
-                                                                                              const GGS_string & in_mTableViewBindingGeneration,
-                                                                                              const GGS_autoLayoutViewGraphicControllerBindingGeneration & in_mEBViewGraphicControllerBindingGeneration,
-                                                                                              const GGS_string & in_mConfiguratorName,
-                                                                                              const GGS_string & in_mOutletName,
-                                                                                              const GGS_bool & in_mOutletIsArray,
-                                                                                              Compiler * /* inCompiler */) {
-  mProperty_mAutoLayoutViewClassName = in_mAutoLayoutViewClassName ;
-  mProperty_mParameterList = in_mParameterList ;
-  mProperty_mFunctionCallList = in_mFunctionCallList ;
-  mProperty_mRegularBindingsGenerationList = in_mRegularBindingsGenerationList ;
-  mProperty_mMultipleBindingGenerationList = in_mMultipleBindingGenerationList ;
-  mProperty_mRunBindingGeneration = in_mRunBindingGeneration ;
-  mProperty_mTableViewBindingGeneration = in_mTableViewBindingGeneration ;
-  mProperty_mEBViewGraphicControllerBindingGeneration = in_mEBViewGraphicControllerBindingGeneration ;
-  mProperty_mConfiguratorName = in_mConfiguratorName ;
-  mProperty_mOutletName = in_mOutletName ;
-  mProperty_mOutletIsArray = in_mOutletIsArray ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutComputedViewInstructionGeneration::GGS_autoLayoutComputedViewInstructionGeneration (const cPtr_autoLayoutComputedViewInstructionGeneration * inSourcePtr) :
-GGS_abstractViewInstructionGeneration (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_autoLayoutComputedViewInstructionGeneration) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstring GGS_autoLayoutComputedViewInstructionGeneration::readProperty_mAutoLayoutViewClassName (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_lstring () ;
-  }else{
-    cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutComputedViewInstructionGeneration) ;
-    return p->mProperty_mAutoLayoutViewClassName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewInstructionGenerationParameterList GGS_autoLayoutComputedViewInstructionGeneration::readProperty_mParameterList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_autoLayoutViewInstructionGenerationParameterList () ;
-  }else{
-    cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutComputedViewInstructionGeneration) ;
-    return p->mProperty_mParameterList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewInstructionGenerationFuncCallList GGS_autoLayoutComputedViewInstructionGeneration::readProperty_mFunctionCallList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_autoLayoutViewInstructionGenerationFuncCallList () ;
-  }else{
-    cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutComputedViewInstructionGeneration) ;
-    return p->mProperty_mFunctionCallList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutRegularBindingsGenerationList GGS_autoLayoutComputedViewInstructionGeneration::readProperty_mRegularBindingsGenerationList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_autoLayoutRegularBindingsGenerationList () ;
-  }else{
-    cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutComputedViewInstructionGeneration) ;
-    return p->mProperty_mRegularBindingsGenerationList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutMultipleBindingGenerationList GGS_autoLayoutComputedViewInstructionGeneration::readProperty_mMultipleBindingGenerationList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_autoLayoutMultipleBindingGenerationList () ;
-  }else{
-    cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutComputedViewInstructionGeneration) ;
-    return p->mProperty_mMultipleBindingGenerationList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autolayoutRunBindingForGeneration GGS_autoLayoutComputedViewInstructionGeneration::readProperty_mRunBindingGeneration (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_autolayoutRunBindingForGeneration () ;
-  }else{
-    cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutComputedViewInstructionGeneration) ;
-    return p->mProperty_mRunBindingGeneration ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_string GGS_autoLayoutComputedViewInstructionGeneration::readProperty_mTableViewBindingGeneration (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_string () ;
-  }else{
-    cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutComputedViewInstructionGeneration) ;
-    return p->mProperty_mTableViewBindingGeneration ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewGraphicControllerBindingGeneration GGS_autoLayoutComputedViewInstructionGeneration::readProperty_mEBViewGraphicControllerBindingGeneration (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_autoLayoutViewGraphicControllerBindingGeneration () ;
-  }else{
-    cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutComputedViewInstructionGeneration) ;
-    return p->mProperty_mEBViewGraphicControllerBindingGeneration ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_string GGS_autoLayoutComputedViewInstructionGeneration::readProperty_mConfiguratorName (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_string () ;
-  }else{
-    cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutComputedViewInstructionGeneration) ;
-    return p->mProperty_mConfiguratorName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_string GGS_autoLayoutComputedViewInstructionGeneration::readProperty_mOutletName (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_string () ;
-  }else{
-    cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutComputedViewInstructionGeneration) ;
-    return p->mProperty_mOutletName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_autoLayoutComputedViewInstructionGeneration::readProperty_mOutletIsArray (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_bool () ;
-  }else{
-    cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutComputedViewInstructionGeneration) ;
-    return p->mProperty_mOutletIsArray ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @autoLayoutComputedViewInstructionGeneration class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_autoLayoutComputedViewInstructionGeneration::cPtr_autoLayoutComputedViewInstructionGeneration (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_abstractViewInstructionGeneration (inCompiler COMMA_THERE),
-mProperty_mAutoLayoutViewClassName (),
-mProperty_mParameterList (),
-mProperty_mFunctionCallList (),
-mProperty_mRegularBindingsGenerationList (),
-mProperty_mMultipleBindingGenerationList (),
-mProperty_mRunBindingGeneration (),
-mProperty_mTableViewBindingGeneration (),
-mProperty_mEBViewGraphicControllerBindingGeneration (),
-mProperty_mConfiguratorName (),
-mProperty_mOutletName (),
-mProperty_mOutletIsArray () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cPtr_autoLayoutComputedViewInstructionGeneration::cPtr_autoLayoutComputedViewInstructionGeneration (const GGS_lstring & in_mAutoLayoutViewClassName,
-                                                                                                    const GGS_autoLayoutViewInstructionGenerationParameterList & in_mParameterList,
-                                                                                                    const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFunctionCallList,
-                                                                                                    const GGS_autoLayoutRegularBindingsGenerationList & in_mRegularBindingsGenerationList,
-                                                                                                    const GGS_autoLayoutMultipleBindingGenerationList & in_mMultipleBindingGenerationList,
-                                                                                                    const GGS_autolayoutRunBindingForGeneration & in_mRunBindingGeneration,
-                                                                                                    const GGS_string & in_mTableViewBindingGeneration,
-                                                                                                    const GGS_autoLayoutViewGraphicControllerBindingGeneration & in_mEBViewGraphicControllerBindingGeneration,
-                                                                                                    const GGS_string & in_mConfiguratorName,
-                                                                                                    const GGS_string & in_mOutletName,
-                                                                                                    const GGS_bool & in_mOutletIsArray,
-                                                                                                    Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) :
-cPtr_abstractViewInstructionGeneration (inCompiler COMMA_THERE),
-mProperty_mAutoLayoutViewClassName (),
-mProperty_mParameterList (),
-mProperty_mFunctionCallList (),
-mProperty_mRegularBindingsGenerationList (),
-mProperty_mMultipleBindingGenerationList (),
-mProperty_mRunBindingGeneration (),
-mProperty_mTableViewBindingGeneration (),
-mProperty_mEBViewGraphicControllerBindingGeneration (),
-mProperty_mConfiguratorName (),
-mProperty_mOutletName (),
-mProperty_mOutletIsArray () {
-  mProperty_mAutoLayoutViewClassName = in_mAutoLayoutViewClassName ;
-  mProperty_mParameterList = in_mParameterList ;
-  mProperty_mFunctionCallList = in_mFunctionCallList ;
-  mProperty_mRegularBindingsGenerationList = in_mRegularBindingsGenerationList ;
-  mProperty_mMultipleBindingGenerationList = in_mMultipleBindingGenerationList ;
-  mProperty_mRunBindingGeneration = in_mRunBindingGeneration ;
-  mProperty_mTableViewBindingGeneration = in_mTableViewBindingGeneration ;
-  mProperty_mEBViewGraphicControllerBindingGeneration = in_mEBViewGraphicControllerBindingGeneration ;
-  mProperty_mConfiguratorName = in_mConfiguratorName ;
-  mProperty_mOutletName = in_mOutletName ;
-  mProperty_mOutletIsArray = in_mOutletIsArray ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * cPtr_autoLayoutComputedViewInstructionGeneration::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_autoLayoutComputedViewInstructionGeneration ;
-}
-
-void cPtr_autoLayoutComputedViewInstructionGeneration::description (String & ioString,
-                                                                    const int32_t inIndentation) const {
-  ioString.appendCString ("[@autoLayoutComputedViewInstructionGeneration:") ;
-  mProperty_mAutoLayoutViewClassName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mParameterList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mFunctionCallList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mRegularBindingsGenerationList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mMultipleBindingGenerationList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mRunBindingGeneration.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mTableViewBindingGeneration.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mEBViewGraphicControllerBindingGeneration.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mConfiguratorName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mOutletName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mOutletIsArray.description (ioString, inIndentation+1) ;
-  ioString.appendCString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AbstractPtrClass * cPtr_autoLayoutComputedViewInstructionGeneration::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  AbstractPtrClass * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_autoLayoutComputedViewInstructionGeneration (mProperty_mAutoLayoutViewClassName, mProperty_mParameterList, mProperty_mFunctionCallList, mProperty_mRegularBindingsGenerationList, mProperty_mMultipleBindingGenerationList, mProperty_mRunBindingGeneration, mProperty_mTableViewBindingGeneration, mProperty_mEBViewGraphicControllerBindingGeneration, mProperty_mConfiguratorName, mProperty_mOutletName, mProperty_mOutletIsArray, inCompiler COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_autoLayoutComputedViewInstructionGeneration::printNonNullClassInstanceProperties (void) const {
-    cPtr_abstractViewInstructionGeneration::printNonNullClassInstanceProperties () ;
-    mProperty_mAutoLayoutViewClassName.printNonNullClassInstanceProperties ("mAutoLayoutViewClassName") ;
-    mProperty_mParameterList.printNonNullClassInstanceProperties ("mParameterList") ;
-    mProperty_mFunctionCallList.printNonNullClassInstanceProperties ("mFunctionCallList") ;
-    mProperty_mRegularBindingsGenerationList.printNonNullClassInstanceProperties ("mRegularBindingsGenerationList") ;
-    mProperty_mMultipleBindingGenerationList.printNonNullClassInstanceProperties ("mMultipleBindingGenerationList") ;
-    mProperty_mRunBindingGeneration.printNonNullClassInstanceProperties ("mRunBindingGeneration") ;
-    mProperty_mTableViewBindingGeneration.printNonNullClassInstanceProperties ("mTableViewBindingGeneration") ;
-    mProperty_mEBViewGraphicControllerBindingGeneration.printNonNullClassInstanceProperties ("mEBViewGraphicControllerBindingGeneration") ;
-    mProperty_mConfiguratorName.printNonNullClassInstanceProperties ("mConfiguratorName") ;
-    mProperty_mOutletName.printNonNullClassInstanceProperties ("mOutletName") ;
-    mProperty_mOutletIsArray.printNonNullClassInstanceProperties ("mOutletIsArray") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-//     @autoLayoutComputedViewInstructionGeneration generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutComputedViewInstructionGeneration ("autoLayoutComputedViewInstructionGeneration",
-                                                                                                & kTypeDescriptor_GALGAS_abstractViewInstructionGeneration) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_autoLayoutComputedViewInstructionGeneration::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_autoLayoutComputedViewInstructionGeneration ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2612,14 +1710,14 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_enterInPrecedenceG
   const GGS_autoLayoutTableViewControllerDeclarationAST temp_0 = this ;
   const GGS_autoLayoutTableViewControllerDeclarationAST temp_1 = this ;
   const GGS_autoLayoutTableViewControllerDeclarationAST temp_2 = this ;
-  GGS_lstring var_node_1443 = GGS_lstring::init_21__21_ (temp_0.readProperty_mClassName ().readProperty_string ().add_operation (GGS_string (" "), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 33)).add_operation (temp_1.readProperty_mControllerName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 33)), temp_2.readProperty_mControllerName ().readProperty_location (), inCompiler COMMA_HERE) ;
+  GGS_lstring var_node_1441 = GGS_lstring::init_21__21_ (temp_0.readProperty_mClassName ().readProperty_string ().add_operation (GGS_string (" "), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 33)).add_operation (temp_1.readProperty_mControllerName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 33)), temp_2.readProperty_mControllerName ().readProperty_location (), inCompiler COMMA_HERE) ;
   {
   const GGS_autoLayoutTableViewControllerDeclarationAST temp_3 = this ;
-  ioArgument_ioGraph.setter_addNode (var_node_1443, temp_3, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 34)) ;
+  ioArgument_ioGraph.setter_addNode (var_node_1441, temp_3, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 34)) ;
   }
   {
   const GGS_autoLayoutTableViewControllerDeclarationAST temp_4 = this ;
-  ioArgument_ioGraph.setter_addEdge (var_node_1443, temp_4.readProperty_mClassName () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 35)) ;
+  ioArgument_ioGraph.setter_addEdge (var_node_1441, temp_4.readProperty_mClassName () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 35)) ;
   }
   GalgasBool test_5 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_5) {
@@ -2630,7 +1728,7 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_enterInPrecedenceG
       const GGS_autoLayoutTableViewControllerDeclarationAST temp_7 = this ;
       const GGS_autoLayoutTableViewControllerDeclarationAST temp_8 = this ;
       const GGS_autoLayoutTableViewControllerDeclarationAST temp_9 = this ;
-      ioArgument_ioGraph.setter_addEdge (var_node_1443, GGS_lstring::init_21__21_ (temp_7.readProperty_mClassName ().readProperty_string ().add_operation (GGS_string (" "), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 37)).add_operation (temp_8.readProperty_mToManyPropertyName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 37)), temp_9.readProperty_mToManyPropertyName ().readProperty_location (), inCompiler COMMA_HERE) COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 37)) ;
+      ioArgument_ioGraph.setter_addEdge (var_node_1441, GGS_lstring::init_21__21_ (temp_7.readProperty_mClassName ().readProperty_string ().add_operation (GGS_string (" "), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 37)).add_operation (temp_8.readProperty_mToManyPropertyName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 37)), temp_9.readProperty_mToManyPropertyName ().readProperty_location (), inCompiler COMMA_HERE) COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 37)) ;
       }
     }
   }
@@ -2644,7 +1742,7 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_enterInPrecedenceG
         const GGS_autoLayoutTableViewControllerDeclarationAST temp_12 = this ;
         const GGS_autoLayoutTableViewControllerDeclarationAST temp_13 = this ;
         const GGS_autoLayoutTableViewControllerDeclarationAST temp_14 = this ;
-        ioArgument_ioGraph.setter_addEdge (var_node_1443, GGS_lstring::init_21__21_ (temp_12.readProperty_mRootEntityName ().readProperty_string ().add_operation (GGS_string (" "), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 39)).add_operation (temp_13.readProperty_mToManyPropertyName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 39)), temp_14.readProperty_mToManyPropertyName ().readProperty_location (), inCompiler COMMA_HERE) COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 39)) ;
+        ioArgument_ioGraph.setter_addEdge (var_node_1441, GGS_lstring::init_21__21_ (temp_12.readProperty_mRootEntityName ().readProperty_string ().add_operation (GGS_string (" "), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 39)).add_operation (temp_13.readProperty_mToManyPropertyName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 39)), temp_14.readProperty_mToManyPropertyName ().readProperty_location (), inCompiler COMMA_HERE) COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 39)) ;
         }
       }
     }
@@ -2678,38 +1776,38 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_firstAnalysisPhase
                                                                                   Compiler * inCompiler
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   const GGS_autoLayoutTableViewControllerDeclarationAST temp_0 = this ;
-  GGS_classMap_2E_element var_entry_5185 = ioArgument_ioSemanticContext.readProperty_mClassMap ().readSubscript__3F_searchKey (temp_0.readProperty_mClassName (), inCompiler COMMA_HERE) ;
-  GGS_actionMap var_controllerActions_5349 = GGS_actionMap::init (inCompiler COMMA_HERE) ;
+  GGS_classMap_2E_element var_entry_5183 = ioArgument_ioSemanticContext.readProperty_mClassMap ().readSubscript__3F_searchKey (temp_0.readProperty_mClassName (), inCompiler COMMA_HERE) ;
+  GGS_actionMap var_controllerActions_5347 = GGS_actionMap::init (inCompiler COMMA_HERE) ;
   {
-  var_controllerActions_5349.setter_insertKey (GGS_string ("add").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 147)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 147)) ;
+  var_controllerActions_5347.setter_insertKey (GGS_string ("add").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 147)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 147)) ;
   }
   {
-  var_controllerActions_5349.setter_insertKey (GGS_string ("remove").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 148)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 148)) ;
+  var_controllerActions_5347.setter_insertKey (GGS_string ("remove").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 148)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 148)) ;
   }
   GalgasBool test_1 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_1) {
     const GGS_autoLayoutTableViewControllerDeclarationAST temp_2 = this ;
     test_1 = temp_2.readProperty_mIsRoot ().boolEnum () ;
     if (GalgasBool::boolTrue == test_1) {
-      GGS_propertyMap var_rootProperties_5576 ;
+      GGS_propertyMap var_rootProperties_5574 ;
       const GGS_autoLayoutTableViewControllerDeclarationAST temp_3 = this ;
-      GGS_classKind joker_5567 ; // Joker input parameter
-      GGS_actionMap joker_5592_2 ; // Joker input parameter
-      GGS_propertyGenerationList joker_5592_1 ; // Joker input parameter
-      ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_3.readProperty_mRootEntityName (), joker_5567, var_rootProperties_5576, joker_5592_2, joker_5592_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 150)) ;
-      GGS_propertyKind var_classKind_5660 ;
+      GGS_classKind joker_5565 ; // Joker input parameter
+      GGS_actionMap joker_5590_2 ; // Joker input parameter
+      GGS_propertyGenerationList joker_5590_1 ; // Joker input parameter
+      ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_3.readProperty_mRootEntityName (), joker_5565, var_rootProperties_5574, joker_5590_2, joker_5590_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 150)) ;
+      GGS_propertyKind var_classKind_5658 ;
       const GGS_autoLayoutTableViewControllerDeclarationAST temp_4 = this ;
-      GGS_actionMap joker_5671_2 ; // Joker input parameter
-      GGS_bool joker_5671_1 ; // Joker input parameter
-      var_rootProperties_5576.method_searchKey (temp_4.readProperty_mToManyPropertyName (), var_classKind_5660, joker_5671_2, joker_5671_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 151)) ;
-      switch (var_classKind_5660.enumValue ()) {
+      GGS_actionMap joker_5669_2 ; // Joker input parameter
+      GGS_bool joker_5669_1 ; // Joker input parameter
+      var_rootProperties_5574.method_searchKey (temp_4.readProperty_mToManyPropertyName (), var_classKind_5658, joker_5669_2, joker_5669_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 151)) ;
+      switch (var_classKind_5658.enumValue ()) {
       case GGS_propertyKind::Enumeration::invalid:
         break ;
       case GGS_propertyKind::Enumeration::enum_property:
         {
-          GGS_typeKind extractedValue_5721__0 ;
-          GGS_propertyAccessibility extractedValue_5721__1 ;
-          var_classKind_5660.getAssociatedValuesFor_property (extractedValue_5721__0, extractedValue_5721__1) ;
+          GGS_typeKind extractedValue_5719__0 ;
+          GGS_propertyAccessibility extractedValue_5719__1 ;
+          var_classKind_5658.getAssociatedValuesFor_property (extractedValue_5719__0, extractedValue_5719__1) ;
           const GGS_autoLayoutTableViewControllerDeclarationAST temp_5 = this ;
           GenericArray <FixItDescription> fixItArray6 ;
           inCompiler->emitSemanticError (temp_5.readProperty_mRootEntityName ().readProperty_location (), GGS_string ("a toMany relationship is required here"), fixItArray6  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 154)) ;
@@ -2717,32 +1815,32 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_firstAnalysisPhase
         break ;
       case GGS_propertyKind::Enumeration::enum_toMany:
         {
-          GGS_lstring extractedValue_5825_typeName_0 ;
-          GGS_propertyAccessibility extractedValue_5835__1 ;
-          GGS_bool extractedValue_5838_graphic_2 ;
-          GGS_toManyRelationshipOptionAST extractedValue_5847__3 ;
-          var_classKind_5660.getAssociatedValuesFor_toMany (extractedValue_5825_typeName_0, extractedValue_5835__1, extractedValue_5838_graphic_2, extractedValue_5847__3) ;
-          GGS_propertyKind var_kind_5864 = GGS_propertyKind::class_func_arrayController (extractedValue_5825_typeName_0, extractedValue_5838_graphic_2  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 156)) ;
+          GGS_lstring extractedValue_5823_typeName_0 ;
+          GGS_propertyAccessibility extractedValue_5833__1 ;
+          GGS_bool extractedValue_5836_graphic_2 ;
+          GGS_toManyRelationshipOptionAST extractedValue_5845__3 ;
+          var_classKind_5658.getAssociatedValuesFor_toMany (extractedValue_5823_typeName_0, extractedValue_5833__1, extractedValue_5836_graphic_2, extractedValue_5845__3) ;
+          GGS_propertyKind var_kind_5862 = GGS_propertyKind::class_func_arrayController (extractedValue_5823_typeName_0, extractedValue_5836_graphic_2  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 156)) ;
           {
           const GGS_autoLayoutTableViewControllerDeclarationAST temp_7 = this ;
-          var_entry_5185.mProperty_mPropertyMap.setter_insertKey (temp_7.readProperty_mControllerName (), var_kind_5864, var_controllerActions_5349, GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 160)) ;
+          var_entry_5183.mProperty_mPropertyMap.setter_insertKey (temp_7.readProperty_mControllerName (), var_kind_5862, var_controllerActions_5347, GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 160)) ;
           }
           {
           const GGS_autoLayoutTableViewControllerDeclarationAST temp_8 = this ;
           const GGS_autoLayoutTableViewControllerDeclarationAST temp_9 = this ;
           const GGS_autoLayoutTableViewControllerDeclarationAST temp_10 = this ;
-          var_entry_5185.mProperty_mPropertyGenerationList.setter_append (GGS_autoLayoutTableViewControllerPropertyGeneration::init_21__21__21_ (temp_8.readProperty_mControllerName ().readProperty_string (), GGS_string ("rootObject.").add_operation (temp_9.readProperty_mToManyPropertyName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 165)), temp_10.readProperty_mClassName ().readProperty_string (), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 162)) ;
+          var_entry_5183.mProperty_mPropertyGenerationList.setter_append (GGS_autoLayoutTableViewControllerPropertyGeneration::init_21__21__21_ (temp_8.readProperty_mControllerName ().readProperty_string (), GGS_string ("rootObject.").add_operation (temp_9.readProperty_mToManyPropertyName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 165)), temp_10.readProperty_mClassName ().readProperty_string (), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 162)) ;
           }
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toOne:
         {
-          GGS_lstring extractedValue_6351__0 ;
-          GGS_propertyAccessibility extractedValue_6351__1 ;
-          GGS_bool extractedValue_6351__2 ;
-          GGS_toOneOppositeRelationship extractedValue_6351__3 ;
-          GGS_bool extractedValue_6351__4 ;
-          var_classKind_5660.getAssociatedValuesFor_toOne (extractedValue_6351__0, extractedValue_6351__1, extractedValue_6351__2, extractedValue_6351__3, extractedValue_6351__4) ;
+          GGS_lstring extractedValue_6349__0 ;
+          GGS_propertyAccessibility extractedValue_6349__1 ;
+          GGS_bool extractedValue_6349__2 ;
+          GGS_toOneOppositeRelationship extractedValue_6349__3 ;
+          GGS_bool extractedValue_6349__4 ;
+          var_classKind_5658.getAssociatedValuesFor_toOne (extractedValue_6349__0, extractedValue_6349__1, extractedValue_6349__2, extractedValue_6349__3, extractedValue_6349__4) ;
           const GGS_autoLayoutTableViewControllerDeclarationAST temp_11 = this ;
           GenericArray <FixItDescription> fixItArray12 ;
           inCompiler->emitSemanticError (temp_11.readProperty_mRootEntityName ().readProperty_location (), GGS_string ("a toMany relationship is required here"), fixItArray12  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 170)) ;
@@ -2750,9 +1848,9 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_firstAnalysisPhase
         break ;
       case GGS_propertyKind::Enumeration::enum_arrayController:
         {
-          GGS_lstring extractedValue_6465__0 ;
-          GGS_bool extractedValue_6465__1 ;
-          var_classKind_5660.getAssociatedValuesFor_arrayController (extractedValue_6465__0, extractedValue_6465__1) ;
+          GGS_lstring extractedValue_6463__0 ;
+          GGS_bool extractedValue_6463__1 ;
+          var_classKind_5658.getAssociatedValuesFor_arrayController (extractedValue_6463__0, extractedValue_6463__1) ;
           const GGS_autoLayoutTableViewControllerDeclarationAST temp_13 = this ;
           GenericArray <FixItDescription> fixItArray14 ;
           inCompiler->emitSemanticError (temp_13.readProperty_mRootEntityName ().readProperty_location (), GGS_string ("a toMany relationship is required here"), fixItArray14  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 172)) ;
@@ -2760,8 +1858,8 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_firstAnalysisPhase
         break ;
       case GGS_propertyKind::Enumeration::enum_selectionController:
         {
-          GGS_string extractedValue_6582__0 ;
-          var_classKind_5660.getAssociatedValuesFor_selectionController (extractedValue_6582__0) ;
+          GGS_string extractedValue_6580__0 ;
+          var_classKind_5658.getAssociatedValuesFor_selectionController (extractedValue_6580__0) ;
           const GGS_autoLayoutTableViewControllerDeclarationAST temp_15 = this ;
           GenericArray <FixItDescription> fixItArray16 ;
           inCompiler->emitSemanticError (temp_15.readProperty_mRootEntityName ().readProperty_location (), GGS_string ("a toMany relationship is required here"), fixItArray16  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 174)) ;
@@ -2771,19 +1869,19 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_firstAnalysisPhase
     }
   }
   if (GalgasBool::boolFalse == test_1) {
-    GGS_propertyKind var_classKind_6753 ;
+    GGS_propertyKind var_classKind_6751 ;
     const GGS_autoLayoutTableViewControllerDeclarationAST temp_17 = this ;
-    GGS_actionMap joker_6764_2 ; // Joker input parameter
-    GGS_bool joker_6764_1 ; // Joker input parameter
-    var_entry_5185.readProperty_mPropertyMap ().method_searchKey (temp_17.readProperty_mToManyPropertyName (), var_classKind_6753, joker_6764_2, joker_6764_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 177)) ;
-    switch (var_classKind_6753.enumValue ()) {
+    GGS_actionMap joker_6762_2 ; // Joker input parameter
+    GGS_bool joker_6762_1 ; // Joker input parameter
+    var_entry_5183.readProperty_mPropertyMap ().method_searchKey (temp_17.readProperty_mToManyPropertyName (), var_classKind_6751, joker_6762_2, joker_6762_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 177)) ;
+    switch (var_classKind_6751.enumValue ()) {
     case GGS_propertyKind::Enumeration::invalid:
       break ;
     case GGS_propertyKind::Enumeration::enum_property:
       {
-        GGS_typeKind extractedValue_6814__0 ;
-        GGS_propertyAccessibility extractedValue_6814__1 ;
-        var_classKind_6753.getAssociatedValuesFor_property (extractedValue_6814__0, extractedValue_6814__1) ;
+        GGS_typeKind extractedValue_6812__0 ;
+        GGS_propertyAccessibility extractedValue_6812__1 ;
+        var_classKind_6751.getAssociatedValuesFor_property (extractedValue_6812__0, extractedValue_6812__1) ;
         const GGS_autoLayoutTableViewControllerDeclarationAST temp_18 = this ;
         GenericArray <FixItDescription> fixItArray19 ;
         inCompiler->emitSemanticError (temp_18.readProperty_mRootEntityName ().readProperty_location (), GGS_string ("a toMany relationship is required here"), fixItArray19  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 180)) ;
@@ -2791,32 +1889,32 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_firstAnalysisPhase
       break ;
     case GGS_propertyKind::Enumeration::enum_toMany:
       {
-        GGS_lstring extractedValue_6918_typeName_0 ;
-        GGS_propertyAccessibility extractedValue_6928__1 ;
-        GGS_bool extractedValue_6931_graphic_2 ;
-        GGS_toManyRelationshipOptionAST extractedValue_6940__3 ;
-        var_classKind_6753.getAssociatedValuesFor_toMany (extractedValue_6918_typeName_0, extractedValue_6928__1, extractedValue_6931_graphic_2, extractedValue_6940__3) ;
-        GGS_propertyKind var_kind_6957 = GGS_propertyKind::class_func_arrayController (extractedValue_6918_typeName_0, extractedValue_6931_graphic_2  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 182)) ;
+        GGS_lstring extractedValue_6916_typeName_0 ;
+        GGS_propertyAccessibility extractedValue_6926__1 ;
+        GGS_bool extractedValue_6929_graphic_2 ;
+        GGS_toManyRelationshipOptionAST extractedValue_6938__3 ;
+        var_classKind_6751.getAssociatedValuesFor_toMany (extractedValue_6916_typeName_0, extractedValue_6926__1, extractedValue_6929_graphic_2, extractedValue_6938__3) ;
+        GGS_propertyKind var_kind_6955 = GGS_propertyKind::class_func_arrayController (extractedValue_6916_typeName_0, extractedValue_6929_graphic_2  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 182)) ;
         {
         const GGS_autoLayoutTableViewControllerDeclarationAST temp_20 = this ;
-        var_entry_5185.mProperty_mPropertyMap.setter_insertKey (temp_20.readProperty_mControllerName (), var_kind_6957, var_controllerActions_5349, GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 186)) ;
+        var_entry_5183.mProperty_mPropertyMap.setter_insertKey (temp_20.readProperty_mControllerName (), var_kind_6955, var_controllerActions_5347, GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 186)) ;
         }
         {
         const GGS_autoLayoutTableViewControllerDeclarationAST temp_21 = this ;
         const GGS_autoLayoutTableViewControllerDeclarationAST temp_22 = this ;
         const GGS_autoLayoutTableViewControllerDeclarationAST temp_23 = this ;
-        var_entry_5185.mProperty_mPropertyGenerationList.setter_append (GGS_autoLayoutTableViewControllerPropertyGeneration::init_21__21__21_ (temp_21.readProperty_mControllerName ().readProperty_string (), temp_22.readProperty_mToManyPropertyName ().readProperty_string (), temp_23.readProperty_mClassName ().readProperty_string (), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 188)) ;
+        var_entry_5183.mProperty_mPropertyGenerationList.setter_append (GGS_autoLayoutTableViewControllerPropertyGeneration::init_21__21__21_ (temp_21.readProperty_mControllerName ().readProperty_string (), temp_22.readProperty_mToManyPropertyName ().readProperty_string (), temp_23.readProperty_mClassName ().readProperty_string (), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 188)) ;
         }
       }
       break ;
     case GGS_propertyKind::Enumeration::enum_toOne:
       {
-        GGS_lstring extractedValue_7411__0 ;
-        GGS_propertyAccessibility extractedValue_7411__1 ;
-        GGS_bool extractedValue_7411__2 ;
-        GGS_toOneOppositeRelationship extractedValue_7411__3 ;
-        GGS_bool extractedValue_7411__4 ;
-        var_classKind_6753.getAssociatedValuesFor_toOne (extractedValue_7411__0, extractedValue_7411__1, extractedValue_7411__2, extractedValue_7411__3, extractedValue_7411__4) ;
+        GGS_lstring extractedValue_7409__0 ;
+        GGS_propertyAccessibility extractedValue_7409__1 ;
+        GGS_bool extractedValue_7409__2 ;
+        GGS_toOneOppositeRelationship extractedValue_7409__3 ;
+        GGS_bool extractedValue_7409__4 ;
+        var_classKind_6751.getAssociatedValuesFor_toOne (extractedValue_7409__0, extractedValue_7409__1, extractedValue_7409__2, extractedValue_7409__3, extractedValue_7409__4) ;
         const GGS_autoLayoutTableViewControllerDeclarationAST temp_24 = this ;
         GenericArray <FixItDescription> fixItArray25 ;
         inCompiler->emitSemanticError (temp_24.readProperty_mRootEntityName ().readProperty_location (), GGS_string ("a toMany relationship is required here"), fixItArray25  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 195)) ;
@@ -2824,9 +1922,9 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_firstAnalysisPhase
       break ;
     case GGS_propertyKind::Enumeration::enum_arrayController:
       {
-        GGS_lstring extractedValue_7525__0 ;
-        GGS_bool extractedValue_7525__1 ;
-        var_classKind_6753.getAssociatedValuesFor_arrayController (extractedValue_7525__0, extractedValue_7525__1) ;
+        GGS_lstring extractedValue_7523__0 ;
+        GGS_bool extractedValue_7523__1 ;
+        var_classKind_6751.getAssociatedValuesFor_arrayController (extractedValue_7523__0, extractedValue_7523__1) ;
         const GGS_autoLayoutTableViewControllerDeclarationAST temp_26 = this ;
         GenericArray <FixItDescription> fixItArray27 ;
         inCompiler->emitSemanticError (temp_26.readProperty_mRootEntityName ().readProperty_location (), GGS_string ("a toMany relationship is required here"), fixItArray27  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 197)) ;
@@ -2834,8 +1932,8 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_firstAnalysisPhase
       break ;
     case GGS_propertyKind::Enumeration::enum_selectionController:
       {
-        GGS_string extractedValue_7642__0 ;
-        var_classKind_6753.getAssociatedValuesFor_selectionController (extractedValue_7642__0) ;
+        GGS_string extractedValue_7640__0 ;
+        var_classKind_6751.getAssociatedValuesFor_selectionController (extractedValue_7640__0) ;
         const GGS_autoLayoutTableViewControllerDeclarationAST temp_28 = this ;
         GenericArray <FixItDescription> fixItArray29 ;
         inCompiler->emitSemanticError (temp_28.readProperty_mRootEntityName ().readProperty_location (), GGS_string ("a toMany relationship is required here"), fixItArray29  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 199)) ;
@@ -2844,7 +1942,7 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_firstAnalysisPhase
     }
   }
   {
-  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_replace (var_entry_5185, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 202)) ;
+  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_replace (var_entry_5183, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 202)) ;
   }
 }
 
@@ -2856,253 +1954,253 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_thirdAnalysisPhase
                                                                                   GGS_generationStruct & ioArgument_ioGeneration,
                                                                                   Compiler * inCompiler
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_propertyMap var_preferencesPropertyMap_8300 ;
-  GGS_classKind joker_8287 ; // Joker input parameter
-  GGS_actionMap joker_8328_2 ; // Joker input parameter
-  GGS_propertyGenerationList joker_8328_1 ; // Joker input parameter
-  ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (GGS_lstring::init_21__21_ (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 215)), GGS_location::class_func_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 215)), inCompiler COMMA_HERE), joker_8287, var_preferencesPropertyMap_8300, joker_8328_2, joker_8328_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 214)) ;
+  GGS_propertyMap var_preferencesPropertyMap_8298 ;
+  GGS_classKind joker_8285 ; // Joker input parameter
+  GGS_actionMap joker_8326_2 ; // Joker input parameter
+  GGS_propertyGenerationList joker_8326_1 ; // Joker input parameter
+  ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (GGS_lstring::init_21__21_ (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 215)), GGS_location::class_func_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 215)), inCompiler COMMA_HERE), joker_8285, var_preferencesPropertyMap_8298, joker_8326_2, joker_8326_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 214)) ;
   GGS_stringset temp_0 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 221)) ;
   temp_0.plusPlusAssignOperation (GGS_string ("allowsEmptySelection")  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 221)) ;
   temp_0.plusPlusAssignOperation (GGS_string ("allowsMultipleSelection")  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 221)) ;
-  GGS_stringset var_attributes_8438 = temp_0 ;
+  GGS_stringset var_attributes_8436 = temp_0 ;
   GGS__5B_typeKind_5D_ temp_1 = GGS__5B_typeKind_5D_::init (inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 222)) ;
   temp_1.plusPlusAssignOperation (GGS_typeKind::class_func_boolType (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 222))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 222)) ;
-  GGS__5B_typeKind_5D_ var_allowedTypes_8520 = temp_1 ;
+  GGS__5B_typeKind_5D_ var_allowedTypes_8518 = temp_1 ;
   GGS_stringset temp_2 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 223)) ;
-  GGS_stringset var_definedAttributes_8576 = temp_2 ;
+  GGS_stringset var_definedAttributes_8574 = temp_2 ;
   GGS__5B__32_string_5D_ temp_3 = GGS__5B__32_string_5D_::init (inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 224)) ;
-  GGS__5B__32_string_5D_ var_attributeListForGeneration_8616 = temp_3 ;
+  GGS__5B__32_string_5D_ var_attributeListForGeneration_8614 = temp_3 ;
   const GGS_autoLayoutTableViewControllerDeclarationAST temp_4 = this ;
-  UpEnumerator__5B_autoLayoutTableViewControllerAttributeAST_5D_ enumerator_8666 (temp_4.readProperty_mTableViewControllerAttributListAST ()) ;
-  while (enumerator_8666.hasCurrentObject ()) {
+  UpEnumerator__5B_autoLayoutTableViewControllerAttributeAST_5D_ enumerator_8664 (temp_4.readProperty_mTableViewControllerAttributListAST ()) ;
+  while (enumerator_8664.hasCurrentObject ()) {
     GalgasBool test_5 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_5) {
-      test_5 = var_attributes_8438.getter_contains (enumerator_8666.current (HERE).readProperty_mAttributeName ().readProperty_string () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 226)).operator_not (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 226)).boolEnum () ;
+      test_5 = var_attributes_8436.getter_contains (enumerator_8664.current (HERE).readProperty_mAttributeName ().readProperty_string () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 226)).operator_not (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 226)).boolEnum () ;
       if (GalgasBool::boolTrue == test_5) {
         GenericArray <FixItDescription> fixItArray6 ;
-        inCompiler->emitSemanticError (enumerator_8666.current (HERE).readProperty_mAttributeName ().readProperty_location (), GGS_string ("unknown attribute"), fixItArray6  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 227)) ;
+        inCompiler->emitSemanticError (enumerator_8664.current (HERE).readProperty_mAttributeName ().readProperty_location (), GGS_string ("unknown attribute"), fixItArray6  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 227)) ;
       }
     }
     if (GalgasBool::boolFalse == test_5) {
       GalgasBool test_7 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_7) {
-        test_7 = var_definedAttributes_8576.getter_contains (enumerator_8666.current (HERE).readProperty_mAttributeName ().readProperty_string () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 228)).boolEnum () ;
+        test_7 = var_definedAttributes_8574.getter_contains (enumerator_8664.current (HERE).readProperty_mAttributeName ().readProperty_string () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 228)).boolEnum () ;
         if (GalgasBool::boolTrue == test_7) {
           GenericArray <FixItDescription> fixItArray8 ;
-          inCompiler->emitSemanticError (enumerator_8666.current (HERE).readProperty_mAttributeName ().readProperty_location (), GGS_string ("attribute multiply defined"), fixItArray8  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 229)) ;
+          inCompiler->emitSemanticError (enumerator_8664.current (HERE).readProperty_mAttributeName ().readProperty_location (), GGS_string ("attribute multiply defined"), fixItArray8  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 229)) ;
         }
       }
       if (GalgasBool::boolFalse == test_7) {
         {
-        var_definedAttributes_8576.setter_insert (enumerator_8666.current (HERE).readProperty_mAttributeName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 231)) ;
+        var_definedAttributes_8574.setter_insert (enumerator_8664.current (HERE).readProperty_mAttributeName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 231)) ;
         }
       }
     }
-    GGS_string var_valueAsString_9128 ;
-    callExtensionMethod_analyzeDefaultValueType ((cPtr_abstractDefaultValue *) enumerator_8666.current (HERE).readProperty_mAttributeValue ().ptr (), var_allowedTypes_8520, var_preferencesPropertyMap_8300, var_valueAsString_9128, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 233)) ;
-    var_attributeListForGeneration_8616.plusPlusAssignOperation (GGS__32_string::init_21__21_ (enumerator_8666.current (HERE).readProperty_mAttributeName ().readProperty_string (), var_valueAsString_9128, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 234)) ;
-    enumerator_8666.gotoNextObject () ;
+    GGS_string var_valueAsString_9126 ;
+    callExtensionMethod_analyzeDefaultValueType ((cPtr_abstractDefaultValue *) enumerator_8664.current (HERE).readProperty_mAttributeValue ().ptr (), var_allowedTypes_8518, var_preferencesPropertyMap_8298, var_valueAsString_9126, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 233)) ;
+    var_attributeListForGeneration_8614.plusPlusAssignOperation (GGS__32_string::init_21__21_ (enumerator_8664.current (HERE).readProperty_mAttributeName ().readProperty_string (), var_valueAsString_9126, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 234)) ;
+    enumerator_8664.gotoNextObject () ;
   }
-  UpEnumerator_stringset enumerator_9239 (var_attributes_8438) ;
-  while (enumerator_9239.hasCurrentObject ()) {
+  UpEnumerator_stringset enumerator_9237 (var_attributes_8436) ;
+  while (enumerator_9237.hasCurrentObject ()) {
     GalgasBool test_9 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_9) {
-      test_9 = var_definedAttributes_8576.getter_contains (enumerator_9239.current (HERE) COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 237)).operator_not (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 237)).boolEnum () ;
+      test_9 = var_definedAttributes_8574.getter_contains (enumerator_9237.current (HERE) COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 237)).operator_not (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 237)).boolEnum () ;
       if (GalgasBool::boolTrue == test_9) {
         const GGS_autoLayoutTableViewControllerDeclarationAST temp_10 = this ;
         GenericArray <FixItDescription> fixItArray11 ;
-        inCompiler->emitSemanticError (temp_10.readProperty_mControllerName ().readProperty_location (), GGS_string ("attribute '").add_operation (enumerator_9239.current (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 238)).add_operation (GGS_string ("' not defined"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 238)), fixItArray11  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 238)) ;
+        inCompiler->emitSemanticError (temp_10.readProperty_mControllerName ().readProperty_location (), GGS_string ("attribute '").add_operation (enumerator_9237.current (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 238)).add_operation (GGS_string ("' not defined"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 238)), fixItArray11  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 238)) ;
       }
     }
-    enumerator_9239.gotoNextObject () ;
+    enumerator_9237.gotoNextObject () ;
   }
-  GGS_propertyMap var_boundModelPropertyMap_9414 ;
+  GGS_propertyMap var_boundModelPropertyMap_9412 ;
   GalgasBool test_12 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_12) {
     const GGS_autoLayoutTableViewControllerDeclarationAST temp_13 = this ;
     test_12 = temp_13.readProperty_mIsRoot ().boolEnum () ;
     if (GalgasBool::boolTrue == test_12) {
       const GGS_autoLayoutTableViewControllerDeclarationAST temp_14 = this ;
-      GGS_classKind joker_9538 ; // Joker input parameter
-      GGS_actionMap joker_9580_2 ; // Joker input parameter
-      GGS_propertyGenerationList joker_9580_1 ; // Joker input parameter
-      ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_14.readProperty_mRootEntityName (), joker_9538, var_boundModelPropertyMap_9414, joker_9580_2, joker_9580_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 244)) ;
+      GGS_classKind joker_9536 ; // Joker input parameter
+      GGS_actionMap joker_9578_2 ; // Joker input parameter
+      GGS_propertyGenerationList joker_9578_1 ; // Joker input parameter
+      ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_14.readProperty_mRootEntityName (), joker_9536, var_boundModelPropertyMap_9412, joker_9578_2, joker_9578_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 244)) ;
     }
   }
   if (GalgasBool::boolFalse == test_12) {
     const GGS_autoLayoutTableViewControllerDeclarationAST temp_15 = this ;
-    GGS_classKind joker_9672 ; // Joker input parameter
-    GGS_actionMap joker_9714_2 ; // Joker input parameter
-    GGS_propertyGenerationList joker_9714_1 ; // Joker input parameter
-    ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_15.readProperty_mClassName (), joker_9672, var_boundModelPropertyMap_9414, joker_9714_2, joker_9714_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 251)) ;
+    GGS_classKind joker_9670 ; // Joker input parameter
+    GGS_actionMap joker_9712_2 ; // Joker input parameter
+    GGS_propertyGenerationList joker_9712_1 ; // Joker input parameter
+    ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_15.readProperty_mClassName (), joker_9670, var_boundModelPropertyMap_9412, joker_9712_2, joker_9712_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 251)) ;
   }
-  GGS_propertyKind var_boundModelClassKind_9821 ;
+  GGS_propertyKind var_boundModelClassKind_9819 ;
   const GGS_autoLayoutTableViewControllerDeclarationAST temp_16 = this ;
-  GGS_actionMap joker_9847_2 ; // Joker input parameter
-  GGS_bool joker_9847_1 ; // Joker input parameter
-  var_boundModelPropertyMap_9414.method_searchKey (temp_16.readProperty_mToManyPropertyName (), var_boundModelClassKind_9821, joker_9847_2, joker_9847_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 258)) ;
-  GGS_propertyMap var_propertyMap_9961 ;
-  GGS_autoLayoutTableViewControllerModelKind var_arrayControllerModelKind_10019 ;
-  GGS_bool var_graphic_10056 ;
-  GGS_string var_elementTypeName_10078 ;
-  switch (var_boundModelClassKind_9821.enumValue ()) {
+  GGS_actionMap joker_9845_2 ; // Joker input parameter
+  GGS_bool joker_9845_1 ; // Joker input parameter
+  var_boundModelPropertyMap_9412.method_searchKey (temp_16.readProperty_mToManyPropertyName (), var_boundModelClassKind_9819, joker_9845_2, joker_9845_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 258)) ;
+  GGS_propertyMap var_propertyMap_9959 ;
+  GGS_autoLayoutTableViewControllerModelKind var_arrayControllerModelKind_10017 ;
+  GGS_bool var_graphic_10054 ;
+  GGS_string var_elementTypeName_10076 ;
+  switch (var_boundModelClassKind_9819.enumValue ()) {
   case GGS_propertyKind::Enumeration::invalid:
     break ;
   case GGS_propertyKind::Enumeration::enum_property:
     {
-      GGS_typeKind extractedValue_10141__0 ;
-      GGS_propertyAccessibility extractedValue_10141__1 ;
-      var_boundModelClassKind_9821.getAssociatedValuesFor_property (extractedValue_10141__0, extractedValue_10141__1) ;
+      GGS_typeKind extractedValue_10139__0 ;
+      GGS_propertyAccessibility extractedValue_10139__1 ;
+      var_boundModelClassKind_9819.getAssociatedValuesFor_property (extractedValue_10139__0, extractedValue_10139__1) ;
       const GGS_autoLayoutTableViewControllerDeclarationAST temp_17 = this ;
       GenericArray <FixItDescription> fixItArray18 ;
       inCompiler->emitSemanticError (temp_17.readProperty_mToManyPropertyName ().readProperty_location (), GGS_string ("a toMany property is required here"), fixItArray18  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 270)) ;
-      var_graphic_10056.drop () ; // Release error dropped variable
-      var_arrayControllerModelKind_10019.drop () ; // Release error dropped variable
-      var_propertyMap_9961.drop () ; // Release error dropped variable
-      var_elementTypeName_10078.drop () ; // Release error dropped variable
+      var_graphic_10054.drop () ; // Release error dropped variable
+      var_arrayControllerModelKind_10017.drop () ; // Release error dropped variable
+      var_propertyMap_9959.drop () ; // Release error dropped variable
+      var_elementTypeName_10076.drop () ; // Release error dropped variable
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_toMany:
     {
-      GGS_lstring extractedValue_10319_typeName_0 ;
-      GGS_propertyAccessibility extractedValue_10329_accessibility_1 ;
-      GGS_bool extractedValue_10344_isGraphic_2 ;
-      GGS_toManyRelationshipOptionAST extractedValue_10355__3 ;
-      var_boundModelClassKind_9821.getAssociatedValuesFor_toMany (extractedValue_10319_typeName_0, extractedValue_10329_accessibility_1, extractedValue_10344_isGraphic_2, extractedValue_10355__3) ;
-      var_elementTypeName_10078 = extractedValue_10319_typeName_0.readProperty_string () ;
-      var_graphic_10056 = extractedValue_10344_isGraphic_2 ;
+      GGS_lstring extractedValue_10317_typeName_0 ;
+      GGS_propertyAccessibility extractedValue_10327_accessibility_1 ;
+      GGS_bool extractedValue_10342_isGraphic_2 ;
+      GGS_toManyRelationshipOptionAST extractedValue_10353__3 ;
+      var_boundModelClassKind_9819.getAssociatedValuesFor_toMany (extractedValue_10317_typeName_0, extractedValue_10327_accessibility_1, extractedValue_10342_isGraphic_2, extractedValue_10353__3) ;
+      var_elementTypeName_10076 = extractedValue_10317_typeName_0.readProperty_string () ;
+      var_graphic_10054 = extractedValue_10342_isGraphic_2 ;
       GGS_autoLayoutTableViewControllerModelKind temp_19 ;
-      const GalgasBool test_20 = extractedValue_10329_accessibility_1.getter_isTransient (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 276)).boolEnum () ;
+      const GalgasBool test_20 = extractedValue_10327_accessibility_1.getter_isTransient (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 276)).boolEnum () ;
       if (GalgasBool::boolTrue == test_20) {
         temp_19 = GGS_autoLayoutTableViewControllerModelKind::class_func_transientArray (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 277)) ;
       }else if (GalgasBool::boolFalse == test_20) {
         temp_19 = GGS_autoLayoutTableViewControllerModelKind::class_func_entityArray (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 278)) ;
       }
-      var_arrayControllerModelKind_10019 = temp_19 ;
-      GGS_classKind joker_10587 ; // Joker input parameter
-      GGS_actionMap joker_10605 ; // Joker input parameter
-      GGS_propertyGenerationList joker_10609 ; // Joker input parameter
-      ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (extractedValue_10319_typeName_0, joker_10587, var_propertyMap_9961, joker_10605, joker_10609, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 280)) ;
+      var_arrayControllerModelKind_10017 = temp_19 ;
+      GGS_classKind joker_10585 ; // Joker input parameter
+      GGS_actionMap joker_10603 ; // Joker input parameter
+      GGS_propertyGenerationList joker_10607 ; // Joker input parameter
+      ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (extractedValue_10317_typeName_0, joker_10585, var_propertyMap_9959, joker_10603, joker_10607, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 280)) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_toOne:
     {
-      GGS_lstring extractedValue_10628__0 ;
-      GGS_propertyAccessibility extractedValue_10628__1 ;
-      GGS_bool extractedValue_10628__2 ;
-      GGS_toOneOppositeRelationship extractedValue_10628__3 ;
-      GGS_bool extractedValue_10628__4 ;
-      var_boundModelClassKind_9821.getAssociatedValuesFor_toOne (extractedValue_10628__0, extractedValue_10628__1, extractedValue_10628__2, extractedValue_10628__3, extractedValue_10628__4) ;
+      GGS_lstring extractedValue_10626__0 ;
+      GGS_propertyAccessibility extractedValue_10626__1 ;
+      GGS_bool extractedValue_10626__2 ;
+      GGS_toOneOppositeRelationship extractedValue_10626__3 ;
+      GGS_bool extractedValue_10626__4 ;
+      var_boundModelClassKind_9819.getAssociatedValuesFor_toOne (extractedValue_10626__0, extractedValue_10626__1, extractedValue_10626__2, extractedValue_10626__3, extractedValue_10626__4) ;
       const GGS_autoLayoutTableViewControllerDeclarationAST temp_21 = this ;
       GenericArray <FixItDescription> fixItArray22 ;
       inCompiler->emitSemanticError (temp_21.readProperty_mToManyPropertyName ().readProperty_location (), GGS_string ("a toMany property is required here"), fixItArray22  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 282)) ;
-      var_graphic_10056.drop () ; // Release error dropped variable
-      var_arrayControllerModelKind_10019.drop () ; // Release error dropped variable
-      var_propertyMap_9961.drop () ; // Release error dropped variable
-      var_elementTypeName_10078.drop () ; // Release error dropped variable
+      var_graphic_10054.drop () ; // Release error dropped variable
+      var_arrayControllerModelKind_10017.drop () ; // Release error dropped variable
+      var_propertyMap_9959.drop () ; // Release error dropped variable
+      var_elementTypeName_10076.drop () ; // Release error dropped variable
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_arrayController:
     {
-      GGS_lstring extractedValue_10816__0 ;
-      GGS_bool extractedValue_10816__1 ;
-      var_boundModelClassKind_9821.getAssociatedValuesFor_arrayController (extractedValue_10816__0, extractedValue_10816__1) ;
+      GGS_lstring extractedValue_10814__0 ;
+      GGS_bool extractedValue_10814__1 ;
+      var_boundModelClassKind_9819.getAssociatedValuesFor_arrayController (extractedValue_10814__0, extractedValue_10814__1) ;
       const GGS_autoLayoutTableViewControllerDeclarationAST temp_23 = this ;
       GenericArray <FixItDescription> fixItArray24 ;
       inCompiler->emitSemanticError (temp_23.readProperty_mToManyPropertyName ().readProperty_location (), GGS_string ("a toMany property is required here"), fixItArray24  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 286)) ;
-      var_graphic_10056.drop () ; // Release error dropped variable
-      var_arrayControllerModelKind_10019.drop () ; // Release error dropped variable
-      var_propertyMap_9961.drop () ; // Release error dropped variable
-      var_elementTypeName_10078.drop () ; // Release error dropped variable
+      var_graphic_10054.drop () ; // Release error dropped variable
+      var_arrayControllerModelKind_10017.drop () ; // Release error dropped variable
+      var_propertyMap_9959.drop () ; // Release error dropped variable
+      var_elementTypeName_10076.drop () ; // Release error dropped variable
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_selectionController:
     {
-      GGS_string extractedValue_11007__0 ;
-      var_boundModelClassKind_9821.getAssociatedValuesFor_selectionController (extractedValue_11007__0) ;
+      GGS_string extractedValue_11005__0 ;
+      var_boundModelClassKind_9819.getAssociatedValuesFor_selectionController (extractedValue_11005__0) ;
       const GGS_autoLayoutTableViewControllerDeclarationAST temp_25 = this ;
       GenericArray <FixItDescription> fixItArray26 ;
       inCompiler->emitSemanticError (temp_25.readProperty_mToManyPropertyName ().readProperty_location (), GGS_string ("a toMany property is required here"), fixItArray26  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 290)) ;
-      var_graphic_10056.drop () ; // Release error dropped variable
-      var_arrayControllerModelKind_10019.drop () ; // Release error dropped variable
-      var_propertyMap_9961.drop () ; // Release error dropped variable
-      var_elementTypeName_10078.drop () ; // Release error dropped variable
+      var_graphic_10054.drop () ; // Release error dropped variable
+      var_arrayControllerModelKind_10017.drop () ; // Release error dropped variable
+      var_propertyMap_9959.drop () ; // Release error dropped variable
+      var_elementTypeName_10076.drop () ; // Release error dropped variable
     }
     break ;
   }
   GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_ temp_27 = GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_::init (inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 294)) ;
-  GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_ var_arrayControllerBoundColumnListForGeneration_11239 = temp_27 ;
+  GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_ var_arrayControllerBoundColumnListForGeneration_11237 = temp_27 ;
   GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_ temp_28 = GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_::init (inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 295)) ;
-  GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_ var_arrayControllerSortedColumnListForGeneration_11352 = temp_28 ;
+  GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_ var_arrayControllerSortedColumnListForGeneration_11350 = temp_28 ;
   const GGS_autoLayoutTableViewControllerDeclarationAST temp_29 = this ;
-  UpEnumerator__5B_autoLayoutTableViewControllerBoundColumnAST_5D_ enumerator_11423 (temp_29.readProperty_mTableViewControllerBoundColumnListAST ()) ;
-  while (enumerator_11423.hasCurrentObject ()) {
+  UpEnumerator__5B_autoLayoutTableViewControllerBoundColumnAST_5D_ enumerator_11421 (temp_29.readProperty_mTableViewControllerBoundColumnListAST ()) ;
+  while (enumerator_11421.hasCurrentObject ()) {
     GGS__5B_autoLayoutClassParameter_5D_ temp_30 = GGS__5B_autoLayoutClassParameter_5D_::init (inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 298)) ;
-    GGS__5B_autoLayoutClassParameter_5D_ var_formalArgumentList_11523 = temp_30 ;
-    var_formalArgumentList_11523.plusPlusAssignOperation (GGS_autoLayoutClassParameter::init_21__21_ (GGS_string ("title").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 299)), GGS_autoLayoutClassParameterType::class_func_typeString (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 299)), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 299)) ;
-    var_formalArgumentList_11523.plusPlusAssignOperation (GGS_autoLayoutClassParameter::init_21__21_ (GGS_string ("minWidth").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 300)), GGS_autoLayoutClassParameterType::class_func_typeInt (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 300)), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 300)) ;
-    var_formalArgumentList_11523.plusPlusAssignOperation (GGS_autoLayoutClassParameter::init_21__21_ (GGS_string ("maxWidth").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 301)), GGS_autoLayoutClassParameterType::class_func_typeInt (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 301)), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 301)) ;
-    var_formalArgumentList_11523.plusPlusAssignOperation (GGS_autoLayoutClassParameter::init_21__21_ (GGS_string ("headerAlignment").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 302)), GGS_autoLayoutClassParameterType::class_func_typeEnum (GGS_string ("TextAlignment").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 302))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 302)), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 302)) ;
-    var_formalArgumentList_11523.plusPlusAssignOperation (GGS_autoLayoutClassParameter::init_21__21_ (GGS_string ("contentAlignment").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 303)), GGS_autoLayoutClassParameterType::class_func_typeEnum (GGS_string ("TextAlignment").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 303))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 303)), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 303)) ;
+    GGS__5B_autoLayoutClassParameter_5D_ var_formalArgumentList_11521 = temp_30 ;
+    var_formalArgumentList_11521.plusPlusAssignOperation (GGS_autoLayoutClassParameter::init_21__21_ (GGS_string ("title").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 299)), GGS_autoLayoutClassParameterType::class_func_typeString (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 299)), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 299)) ;
+    var_formalArgumentList_11521.plusPlusAssignOperation (GGS_autoLayoutClassParameter::init_21__21_ (GGS_string ("minWidth").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 300)), GGS_autoLayoutClassParameterType::class_func_typeInt (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 300)), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 300)) ;
+    var_formalArgumentList_11521.plusPlusAssignOperation (GGS_autoLayoutClassParameter::init_21__21_ (GGS_string ("maxWidth").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 301)), GGS_autoLayoutClassParameterType::class_func_typeInt (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 301)), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 301)) ;
+    var_formalArgumentList_11521.plusPlusAssignOperation (GGS_autoLayoutClassParameter::init_21__21_ (GGS_string ("headerAlignment").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 302)), GGS_autoLayoutClassParameterType::class_func_typeEnum (GGS_string ("TextAlignment").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 302))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 302)), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 302)) ;
+    var_formalArgumentList_11521.plusPlusAssignOperation (GGS_autoLayoutClassParameter::init_21__21_ (GGS_string ("contentAlignment").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 303)), GGS_autoLayoutClassParameterType::class_func_typeEnum (GGS_string ("TextAlignment").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 303))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 303)), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 303)) ;
     GGS__5B__32_string_5D_ temp_31 = GGS__5B__32_string_5D_::init (inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 304)) ;
-    GGS__5B__32_string_5D_ var_actualParameterList_11951 = temp_31 ;
+    GGS__5B__32_string_5D_ var_actualParameterList_11949 = temp_31 ;
     GalgasBool test_32 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_32) {
-      test_32 = GGS_bool (ComparisonKind::notEqual, var_formalArgumentList_11523.getter_count (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 305)).objectCompare (enumerator_11423.current (HERE).readProperty_mColumnParameterListAST ().getter_count (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 305)))).boolEnum () ;
+      test_32 = GGS_bool (ComparisonKind::notEqual, var_formalArgumentList_11521.getter_count (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 305)).objectCompare (enumerator_11421.current (HERE).readProperty_mColumnParameterListAST ().getter_count (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 305)))).boolEnum () ;
       if (GalgasBool::boolTrue == test_32) {
         GenericArray <FixItDescription> fixItArray33 ;
-        inCompiler->emitSemanticError (enumerator_11423.current (HERE).readProperty_mPropertyName ().readProperty_location (), enumerator_11423.current (HERE).readProperty_mColumnParameterListAST ().getter_count (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 306)).getter_string (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 306)).add_operation (GGS_string (" parameter(s), "), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 306)).add_operation (var_formalArgumentList_11523.getter_count (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 306)).getter_string (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 306)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 306)).add_operation (GGS_string (" required"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 306)), fixItArray33  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 306)) ;
+        inCompiler->emitSemanticError (enumerator_11421.current (HERE).readProperty_mPropertyName ().readProperty_location (), enumerator_11421.current (HERE).readProperty_mColumnParameterListAST ().getter_count (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 306)).getter_string (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 306)).add_operation (GGS_string (" parameter(s), "), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 306)).add_operation (var_formalArgumentList_11521.getter_count (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 306)).getter_string (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 306)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 306)).add_operation (GGS_string (" required"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 306)), fixItArray33  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 306)) ;
       }
     }
     if (GalgasBool::boolFalse == test_32) {
-      UpEnumerator__5B_autoLayoutClassParameter_5D_ enumerator_12225 (var_formalArgumentList_11523) ;
-      UpEnumerator_astAutoLayoutViewInstructionParameterList enumerator_12262 (enumerator_11423.current (HERE).readProperty_mColumnParameterListAST ()) ;
-      while (enumerator_12225.hasCurrentObject () && enumerator_12262.hasCurrentObject ()) {
+      UpEnumerator__5B_autoLayoutClassParameter_5D_ enumerator_12223 (var_formalArgumentList_11521) ;
+      UpEnumerator__5B_astAutoLayoutViewInstructionParameter_5D_ enumerator_12260 (enumerator_11421.current (HERE).readProperty_mColumnParameterListAST ()) ;
+      while (enumerator_12223.hasCurrentObject () && enumerator_12260.hasCurrentObject ()) {
         GalgasBool test_34 = GalgasBool::boolTrue ;
         if (GalgasBool::boolTrue == test_34) {
-          test_34 = GGS_bool (ComparisonKind::notEqual, enumerator_12225.current (HERE).readProperty_mParameterName ().readProperty_string ().objectCompare (enumerator_12262.current (HERE).readProperty_mParameterName ().readProperty_string ())).boolEnum () ;
+          test_34 = GGS_bool (ComparisonKind::notEqual, enumerator_12223.current (HERE).readProperty_mParameterName ().readProperty_string ().objectCompare (enumerator_12260.current (HERE).readProperty_mParameterName ().readProperty_string ())).boolEnum () ;
           if (GalgasBool::boolTrue == test_34) {
             GenericArray <FixItDescription> fixItArray35 ;
-            inCompiler->emitSemanticError (enumerator_12262.current (HERE).readProperty_mParameterName ().readProperty_location (), GGS_string ("required argument name: ").add_operation (enumerator_12225.current (HERE).readProperty_mParameterName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 310)), fixItArray35  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 310)) ;
+            inCompiler->emitSemanticError (enumerator_12260.current (HERE).readProperty_mParameterName ().readProperty_location (), GGS_string ("required argument name: ").add_operation (enumerator_12223.current (HERE).readProperty_mParameterName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 310)), fixItArray35  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 310)) ;
           }
         }
         GalgasBool test_36 = GalgasBool::boolTrue ;
         if (GalgasBool::boolTrue == test_36) {
-          const GGS_autoLayoutClassParameterType_2E_typeEnum var_formalTypeEnum_12486 = enumerator_12225.current (HERE).readProperty_mParameterType ().getter_getTypeEnum (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 312)).unwrappedValue () ;
-          if (!enumerator_12225.current (HERE).readProperty_mParameterType ().getter_getTypeEnum (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 312)).isValuated ()) {
+          const GGS_autoLayoutClassParameterType_2E_typeEnum var_formalTypeEnum_12484 = enumerator_12223.current (HERE).readProperty_mParameterType ().getter_getTypeEnum (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 312)).unwrappedValue () ;
+          if (!enumerator_12223.current (HERE).readProperty_mParameterType ().getter_getTypeEnum (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 312)).isValuated ()) {
             test_36 = GalgasBool::boolFalse ;
           }
           if (GalgasBool::boolTrue == test_36) {
-            const GGS_autoLayoutClassParameterType_2E_typeEnum var_actualTypeEnum_12542 = enumerator_12262.current (HERE).readProperty_mParameterType ().getter_getTypeEnum (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 312)).unwrappedValue () ;
-            if (!enumerator_12262.current (HERE).readProperty_mParameterType ().getter_getTypeEnum (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 312)).isValuated ()) {
+            const GGS_autoLayoutClassParameterType_2E_typeEnum var_actualTypeEnum_12540 = enumerator_12260.current (HERE).readProperty_mParameterType ().getter_getTypeEnum (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 312)).unwrappedValue () ;
+            if (!enumerator_12260.current (HERE).readProperty_mParameterType ().getter_getTypeEnum (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 312)).isValuated ()) {
               test_36 = GalgasBool::boolFalse ;
             }
             if (GalgasBool::boolTrue == test_36) {
-              GGS_classKind var_typeKind_12673 ;
-              GGS_propertyMap joker_12683_3 ; // Joker input parameter
-              GGS_actionMap joker_12683_2 ; // Joker input parameter
-              GGS_propertyGenerationList joker_12683_1 ; // Joker input parameter
-              ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (var_formalTypeEnum_12486.readProperty_name (), var_typeKind_12673, joker_12683_3, joker_12683_2, joker_12683_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 313)) ;
+              GGS_classKind var_typeKind_12671 ;
+              GGS_propertyMap joker_12681_3 ; // Joker input parameter
+              GGS_actionMap joker_12681_2 ; // Joker input parameter
+              GGS_propertyGenerationList joker_12681_1 ; // Joker input parameter
+              ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (var_formalTypeEnum_12484.readProperty_name (), var_typeKind_12671, joker_12681_3, joker_12681_2, joker_12681_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 313)) ;
               GalgasBool test_37 = GalgasBool::boolTrue ;
               if (GalgasBool::boolTrue == test_37) {
-                const GGS_classKind_2E_atomic var_atomicTypeKind_12705 = var_typeKind_12673.getter_getAtomic (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 314)).unwrappedValue () ;
-                if (!var_typeKind_12673.getter_getAtomic (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 314)).isValuated ()) {
+                const GGS_classKind_2E_atomic var_atomicTypeKind_12703 = var_typeKind_12671.getter_getAtomic (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 314)).unwrappedValue () ;
+                if (!var_typeKind_12671.getter_getAtomic (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 314)).isValuated ()) {
                   test_37 = GalgasBool::boolFalse ;
                 }
                 if (GalgasBool::boolTrue == test_37) {
-                  const GGS_typeKind_2E_enumType var_atomicEnumType_12746 = var_atomicTypeKind_12705.readProperty_kind ().getter_getEnumType (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 314)).unwrappedValue () ;
-                  if (!var_atomicTypeKind_12705.readProperty_kind ().getter_getEnumType (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 314)).isValuated ()) {
+                  const GGS_typeKind_2E_enumType var_atomicEnumType_12744 = var_atomicTypeKind_12703.readProperty_kind ().getter_getEnumType (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 314)).unwrappedValue () ;
+                  if (!var_atomicTypeKind_12703.readProperty_kind ().getter_getEnumType (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 314)).isValuated ()) {
                     test_37 = GalgasBool::boolFalse ;
                   }
                   if (GalgasBool::boolTrue == test_37) {
-                    GGS_uint joker_12871 ; // Joker input parameter
-                    var_atomicEnumType_12746.readProperty_constantMap ().method_searchKey (var_actualTypeEnum_12542.readProperty_name (), joker_12871, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 315)) ;
+                    GGS_uint joker_12869 ; // Joker input parameter
+                    var_atomicEnumType_12744.readProperty_constantMap ().method_searchKey (var_actualTypeEnum_12540.readProperty_name (), joker_12869, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 315)) ;
                   }
                 }
               }
               if (GalgasBool::boolFalse == test_37) {
                 GenericArray <FixItDescription> fixItArray38 ;
-                inCompiler->emitSemanticError (var_formalTypeEnum_12486.readProperty_name ().readProperty_location (), GGS_string ("this type name is not an enum"), fixItArray38  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 317)) ;
+                inCompiler->emitSemanticError (var_formalTypeEnum_12484.readProperty_name ().readProperty_location (), GGS_string ("this type name is not an enum"), fixItArray38  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 317)) ;
               }
             }
           }
@@ -3110,56 +2208,56 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_thirdAnalysisPhase
         if (GalgasBool::boolFalse == test_36) {
           GalgasBool test_39 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_39) {
-            test_39 = GGS_bool (ComparisonKind::notEqual, enumerator_12262.current (HERE).readProperty_mParameterType ().objectCompare (enumerator_12225.current (HERE).readProperty_mParameterType ())).boolEnum () ;
+            test_39 = GGS_bool (ComparisonKind::notEqual, enumerator_12260.current (HERE).readProperty_mParameterType ().objectCompare (enumerator_12223.current (HERE).readProperty_mParameterType ())).boolEnum () ;
             if (GalgasBool::boolTrue == test_39) {
               GenericArray <FixItDescription> fixItArray40 ;
-              inCompiler->emitSemanticError (enumerator_12262.current (HERE).readProperty_mParameterName ().readProperty_location (), GGS_string ("the formal parameter requires ").add_operation (extensionGetter_string (enumerator_12225.current (HERE).readProperty_mParameterType (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 320)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 320)).add_operation (GGS_string (", actual parameter is "), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 320)).add_operation (extensionGetter_string (enumerator_12262.current (HERE).readProperty_mParameterType (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 320)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 320)), fixItArray40  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 320)) ;
+              inCompiler->emitSemanticError (enumerator_12260.current (HERE).readProperty_mParameterName ().readProperty_location (), GGS_string ("the formal parameter requires ").add_operation (extensionGetter_string (enumerator_12223.current (HERE).readProperty_mParameterType (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 320)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 320)).add_operation (GGS_string (", actual parameter is "), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 320)).add_operation (extensionGetter_string (enumerator_12260.current (HERE).readProperty_mParameterType (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 320)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 320)), fixItArray40  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 320)) ;
             }
           }
         }
         GalgasBool test_41 = GalgasBool::boolTrue ;
         if (GalgasBool::boolTrue == test_41) {
-          const GGS_astAutoLayoutViewInstructionParameterValue_2E_string var_actualString_13221 = enumerator_12262.current (HERE).readProperty_mParameter ().getter_getString (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 322)).unwrappedValue () ;
-          if (!enumerator_12262.current (HERE).readProperty_mParameter ().getter_getString (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 322)).isValuated ()) {
+          const GGS_astAutoLayoutViewInstructionParameterValue_2E_string var_actualString_13219 = enumerator_12260.current (HERE).readProperty_mParameter ().getter_getString (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 322)).unwrappedValue () ;
+          if (!enumerator_12260.current (HERE).readProperty_mParameter ().getter_getString (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 322)).isValuated ()) {
             test_41 = GalgasBool::boolFalse ;
           }
           if (GalgasBool::boolTrue == test_41) {
-            var_actualParameterList_11951.plusPlusAssignOperation (GGS__32_string::init_21__21_ (enumerator_12225.current (HERE).readProperty_mParameterName ().readProperty_string (), var_actualString_13221.readProperty_value (), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 323)) ;
+            var_actualParameterList_11949.plusPlusAssignOperation (GGS__32_string::init_21__21_ (enumerator_12223.current (HERE).readProperty_mParameterName ().readProperty_string (), var_actualString_13219.readProperty_value (), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 323)) ;
           }
         }
         if (GalgasBool::boolFalse == test_41) {
           GenericArray <FixItDescription> fixItArray42 ;
-          inCompiler->emitSemanticError (enumerator_12262.current (HERE).readProperty_mParameterName ().readProperty_location (), GGS_string ("parameter value is not string convertible"), fixItArray42  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 325)) ;
+          inCompiler->emitSemanticError (enumerator_12260.current (HERE).readProperty_mParameterName ().readProperty_location (), GGS_string ("parameter value is not string convertible"), fixItArray42  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 325)) ;
         }
-        enumerator_12225.gotoNextObject () ;
-        enumerator_12262.gotoNextObject () ;
+        enumerator_12223.gotoNextObject () ;
+        enumerator_12260.gotoNextObject () ;
       }
     }
     GalgasBool test_43 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_43) {
-      test_43 = GGS_bool (ComparisonKind::notEqual, enumerator_11423.current (HERE).readProperty_mSortPropertyName ().readProperty_string ().objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
+      test_43 = GGS_bool (ComparisonKind::notEqual, enumerator_11421.current (HERE).readProperty_mSortPropertyName ().readProperty_string ().objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
       if (GalgasBool::boolTrue == test_43) {
-        GGS_propertyKind var_sortPropertyKind_13627 ;
-        GGS_actionMap joker_13653_2 ; // Joker input parameter
-        GGS_bool joker_13653_1 ; // Joker input parameter
-        var_propertyMap_9961.method_searchKey (enumerator_11423.current (HERE).readProperty_mSortPropertyName (), var_sortPropertyKind_13627, joker_13653_2, joker_13653_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 331)) ;
+        GGS_propertyKind var_sortPropertyKind_13625 ;
+        GGS_actionMap joker_13651_2 ; // Joker input parameter
+        GGS_bool joker_13651_1 ; // Joker input parameter
+        var_propertyMap_9959.method_searchKey (enumerator_11421.current (HERE).readProperty_mSortPropertyName (), var_sortPropertyKind_13625, joker_13651_2, joker_13651_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 331)) ;
         GalgasBool test_44 = GalgasBool::boolTrue ;
         if (GalgasBool::boolTrue == test_44) {
-          test_44 = extensionGetter_isComparable (var_sortPropertyKind_13627, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 336)).operator_not (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 336)).boolEnum () ;
+          test_44 = extensionGetter_isComparable (var_sortPropertyKind_13625, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 336)).operator_not (SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 336)).boolEnum () ;
           if (GalgasBool::boolTrue == test_44) {
             GenericArray <FixItDescription> fixItArray45 ;
-            inCompiler->emitSemanticError (enumerator_11423.current (HERE).readProperty_mSortPropertyName ().readProperty_location (), GGS_string ("this property is not comparable"), fixItArray45  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 337)) ;
+            inCompiler->emitSemanticError (enumerator_11421.current (HERE).readProperty_mSortPropertyName ().readProperty_location (), GGS_string ("this property is not comparable"), fixItArray45  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 337)) ;
           }
         }
-        var_arrayControllerSortedColumnListForGeneration_11352.plusPlusAssignOperation (GGS_autoLayoutTableViewControllerSortedColumnForGeneration::init_21__21__21_ (enumerator_11423.current (HERE).readProperty_mPropertyName ().readProperty_string (), var_sortPropertyKind_13627, enumerator_11423.current (HERE).readProperty_mSortPropertyName ().readProperty_string (), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 339)) ;
+        var_arrayControllerSortedColumnListForGeneration_11350.plusPlusAssignOperation (GGS_autoLayoutTableViewControllerSortedColumnForGeneration::init_21__21__21_ (enumerator_11421.current (HERE).readProperty_mPropertyName ().readProperty_string (), var_sortPropertyKind_13625, enumerator_11421.current (HERE).readProperty_mSortPropertyName ().readProperty_string (), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 339)) ;
       }
     }
-    GGS_propertyKind var_propertyKind_14074 ;
-    GGS_actionMap joker_14094_2 ; // Joker input parameter
-    GGS_bool joker_14094_1 ; // Joker input parameter
-    var_propertyMap_9961.method_searchKey (enumerator_11423.current (HERE).readProperty_mPropertyName (), var_propertyKind_14074, joker_14094_2, joker_14094_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 346)) ;
-    var_arrayControllerBoundColumnListForGeneration_11239.plusPlusAssignOperation (GGS_autoLayoutTableViewControllerBoundColumnForGeneration::init_21__21__21__21__21__21_ (enumerator_11423.current (HERE).readProperty_mEditable (), enumerator_11423.current (HERE).readProperty_mSortPropertyName ().readProperty_string (), enumerator_11423.current (HERE).readProperty_mPropertyName ().readProperty_string (), extensionGetter_swiftTypeName (var_propertyKind_14074, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 355)), GGS_string::makeEmptyString (), var_actualParameterList_11951, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 351)) ;
-    enumerator_11423.gotoNextObject () ;
+    GGS_propertyKind var_propertyKind_14072 ;
+    GGS_actionMap joker_14092_2 ; // Joker input parameter
+    GGS_bool joker_14092_1 ; // Joker input parameter
+    var_propertyMap_9959.method_searchKey (enumerator_11421.current (HERE).readProperty_mPropertyName (), var_propertyKind_14072, joker_14092_2, joker_14092_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 346)) ;
+    var_arrayControllerBoundColumnListForGeneration_11237.plusPlusAssignOperation (GGS_autoLayoutTableViewControllerBoundColumnForGeneration::init_21__21__21__21__21__21_ (enumerator_11421.current (HERE).readProperty_mEditable (), enumerator_11421.current (HERE).readProperty_mSortPropertyName ().readProperty_string (), enumerator_11421.current (HERE).readProperty_mPropertyName ().readProperty_string (), extensionGetter_swiftTypeName (var_propertyKind_14072, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 355)), GGS_string::makeEmptyString (), var_actualParameterList_11949, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 351)) ;
+    enumerator_11421.gotoNextObject () ;
   }
   const GGS_autoLayoutTableViewControllerDeclarationAST temp_46 = this ;
   GGS_string temp_47 ;
@@ -3171,17 +2269,17 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_thirdAnalysisPhase
     const GGS_autoLayoutTableViewControllerDeclarationAST temp_50 = this ;
     temp_47 = GGS_string ("self.").add_operation (temp_50.readProperty_mToManyPropertyName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 367)).add_operation (GGS_string ("_property"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 367)) ;
   }
-  GGS_string var_modelString_14687 = temp_47 ;
+  GGS_string var_modelString_14685 = temp_47 ;
   {
   const GGS_autoLayoutTableViewControllerDeclarationAST temp_51 = this ;
   const GGS_autoLayoutTableViewControllerDeclarationAST temp_52 = this ;
-  ioArgument_ioGeneration.mProperty_mFileGenerationList.setter_append (GGS_autoLayoutTableViewControllerGeneration::init_21__21__21__21__21__21__21__21__21__21_ (temp_51.readProperty_mClassName ().readProperty_string (), temp_52.readProperty_mControllerName (), var_modelString_14687, var_arrayControllerBoundColumnListForGeneration_11239, var_arrayControllerSortedColumnListForGeneration_11352, GGS_string ("ReadWriteArrayOf_").add_operation (var_elementTypeName_10078, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 376)), var_arrayControllerModelKind_10019, var_elementTypeName_10078, var_graphic_10056, var_attributeListForGeneration_8616, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 370)) ;
+  ioArgument_ioGeneration.mProperty_mFileGenerationList.setter_append (GGS_autoLayoutTableViewControllerGeneration::init_21__21__21__21__21__21__21__21__21__21_ (temp_51.readProperty_mClassName ().readProperty_string (), temp_52.readProperty_mControllerName (), var_modelString_14685, var_arrayControllerBoundColumnListForGeneration_11237, var_arrayControllerSortedColumnListForGeneration_11350, GGS_string ("ReadWriteArrayOf_").add_operation (var_elementTypeName_10076, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 376)), var_arrayControllerModelKind_10017, var_elementTypeName_10076, var_graphic_10054, var_attributeListForGeneration_8614, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 370)) ;
   }
   {
-  ioArgument_ioGeneration.mProperty_mGenerateClass_5F_StoredArrayOf_5F_.setter_insert (var_elementTypeName_10078, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 383)) ;
+  ioArgument_ioGeneration.mProperty_mGenerateClass_5F_StoredArrayOf_5F_.setter_insert (var_elementTypeName_10076, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 383)) ;
   }
   {
-  ioArgument_ioGeneration.mProperty_mGenerateClass_5F_TransientArrayOf_5F_.setter_insert (var_elementTypeName_10078, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 384)) ;
+  ioArgument_ioGeneration.mProperty_mGenerateClass_5F_TransientArrayOf_5F_.setter_insert (var_elementTypeName_10076, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 384)) ;
   }
 }
 
@@ -3243,12 +2341,12 @@ GGS_string cPtr_autoLayoutTableViewControllerPropertyGeneration::getter_configur
   }else if (GalgasBool::boolFalse == test_1) {
     temp_0 = GGS_string ("self.") ;
   }
-  GGS_string var_prefix_17079 = temp_0 ;
+  GGS_string var_prefix_17077 = temp_0 ;
   const GGS_autoLayoutTableViewControllerPropertyGeneration temp_2 = this ;
   result_result = GGS_string ("  //--- Array controller property: ").add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 421)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 421)) ;
   const GGS_autoLayoutTableViewControllerPropertyGeneration temp_3 = this ;
   const GGS_autoLayoutTableViewControllerPropertyGeneration temp_4 = this ;
-  result_result.plusAssignOperation(GGS_string ("    ").add_operation (var_prefix_17079, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 422)).add_operation (temp_3.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 422)).add_operation (GGS_string (".bind_model ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 422)).add_operation (var_prefix_17079, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 422)).add_operation (temp_4.readProperty_mModelString (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 422)).add_operation (GGS_string ("_property, self.undoManager)\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 422)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 422)) ;
+  result_result.plusAssignOperation(GGS_string ("    ").add_operation (var_prefix_17077, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 422)).add_operation (temp_3.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 422)).add_operation (GGS_string (".bind_model ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 422)).add_operation (var_prefix_17077, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 422)).add_operation (temp_4.readProperty_mModelString (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 422)).add_operation (GGS_string ("_property, self.undoManager)\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 422)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 422)) ;
 //---
   return result_result ;
 }
@@ -3593,14 +2691,14 @@ void cPtr_autoLayoutTableViewControllerGeneration::method_generateCodePhase_32_ 
                                                                                  Compiler * inCompiler
                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   GGS_stringset temp_0 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 513)) ;
-  GGS_stringset var_observedProperties_21045 = temp_0 ;
+  GGS_stringset var_observedProperties_21043 = temp_0 ;
   const GGS_autoLayoutTableViewControllerGeneration temp_1 = this ;
-  UpEnumerator__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_ enumerator_21090 (temp_1.readProperty_mTableViewControllerSortedColumnListForGeneration ()) ;
-  while (enumerator_21090.hasCurrentObject ()) {
+  UpEnumerator__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_ enumerator_21088 (temp_1.readProperty_mTableViewControllerSortedColumnListForGeneration ()) ;
+  while (enumerator_21088.hasCurrentObject ()) {
     {
-    var_observedProperties_21045.setter_insert (enumerator_21090.current (HERE).readProperty_mObservablePropertyForSorting (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 515)) ;
+    var_observedProperties_21043.setter_insert (enumerator_21088.current (HERE).readProperty_mObservablePropertyForSorting (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 515)) ;
     }
-    enumerator_21090.gotoNextObject () ;
+    enumerator_21088.gotoNextObject () ;
   }
   const GGS_autoLayoutTableViewControllerGeneration temp_2 = this ;
   const GGS_autoLayoutTableViewControllerGeneration temp_3 = this ;
@@ -3611,11 +2709,11 @@ void cPtr_autoLayoutTableViewControllerGeneration::method_generateCodePhase_32_ 
   const GGS_autoLayoutTableViewControllerGeneration temp_8 = this ;
   const GGS_autoLayoutTableViewControllerGeneration temp_9 = this ;
   const GGS_autoLayoutTableViewControllerGeneration temp_10 = this ;
-  GGS_string var_s_21226 = GGS_string (filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_autoLayoutTableViewControllerImplementation (inCompiler, temp_2.readProperty_mOwnerName (), temp_3.readProperty_mControllerName ().readProperty_string (), temp_4.readProperty_mModelString (), temp_5.readProperty_mTableViewControllerModelKind (), temp_6.readProperty_mModelTypeName (), temp_7.readProperty_mTableViewControllerBoundColumnListForGeneration (), temp_8.readProperty_mTableViewControllerSortedColumnListForGeneration (), temp_9.readProperty_mElementTypeName (), var_observedProperties_21045, temp_10.readProperty_mAttributeListForGeneration () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 517))) ;
+  GGS_string var_s_21224 = GGS_string (filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_autoLayoutTableViewControllerImplementation (inCompiler, temp_2.readProperty_mOwnerName (), temp_3.readProperty_mControllerName ().readProperty_string (), temp_4.readProperty_mModelString (), temp_5.readProperty_mTableViewControllerModelKind (), temp_6.readProperty_mModelTypeName (), temp_7.readProperty_mTableViewControllerBoundColumnListForGeneration (), temp_8.readProperty_mTableViewControllerSortedColumnListForGeneration (), temp_9.readProperty_mElementTypeName (), var_observedProperties_21043, temp_10.readProperty_mAttributeListForGeneration () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 517))) ;
   {
   const GGS_autoLayoutTableViewControllerGeneration temp_11 = this ;
   const GGS_autoLayoutTableViewControllerGeneration temp_12 = this ;
-  GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, GGS_string ("controller-table-view-").add_operation (temp_11.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 531)).add_operation (GGS_string ("-"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 531)).add_operation (temp_12.readProperty_mControllerName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 531)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 531)), var_s_21226, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 529)) ;
+  GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, GGS_string ("controller-table-view-").add_operation (temp_11.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 531)).add_operation (GGS_string ("-"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 531)).add_operation (temp_12.readProperty_mControllerName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 531)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 531)), var_s_21224, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.galgas4", 529)) ;
   }
 }
 
@@ -4324,66 +3422,64 @@ void cPtr_autoLayoutDocumentDeclarationAST::method_fourthAnalysisPhase (GGS_sema
     enumerator_6604.gotoNextObject () ;
   }
   GGS_autoLayoutViewDeclarationMap var_viewDeclarationMap_7493 = GGS_autoLayoutViewDeclarationMap::init (inCompiler COMMA_HERE) ;
-  GGS_viewGenerationList temp_8 = GGS_viewGenerationList::init (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 225)) ;
-  GGS_viewGenerationList var_viewGenerationList_7543 = temp_8 ;
-  GGS_implicitViewFunctionGenerationList temp_9 = GGS_implicitViewFunctionGenerationList::init (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 226)) ;
-  GGS_implicitViewFunctionGenerationList var_implicitViewFunctionGenerationList_7609 = temp_9 ;
-  GGS_autoLayoutConfiguratorMap var_configuratorMap_7682 = GGS_autoLayoutConfiguratorMap::init (inCompiler COMMA_HERE) ;
-  GGS_autoLayoutOutletMap var_autoLayoutOutletMap_7730 = GGS_autoLayoutOutletMap::init (inCompiler COMMA_HERE) ;
+  GGS__5B_viewGeneration_5D_ temp_8 = GGS__5B_viewGeneration_5D_::init (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 225)) ;
+  GGS__5B_viewGeneration_5D_ var_viewGenerationList_7541 = temp_8 ;
+  GGS__5B_abstractViewInstructionGeneration_5D_ temp_9 = GGS__5B_abstractViewInstructionGeneration_5D_::init (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 226)) ;
+  GGS__5B_abstractViewInstructionGeneration_5D_ var_implicitViewFunctionGenerationList_7608 = temp_9 ;
+  GGS_autoLayoutConfiguratorMap var_configuratorMap_7681 = GGS_autoLayoutConfiguratorMap::init (inCompiler COMMA_HERE) ;
+  GGS_autoLayoutOutletMap var_autoLayoutOutletMap_7729 = GGS_autoLayoutOutletMap::init (inCompiler COMMA_HERE) ;
   const GGS_autoLayoutDocumentDeclarationAST temp_10 = this ;
-  UpEnumerator__5B_astViewDeclaration_5D_ enumerator_7774 (temp_10.readProperty_mViewDeclarationList ()) ;
-  while (enumerator_7774.hasCurrentObject ()) {
+  UpEnumerator__5B_astViewDeclaration_5D_ enumerator_7773 (temp_10.readProperty_mViewDeclarationList ()) ;
+  while (enumerator_7773.hasCurrentObject ()) {
     {
-    var_viewDeclarationMap_7493.setter_insertKey (enumerator_7774.current (HERE).readProperty_mViewName (), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 230)) ;
+    var_viewDeclarationMap_7493.setter_insertKey (enumerator_7773.current (HERE).readProperty_mViewName (), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 230)) ;
     }
-    GGS_abstractViewGeneration var_viewGeneration_8243 ;
+    GGS_abstractViewGeneration var_viewGeneration_8242 ;
     const GGS_autoLayoutDocumentDeclarationAST temp_11 = this ;
-    callExtensionMethod_checkView ((cPtr_astAbstractViewDeclaration *) enumerator_7774.current (HERE).readProperty_mView ().ptr (), enumerator_7774.current (HERE).readProperty_mViewName ().readProperty_string (), var_viewDeclarationMap_7493, GGS_bool (false), var_rootPropertyMap_5746, var_preferencesPropertyMap_5375, ioArgument_ioSemanticContext, var_documentPropertyMap_5535, var_documentActionMap_5565, temp_11.readProperty_mClassName ().readProperty_string (), ioArgument_ioSemanticContext.readProperty_mClassMap (), var_implicitViewFunctionGenerationList_7609, var_configuratorMap_7682, var_autoLayoutOutletMap_7730, var_viewGeneration_8243, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 231)) ;
-    {
-    var_viewGenerationList_7543.setter_append (enumerator_7774.current (HERE).readProperty_mViewName ().readProperty_string (), var_viewGeneration_8243, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 247)) ;
-    }
-    enumerator_7774.gotoNextObject () ;
+    callExtensionMethod_checkView ((cPtr_astAbstractViewDeclaration *) enumerator_7773.current (HERE).readProperty_mView ().ptr (), enumerator_7773.current (HERE).readProperty_mViewName ().readProperty_string (), var_viewDeclarationMap_7493, GGS_bool (false), var_rootPropertyMap_5746, var_preferencesPropertyMap_5375, ioArgument_ioSemanticContext, var_documentPropertyMap_5535, var_documentActionMap_5565, temp_11.readProperty_mClassName ().readProperty_string (), ioArgument_ioSemanticContext.readProperty_mClassMap (), var_implicitViewFunctionGenerationList_7608, var_configuratorMap_7681, var_autoLayoutOutletMap_7729, var_viewGeneration_8242, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 231)) ;
+    var_viewGenerationList_7541.plusPlusAssignOperation (GGS_viewGeneration::init_21__21_ (enumerator_7773.current (HERE).readProperty_mViewName ().readProperty_string (), var_viewGeneration_8242, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 247)) ;
+    enumerator_7773.gotoNextObject () ;
   }
   const GGS_autoLayoutDocumentDeclarationAST temp_12 = this ;
   var_viewDeclarationMap_7493.method_searchKey (temp_12.readProperty_mMainViewName (), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 249)) ;
   ioArgument_ioGeneration.mProperty_mGenerateEBManagedAutoLayoutDocumentSwift = GGS_bool (true) ;
   GGS__5B_autoLayoutOutletLinkerGeneration_5D_ temp_13 = GGS__5B_autoLayoutOutletLinkerGeneration_5D_::init (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 253)) ;
-  GGS__5B_autoLayoutOutletLinkerGeneration_5D_ var_outletLinkerGenerationList_8539 = temp_13 ;
+  GGS__5B_autoLayoutOutletLinkerGeneration_5D_ var_outletLinkerGenerationList_8534 = temp_13 ;
   GGS_stringset temp_14 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 254)) ;
-  GGS_stringset var_linkerNameSet_8588 = temp_14 ;
+  GGS_stringset var_linkerNameSet_8583 = temp_14 ;
   const GGS_autoLayoutDocumentDeclarationAST temp_15 = this ;
-  UpEnumerator__5B_astAutoLayoutOutletLinker_5D_ enumerator_8628 (temp_15.readProperty_mOutletLinkerList ()) ;
-  while (enumerator_8628.hasCurrentObject ()) {
+  UpEnumerator__5B_astAutoLayoutOutletLinker_5D_ enumerator_8623 (temp_15.readProperty_mOutletLinkerList ()) ;
+  while (enumerator_8623.hasCurrentObject ()) {
     GalgasBool test_16 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_16) {
-      test_16 = var_linkerNameSet_8588.getter_contains (enumerator_8628.current (HERE).readProperty_mLinkerName ().readProperty_string () COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 256)).boolEnum () ;
+      test_16 = var_linkerNameSet_8583.getter_contains (enumerator_8623.current (HERE).readProperty_mLinkerName ().readProperty_string () COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 256)).boolEnum () ;
       if (GalgasBool::boolTrue == test_16) {
         GenericArray <FixItDescription> fixItArray17 ;
-        inCompiler->emitSemanticError (enumerator_8628.current (HERE).readProperty_mLinkerName ().readProperty_location (), GGS_string ("duplicated linker name"), fixItArray17  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 257)) ;
+        inCompiler->emitSemanticError (enumerator_8623.current (HERE).readProperty_mLinkerName ().readProperty_location (), GGS_string ("duplicated linker name"), fixItArray17  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 257)) ;
       }
     }
     {
-    var_linkerNameSet_8588.setter_insert (enumerator_8628.current (HERE).readProperty_mLinkerName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 259)) ;
+    var_linkerNameSet_8583.setter_insert (enumerator_8623.current (HERE).readProperty_mLinkerName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 259)) ;
     }
     GGS__5B__32_string_5D_ temp_18 = GGS__5B__32_string_5D_::init (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 260)) ;
-    GGS__5B__32_string_5D_ var_outletNameAndTypeNameList_8854 = temp_18 ;
-    UpEnumerator__5B_lstring_5D_ enumerator_8914 (enumerator_8628.current (HERE).readProperty_mOutletNameList ()) ;
-    while (enumerator_8914.hasCurrentObject ()) {
-      GGS_string var_outletTypeName_8987 ;
-      GGS_bool var__5F_outletIsArray_9008 ;
-      var_autoLayoutOutletMap_7730.method_searchKey (enumerator_8914.current (HERE), var_outletTypeName_8987, var__5F_outletIsArray_9008, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 262)) ;
-      var_outletNameAndTypeNameList_8854.plusPlusAssignOperation (GGS__32_string::init_21__21_ (enumerator_8914.current (HERE).readProperty_string (), var_outletTypeName_8987, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 263)) ;
-      enumerator_8914.gotoNextObject () ;
+    GGS__5B__32_string_5D_ var_outletNameAndTypeNameList_8849 = temp_18 ;
+    UpEnumerator__5B_lstring_5D_ enumerator_8909 (enumerator_8623.current (HERE).readProperty_mOutletNameList ()) ;
+    while (enumerator_8909.hasCurrentObject ()) {
+      GGS_string var_outletTypeName_8982 ;
+      GGS_bool var__5F_outletIsArray_9003 ;
+      var_autoLayoutOutletMap_7729.method_searchKey (enumerator_8909.current (HERE), var_outletTypeName_8982, var__5F_outletIsArray_9003, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 262)) ;
+      var_outletNameAndTypeNameList_8849.plusPlusAssignOperation (GGS__32_string::init_21__21_ (enumerator_8909.current (HERE).readProperty_string (), var_outletTypeName_8982, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 263)) ;
+      enumerator_8909.gotoNextObject () ;
     }
-    var_outletLinkerGenerationList_8539.plusPlusAssignOperation (GGS_autoLayoutOutletLinkerGeneration::init_21__21_ (enumerator_8628.current (HERE).readProperty_mLinkerName ().readProperty_string (), var_outletNameAndTypeNameList_8854, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 265)) ;
-    enumerator_8628.gotoNextObject () ;
+    var_outletLinkerGenerationList_8534.plusPlusAssignOperation (GGS_autoLayoutOutletLinkerGeneration::init_21__21_ (enumerator_8623.current (HERE).readProperty_mLinkerName ().readProperty_string (), var_outletNameAndTypeNameList_8849, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 265)) ;
+    enumerator_8623.gotoNextObject () ;
   }
   {
   const GGS_autoLayoutDocumentDeclarationAST temp_19 = this ;
   const GGS_autoLayoutDocumentDeclarationAST temp_20 = this ;
   const GGS_autoLayoutDocumentDeclarationAST temp_21 = this ;
   const GGS_autoLayoutDocumentDeclarationAST temp_22 = this ;
-  ioArgument_ioGeneration.mProperty_mFileGenerationList.setter_append (GGS_autoLayoutDocumentFileGeneration::init_21__21__21__21__21__21__21__21__21__21__21__21__21__21__21__21_ (temp_19.readProperty_mClassName ().readProperty_string (), temp_20.readProperty_mRootEntityName ().readProperty_string (), temp_21.readProperty_mMainViewName ().readProperty_string (), var_documentPropertyGenerationList_5593, var_outletMap_6358, var_autoLayoutOutletMap_7730, var_actionBindingListForGeneration_6297, var_regularBindingsGenerationList_6160, var_multipleBindingGenerationList_6225, var_tableViewBindingGenerationList_6410, var_ebViewGraphicControllerBindingGenerationList_6497, var_viewGenerationList_7543, var_implicitViewFunctionGenerationList_7609, var_configuratorMap_7682, temp_22.readProperty_mCustomSuperClassName (), var_outletLinkerGenerationList_8539, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 268)) ;
+  ioArgument_ioGeneration.mProperty_mFileGenerationList.setter_append (GGS_autoLayoutDocumentFileGeneration::init_21__21__21__21__21__21__21__21__21__21__21__21__21__21__21__21_ (temp_19.readProperty_mClassName ().readProperty_string (), temp_20.readProperty_mRootEntityName ().readProperty_string (), temp_21.readProperty_mMainViewName ().readProperty_string (), var_documentPropertyGenerationList_5593, var_outletMap_6358, var_autoLayoutOutletMap_7729, var_actionBindingListForGeneration_6297, var_regularBindingsGenerationList_6160, var_multipleBindingGenerationList_6225, var_tableViewBindingGenerationList_6410, var_ebViewGraphicControllerBindingGenerationList_6497, var_viewGenerationList_7541, var_implicitViewFunctionGenerationList_7608, var_configuratorMap_7681, temp_22.readProperty_mCustomSuperClassName (), var_outletLinkerGenerationList_8534, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 268)) ;
   }
 }
 
@@ -4432,46 +3528,46 @@ void cPtr_autoLayoutDocumentFileGeneration::method_generateCodePhase_32_ (const 
     temp_14 = temp_16.readProperty_mCustomSuperClassName () ;
   }
   const GGS_autoLayoutDocumentFileGeneration temp_17 = this ;
-  GGS_string var_s_11898 = GGS_string (filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentImplementation (inCompiler, temp_0.readProperty_mDocumentName (), temp_1.readProperty_mRootEntityName (), temp_2.readProperty_mMainViewName (), temp_3.readProperty_mDocumentPropertyGenearionList (), temp_4.readProperty_mOutletMap (), temp_5.readProperty_mAutoLayoutOutletMap (), temp_6.readProperty_mTargetActionList (), temp_7.readProperty_mRegularBindingsGenerationList (), temp_8.readProperty_multipleBindingGenerationList (), temp_9.readProperty_mTableViewBindingGenerationList (), temp_10.readProperty_mEBViewBindingGenerationList (), temp_11.readProperty_mViewDeclarationList (), temp_12.readProperty_mImplicitViewFunctionGenerationList (), temp_14, temp_17.readProperty_mOutletLinkerGenerationList () COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 329))) ;
+  GGS_string var_s_11803 = GGS_string (filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentImplementation (inCompiler, temp_0.readProperty_mDocumentName (), temp_1.readProperty_mRootEntityName (), temp_2.readProperty_mMainViewName (), temp_3.readProperty_mDocumentPropertyGenearionList (), temp_4.readProperty_mOutletMap (), temp_5.readProperty_mAutoLayoutOutletMap (), temp_6.readProperty_mTargetActionList (), temp_7.readProperty_mRegularBindingsGenerationList (), temp_8.readProperty_multipleBindingGenerationList (), temp_9.readProperty_mTableViewBindingGenerationList (), temp_10.readProperty_mEBViewBindingGenerationList (), temp_11.readProperty_mViewDeclarationList (), temp_12.readProperty_mImplicitViewFunctionGenerationList (), temp_14, temp_17.readProperty_mOutletLinkerGenerationList () COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 328))) ;
   const GGS_autoLayoutDocumentFileGeneration temp_18 = this ;
-  GGS_string var_fileName_12569 = GGS_string ("document-").add_operation (temp_18.readProperty_mDocumentName (), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 346)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 346)) ;
+  GGS_string var_fileName_12474 = GGS_string ("document-").add_operation (temp_18.readProperty_mDocumentName (), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 345)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 345)) ;
   {
-  ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_12569, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 347)) ;
+  ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_12474, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 346)) ;
   }
   {
-  GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_12569, var_s_11898, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 348)) ;
+  GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_12474, var_s_11803, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 347)) ;
   }
   const GGS_autoLayoutDocumentFileGeneration temp_19 = this ;
-  UpEnumerator_autoLayoutConfiguratorMap enumerator_12750 (temp_19.readProperty_mConfiguratorMap ()) ;
-  while (enumerator_12750.hasCurrentObject ()) {
+  UpEnumerator_autoLayoutConfiguratorMap enumerator_12655 (temp_19.readProperty_mConfiguratorMap ()) ;
+  while (enumerator_12655.hasCurrentObject ()) {
     const GGS_autoLayoutDocumentFileGeneration temp_20 = this ;
-    GGS_string var_s_12813 = GGS_string (filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentOutletConfiguratorImplementation (inCompiler, temp_20.readProperty_mDocumentName (), enumerator_12750.current_lkey (HERE).readProperty_string (), enumerator_12750.current_mAutoLayoutOutletTypeName (HERE) COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 354))) ;
-    GGS_string var_header_13000 = GGS_string ("//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 359)), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 359)).add_operation (GGS_string ("\n//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n//"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 359)).add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 361)), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 361)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 361)).add_operation (GGS_string ("import AppKit\n"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 361)).add_operation (GGS_string ("import CanariGeometry\n\n"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 362)).add_operation (GGS_string ("//"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 363)).add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 364)), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 364)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 364)) ;
+    GGS_string var_s_12718 = GGS_string (filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentOutletConfiguratorImplementation (inCompiler, temp_20.readProperty_mDocumentName (), enumerator_12655.current_lkey (HERE).readProperty_string (), enumerator_12655.current_mAutoLayoutOutletTypeName (HERE) COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 353))) ;
+    GGS_string var_header_12905 = GGS_string ("//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 358)), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 358)).add_operation (GGS_string ("\n//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n//"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 358)).add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 360)), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 360)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 360)).add_operation (GGS_string ("import AppKit\n"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 360)).add_operation (GGS_string ("import CanariGeometry\n\n"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 361)).add_operation (GGS_string ("//"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 362)).add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 363)), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 363)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 363)) ;
     const GGS_autoLayoutDocumentFileGeneration temp_21 = this ;
-    GGS_string var_fileName_13376 = GGS_string ("configurator-").add_operation (temp_21.readProperty_mDocumentName (), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 365)).add_operation (GGS_string ("-"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 365)).add_operation (enumerator_12750.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 365)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 365)) ;
+    GGS_string var_fileName_13281 = GGS_string ("configurator-").add_operation (temp_21.readProperty_mDocumentName (), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 364)).add_operation (GGS_string ("-"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 364)).add_operation (enumerator_12655.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 364)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 364)) ;
     {
-    ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_13376, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 366)) ;
+    ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_13281, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 365)) ;
     }
     {
-    GGS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_13376, GGS_string ("//"), var_header_13000, GGS_string ("\n\n"), var_s_12813, GGS_string ("INSERT CONFIGURATION CODE\n"), GGS_string ("  }\n}\n\n//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 375)), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 375)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 375)), GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 367)) ;
+    GGS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_13281, GGS_string ("//"), var_header_12905, GGS_string ("\n\n"), var_s_12718, GGS_string ("INSERT CONFIGURATION CODE\n"), GGS_string ("  }\n}\n\n//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 374)), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 374)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 374)), GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 366)) ;
     }
-    enumerator_12750.gotoNextObject () ;
+    enumerator_12655.gotoNextObject () ;
   }
   const GGS_autoLayoutDocumentFileGeneration temp_22 = this ;
-  UpEnumerator__5B_autoLayoutOutletLinkerGeneration_5D_ enumerator_13951 (temp_22.readProperty_mOutletLinkerGenerationList ()) ;
-  while (enumerator_13951.hasCurrentObject ()) {
+  UpEnumerator__5B_autoLayoutOutletLinkerGeneration_5D_ enumerator_13856 (temp_22.readProperty_mOutletLinkerGenerationList ()) ;
+  while (enumerator_13856.hasCurrentObject ()) {
     const GGS_autoLayoutDocumentFileGeneration temp_23 = this ;
-    GGS_string var_s_13990 = GGS_string (filewrapperTemplate_autoLayoutDocumentGenerationTemplate_outletLinkerImplementation (inCompiler, temp_23.readProperty_mDocumentName (), enumerator_13951.current (HERE).readProperty_mLinkerName (), enumerator_13951.current (HERE).readProperty_mOutletNameAndTypeNameList () COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 380))) ;
-    GGS_string var_header_14178 = GGS_string ("//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 385)), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 385)).add_operation (GGS_string ("\n//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n//"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 385)).add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 387)), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 387)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 387)).add_operation (GGS_string ("import AppKit\n"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 387)).add_operation (GGS_string ("import CanariGeometry\n\n"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 388)).add_operation (GGS_string ("//"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 389)).add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 390)), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 390)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 390)) ;
+    GGS_string var_s_13895 = GGS_string (filewrapperTemplate_autoLayoutDocumentGenerationTemplate_outletLinkerImplementation (inCompiler, temp_23.readProperty_mDocumentName (), enumerator_13856.current (HERE).readProperty_mLinkerName (), enumerator_13856.current (HERE).readProperty_mOutletNameAndTypeNameList () COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 379))) ;
+    GGS_string var_header_14083 = GGS_string ("//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 384)), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 384)).add_operation (GGS_string ("\n//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n//"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 384)).add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 386)), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 386)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 386)).add_operation (GGS_string ("import AppKit\n"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 386)).add_operation (GGS_string ("import CanariGeometry\n\n"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 387)).add_operation (GGS_string ("//"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 388)).add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 389)), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 389)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 389)) ;
     const GGS_autoLayoutDocumentFileGeneration temp_24 = this ;
-    GGS_string var_fileName_14554 = GGS_string ("linker-").add_operation (temp_24.readProperty_mDocumentName (), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 391)).add_operation (GGS_string ("-"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 391)).add_operation (enumerator_13951.current (HERE).readProperty_mLinkerName (), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 391)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 391)) ;
+    GGS_string var_fileName_14459 = GGS_string ("linker-").add_operation (temp_24.readProperty_mDocumentName (), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 390)).add_operation (GGS_string ("-"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 390)).add_operation (enumerator_13856.current (HERE).readProperty_mLinkerName (), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 390)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 390)) ;
     {
-    ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_14554, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 392)) ;
+    ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_14459, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 391)) ;
     }
     {
-    GGS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_14554, GGS_string ("//"), var_header_14178, GGS_string ("\n\n"), var_s_13990, GGS_string ("INSERT CONFIGURATION CODE\n"), GGS_string ("  }\n}\n\n//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 401)), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 401)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 401)), GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 393)) ;
+    GGS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_14459, GGS_string ("//"), var_header_14083, GGS_string ("\n\n"), var_s_13895, GGS_string ("INSERT CONFIGURATION CODE\n"), GGS_string ("  }\n}\n\n//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 400)), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 400)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 400)), GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas4", 392)) ;
     }
-    enumerator_13951.gotoNextObject () ;
+    enumerator_13856.gotoNextObject () ;
   }
 }
 
@@ -4591,8 +3687,8 @@ GGS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentImpl
                                                                                             const GGS__5B_multipleBindingGeneration_5D_ & in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST,
                                                                                             const GGS_tableViewBindingGenerationList & /* in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST */,
                                                                                             const GGS_ebViewGraphicControllerBindingGenerationList & /* in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST */,
-                                                                                            const GGS_viewGenerationList & in_VIEW_5F_GENERATION_5F_LIST,
-                                                                                            const GGS_implicitViewFunctionGenerationList & in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST,
+                                                                                            const GGS__5B_viewGeneration_5D_ & in_VIEW_5F_GENERATION_5F_LIST,
+                                                                                            const GGS__5B_abstractViewInstructionGeneration_5D_ & in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST,
                                                                                             const GGS_string & in_DOCUMENT_5F_SUPER_5F_CLASS_5F_NAME,
                                                                                             const GGS__5B_autoLayoutOutletLinkerGeneration_5D_ & in_AUTO_5F_LAYOUT_5F_LINKER_5F_LIST
                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
@@ -4678,70 +3774,70 @@ GGS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentImpl
   result.appendString (" { return self.mRootObject as! ") ;
   result.appendString (in_ROOT_5F_ENTITY_5F_NAME.stringValue ()) ;
   result.appendString (" }\n\n") ;
-  GGS_uint index_3070_ (0) ;
+  GGS_uint index_3059_ (0) ;
   if (in_VIEW_5F_GENERATION_5F_LIST.isValid ()) {
-    UpEnumerator_viewGenerationList enumerator_3070 (in_VIEW_5F_GENERATION_5F_LIST) ;
-    while (enumerator_3070.hasCurrentObject ()) {
+    UpEnumerator__5B_viewGeneration_5D_ enumerator_3059 (in_VIEW_5F_GENERATION_5F_LIST) ;
+    while (enumerator_3059.hasCurrentObject ()) {
       result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    VIEW ") ;
-      result.appendString (enumerator_3070.current_mViewName (HERE).stringValue ()) ;
+      result.appendString (enumerator_3059.current_entry (HERE).readProperty_mViewName ().stringValue ()) ;
       result.appendString ("\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n") ;
-      result.appendString (callExtensionGetter_generateViewBuilder ((const cPtr_abstractViewGeneration *) enumerator_3070.current_mView (HERE).ptr (), GGS_bool (false), enumerator_3070.current_mViewName (HERE), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 79)).stringValue ()) ;
-      enumerator_3070.gotoNextObject () ;
-      index_3070_.increment () ;
+      result.appendString (callExtensionGetter_generateViewBuilder ((const cPtr_abstractViewGeneration *) enumerator_3059.current_entry (HERE).readProperty_mView ().ptr (), GGS_bool (false), enumerator_3059.current_entry (HERE).readProperty_mViewName (), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 79)).stringValue ()) ;
+      enumerator_3059.gotoNextObject () ;
+      index_3059_.increment () ;
     }
   }
-  GGS_uint index_3446_idx (0) ;
+  GGS_uint index_3450_idx (0) ;
   if (in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST.isValid ()) {
-    UpEnumerator_implicitViewFunctionGenerationList enumerator_3446 (in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST) ;
-    while (enumerator_3446.hasCurrentObject ()) {
+    UpEnumerator__5B_abstractViewInstructionGeneration_5D_ enumerator_3450 (in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST) ;
+    while (enumerator_3450.hasCurrentObject ()) {
       result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    IMPLICIT VIEW ") ;
-      result.appendString (index_3446_idx.getter_string (SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 83)).stringValue ()) ;
+      result.appendString (index_3450_idx.getter_string (SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 83)).stringValue ()) ;
       result.appendString ("\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private final func computeImplicitView_") ;
-      result.appendString (index_3446_idx.getter_string (SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 85)).stringValue ()) ;
+      result.appendString (index_3450_idx.getter_string (SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 85)).stringValue ()) ;
       result.appendString (" () -> NSView {\n") ;
-      result.appendString (callExtensionGetter_generateViewInstruction ((const cPtr_abstractViewInstructionGeneration *) enumerator_3446.current_mInstruction (HERE).ptr (), GGS_bool (false), GGS_string ("view"), GGS_string ("    "), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 86)).stringValue ()) ;
+      result.appendString (callExtensionGetter_generateViewInstruction ((const cPtr_abstractViewInstructionGeneration *) enumerator_3450.current_entry (HERE).ptr (), GGS_bool (false), GGS_string ("view"), GGS_string ("    "), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 86)).stringValue ()) ;
       result.appendString ("    return view\n  }\n\n") ;
-      enumerator_3446.gotoNextObject () ;
-      index_3446_idx.increment () ;
+      enumerator_3450.gotoNextObject () ;
+      index_3450_idx.increment () ;
     }
   }
   result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    Build User Interface\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func ebBuildUserInterface () {\n  //--------------------------- Read documentFileName model\n    self.documentFileName_property.mReadModelFunction = { [weak self] in\n      if let r = self\?.displayName {\n        return .single (r)\n      }else{\n        return .single (\"\")\n      }\n    }\n  //--- Build window content view\n    self.configureProperties ()\n    let mainView = self.") ;
   result.appendString (in_MAIN_5F_VIEW_5F_NAME.stringValue ()) ;
   result.appendString (" ()\n  //--- Call outlet linkers\n") ;
-  GGS_uint index_4605_ (0) ;
+  GGS_uint index_4609_ (0) ;
   if (in_AUTO_5F_LAYOUT_5F_LINKER_5F_LIST.isValid ()) {
-    UpEnumerator__5B_autoLayoutOutletLinkerGeneration_5D_ enumerator_4605 (in_AUTO_5F_LAYOUT_5F_LINKER_5F_LIST) ;
-    while (enumerator_4605.hasCurrentObject ()) {
+    UpEnumerator__5B_autoLayoutOutletLinkerGeneration_5D_ enumerator_4609 (in_AUTO_5F_LAYOUT_5F_LINKER_5F_LIST) ;
+    while (enumerator_4609.hasCurrentObject ()) {
       result.appendString ("    self.linker_") ;
-      result.appendString (enumerator_4605.current_entry (HERE).readProperty_mLinkerName ().stringValue ()) ;
+      result.appendString (enumerator_4609.current_entry (HERE).readProperty_mLinkerName ().stringValue ()) ;
       result.appendString (" (") ;
-      GGS_uint index_4718_ (0) ;
-      if (enumerator_4605.current_entry (HERE).readProperty_mOutletNameAndTypeNameList ().isValid ()) {
-        UpEnumerator__5B__32_string_5D_ enumerator_4718 (enumerator_4605.current_entry (HERE).readProperty_mOutletNameAndTypeNameList ()) ;
-        while (enumerator_4718.hasCurrentObject ()) {
+      GGS_uint index_4722_ (0) ;
+      if (enumerator_4609.current_entry (HERE).readProperty_mOutletNameAndTypeNameList ().isValid ()) {
+        UpEnumerator__5B__32_string_5D_ enumerator_4722 (enumerator_4609.current_entry (HERE).readProperty_mOutletNameAndTypeNameList ()) ;
+        while (enumerator_4722.hasCurrentObject ()) {
           result.appendString ("self.") ;
-          result.appendString (enumerator_4718.current_entry (HERE).readProperty_mValue_30_ ().stringValue ()) ;
-          enumerator_4718.gotoNextObject () ;
-          if (enumerator_4718.hasCurrentObject ()) {
+          result.appendString (enumerator_4722.current_entry (HERE).readProperty_mValue_30_ ().stringValue ()) ;
+          enumerator_4722.gotoNextObject () ;
+          if (enumerator_4722.hasCurrentObject ()) {
             result.appendString (", ") ;
           }
-          index_4718_.increment () ;
+          index_4722_.increment () ;
         }
       }
       result.appendString (")\n") ;
-      enumerator_4605.gotoNextObject () ;
-      index_4605_.increment () ;
+      enumerator_4609.gotoNextObject () ;
+      index_4609_.increment () ;
     }
   }
   result.appendString ("  //--- Assign main view to window\n    self.windowForSheet\?.setContentView (mainView)\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    configureProperties\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  final private func configureProperties () {\n") ;
-  GGS_uint index_5207_ (0) ;
+  GGS_uint index_5211_ (0) ;
   if (in_DOCUMENT_5F_PROPERTY_5F_LIST.isValid ()) {
-    UpEnumerator_propertyGenerationList enumerator_5207 (in_DOCUMENT_5F_PROPERTY_5F_LIST) ;
-    while (enumerator_5207.hasCurrentObject ()) {
-      result.appendString (callExtensionGetter_configurationCode ((const cPtr_propertyGeneration *) enumerator_5207.current_mProperty (HERE).ptr (), GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 126)).stringValue ()) ;
+    UpEnumerator_propertyGenerationList enumerator_5211 (in_DOCUMENT_5F_PROPERTY_5F_LIST) ;
+    while (enumerator_5211.hasCurrentObject ()) {
+      result.appendString (callExtensionGetter_configurationCode ((const cPtr_propertyGeneration *) enumerator_5211.current_mProperty (HERE).ptr (), GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 126)).stringValue ()) ;
       result.appendString ("\n") ;
-      enumerator_5207.gotoNextObject () ;
-      index_5207_.increment () ;
+      enumerator_5211.gotoNextObject () ;
+      index_5211_.increment () ;
     }
   }
   result.appendString ("  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n}\n\n//--------------------------------------------------------------------------------------------------\n\n") ;
@@ -4962,23 +4058,23 @@ void cPtr_prefsDeclarationAST::method_fourthAnalysisPhase (GGS_semanticContext &
   routine_analyzeOutlets_3F__3F__3F__3F__3F__3F__3F__3F__3F__26__21__21__21__21__21__21_ (GGS_bool (true), GGS_propertyMap::init (inCompiler COMMA_HERE), var_preferencesPropertyMap_5348, GGS_string::makeEmptyString (), ioArgument_ioSemanticContext, temp_4.readProperty_mDeclaration ().readProperty_mOutletDeclarationList (), var_preferencesPropertyMap_5348, var_actionMap_5381, function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 151)), ioArgument_ioGeneration, var_regularBindingsGenerationList_5767, var_multipleBindingGenerationList_5836, var_actionBindingListForGeneration_5908, var_outletMap_5969, var_tableViewBindingGenerationList_6021, var_ebViewGraphicControllerBindingGenerationList_6108, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas4", 142)) ;
   }
   GGS_autoLayoutViewDeclarationMap var_viewDeclarationMap_6234 = GGS_autoLayoutViewDeclarationMap::init (inCompiler COMMA_HERE) ;
-  GGS_viewGenerationList temp_5 = GGS_viewGenerationList::init (inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 162)) ;
-  GGS_viewGenerationList var_viewGenerationList_6284 = temp_5 ;
-  GGS_implicitViewFunctionGenerationList temp_6 = GGS_implicitViewFunctionGenerationList::init (inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 163)) ;
-  GGS_implicitViewFunctionGenerationList var_implicitViewFunctionGenerationList_6350 = temp_6 ;
-  GGS_autoLayoutConfiguratorMap var_configuratorMap_6423 = GGS_autoLayoutConfiguratorMap::init (inCompiler COMMA_HERE) ;
-  GGS_autoLayoutOutletMap var_autoLayoutOutletMap_6471 = GGS_autoLayoutOutletMap::init (inCompiler COMMA_HERE) ;
+  GGS__5B_viewGeneration_5D_ temp_5 = GGS__5B_viewGeneration_5D_::init (inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 162)) ;
+  GGS__5B_viewGeneration_5D_ var_viewGenerationList_6282 = temp_5 ;
+  GGS__5B_abstractViewInstructionGeneration_5D_ temp_6 = GGS__5B_abstractViewInstructionGeneration_5D_::init (inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 163)) ;
+  GGS__5B_abstractViewInstructionGeneration_5D_ var_implicitViewFunctionGenerationList_6349 = temp_6 ;
+  GGS_autoLayoutConfiguratorMap var_configuratorMap_6422 = GGS_autoLayoutConfiguratorMap::init (inCompiler COMMA_HERE) ;
+  GGS_autoLayoutOutletMap var_autoLayoutOutletMap_6470 = GGS_autoLayoutOutletMap::init (inCompiler COMMA_HERE) ;
   const GGS_prefsDeclarationAST temp_7 = this ;
-  UpEnumerator__5B_astViewDeclaration_5D_ enumerator_6528 (temp_7.readProperty_mDeclaration ().readProperty_mViewDeclarationList ()) ;
-  while (enumerator_6528.hasCurrentObject ()) {
+  UpEnumerator__5B_astViewDeclaration_5D_ enumerator_6527 (temp_7.readProperty_mDeclaration ().readProperty_mViewDeclarationList ()) ;
+  while (enumerator_6527.hasCurrentObject ()) {
     {
-    var_viewDeclarationMap_6234.setter_insertKey (enumerator_6528.current (HERE).readProperty_mViewName (), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 167)) ;
+    var_viewDeclarationMap_6234.setter_insertKey (enumerator_6527.current (HERE).readProperty_mViewName (), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 167)) ;
     }
-    GGS_abstractViewGeneration var_viewGeneration_7000 ;
+    GGS_abstractViewGeneration var_viewGeneration_6999 ;
     const GGS_prefsDeclarationAST temp_8 = this ;
-    callExtensionMethod_checkView ((cPtr_astAbstractViewDeclaration *) enumerator_6528.current (HERE).readProperty_mView ().ptr (), enumerator_6528.current (HERE).readProperty_mViewName ().readProperty_string (), var_viewDeclarationMap_6234, GGS_bool (true), GGS_propertyMap::init (inCompiler COMMA_HERE), var_preferencesPropertyMap_5348, ioArgument_ioSemanticContext, GGS_propertyMap::init (inCompiler COMMA_HERE), var_actionMap_5381, temp_8.readProperty_mClassName ().readProperty_string (), ioArgument_ioSemanticContext.readProperty_mClassMap (), var_implicitViewFunctionGenerationList_6350, var_configuratorMap_6423, var_autoLayoutOutletMap_6471, var_viewGeneration_7000, inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 168)) ;
-    var_viewGenerationList_6284.plusPlusAssignOperation (GGS_viewGenerationList_2E_element::init_21__21_ (enumerator_6528.current (HERE).readProperty_mViewName ().readProperty_string (), var_viewGeneration_7000, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("preferences.galgas4", 184)) ;
-    enumerator_6528.gotoNextObject () ;
+    callExtensionMethod_checkView ((cPtr_astAbstractViewDeclaration *) enumerator_6527.current (HERE).readProperty_mView ().ptr (), enumerator_6527.current (HERE).readProperty_mViewName ().readProperty_string (), var_viewDeclarationMap_6234, GGS_bool (true), GGS_propertyMap::init (inCompiler COMMA_HERE), var_preferencesPropertyMap_5348, ioArgument_ioSemanticContext, GGS_propertyMap::init (inCompiler COMMA_HERE), var_actionMap_5381, temp_8.readProperty_mClassName ().readProperty_string (), ioArgument_ioSemanticContext.readProperty_mClassMap (), var_implicitViewFunctionGenerationList_6349, var_configuratorMap_6422, var_autoLayoutOutletMap_6470, var_viewGeneration_6999, inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 168)) ;
+    var_viewGenerationList_6282.plusPlusAssignOperation (GGS_viewGeneration::init_21__21_ (enumerator_6527.current (HERE).readProperty_mViewName ().readProperty_string (), var_viewGeneration_6999, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("preferences.galgas4", 184)) ;
+    enumerator_6527.gotoNextObject () ;
   }
   GalgasBool test_9 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_9) {
@@ -4990,7 +4086,7 @@ void cPtr_prefsDeclarationAST::method_fourthAnalysisPhase (GGS_semanticContext &
   }
   {
   const GGS_prefsDeclarationAST temp_11 = this ;
-  ioArgument_ioGeneration.mProperty_mFileGenerationList.setter_append (GGS_preferencesForGeneration::init_21__21__21__21__21__21__21__21__21__21__21__21__21_ (var_propertyGenerationList_5401, ioArgument_ioGeneration.readProperty_mMainXibDescriptorList (), var_regularBindingsGenerationList_5767, var_multipleBindingGenerationList_5836, var_actionBindingListForGeneration_5908, var_outletMap_5969, temp_11.readProperty_mDeclaration ().readProperty_mExternSwiftFunctionList (), var_tableViewBindingGenerationList_6021, var_ebViewGraphicControllerBindingGenerationList_6108, var_viewGenerationList_6284, var_implicitViewFunctionGenerationList_6350, var_configuratorMap_6423, var_autoLayoutOutletMap_6471, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 190)) ;
+  ioArgument_ioGeneration.mProperty_mFileGenerationList.setter_append (GGS_preferencesForGeneration::init_21__21__21__21__21__21__21__21__21__21__21__21__21_ (var_propertyGenerationList_5401, ioArgument_ioGeneration.readProperty_mMainXibDescriptorList (), var_regularBindingsGenerationList_5767, var_multipleBindingGenerationList_5836, var_actionBindingListForGeneration_5908, var_outletMap_5969, temp_11.readProperty_mDeclaration ().readProperty_mExternSwiftFunctionList (), var_tableViewBindingGenerationList_6021, var_ebViewGraphicControllerBindingGenerationList_6108, var_viewGenerationList_6282, var_implicitViewFunctionGenerationList_6349, var_configuratorMap_6422, var_autoLayoutOutletMap_6470, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 190)) ;
   }
 }
 
@@ -5108,8 +4204,8 @@ GGS_string filewrapperTemplate_prefsGenerationTemplate_preferences (Compiler * i
                                                                     const GGS_externSwiftFunctionList & in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST,
                                                                     const GGS_tableViewBindingGenerationList & in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST,
                                                                     const GGS_ebViewGraphicControllerBindingGenerationList & in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST,
-                                                                    const GGS_viewGenerationList & in_VIEW_5F_GENERATION_5F_LIST,
-                                                                    const GGS_implicitViewFunctionGenerationList & in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST,
+                                                                    const GGS__5B_viewGeneration_5D_ & in_VIEW_5F_GENERATION_5F_LIST,
+                                                                    const GGS__5B_abstractViewInstructionGeneration_5D_ & in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST,
                                                                     const GGS_autoLayoutOutletMap & in_AUTO_5F_LAYOUT_5F_OUTLET_5F_MAP
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   String result ;
@@ -5122,113 +4218,113 @@ GGS_string filewrapperTemplate_prefsGenerationTemplate_preferences (Compiler * i
   result.appendString (" : ") ;
   result.appendString (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 13)).stringValue ()) ;
   result.appendString ("_SuperClass, NSWindowDelegate {\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private final var mWindow : CanariWindow\? = nil\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    Show Preferences window\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  @IBAction func showPreferencesWindowAction (_ inSender : Any\?) {\n    let window : CanariWindow\n    if let w = self.mWindow {\n      window = w\n    }else{\n      window = CanariWindow (\n        contentRect: .zero,\n        styleMask: [.closable, .resizable, .titled],\n        backing: .buffered,\n        defer: false\n      )\n      self.mWindow = window\n      window.setFrameAutosaveName (\"PrefsWindowSettings\")\n      window.title = \"Preferences\"\n      window.isReleasedWhenClosed = false\n      window.setContentView (self.mPrefsMainView ())\n    //--- Contrôler le comportement en plein écran\n      window.collectionBehavior = [.fullScreenAuxiliary, .fullScreenNone]\n      let zoomButton = window.standardWindowButton (.zoomButton)\n      zoomButton\?.isEnabled = false\n    }\n    window.makeKeyAndOrderFront (nil)\n  }\n\n") ;
-  GGS_uint index_1888_ (0) ;
+  GGS_uint index_1877_ (0) ;
   if (in_VIEW_5F_GENERATION_5F_LIST.isValid ()) {
-    UpEnumerator_viewGenerationList enumerator_1888 (in_VIEW_5F_GENERATION_5F_LIST) ;
-    while (enumerator_1888.hasCurrentObject ()) {
+    UpEnumerator__5B_viewGeneration_5D_ enumerator_1877 (in_VIEW_5F_GENERATION_5F_LIST) ;
+    while (enumerator_1877.hasCurrentObject ()) {
       result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    VIEW ") ;
-      result.appendString (enumerator_1888.current_mViewName (HERE).stringValue ()) ;
+      result.appendString (enumerator_1877.current_entry (HERE).readProperty_mViewName ().stringValue ()) ;
       result.appendString ("\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n") ;
-      result.appendString (callExtensionGetter_generateViewBuilder ((const cPtr_abstractViewGeneration *) enumerator_1888.current_mView (HERE).ptr (), GGS_bool (true), enumerator_1888.current_mViewName (HERE), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 52)).stringValue ()) ;
-      enumerator_1888.gotoNextObject () ;
-      index_1888_.increment () ;
+      result.appendString (callExtensionGetter_generateViewBuilder ((const cPtr_abstractViewGeneration *) enumerator_1877.current_entry (HERE).readProperty_mView ().ptr (), GGS_bool (true), enumerator_1877.current_entry (HERE).readProperty_mViewName (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 52)).stringValue ()) ;
+      enumerator_1877.gotoNextObject () ;
+      index_1877_.increment () ;
     }
   }
-  GGS_uint index_2263_idx (0) ;
+  GGS_uint index_2267_idx (0) ;
   if (in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST.isValid ()) {
-    UpEnumerator_implicitViewFunctionGenerationList enumerator_2263 (in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST) ;
-    while (enumerator_2263.hasCurrentObject ()) {
+    UpEnumerator__5B_abstractViewInstructionGeneration_5D_ enumerator_2267 (in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST) ;
+    while (enumerator_2267.hasCurrentObject ()) {
       result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    IMPLICIT VIEW ") ;
-      result.appendString (index_2263_idx.getter_string (SOURCE_FILE ("preferences.swift.galgasTemplate", 56)).stringValue ()) ;
+      result.appendString (index_2267_idx.getter_string (SOURCE_FILE ("preferences.swift.galgasTemplate", 56)).stringValue ()) ;
       result.appendString ("\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  fileprivate final func computeImplicitView_") ;
-      result.appendString (index_2263_idx.getter_string (SOURCE_FILE ("preferences.swift.galgasTemplate", 58)).stringValue ()) ;
+      result.appendString (index_2267_idx.getter_string (SOURCE_FILE ("preferences.swift.galgasTemplate", 58)).stringValue ()) ;
       result.appendString (" () -> NSView {\n") ;
-      result.appendString (callExtensionGetter_generateViewInstruction ((const cPtr_abstractViewInstructionGeneration *) enumerator_2263.current_mInstruction (HERE).ptr (), GGS_bool (true), GGS_string ("view"), GGS_string ("    "), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 59)).stringValue ()) ;
+      result.appendString (callExtensionGetter_generateViewInstruction ((const cPtr_abstractViewInstructionGeneration *) enumerator_2267.current_entry (HERE).ptr (), GGS_bool (true), GGS_string ("view"), GGS_string ("    "), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 59)).stringValue ()) ;
       result.appendString ("    return view\n  }\n\n") ;
-      enumerator_2263.gotoNextObject () ;
-      index_2263_idx.increment () ;
+      enumerator_2267.gotoNextObject () ;
+      index_2267_idx.increment () ;
     }
   }
   result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    Outlets\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n") ;
-  GGS_uint index_3009_ (0) ;
+  GGS_uint index_3013_ (0) ;
   if (in_AUTO_5F_LAYOUT_5F_OUTLET_5F_MAP.isValid ()) {
-    UpEnumerator_autoLayoutOutletMap enumerator_3009 (in_AUTO_5F_LAYOUT_5F_OUTLET_5F_MAP) ;
-    while (enumerator_3009.hasCurrentObject ()) {
-      const GalgasBool test_0 = enumerator_3009.current_mOutletIsArray (HERE).boolEnum () ;
+    UpEnumerator_autoLayoutOutletMap enumerator_3013 (in_AUTO_5F_LAYOUT_5F_OUTLET_5F_MAP) ;
+    while (enumerator_3013.hasCurrentObject ()) {
+      const GalgasBool test_0 = enumerator_3013.current_mOutletIsArray (HERE).boolEnum () ;
       switch (test_0) {
       case GalgasBool::boolTrue : {
         result.appendString ("  final var ") ;
-        result.appendString (enumerator_3009.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString (enumerator_3013.current_lkey (HERE).readProperty_string ().stringValue ()) ;
         result.appendString (" = EBWeakReferenceArray <AutoLayout") ;
-        result.appendString (enumerator_3009.current_mAutoLayoutOutletTypeName (HERE).stringValue ()) ;
+        result.appendString (enumerator_3013.current_mAutoLayoutOutletTypeName (HERE).stringValue ()) ;
         result.appendString ("> ()\n") ;
         } break ;
       case GalgasBool::boolFalse : {
         result.appendString ("  weak final var ") ;
-        result.appendString (enumerator_3009.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString (enumerator_3013.current_lkey (HERE).readProperty_string ().stringValue ()) ;
         result.appendString (" : AutoLayout") ;
-        result.appendString (enumerator_3009.current_mAutoLayoutOutletTypeName (HERE).stringValue ()) ;
+        result.appendString (enumerator_3013.current_mAutoLayoutOutletTypeName (HERE).stringValue ()) ;
         result.appendString ("\? = nil\n") ;
         } break ;
       case GalgasBool::boolNotValid :
         break ;
       }
-      enumerator_3009.gotoNextObject () ;
-      index_3009_.increment () ;
+      enumerator_3013.gotoNextObject () ;
+      index_3013_.increment () ;
     }
   }
   result.appendString ("\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    Outlets\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n") ;
-  GGS_uint index_3505_ (0) ;
+  GGS_uint index_3509_ (0) ;
   if (in_OUTLET_5F_MAP.isValid ()) {
-    UpEnumerator_decoratedOutletMap enumerator_3505 (in_OUTLET_5F_MAP) ;
-    while (enumerator_3505.hasCurrentObject ()) {
+    UpEnumerator_decoratedOutletMap enumerator_3509 (in_OUTLET_5F_MAP) ;
+    while (enumerator_3509.hasCurrentObject ()) {
       result.appendString ("  @IBOutlet var ") ;
-      result.appendString (enumerator_3505.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+      result.appendString (enumerator_3509.current_lkey (HERE).readProperty_string ().stringValue ()) ;
       result.appendString (" : ") ;
-      result.appendString (enumerator_3505.current_mOutletTypeName (HERE).stringValue ()) ;
+      result.appendString (enumerator_3509.current_mOutletTypeName (HERE).stringValue ()) ;
       result.appendString ("\? = nil\n") ;
-      enumerator_3505.gotoNextObject () ;
-      index_3505_.increment () ;
+      enumerator_3509.gotoNextObject () ;
+      index_3509_.increment () ;
     }
   }
   result.appendString ("\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    Multiple bindings controllers\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n") ;
-  GGS_uint index_3869_ (0) ;
+  GGS_uint index_3873_ (0) ;
   if (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    UpEnumerator__5B_multipleBindingGeneration_5D_ enumerator_3869 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST) ;
-    while (enumerator_3869.hasCurrentObject ()) {
+    UpEnumerator__5B_multipleBindingGeneration_5D_ enumerator_3873 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST) ;
+    while (enumerator_3873.hasCurrentObject ()) {
       result.appendString ("  private var mController_") ;
-      result.appendString (enumerator_3869.current_entry (HERE).readProperty_mOutletName ().stringValue ()) ;
+      result.appendString (enumerator_3873.current_entry (HERE).readProperty_mOutletName ().stringValue ()) ;
       result.appendString ("_") ;
-      result.appendString (enumerator_3869.current_entry (HERE).readProperty_mBindingName ().stringValue ()) ;
+      result.appendString (enumerator_3873.current_entry (HERE).readProperty_mBindingName ().stringValue ()) ;
       result.appendString (" : MultipleBindingController_") ;
-      result.appendString (enumerator_3869.current_entry (HERE).readProperty_mBindingName ().stringValue ()) ;
+      result.appendString (enumerator_3873.current_entry (HERE).readProperty_mBindingName ().stringValue ()) ;
       result.appendString ("\?\n") ;
-      enumerator_3869.gotoNextObject () ;
-      index_3869_.increment () ;
+      enumerator_3873.gotoNextObject () ;
+      index_3873_.increment () ;
     }
   }
   result.appendString ("\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    Undo Manager\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private var mUndoManager = UndoManager ()\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  var undoManager : UndoManager { return self.mUndoManager }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // The preferences window should register this object as delegate\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  @objc func windowWillReturnUndoManager (_ window: NSWindow) -> UndoManager\? {\n    return self.undoManager\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    Init\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override init () {\n    super.init ()\n    g") ;
   result.appendString (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 117)).stringValue ()) ;
   result.appendString (" = self\n  //--- Read from preferences\n") ;
-  GGS_uint index_5196_ (0) ;
+  GGS_uint index_5200_ (0) ;
   if (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    UpEnumerator_propertyGenerationList enumerator_5196 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION) ;
-    while (enumerator_5196.hasCurrentObject ()) {
-      result.appendString (callExtensionGetter_configurationCode ((const cPtr_propertyGeneration *) enumerator_5196.current_mProperty (HERE).ptr (), GGS_bool (true), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 121)).stringValue ()) ;
-      enumerator_5196.gotoNextObject () ;
-      index_5196_.increment () ;
+    UpEnumerator_propertyGenerationList enumerator_5200 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION) ;
+    while (enumerator_5200.hasCurrentObject ()) {
+      result.appendString (callExtensionGetter_configurationCode ((const cPtr_propertyGeneration *) enumerator_5200.current_mProperty (HERE).ptr (), GGS_bool (true), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 121)).stringValue ()) ;
+      enumerator_5200.gotoNextObject () ;
+      index_5200_.increment () ;
     }
   }
   result.appendString ("    //--- Extern functions\n") ;
-  GGS_uint index_5347_ (0) ;
+  GGS_uint index_5351_ (0) ;
   if (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST.isValid ()) {
-    UpEnumerator_externSwiftFunctionList enumerator_5347 (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST) ;
-    while (enumerator_5347.hasCurrentObject ()) {
-      const GalgasBool test_1 = GGS_bool (ComparisonKind::equal, enumerator_5347.current_mCallerName (HERE).readProperty_string ().objectCompare (GGS_string ("init"))).boolEnum () ;
+    UpEnumerator_externSwiftFunctionList enumerator_5351 (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST) ;
+    while (enumerator_5351.hasCurrentObject ()) {
+      const GalgasBool test_1 = GGS_bool (ComparisonKind::equal, enumerator_5351.current_mCallerName (HERE).readProperty_string ().objectCompare (GGS_string ("init"))).boolEnum () ;
       switch (test_1) {
       case GalgasBool::boolTrue : {
         result.appendString ("      self.") ;
-        result.appendString (enumerator_5347.current_mExternSwiftFunctionName (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString (enumerator_5351.current_mExternSwiftFunctionName (HERE).readProperty_string ().stringValue ()) ;
         result.appendString (" ()\n") ;
         } break ;
       case GalgasBool::boolFalse : {
@@ -5236,8 +4332,8 @@ GGS_string filewrapperTemplate_prefsGenerationTemplate_preferences (Compiler * i
       case GalgasBool::boolNotValid :
         break ;
       }
-      enumerator_5347.gotoNextObject () ;
-      index_5347_.increment () ;
+      enumerator_5351.gotoNextObject () ;
+      index_5351_.increment () ;
     }
   }
   result.appendString ("//    }\n  }\n\n") ;
@@ -5253,126 +4349,126 @@ GGS_string filewrapperTemplate_prefsGenerationTemplate_preferences (Compiler * i
   }
   result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    awakeFromNib\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func awakeFromNib () {\n    DispatchQueue.main.async {\n") ;
   result.appendString (extensionGetter_generateCode (in_MAIN_5F_XIB_5F_DESCRIPTOR_5F_LIST, inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 150)).stringValue ()) ;
-  GGS_uint index_6112_ (0) ;
+  GGS_uint index_6116_ (0) ;
   if (in_OUTLET_5F_MAP.isValid ()) {
-    UpEnumerator_decoratedOutletMap enumerator_6112 (in_OUTLET_5F_MAP) ;
-    while (enumerator_6112.hasCurrentObject ()) {
+    UpEnumerator_decoratedOutletMap enumerator_6116 (in_OUTLET_5F_MAP) ;
+    while (enumerator_6116.hasCurrentObject ()) {
       result.appendString ("      checkOutletConnection (self.") ;
-      result.appendString (enumerator_6112.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+      result.appendString (enumerator_6116.current_lkey (HERE).readProperty_string ().stringValue ()) ;
       result.appendString (", \"") ;
-      result.appendString (enumerator_6112.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+      result.appendString (enumerator_6116.current_lkey (HERE).readProperty_string ().stringValue ()) ;
       result.appendString ("\", ") ;
-      result.appendString (enumerator_6112.current_mOutletTypeName (HERE).stringValue ()) ;
+      result.appendString (enumerator_6116.current_mOutletTypeName (HERE).stringValue ()) ;
       result.appendString (".self, #file, #line)\n") ;
-      enumerator_6112.gotoNextObject () ;
-      index_6112_.increment () ;
+      enumerator_6116.gotoNextObject () ;
+      index_6116_.increment () ;
     }
   }
   result.appendString ("    //--------------------------- Install bindings\n") ;
-  GGS_uint index_6390_ (0) ;
+  GGS_uint index_6394_ (0) ;
   if (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST.isValid ()) {
-    UpEnumerator_regularBindingsGenerationList enumerator_6390 (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST) ;
-    while (enumerator_6390.hasCurrentObject ()) {
+    UpEnumerator_regularBindingsGenerationList enumerator_6394 (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST) ;
+    while (enumerator_6394.hasCurrentObject ()) {
       result.appendString ("      self.") ;
-      result.appendString (enumerator_6390.current_mOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_6394.current_mOutletName (HERE).stringValue ()) ;
       result.appendString ("\?.bind_") ;
-      result.appendString (enumerator_6390.current_mBindingName (HERE).stringValue ()) ;
+      result.appendString (enumerator_6394.current_mBindingName (HERE).stringValue ()) ;
       result.appendString (" (") ;
-      GGS_uint index_6504_ (0) ;
-      if (enumerator_6390.current_mBoundObjectList (HERE).isValid ()) {
-        UpEnumerator_boundObjectList enumerator_6504 (enumerator_6390.current_mBoundObjectList (HERE)) ;
-        while (enumerator_6504.hasCurrentObject ()) {
-          result.appendString (enumerator_6504.current_mBoundObjectString (HERE).stringValue ()) ;
-          enumerator_6504.gotoNextObject () ;
-          if (enumerator_6504.hasCurrentObject ()) {
+      GGS_uint index_6508_ (0) ;
+      if (enumerator_6394.current_mBoundObjectList (HERE).isValid ()) {
+        UpEnumerator_boundObjectList enumerator_6508 (enumerator_6394.current_mBoundObjectList (HERE)) ;
+        while (enumerator_6508.hasCurrentObject ()) {
+          result.appendString (enumerator_6508.current_mBoundObjectString (HERE).stringValue ()) ;
+          enumerator_6508.gotoNextObject () ;
+          if (enumerator_6508.hasCurrentObject ()) {
             result.appendString (", ") ;
           }
-          index_6504_.increment () ;
+          index_6508_.increment () ;
         }
       }
-      result.appendString (enumerator_6390.current_mBindingOptionsString (HERE).stringValue ()) ;
+      result.appendString (enumerator_6394.current_mBindingOptionsString (HERE).stringValue ()) ;
       result.appendString (")\n") ;
-      enumerator_6390.gotoNextObject () ;
-      index_6390_.increment () ;
+      enumerator_6394.gotoNextObject () ;
+      index_6394_.increment () ;
     }
   }
   result.appendString ("    //--------------------------- Install multiple bindings\n") ;
-  GGS_uint index_6697_ (0) ;
+  GGS_uint index_6701_ (0) ;
   if (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    UpEnumerator__5B_multipleBindingGeneration_5D_ enumerator_6697 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST) ;
-    while (enumerator_6697.hasCurrentObject ()) {
+    UpEnumerator__5B_multipleBindingGeneration_5D_ enumerator_6701 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST) ;
+    while (enumerator_6701.hasCurrentObject ()) {
       result.appendString ("      do{\n        let controller = MultipleBindingController_") ;
-      result.appendString (enumerator_6697.current_entry (HERE).readProperty_mBindingName ().stringValue ()) ;
+      result.appendString (enumerator_6701.current_entry (HERE).readProperty_mBindingName ().stringValue ()) ;
       result.appendString (" (\n          computeFunction: ") ;
-      result.appendString (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_6697.current_entry (HERE).readProperty_mBoundObjectExpression ().ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 169)).stringValue ()) ;
+      result.appendString (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_6701.current_entry (HERE).readProperty_mBoundObjectExpression ().ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 169)).stringValue ()) ;
       result.appendString (",\n          outlet: self.") ;
-      result.appendString (enumerator_6697.current_entry (HERE).readProperty_mOutletName ().stringValue ()) ;
+      result.appendString (enumerator_6701.current_entry (HERE).readProperty_mOutletName ().stringValue ()) ;
       result.appendString ("\n        )\n        self.mController_") ;
-      result.appendString (enumerator_6697.current_entry (HERE).readProperty_mOutletName ().stringValue ()) ;
+      result.appendString (enumerator_6701.current_entry (HERE).readProperty_mOutletName ().stringValue ()) ;
       result.appendString ("_") ;
-      result.appendString (enumerator_6697.current_entry (HERE).readProperty_mBindingName ().stringValue ()) ;
+      result.appendString (enumerator_6701.current_entry (HERE).readProperty_mBindingName ().stringValue ()) ;
       result.appendString (" = controller\n      }\n") ;
-      enumerator_6697.gotoNextObject () ;
-      index_6697_.increment () ;
+      enumerator_6701.gotoNextObject () ;
+      index_6701_.increment () ;
     }
   }
   result.appendString ("    //--------------------------- Array controller\n") ;
-  GGS_uint index_7224_ (0) ;
+  GGS_uint index_7228_ (0) ;
   if (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    UpEnumerator_tableViewBindingGenerationList enumerator_7224 (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST) ;
-    while (enumerator_7224.hasCurrentObject ()) {
+    UpEnumerator_tableViewBindingGenerationList enumerator_7228 (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST) ;
+    while (enumerator_7228.hasCurrentObject ()) {
       result.appendString ("      preferences_") ;
-      result.appendString (enumerator_7224.current_mTableValueBindingControllerName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7228.current_mTableValueBindingControllerName (HERE).stringValue ()) ;
       result.appendString (".bind_tableView (self.") ;
-      result.appendString (enumerator_7224.current_mTableValueBindingOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7228.current_mTableValueBindingOutletName (HERE).stringValue ()) ;
       result.appendString (")\n") ;
-      enumerator_7224.gotoNextObject () ;
-      index_7224_.increment () ;
+      enumerator_7228.gotoNextObject () ;
+      index_7228_.increment () ;
     }
   }
-  GGS_uint index_7454_ (0) ;
+  GGS_uint index_7458_ (0) ;
   if (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    UpEnumerator_ebViewGraphicControllerBindingGenerationList enumerator_7454 (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST) ;
-    while (enumerator_7454.hasCurrentObject ()) {
+    UpEnumerator_ebViewGraphicControllerBindingGenerationList enumerator_7458 (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST) ;
+    while (enumerator_7458.hasCurrentObject ()) {
       result.appendString ("      preferences_") ;
-      result.appendString (enumerator_7454.current_mArrayControllerControllerName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7458.current_mArrayControllerControllerName (HERE).stringValue ()) ;
       result.appendString (".bind_ebView (self.") ;
-      result.appendString (enumerator_7454.current_mEBViewOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7458.current_mEBViewOutletName (HERE).stringValue ()) ;
       result.appendString (")\n") ;
-      enumerator_7454.gotoNextObject () ;
-      index_7454_.increment () ;
+      enumerator_7458.gotoNextObject () ;
+      index_7458_.increment () ;
     }
   }
   result.appendString ("    //--------------------------- Set targets / actions\n") ;
-  GGS_uint index_7697_ (0) ;
+  GGS_uint index_7701_ (0) ;
   if (in_TARGET_5F_ACTION_5F_LIST.isValid ()) {
-    UpEnumerator_actionBindingListForGeneration enumerator_7697 (in_TARGET_5F_ACTION_5F_LIST) ;
-    while (enumerator_7697.hasCurrentObject ()) {
+    UpEnumerator_actionBindingListForGeneration enumerator_7701 (in_TARGET_5F_ACTION_5F_LIST) ;
+    while (enumerator_7701.hasCurrentObject ()) {
       result.appendString ("      self.") ;
-      result.appendString (enumerator_7697.current_mOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7701.current_mOutletName (HERE).stringValue ()) ;
       result.appendString ("\?.target = ") ;
-      result.appendString (enumerator_7697.current_mTargetName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7701.current_mTargetName (HERE).stringValue ()) ;
       result.appendString ("\n      self.") ;
-      result.appendString (enumerator_7697.current_mOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7701.current_mOutletName (HERE).stringValue ()) ;
       result.appendString ("\?.action = #selector (") ;
-      result.appendString (enumerator_7697.current_mTargetTypeName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7701.current_mTargetTypeName (HERE).stringValue ()) ;
       result.appendString (".") ;
-      result.appendString (enumerator_7697.current_mActionName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7701.current_mActionName (HERE).stringValue ()) ;
       result.appendString (" (_:))\n") ;
-      enumerator_7697.gotoNextObject () ;
-      index_7697_.increment () ;
+      enumerator_7701.gotoNextObject () ;
+      index_7701_.increment () ;
     }
   }
   result.appendString ("    //--------------------------- Extern functions\n") ;
-  GGS_uint index_7979_ (0) ;
+  GGS_uint index_7983_ (0) ;
   if (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST.isValid ()) {
-    UpEnumerator_externSwiftFunctionList enumerator_7979 (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST) ;
-    while (enumerator_7979.hasCurrentObject ()) {
-      const GalgasBool test_3 = GGS_bool (ComparisonKind::equal, enumerator_7979.current_mCallerName (HERE).readProperty_string ().objectCompare (GGS_string ("awakeFromNib"))).boolEnum () ;
+    UpEnumerator_externSwiftFunctionList enumerator_7983 (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST) ;
+    while (enumerator_7983.hasCurrentObject ()) {
+      const GalgasBool test_3 = GGS_bool (ComparisonKind::equal, enumerator_7983.current_mCallerName (HERE).readProperty_string ().objectCompare (GGS_string ("awakeFromNib"))).boolEnum () ;
       switch (test_3) {
       case GalgasBool::boolTrue : {
         result.appendString ("      self.") ;
-        result.appendString (enumerator_7979.current_mExternSwiftFunctionName (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString (enumerator_7983.current_mExternSwiftFunctionName (HERE).readProperty_string ().stringValue ()) ;
         result.appendString (" ()\n") ;
         } break ;
       case GalgasBool::boolFalse : {
@@ -5380,28 +4476,28 @@ GGS_string filewrapperTemplate_prefsGenerationTemplate_preferences (Compiler * i
       case GalgasBool::boolNotValid :
         break ;
       }
-      enumerator_7979.gotoNextObject () ;
-      index_7979_.increment () ;
+      enumerator_7983.gotoNextObject () ;
+      index_7983_.increment () ;
     }
   }
   result.appendString ("    }\n    super.awakeFromNib ()\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n}\n\n//--------------------------------------------------------------------------------------------------\n\n") ;
-  GGS_uint index_8398_ (0) ;
+  GGS_uint index_8402_ (0) ;
   if (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    UpEnumerator_propertyGenerationList enumerator_8398 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION) ;
-    while (enumerator_8398.hasCurrentObject ()) {
-      result.appendString (callExtensionGetter_prefKeyDefinitionCode ((const cPtr_propertyGeneration *) enumerator_8398.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 206)).stringValue ()) ;
-      enumerator_8398.gotoNextObject () ;
-      index_8398_.increment () ;
+    UpEnumerator_propertyGenerationList enumerator_8402 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION) ;
+    while (enumerator_8402.hasCurrentObject ()) {
+      result.appendString (callExtensionGetter_prefKeyDefinitionCode ((const cPtr_propertyGeneration *) enumerator_8402.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 206)).stringValue ()) ;
+      enumerator_8402.gotoNextObject () ;
+      index_8402_.increment () ;
     }
   }
   result.appendString ("\n") ;
-  GGS_uint index_8494_ (0) ;
+  GGS_uint index_8498_ (0) ;
   if (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    UpEnumerator_propertyGenerationList enumerator_8494 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION) ;
-    while (enumerator_8494.hasCurrentObject ()) {
-      result.appendString (callExtensionGetter_propertyDeclarationCode ((const cPtr_propertyGeneration *) enumerator_8494.current_mProperty (HERE).ptr (), GGS_bool (true), GGS_bool (true), GGS_stringset::class_func_emptySet (SOURCE_FILE ("preferences.swift.galgasTemplate", 211)), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 211)).stringValue ()) ;
-      enumerator_8494.gotoNextObject () ;
-      index_8494_.increment () ;
+    UpEnumerator_propertyGenerationList enumerator_8498 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION) ;
+    while (enumerator_8498.hasCurrentObject ()) {
+      result.appendString (callExtensionGetter_propertyDeclarationCode ((const cPtr_propertyGeneration *) enumerator_8498.current_mProperty (HERE).ptr (), GGS_bool (true), GGS_bool (true), GGS_stringset::class_func_emptySet (SOURCE_FILE ("preferences.swift.galgasTemplate", 211)), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 211)).stringValue ()) ;
+      enumerator_8498.gotoNextObject () ;
+      index_8498_.increment () ;
     }
   }
   result.appendString ("\n//--------------------------------------------------------------------------------------------------\n\n") ;
@@ -5442,27 +4538,27 @@ void cPtr_preferencesForGeneration::method_generateCodePhase_32_ (const GGS_stri
   const GGS_preferencesForGeneration temp_9 = this ;
   const GGS_preferencesForGeneration temp_10 = this ;
   const GGS_preferencesForGeneration temp_11 = this ;
-  GGS_string var_s_10598 = GGS_string (filewrapperTemplate_prefsGenerationTemplate_preferences (inCompiler, temp_0.readProperty_mPropertyListForGeneration (), temp_1.readProperty_mMainXibDescriptorList (), temp_2.readProperty_mOutletMap (), temp_3.readProperty_mRegularBindingsGenerationList (), temp_4.readProperty_mActionBindingListForGeneration (), temp_5.readProperty_mMultipleBindingGenerationList (), temp_6.readProperty_mExternSwiftFunctionList (), temp_7.readProperty_mTableViewBindingGenerationList (), temp_8.readProperty_mEBViewBindingGenerationList (), temp_9.readProperty_mViewGenerationList (), temp_10.readProperty_mImplicitViewFunctionGenerationList (), temp_11.readProperty_mAutoLayoutOutletMap () COMMA_SOURCE_FILE ("preferences.galgas4", 266))) ;
-  GGS_string var_fileName_11099 = function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 280)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 280)) ;
+  GGS_string var_s_10595 = GGS_string (filewrapperTemplate_prefsGenerationTemplate_preferences (inCompiler, temp_0.readProperty_mPropertyListForGeneration (), temp_1.readProperty_mMainXibDescriptorList (), temp_2.readProperty_mOutletMap (), temp_3.readProperty_mRegularBindingsGenerationList (), temp_4.readProperty_mActionBindingListForGeneration (), temp_5.readProperty_mMultipleBindingGenerationList (), temp_6.readProperty_mExternSwiftFunctionList (), temp_7.readProperty_mTableViewBindingGenerationList (), temp_8.readProperty_mEBViewBindingGenerationList (), temp_9.readProperty_mViewGenerationList (), temp_10.readProperty_mImplicitViewFunctionGenerationList (), temp_11.readProperty_mAutoLayoutOutletMap () COMMA_SOURCE_FILE ("preferences.galgas4", 266))) ;
+  GGS_string var_fileName_11096 = function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 280)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 280)) ;
   {
-  ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_11099, inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 281)) ;
+  ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_11096, inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 281)) ;
   }
   {
-  GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_11099, var_s_10598, inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 282)) ;
+  GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_11096, var_s_10595, inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 282)) ;
   }
   const GGS_preferencesForGeneration temp_12 = this ;
-  UpEnumerator_autoLayoutConfiguratorMap enumerator_11285 (temp_12.readProperty_mConfiguratorMap ()) ;
-  while (enumerator_11285.hasCurrentObject ()) {
-    GGS_string var_s_11348 = GGS_string (filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentOutletConfiguratorImplementation (inCompiler, GGS_string ("Preferences"), enumerator_11285.current_lkey (HERE).readProperty_string (), enumerator_11285.current_mAutoLayoutOutletTypeName (HERE) COMMA_SOURCE_FILE ("preferences.galgas4", 289))) ;
-    GGS_string var_header_11530 = GGS_string ("//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("preferences.galgas4", 294)), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 294)).add_operation (GGS_string ("\n//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n//"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 294)).add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("preferences.galgas4", 296)), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 296)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 296)).add_operation (GGS_string ("import AppKit\n"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 296)).add_operation (GGS_string ("import CanariGeometry\n\n"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 297)).add_operation (GGS_string ("//"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 298)).add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("preferences.galgas4", 299)), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 299)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 299)) ;
-    GGS_string var_fileName_11905 = GGS_string ("configurator-Preferences-").add_operation (enumerator_11285.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 300)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 300)) ;
+  UpEnumerator_autoLayoutConfiguratorMap enumerator_11282 (temp_12.readProperty_mConfiguratorMap ()) ;
+  while (enumerator_11282.hasCurrentObject ()) {
+    GGS_string var_s_11345 = GGS_string (filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentOutletConfiguratorImplementation (inCompiler, GGS_string ("Preferences"), enumerator_11282.current_lkey (HERE).readProperty_string (), enumerator_11282.current_mAutoLayoutOutletTypeName (HERE) COMMA_SOURCE_FILE ("preferences.galgas4", 289))) ;
+    GGS_string var_header_11527 = GGS_string ("//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("preferences.galgas4", 294)), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 294)).add_operation (GGS_string ("\n//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n//"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 294)).add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("preferences.galgas4", 296)), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 296)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 296)).add_operation (GGS_string ("import AppKit\n"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 296)).add_operation (GGS_string ("import CanariGeometry\n\n"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 297)).add_operation (GGS_string ("//"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 298)).add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("preferences.galgas4", 299)), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 299)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 299)) ;
+    GGS_string var_fileName_11902 = GGS_string ("configurator-Preferences-").add_operation (enumerator_11282.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 300)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 300)) ;
     {
-    ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_11905, inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 301)) ;
+    ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_11902, inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 301)) ;
     }
     {
-    GGS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_11905, GGS_string ("//"), var_header_11530, GGS_string ("\n\n"), var_s_11348, GGS_string ("INSERT CONFIGURATION CODE\n"), GGS_string ("  }\n}\n\n//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("preferences.galgas4", 310)), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 310)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 310)), GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 302)) ;
+    GGS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_11902, GGS_string ("//"), var_header_11527, GGS_string ("\n\n"), var_s_11345, GGS_string ("INSERT CONFIGURATION CODE\n"), GGS_string ("  }\n}\n\n//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("preferences.galgas4", 310)), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 310)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 310)), GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("preferences.galgas4", 302)) ;
     }
-    enumerator_11285.gotoNextObject () ;
+    enumerator_11282.gotoNextObject () ;
   }
 }
 
@@ -9853,5 +8949,280 @@ GGS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayController
   }
   result.appendString ("\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // MARK: -\n  //  INSPECTOR\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private var mInspectorReceivingView : NSView\? = nil\n  private var mCurrentAttachedView : NSView\? = nil\n  private var mInspectorDictionary = [ObjectIdentifier : NSView] ()\n  private var mInspectorObserver = EBOutletEvent ()\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func register (inspectorReceivingView : NSView\?) {\n    self.mInspectorReceivingView = inspectorReceivingView\n    self.updateInspectorViews ()\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func register (inspectorView : NSView\?, for inEntity : EBGraphicManagedObject.Type) {\n    self.mInspectorDictionary [ObjectIdentifier (inEntity)] = inspectorView\n    self.updateInspectorViews ()\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private func inspectorViewManagerStartsObservingSelection () {\n    self.selectedArray_property.startsBeingObserved (by: self.mInspectorObserver)\n    self.mInspectorObserver.mEventCallBack = { [weak self] in self\?.updateInspectorViews () }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private func inspectorViewManagerStopsObservingSelection () {\n    self.mInspectorObserver.mEventCallBack = nil\n    self.selectedArray_property.stopsBeingObserved (by: self.mInspectorObserver)\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private func updateInspectorViews () {\n    if let inspectorView = self.mInspectorReceivingView {\n    //--- Remove current attached view\n      self.mCurrentAttachedView\?.removeFromSuperview ()\n    //--- Add the new attached view\n      if self.mViewIsHidden {\n        self.mCurrentAttachedView = nil\n      }else if self.selectedArray.count == 0 {\n        let tf = self.textField (\"Empty Selection\", inspectorView.frame)\n        inspectorView.addSubview (tf)\n        self.mCurrentAttachedView = tf\n      }else{\n        var selectionTypes = Set <ObjectIdentifier> ()\n        for object in self.selectedArray.values {\n          let T = ObjectIdentifier (type (of: object))\n          selectionTypes.insert (T)\n        }\n        if selectionTypes.count > 1 {\n          let tf = self.textField (\"Multiple Selection\", inspectorView.frame)\n          inspectorView.addSubview (tf)\n          self.mCurrentAttachedView = tf\n        }else if let selectionInspectorView = self.mInspectorDictionary [selectionTypes.first!] {\n          selectionInspectorView.autoresizingMask = [.width, .minYMargin]\n          selectionInspectorView.frame = inspectorView.frame\n          inspectorView.addSubview (selectionInspectorView)\n          self.mCurrentAttachedView = selectionInspectorView\n        }else{\n          let tf = self.textField (\"No Inspector for this Selection\", inspectorView.frame)\n          inspectorView.addSubview (tf)\n          self.mCurrentAttachedView = tf\n        }\n      }\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private func textField (_ inString : String, _ inspectorFrame : NSRect) -> NSTextField {\n    let textHeight : CGFloat = 30.0\n    let r = NSRect (\n      x: 0.0,\n      y: inspectorFrame.origin.y + (inspectorFrame.size.height - textHeight) / 2.0,\n      width: inspectorFrame.size.width,\n      height: textHeight\n    )\n    let tf = NSTextField (frame: r)\n    tf.alignment = .center\n    tf.isBezeled = false\n    tf.isBordered = false\n    tf.drawsBackground = false\n    tf.isEnabled = true\n    tf.isEditable = false\n    tf.autoresizingMask = [.width, .minYMargin, .maxYMargin]\n    tf.stringValue = inString\n    tf.font = NSFont.boldSystemFont (ofSize: NSFont.systemFontSize * 1.25)\n    tf.textColor = NSColor.lightGray\n    return tf\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private var mViewIsHidden = false {\n    didSet { self.updateInspectorViews () }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  var isHidden : Bool {\n    get { return self.mViewIsHidden }\n    set { self.mViewIsHidden = newValue }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n}\n\n//--------------------------------------------------------------------------------------------------\n\n") ;
   return GGS_string (result) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Overriding extension proc '@arrayControllerGeneration generateCodePhase1'
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_arrayControllerGeneration::method_generateCodePhase_31_ (const GGS_string /* constinArgument__5F_inOutputDirectory */,
+                                                                   const GGS_generationStruct /* constinArgument__5F_inGenerationStruct */,
+                                                                   GGS_stringset & /* ioArgument__5F_ioUsedProtocolSet */,
+                                                                   GGS_stringset & /* ioArgument__5F_ioGeneratedFileSet */,
+                                                                   Compiler * /* inCompiler */
+                                                                   COMMA_UNUSED_LOCATION_ARGS) {
+}
+
+//--------------------------------------------------------------------------------------------------
+//Overriding extension proc '@arrayControllerGeneration generateCodePhase2'
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_arrayControllerGeneration::method_generateCodePhase_32_ (const GGS_string constinArgument_inOutputDirectory,
+                                                                   const GGS_generationStruct /* constinArgument__5F_inGenerationStruct */,
+                                                                   const GGS_stringset /* constinArgument__5F_inUsedProtocolSet */,
+                                                                   GGS_stringset & /* ioArgument__5F_ioGeneratedFileSet */,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_UNUSED_LOCATION_ARGS) {
+  const GGS_arrayControllerGeneration temp_0 = this ;
+  const GGS_arrayControllerGeneration temp_1 = this ;
+  const GGS_arrayControllerGeneration temp_2 = this ;
+  const GGS_arrayControllerGeneration temp_3 = this ;
+  const GGS_arrayControllerGeneration temp_4 = this ;
+  const GGS_arrayControllerGeneration temp_5 = this ;
+  GGS_string var_s_13456 = GGS_string (filewrapperTemplate_arrayControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, temp_0.readProperty_mOwnerName (), temp_1.readProperty_mControllerName ().readProperty_string (), temp_2.readProperty_mArrayControllerModelKind (), temp_3.readProperty_mModelTypeName (), temp_4.readProperty_mElementTypeName (), temp_5.readProperty_mElementTypeIsGraphic () COMMA_SOURCE_FILE ("array-controller.galgas4", 340))) ;
+  {
+  const GGS_arrayControllerGeneration temp_6 = this ;
+  const GGS_arrayControllerGeneration temp_7 = this ;
+  GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, GGS_string ("controller-array-").add_operation (temp_6.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas4", 350)).add_operation (GGS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas4", 350)).add_operation (temp_7.readProperty_mControllerName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas4", 350)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas4", 350)), var_s_13456, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas4", 348)) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Overriding extension proc '@literalIntMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_literalIntMultipleBindingExpressionAST::method_analyzeExpressionForMultipleBinding (const GGS_bool /* constinArgument__5F_inPreferences */,
+                                                                                              const GGS_propertyMap /* constinArgument__5F_inRootObservablePropertyMap */,
+                                                                                              const GGS_semanticContext /* constinArgument__5F_inSemanticContext */,
+                                                                                              const GGS_propertyMap /* constinArgument__5F_inCurrentObservablePropertyMap */,
+                                                                                              const GGS_propertyMap /* constinArgument__5F_inPreferencesObservablePropertyMap */,
+                                                                                              GGS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument_outEnableExpression,
+                                                                                              GGS_typeKind & outArgument_outType,
+                                                                                              GGS_location & outArgument_outErrorLocation,
+                                                                                              Compiler * inCompiler
+                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  const GGS_literalIntMultipleBindingExpressionAST temp_0 = this ;
+  outArgument_outEnableExpression = GGS_booleanMultipleBindingLiteralIntForGeneration::init_21_ (temp_0.readProperty_mValue ().readProperty_uint (), inCompiler COMMA_HERE) ;
+  outArgument_outType = GGS_typeKind::class_func_integerType (SOURCE_FILE ("multiple-binding.galgas4", 274)) ;
+  const GGS_literalIntMultipleBindingExpressionAST temp_1 = this ;
+  outArgument_outErrorLocation = temp_1.readProperty_mValue ().readProperty_location () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Overriding extension proc '@observablePropertyInMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_observablePropertyInMultipleBindingExpressionAST::method_analyzeExpressionForMultipleBinding (const GGS_bool constinArgument_inPreferences,
+                                                                                                        const GGS_propertyMap constinArgument_inRootObservablePropertyMap,
+                                                                                                        const GGS_semanticContext constinArgument_inSemanticContext,
+                                                                                                        const GGS_propertyMap constinArgument_inCurrentObservablePropertyMap,
+                                                                                                        const GGS_propertyMap constinArgument_inPreferencesObservablePropertyMap,
+                                                                                                        GGS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument_outEnableExpression,
+                                                                                                        GGS_typeKind & outArgument_outType,
+                                                                                                        GGS_location & outArgument_outErrorLocation,
+                                                                                                        Compiler * inCompiler
+                                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_propertyKind var_kind_12207 ;
+  GGS_string var__5F_swiftTypeStringForTransientFunctionArgument_12230 ;
+  GGS_string var__5F_protocolTypeName_12293 ;
+  GGS_string var__5F_defaultValueAsString_12329 ;
+  const GGS_observablePropertyInMultipleBindingExpressionAST temp_0 = this ;
+  GGS_propertyMap temp_1 ;
+  const GalgasBool test_2 = constinArgument_inPreferences.boolEnum () ;
+  if (GalgasBool::boolTrue == test_2) {
+    temp_1 = constinArgument_inPreferencesObservablePropertyMap ;
+  }else if (GalgasBool::boolFalse == test_2) {
+    temp_1 = constinArgument_inCurrentObservablePropertyMap ;
+  }
+  extensionMethod_analyzeObservableProperty (temp_0.readProperty_mProperty (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, temp_1, var_kind_12207, var__5F_swiftTypeStringForTransientFunctionArgument_12230, var__5F_protocolTypeName_12293, var__5F_defaultValueAsString_12329, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas4", 290)) ;
+  switch (var_kind_12207.enumValue ()) {
+  case GGS_propertyKind::Enumeration::invalid:
+    break ;
+  case GGS_propertyKind::Enumeration::enum_property:
+    {
+      GGS_typeKind extractedValue_12386_type_0 ;
+      GGS_propertyAccessibility extractedValue_12392__1 ;
+      var_kind_12207.getAssociatedValuesFor_property (extractedValue_12386_type_0, extractedValue_12392__1) ;
+      outArgument_outType = extractedValue_12386_type_0 ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_toMany:
+    {
+      GGS_lstring extractedValue_12432__0 ;
+      GGS_propertyAccessibility extractedValue_12432__1 ;
+      GGS_bool extractedValue_12432__2 ;
+      GGS_toManyRelationshipOptionAST extractedValue_12432__3 ;
+      var_kind_12207.getAssociatedValuesFor_toMany (extractedValue_12432__0, extractedValue_12432__1, extractedValue_12432__2, extractedValue_12432__3) ;
+      const GGS_observablePropertyInMultipleBindingExpressionAST temp_3 = this ;
+      GenericArray <FixItDescription> fixItArray4 ;
+      inCompiler->emitSemanticError (extensionGetter_location (temp_3.readProperty_mProperty (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas4", 303)), GGS_string ("only an atomic property can be observed"), fixItArray4  COMMA_SOURCE_FILE ("multiple-binding.galgas4", 303)) ;
+      outArgument_outType.drop () ; // Release error dropped variable
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_toOne:
+    {
+      GGS_lstring extractedValue_12546__0 ;
+      GGS_propertyAccessibility extractedValue_12546__1 ;
+      GGS_bool extractedValue_12546__2 ;
+      GGS_toOneOppositeRelationship extractedValue_12546__3 ;
+      GGS_bool extractedValue_12546__4 ;
+      var_kind_12207.getAssociatedValuesFor_toOne (extractedValue_12546__0, extractedValue_12546__1, extractedValue_12546__2, extractedValue_12546__3, extractedValue_12546__4) ;
+      const GGS_observablePropertyInMultipleBindingExpressionAST temp_5 = this ;
+      GenericArray <FixItDescription> fixItArray6 ;
+      inCompiler->emitSemanticError (extensionGetter_location (temp_5.readProperty_mProperty (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas4", 305)), GGS_string ("only an atomic property can be observed"), fixItArray6  COMMA_SOURCE_FILE ("multiple-binding.galgas4", 305)) ;
+      outArgument_outType.drop () ; // Release error dropped variable
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_arrayController:
+    {
+      GGS_lstring extractedValue_12670__0 ;
+      GGS_bool extractedValue_12670__1 ;
+      var_kind_12207.getAssociatedValuesFor_arrayController (extractedValue_12670__0, extractedValue_12670__1) ;
+      const GGS_observablePropertyInMultipleBindingExpressionAST temp_7 = this ;
+      GenericArray <FixItDescription> fixItArray8 ;
+      inCompiler->emitSemanticError (extensionGetter_location (temp_7.readProperty_mProperty (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas4", 307)), GGS_string ("only an atomic property can be observed"), fixItArray8  COMMA_SOURCE_FILE ("multiple-binding.galgas4", 307)) ;
+      outArgument_outType.drop () ; // Release error dropped variable
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_selectionController:
+    {
+      GGS_string extractedValue_12797__0 ;
+      var_kind_12207.getAssociatedValuesFor_selectionController (extractedValue_12797__0) ;
+      const GGS_observablePropertyInMultipleBindingExpressionAST temp_9 = this ;
+      GenericArray <FixItDescription> fixItArray10 ;
+      inCompiler->emitSemanticError (extensionGetter_location (temp_9.readProperty_mProperty (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas4", 309)), GGS_string ("only an atomic property can be observed"), fixItArray10  COMMA_SOURCE_FILE ("multiple-binding.galgas4", 309)) ;
+      outArgument_outType.drop () ; // Release error dropped variable
+    }
+    break ;
+  }
+  const GGS_observablePropertyInMultipleBindingExpressionAST temp_11 = this ;
+  GGS_string temp_12 ;
+  const GalgasBool test_13 = constinArgument_inPreferences.boolEnum () ;
+  if (GalgasBool::boolTrue == test_13) {
+    temp_12 = GGS_string ("preferences_") ;
+  }else if (GalgasBool::boolFalse == test_13) {
+    temp_12 = GGS_string ("self.") ;
+  }
+  outArgument_outEnableExpression = GGS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration::init_21_ (extensionGetter_modelStringForSelf (temp_11.readProperty_mProperty (), temp_12, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas4", 312)), inCompiler COMMA_HERE) ;
+  const GGS_observablePropertyInMultipleBindingExpressionAST temp_14 = this ;
+  outArgument_outErrorLocation = extensionGetter_location (temp_14.readProperty_mProperty (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas4", 314)) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Overriding extension proc '@negateBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_negateBooleanMultipleBindingExpressionAST::method_analyzeExpressionForMultipleBinding (const GGS_bool constinArgument_inPreferences,
+                                                                                                 const GGS_propertyMap constinArgument_inRootObservablePropertyMap,
+                                                                                                 const GGS_semanticContext constinArgument_inSemanticContext,
+                                                                                                 const GGS_propertyMap constinArgument_inCurrentObservablePropertyMap,
+                                                                                                 const GGS_propertyMap constinArgument_inPreferencesObservablePropertyMap,
+                                                                                                 GGS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument_outEnableExpression,
+                                                                                                 GGS_typeKind & outArgument_outType,
+                                                                                                 GGS_location & outArgument_outErrorLocation,
+                                                                                                 Compiler * inCompiler
+                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_abstractBooleanMultipleBindingExpressionForGeneration var_expression_13978 ;
+  const GGS_negateBooleanMultipleBindingExpressionAST temp_0 = this ;
+  callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_0.readProperty_mBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_expression_13978, outArgument_outType, outArgument_outErrorLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas4", 329)) ;
+  GalgasBool test_1 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_1) {
+    test_1 = outArgument_outType.getter_isBoolType (SOURCE_FILE ("multiple-binding.galgas4", 339)).operator_not (SOURCE_FILE ("multiple-binding.galgas4", 339)).boolEnum () ;
+    if (GalgasBool::boolTrue == test_1) {
+      GenericArray <FixItDescription> fixItArray2 ;
+      inCompiler->emitSemanticError (outArgument_outErrorLocation, GGS_string ("cannot apply negation: operand is not boolean"), fixItArray2  COMMA_SOURCE_FILE ("multiple-binding.galgas4", 340)) ;
+    }
+  }
+  outArgument_outEnableExpression = GGS_negateBooleanMultipleBindingExpressionForGeneration::init_21_ (var_expression_13978, inCompiler COMMA_HERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Overriding extension proc '@orBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_orBooleanMultipleBindingExpressionAST::method_analyzeExpressionForMultipleBinding (const GGS_bool constinArgument_inPreferences,
+                                                                                             const GGS_propertyMap constinArgument_inRootObservablePropertyMap,
+                                                                                             const GGS_semanticContext constinArgument_inSemanticContext,
+                                                                                             const GGS_propertyMap constinArgument_inCurrentObservablePropertyMap,
+                                                                                             const GGS_propertyMap constinArgument_inPreferencesObservablePropertyMap,
+                                                                                             GGS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument_outEnableExpression,
+                                                                                             GGS_typeKind & outArgument_outType,
+                                                                                             GGS_location & outArgument_outErrorLocation,
+                                                                                             Compiler * inCompiler
+                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_abstractBooleanMultipleBindingExpressionForGeneration var_leftExpression_15078 ;
+  GGS_typeKind var_outLeftType_15103 ;
+  GGS_location var_outLeftLocation_15125 ;
+  const GGS_orBooleanMultipleBindingExpressionAST temp_0 = this ;
+  callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_0.readProperty_mLeftBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_leftExpression_15078, var_outLeftType_15103, var_outLeftLocation_15125, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas4", 357)) ;
+  GalgasBool test_1 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_1) {
+    test_1 = var_outLeftType_15103.getter_isBoolType (SOURCE_FILE ("multiple-binding.galgas4", 367)).operator_not (SOURCE_FILE ("multiple-binding.galgas4", 367)).boolEnum () ;
+    if (GalgasBool::boolTrue == test_1) {
+      GenericArray <FixItDescription> fixItArray2 ;
+      inCompiler->emitSemanticError (var_outLeftLocation_15125, GGS_string ("cannot apply 'or': left operand is not boolean"), fixItArray2  COMMA_SOURCE_FILE ("multiple-binding.galgas4", 368)) ;
+    }
+  }
+  GGS_abstractBooleanMultipleBindingExpressionForGeneration var_rightExpression_15548 ;
+  GGS_typeKind var_outRightType_15574 ;
+  GGS_location var_outRightLocation_15597 ;
+  const GGS_orBooleanMultipleBindingExpressionAST temp_3 = this ;
+  callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_3.readProperty_mRightBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_rightExpression_15548, var_outRightType_15574, var_outRightLocation_15597, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas4", 370)) ;
+  GalgasBool test_4 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_4) {
+    test_4 = var_outRightType_15574.getter_isBoolType (SOURCE_FILE ("multiple-binding.galgas4", 380)).operator_not (SOURCE_FILE ("multiple-binding.galgas4", 380)).boolEnum () ;
+    if (GalgasBool::boolTrue == test_4) {
+      GenericArray <FixItDescription> fixItArray5 ;
+      inCompiler->emitSemanticError (var_outRightLocation_15597, GGS_string ("cannot apply 'or': right operand is not boolean"), fixItArray5  COMMA_SOURCE_FILE ("multiple-binding.galgas4", 381)) ;
+    }
+  }
+  outArgument_outType = GGS_typeKind::class_func_boolType (SOURCE_FILE ("multiple-binding.galgas4", 383)) ;
+  outArgument_outErrorLocation = var_outRightLocation_15597 ;
+  outArgument_outEnableExpression = GGS_orBooleanMultipleBindingExpressionForGeneration::init_21__21_ (var_leftExpression_15078, var_rightExpression_15548, inCompiler COMMA_HERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Overriding extension proc '@xorBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_xorBooleanMultipleBindingExpressionAST::method_analyzeExpressionForMultipleBinding (const GGS_bool constinArgument_inPreferences,
+                                                                                              const GGS_propertyMap constinArgument_inRootObservablePropertyMap,
+                                                                                              const GGS_semanticContext constinArgument_inSemanticContext,
+                                                                                              const GGS_propertyMap constinArgument_inCurrentObservablePropertyMap,
+                                                                                              const GGS_propertyMap constinArgument_inPreferencesObservablePropertyMap,
+                                                                                              GGS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument_outEnableExpression,
+                                                                                              GGS_typeKind & outArgument_outType,
+                                                                                              GGS_location & outArgument_outErrorLocation,
+                                                                                              Compiler * inCompiler
+                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_abstractBooleanMultipleBindingExpressionForGeneration var_leftExpression_16751 ;
+  GGS_typeKind var_outLeftType_16776 ;
+  GGS_location var_outLeftLocation_16798 ;
+  const GGS_xorBooleanMultipleBindingExpressionAST temp_0 = this ;
+  callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_0.readProperty_mLeftBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_leftExpression_16751, var_outLeftType_16776, var_outLeftLocation_16798, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas4", 400)) ;
+  GalgasBool test_1 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_1) {
+    test_1 = var_outLeftType_16776.getter_isBoolType (SOURCE_FILE ("multiple-binding.galgas4", 410)).operator_not (SOURCE_FILE ("multiple-binding.galgas4", 410)).boolEnum () ;
+    if (GalgasBool::boolTrue == test_1) {
+      GenericArray <FixItDescription> fixItArray2 ;
+      inCompiler->emitSemanticError (var_outLeftLocation_16798, GGS_string ("cannot apply 'or': left operand is not boolean"), fixItArray2  COMMA_SOURCE_FILE ("multiple-binding.galgas4", 411)) ;
+    }
+  }
+  GGS_abstractBooleanMultipleBindingExpressionForGeneration var_rightExpression_17221 ;
+  GGS_typeKind var_outRightType_17247 ;
+  GGS_location var_outRightLocation_17270 ;
+  const GGS_xorBooleanMultipleBindingExpressionAST temp_3 = this ;
+  callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_3.readProperty_mRightBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_rightExpression_17221, var_outRightType_17247, var_outRightLocation_17270, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas4", 413)) ;
+  GalgasBool test_4 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_4) {
+    test_4 = var_outRightType_17247.getter_isBoolType (SOURCE_FILE ("multiple-binding.galgas4", 423)).operator_not (SOURCE_FILE ("multiple-binding.galgas4", 423)).boolEnum () ;
+    if (GalgasBool::boolTrue == test_4) {
+      GenericArray <FixItDescription> fixItArray5 ;
+      inCompiler->emitSemanticError (var_outRightLocation_17270, GGS_string ("cannot apply 'or': right operand is not boolean"), fixItArray5  COMMA_SOURCE_FILE ("multiple-binding.galgas4", 424)) ;
+    }
+  }
+  outArgument_outType = GGS_typeKind::class_func_boolType (SOURCE_FILE ("multiple-binding.galgas4", 426)) ;
+  outArgument_outErrorLocation = var_outRightLocation_17270 ;
+  outArgument_outEnableExpression = GGS_xorBooleanMultipleBindingExpressionForGeneration::init_21__21_ (var_leftExpression_16751, var_rightExpression_17221, inCompiler COMMA_HERE) ;
 }
 

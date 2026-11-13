@@ -5,7 +5,7 @@
 struct @autoLayoutTableViewControllerBoundColumnAST {
   public let @bool mEditable
   public let @lstring mPropertyName
-  public let @astAutoLayoutViewInstructionParameterList mColumnParameterListAST
+  public let [@astAutoLayoutViewInstructionParameter] mColumnParameterListAST
   public let @lstring mSortPropertyName
 }
 

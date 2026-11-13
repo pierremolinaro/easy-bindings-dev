@@ -222,8 +222,8 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
   end
 //-- Check auto layout view declarations
   var @autoLayoutViewDeclarationMap viewDeclarationMap = ()
-  var @viewGenerationList viewGenerationList = []
-  var @implicitViewFunctionGenerationList implicitViewFunctionGenerationList = []
+  var [@viewGeneration] viewGenerationList = []
+  var [@abstractViewInstructionGeneration] implicitViewFunctionGenerationList = []
   var @autoLayoutConfiguratorMap configuratorMap = ()
   var @autoLayoutOutletMap autoLayoutOutletMap = ()
   for view in self.mViewDeclarationList do
@@ -244,7 +244,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
       !?autoLayoutOutletMap,
       ?let viewGeneration
     )
-    !?viewGenerationList.append (view.mViewName, viewGeneration)
+    viewGenerationList ++= @(view.mViewName, viewGeneration)
   end
   viewDeclarationMap.searchKey (self.mMainViewName)
 //-- Code generation
@@ -302,9 +302,8 @@ class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
   public let [@multipleBindingGeneration] multipleBindingGenerationList
   public let @tableViewBindingGenerationList mTableViewBindingGenerationList
   public let @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
-  public let @viewGenerationList mViewDeclarationList
-//  public let @autoLayoutToolbarItemGenerationList mAutoLayoutToolbarItemGenerationList
-  public let @implicitViewFunctionGenerationList mImplicitViewFunctionGenerationList
+  public let [@viewGeneration] mViewDeclarationList
+  public let [@abstractViewInstructionGeneration] mImplicitViewFunctionGenerationList
   public let @autoLayoutConfiguratorMap mConfiguratorMap
   public let @string mCustomSuperClassName // Empty String if no custom superclass
   public let [@autoLayoutOutletLinkerGeneration] mOutletLinkerGenerationList
@@ -421,8 +420,8 @@ filewrapper autoLayoutDocumentGenerationTemplate in "generation-templates" {
     [@multipleBindingGeneration] MULTIPLE_BINDING_GENERATION_LIST,
     @tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST,
     @ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST,
-    @viewGenerationList VIEW_GENERATION_LIST,
-    @implicitViewFunctionGenerationList IMPLICIT_VIEW_GENERATION_FUNCTION_LIST,
+    [@viewGeneration] VIEW_GENERATION_LIST,
+    [@abstractViewInstructionGeneration] IMPLICIT_VIEW_GENERATION_FUNCTION_LIST,
     @string DOCUMENT_SUPER_CLASS_NAME,
     [@autoLayoutOutletLinkerGeneration] AUTO_LAYOUT_LINKER_LIST
   )

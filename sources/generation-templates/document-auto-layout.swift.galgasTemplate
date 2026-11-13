@@ -72,11 +72,11 @@ end
   final var rootObject : %!ROOT_ENTITY_NAME% { return self.mRootObject as! %!ROOT_ENTITY_NAME% }
 
 %
-for (mViewName mView) in VIEW_GENERATION_LIST do
+for (view) in VIEW_GENERATION_LIST do
   %  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n%
-  %  //    VIEW %!mViewName%\n%
+  %  //    VIEW %!view.mViewName%\n%
   %  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n%
-  ![mView generateViewBuilder !prefs: false !mViewName]
+  ![view.mView generateViewBuilder !prefs: false !view.mViewName]
 end
 for (mInstruction) in IMPLICIT_VIEW_GENERATION_FUNCTION_LIST do (idx)
   %  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n%

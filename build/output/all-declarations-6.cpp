@@ -8,1160 +8,6 @@
 #include "all-declarations-6.h"
 
 //--------------------------------------------------------------------------------------------------
-//Optional @typeKind_2E_classType_3F_
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_classType_3F_::GGS_typeKind_2E_classType_3F_ (void) :
-AC_GALGAS_root (),
-mValue (),
-mState (OptionalState::invalid) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_classType_3F_::GGS_typeKind_2E_classType_3F_ (const GGS_typeKind_2E_classType & inSource) :
-AC_GALGAS_root (),
-mValue (inSource),
-mState (OptionalState::valuated) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_classType_3F_ GGS_typeKind_2E_classType_3F_::init_nil (void) {
-  GGS_typeKind_2E_classType_3F_ result ;
-  result.mState = OptionalState::isNil ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_typeKind_2E_classType_3F_::isValid (void) const {
-  bool result = false ;
-  switch (mState) {
-  case OptionalState::invalid :
-    break ;
-  case OptionalState::isNil :
-    result = true ;
-    break ;
-  case OptionalState::valuated :
-    result = mValue.isValid () ;
-    break ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_typeKind_2E_classType_3F_::isValuated (void) const {
-  return (mState == OptionalState::valuated) && mValue.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_typeKind_2E_classType_3F_::drop (void) {
-  mState = OptionalState::invalid ;
-  mValue = GGS_typeKind_2E_classType () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_typeKind_2E_classType_3F_::objectCompare (const GGS_typeKind_2E_classType_3F_ & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    if (mState < inOperand.mState) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (mState > inOperand.mState) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else if (mState == OptionalState::valuated) {
-      result = mValue.objectCompare (inOperand.mValue) ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-//--------------------------------------------------------------------------------------------------
-
-void GGS_typeKind_2E_classType_3F_::description (String & ioString,
-                                                 const int32_t inIndentation) const {
-  ioString.appendCString ("<optional @") ;
-  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
-  ioString.appendCString (": ") ;
-  switch (mState) {
-  case OptionalState::invalid :
-    ioString.appendCString ("invalid") ;
-    break ;
-  case OptionalState::isNil :
-    ioString.appendCString ("nil") ;
-    break ;
-  case OptionalState::valuated :
-    mValue.description (ioString, inIndentation) ;
-    break ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @typeKind.classType? generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_typeKind_2E_classType_3F_ ("typeKind.classType?",
-                                                                              nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_typeKind_2E_classType_3F_::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_typeKind_2E_classType_3F_ ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_transientPropertyExternType::GGS_typeKind_2E_transientPropertyExternType (void) :
-mProperty_externTypeName () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_transientPropertyExternType::GGS_typeKind_2E_transientPropertyExternType (const GGS_typeKind_2E_transientPropertyExternType & inSource) :
-mProperty_externTypeName (inSource.mProperty_externTypeName) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_transientPropertyExternType & GGS_typeKind_2E_transientPropertyExternType::operator = (const GGS_typeKind_2E_transientPropertyExternType & inSource) {
-  mProperty_externTypeName = inSource.mProperty_externTypeName ;
-  return *this ;
-}
-
-//---Synthetized initializer -----------------------------------------------------------------------
-
-GGS_typeKind_2E_transientPropertyExternType GGS_typeKind_2E_transientPropertyExternType::init_21_ (const GGS_string & in_externTypeName,
-                                                                                                   Compiler * inCompiler
-                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_typeKind_2E_transientPropertyExternType result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_externTypeName = in_externTypeName ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_typeKind_2E_transientPropertyExternType::setInitializedProperties (Compiler * /* inCompiler */) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_transientPropertyExternType::GGS_typeKind_2E_transientPropertyExternType (const GGS_string & inOperand0) :
-mProperty_externTypeName (inOperand0) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_typeKind_2E_transientPropertyExternType::objectCompare (const GGS_typeKind_2E_transientPropertyExternType & inOperand) const {
-   ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_externTypeName.objectCompare (inOperand.mProperty_externTypeName) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_typeKind_2E_transientPropertyExternType::isValid (void) const {
-  return mProperty_externTypeName.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_typeKind_2E_transientPropertyExternType::drop (void) {
-  mProperty_externTypeName.drop () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_typeKind_2E_transientPropertyExternType::description (String & ioString,
-                                                               const int32_t inIndentation) const {
-  ioString.appendCString ("<struct @typeKind.transientPropertyExternType:") ;
-  if (! isValid ()) {
-    ioString.appendCString (" not built") ;
-  }else{
-    mProperty_externTypeName.description (ioString, inIndentation+1) ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @typeKind.transientPropertyExternType generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_typeKind_2E_transientPropertyExternType ("typeKind.transientPropertyExternType",
-                                                                                            nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_typeKind_2E_transientPropertyExternType::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_typeKind_2E_transientPropertyExternType ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//Optional @typeKind_2E_transientPropertyExternType_3F_
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_transientPropertyExternType_3F_::GGS_typeKind_2E_transientPropertyExternType_3F_ (void) :
-AC_GALGAS_root (),
-mValue (),
-mState (OptionalState::invalid) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_transientPropertyExternType_3F_::GGS_typeKind_2E_transientPropertyExternType_3F_ (const GGS_typeKind_2E_transientPropertyExternType & inSource) :
-AC_GALGAS_root (),
-mValue (inSource),
-mState (OptionalState::valuated) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_transientPropertyExternType_3F_ GGS_typeKind_2E_transientPropertyExternType_3F_::init_nil (void) {
-  GGS_typeKind_2E_transientPropertyExternType_3F_ result ;
-  result.mState = OptionalState::isNil ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_typeKind_2E_transientPropertyExternType_3F_::isValid (void) const {
-  bool result = false ;
-  switch (mState) {
-  case OptionalState::invalid :
-    break ;
-  case OptionalState::isNil :
-    result = true ;
-    break ;
-  case OptionalState::valuated :
-    result = mValue.isValid () ;
-    break ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_typeKind_2E_transientPropertyExternType_3F_::isValuated (void) const {
-  return (mState == OptionalState::valuated) && mValue.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_typeKind_2E_transientPropertyExternType_3F_::drop (void) {
-  mState = OptionalState::invalid ;
-  mValue = GGS_typeKind_2E_transientPropertyExternType () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_typeKind_2E_transientPropertyExternType_3F_::objectCompare (const GGS_typeKind_2E_transientPropertyExternType_3F_ & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    if (mState < inOperand.mState) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (mState > inOperand.mState) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else if (mState == OptionalState::valuated) {
-      result = mValue.objectCompare (inOperand.mValue) ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-//--------------------------------------------------------------------------------------------------
-
-void GGS_typeKind_2E_transientPropertyExternType_3F_::description (String & ioString,
-                                                                   const int32_t inIndentation) const {
-  ioString.appendCString ("<optional @") ;
-  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
-  ioString.appendCString (": ") ;
-  switch (mState) {
-  case OptionalState::invalid :
-    ioString.appendCString ("invalid") ;
-    break ;
-  case OptionalState::isNil :
-    ioString.appendCString ("nil") ;
-    break ;
-  case OptionalState::valuated :
-    mValue.description (ioString, inIndentation) ;
-    break ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @typeKind.transientPropertyExternType? generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_typeKind_2E_transientPropertyExternType_3F_ ("typeKind.transientPropertyExternType?",
-                                                                                                nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_typeKind_2E_transientPropertyExternType_3F_::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_typeKind_2E_transientPropertyExternType_3F_ ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_property::GGS_propertyKind_2E_property (void) :
-mProperty_type (),
-mProperty_accessibility () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_property::GGS_propertyKind_2E_property (const GGS_propertyKind_2E_property & inSource) :
-mProperty_type (inSource.mProperty_type),
-mProperty_accessibility (inSource.mProperty_accessibility) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_property & GGS_propertyKind_2E_property::operator = (const GGS_propertyKind_2E_property & inSource) {
-  mProperty_type = inSource.mProperty_type ;
-  mProperty_accessibility = inSource.mProperty_accessibility ;
-  return *this ;
-}
-
-//---Synthetized initializer -----------------------------------------------------------------------
-
-GGS_propertyKind_2E_property GGS_propertyKind_2E_property::init_21__21_ (const GGS_typeKind & in_type,
-                                                                         const GGS_propertyAccessibility & in_accessibility,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_propertyKind_2E_property result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_type = in_type ;
-  result.mProperty_accessibility = in_accessibility ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_property::setInitializedProperties (Compiler * /* inCompiler */) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_property::GGS_propertyKind_2E_property (const GGS_typeKind & inOperand0,
-                                                            const GGS_propertyAccessibility & inOperand1) :
-mProperty_type (inOperand0),
-mProperty_accessibility (inOperand1) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_propertyKind_2E_property::isValid (void) const {
-  return mProperty_type.isValid () && mProperty_accessibility.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_property::drop (void) {
-  mProperty_type.drop () ;
-  mProperty_accessibility.drop () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_property::description (String & ioString,
-                                                const int32_t inIndentation) const {
-  ioString.appendCString ("<struct @propertyKind.property:") ;
-  if (! isValid ()) {
-    ioString.appendCString (" not built") ;
-  }else{
-    mProperty_type.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_accessibility.description (ioString, inIndentation+1) ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @propertyKind.property generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_propertyKind_2E_property ("propertyKind.property",
-                                                                             nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_propertyKind_2E_property::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_propertyKind_2E_property ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//Optional @propertyKind_2E_property_3F_
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_property_3F_::GGS_propertyKind_2E_property_3F_ (void) :
-AC_GALGAS_root (),
-mValue (),
-mState (OptionalState::invalid) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_property_3F_::GGS_propertyKind_2E_property_3F_ (const GGS_propertyKind_2E_property & inSource) :
-AC_GALGAS_root (),
-mValue (inSource),
-mState (OptionalState::valuated) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_property_3F_ GGS_propertyKind_2E_property_3F_::init_nil (void) {
-  GGS_propertyKind_2E_property_3F_ result ;
-  result.mState = OptionalState::isNil ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_propertyKind_2E_property_3F_::isValid (void) const {
-  bool result = false ;
-  switch (mState) {
-  case OptionalState::invalid :
-    break ;
-  case OptionalState::isNil :
-    result = true ;
-    break ;
-  case OptionalState::valuated :
-    result = mValue.isValid () ;
-    break ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_propertyKind_2E_property_3F_::isValuated (void) const {
-  return (mState == OptionalState::valuated) && mValue.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_property_3F_::drop (void) {
-  mState = OptionalState::invalid ;
-  mValue = GGS_propertyKind_2E_property () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_property_3F_::description (String & ioString,
-                                                    const int32_t inIndentation) const {
-  ioString.appendCString ("<optional @") ;
-  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
-  ioString.appendCString (": ") ;
-  switch (mState) {
-  case OptionalState::invalid :
-    ioString.appendCString ("invalid") ;
-    break ;
-  case OptionalState::isNil :
-    ioString.appendCString ("nil") ;
-    break ;
-  case OptionalState::valuated :
-    mValue.description (ioString, inIndentation) ;
-    break ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @propertyKind.property? generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_propertyKind_2E_property_3F_ ("propertyKind.property?",
-                                                                                 nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_propertyKind_2E_property_3F_::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_propertyKind_2E_property_3F_ ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_toMany::GGS_propertyKind_2E_toMany (void) :
-mProperty_typeName (),
-mProperty_accessibility (),
-mProperty_graphic (),
-mProperty_optionKind () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_toMany::GGS_propertyKind_2E_toMany (const GGS_propertyKind_2E_toMany & inSource) :
-mProperty_typeName (inSource.mProperty_typeName),
-mProperty_accessibility (inSource.mProperty_accessibility),
-mProperty_graphic (inSource.mProperty_graphic),
-mProperty_optionKind (inSource.mProperty_optionKind) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_toMany & GGS_propertyKind_2E_toMany::operator = (const GGS_propertyKind_2E_toMany & inSource) {
-  mProperty_typeName = inSource.mProperty_typeName ;
-  mProperty_accessibility = inSource.mProperty_accessibility ;
-  mProperty_graphic = inSource.mProperty_graphic ;
-  mProperty_optionKind = inSource.mProperty_optionKind ;
-  return *this ;
-}
-
-//---Synthetized initializer -----------------------------------------------------------------------
-
-GGS_propertyKind_2E_toMany GGS_propertyKind_2E_toMany::init_21__21__21__21_ (const GGS_lstring & in_typeName,
-                                                                             const GGS_propertyAccessibility & in_accessibility,
-                                                                             const GGS_bool & in_graphic,
-                                                                             const GGS_toManyRelationshipOptionAST & in_optionKind,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_propertyKind_2E_toMany result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_typeName = in_typeName ;
-  result.mProperty_accessibility = in_accessibility ;
-  result.mProperty_graphic = in_graphic ;
-  result.mProperty_optionKind = in_optionKind ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_toMany::setInitializedProperties (Compiler * /* inCompiler */) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_toMany::GGS_propertyKind_2E_toMany (const GGS_lstring & inOperand0,
-                                                        const GGS_propertyAccessibility & inOperand1,
-                                                        const GGS_bool & inOperand2,
-                                                        const GGS_toManyRelationshipOptionAST & inOperand3) :
-mProperty_typeName (inOperand0),
-mProperty_accessibility (inOperand1),
-mProperty_graphic (inOperand2),
-mProperty_optionKind (inOperand3) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_propertyKind_2E_toMany::isValid (void) const {
-  return mProperty_typeName.isValid () && mProperty_accessibility.isValid () && mProperty_graphic.isValid () && mProperty_optionKind.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_toMany::drop (void) {
-  mProperty_typeName.drop () ;
-  mProperty_accessibility.drop () ;
-  mProperty_graphic.drop () ;
-  mProperty_optionKind.drop () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_toMany::description (String & ioString,
-                                              const int32_t inIndentation) const {
-  ioString.appendCString ("<struct @propertyKind.toMany:") ;
-  if (! isValid ()) {
-    ioString.appendCString (" not built") ;
-  }else{
-    mProperty_typeName.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_accessibility.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_graphic.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_optionKind.description (ioString, inIndentation+1) ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @propertyKind.toMany generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_propertyKind_2E_toMany ("propertyKind.toMany",
-                                                                           nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_propertyKind_2E_toMany::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_propertyKind_2E_toMany ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//Optional @propertyKind_2E_toMany_3F_
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_toMany_3F_::GGS_propertyKind_2E_toMany_3F_ (void) :
-AC_GALGAS_root (),
-mValue (),
-mState (OptionalState::invalid) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_toMany_3F_::GGS_propertyKind_2E_toMany_3F_ (const GGS_propertyKind_2E_toMany & inSource) :
-AC_GALGAS_root (),
-mValue (inSource),
-mState (OptionalState::valuated) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_toMany_3F_ GGS_propertyKind_2E_toMany_3F_::init_nil (void) {
-  GGS_propertyKind_2E_toMany_3F_ result ;
-  result.mState = OptionalState::isNil ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_propertyKind_2E_toMany_3F_::isValid (void) const {
-  bool result = false ;
-  switch (mState) {
-  case OptionalState::invalid :
-    break ;
-  case OptionalState::isNil :
-    result = true ;
-    break ;
-  case OptionalState::valuated :
-    result = mValue.isValid () ;
-    break ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_propertyKind_2E_toMany_3F_::isValuated (void) const {
-  return (mState == OptionalState::valuated) && mValue.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_toMany_3F_::drop (void) {
-  mState = OptionalState::invalid ;
-  mValue = GGS_propertyKind_2E_toMany () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_toMany_3F_::description (String & ioString,
-                                                  const int32_t inIndentation) const {
-  ioString.appendCString ("<optional @") ;
-  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
-  ioString.appendCString (": ") ;
-  switch (mState) {
-  case OptionalState::invalid :
-    ioString.appendCString ("invalid") ;
-    break ;
-  case OptionalState::isNil :
-    ioString.appendCString ("nil") ;
-    break ;
-  case OptionalState::valuated :
-    mValue.description (ioString, inIndentation) ;
-    break ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @propertyKind.toMany? generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_propertyKind_2E_toMany_3F_ ("propertyKind.toMany?",
-                                                                               nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_propertyKind_2E_toMany_3F_::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_propertyKind_2E_toMany_3F_ ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_toOne::GGS_propertyKind_2E_toOne (void) :
-mProperty_typeName (),
-mProperty_accessibility (),
-mProperty_graphic (),
-mProperty_opposite (),
-mProperty_isWeak () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_toOne::GGS_propertyKind_2E_toOne (const GGS_propertyKind_2E_toOne & inSource) :
-mProperty_typeName (inSource.mProperty_typeName),
-mProperty_accessibility (inSource.mProperty_accessibility),
-mProperty_graphic (inSource.mProperty_graphic),
-mProperty_opposite (inSource.mProperty_opposite),
-mProperty_isWeak (inSource.mProperty_isWeak) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_toOne & GGS_propertyKind_2E_toOne::operator = (const GGS_propertyKind_2E_toOne & inSource) {
-  mProperty_typeName = inSource.mProperty_typeName ;
-  mProperty_accessibility = inSource.mProperty_accessibility ;
-  mProperty_graphic = inSource.mProperty_graphic ;
-  mProperty_opposite = inSource.mProperty_opposite ;
-  mProperty_isWeak = inSource.mProperty_isWeak ;
-  return *this ;
-}
-
-//---Synthetized initializer -----------------------------------------------------------------------
-
-GGS_propertyKind_2E_toOne GGS_propertyKind_2E_toOne::init_21__21__21__21__21_ (const GGS_lstring & in_typeName,
-                                                                               const GGS_propertyAccessibility & in_accessibility,
-                                                                               const GGS_bool & in_graphic,
-                                                                               const GGS_toOneOppositeRelationship & in_opposite,
-                                                                               const GGS_bool & in_isWeak,
-                                                                               Compiler * inCompiler
-                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_propertyKind_2E_toOne result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_typeName = in_typeName ;
-  result.mProperty_accessibility = in_accessibility ;
-  result.mProperty_graphic = in_graphic ;
-  result.mProperty_opposite = in_opposite ;
-  result.mProperty_isWeak = in_isWeak ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_toOne::setInitializedProperties (Compiler * /* inCompiler */) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_toOne::GGS_propertyKind_2E_toOne (const GGS_lstring & inOperand0,
-                                                      const GGS_propertyAccessibility & inOperand1,
-                                                      const GGS_bool & inOperand2,
-                                                      const GGS_toOneOppositeRelationship & inOperand3,
-                                                      const GGS_bool & inOperand4) :
-mProperty_typeName (inOperand0),
-mProperty_accessibility (inOperand1),
-mProperty_graphic (inOperand2),
-mProperty_opposite (inOperand3),
-mProperty_isWeak (inOperand4) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_propertyKind_2E_toOne::isValid (void) const {
-  return mProperty_typeName.isValid () && mProperty_accessibility.isValid () && mProperty_graphic.isValid () && mProperty_opposite.isValid () && mProperty_isWeak.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_toOne::drop (void) {
-  mProperty_typeName.drop () ;
-  mProperty_accessibility.drop () ;
-  mProperty_graphic.drop () ;
-  mProperty_opposite.drop () ;
-  mProperty_isWeak.drop () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_toOne::description (String & ioString,
-                                             const int32_t inIndentation) const {
-  ioString.appendCString ("<struct @propertyKind.toOne:") ;
-  if (! isValid ()) {
-    ioString.appendCString (" not built") ;
-  }else{
-    mProperty_typeName.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_accessibility.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_graphic.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_opposite.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_isWeak.description (ioString, inIndentation+1) ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @propertyKind.toOne generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_propertyKind_2E_toOne ("propertyKind.toOne",
-                                                                          nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_propertyKind_2E_toOne::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_propertyKind_2E_toOne ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//Optional @propertyKind_2E_toOne_3F_
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_toOne_3F_::GGS_propertyKind_2E_toOne_3F_ (void) :
-AC_GALGAS_root (),
-mValue (),
-mState (OptionalState::invalid) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_toOne_3F_::GGS_propertyKind_2E_toOne_3F_ (const GGS_propertyKind_2E_toOne & inSource) :
-AC_GALGAS_root (),
-mValue (inSource),
-mState (OptionalState::valuated) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_toOne_3F_ GGS_propertyKind_2E_toOne_3F_::init_nil (void) {
-  GGS_propertyKind_2E_toOne_3F_ result ;
-  result.mState = OptionalState::isNil ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_propertyKind_2E_toOne_3F_::isValid (void) const {
-  bool result = false ;
-  switch (mState) {
-  case OptionalState::invalid :
-    break ;
-  case OptionalState::isNil :
-    result = true ;
-    break ;
-  case OptionalState::valuated :
-    result = mValue.isValid () ;
-    break ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_propertyKind_2E_toOne_3F_::isValuated (void) const {
-  return (mState == OptionalState::valuated) && mValue.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_toOne_3F_::drop (void) {
-  mState = OptionalState::invalid ;
-  mValue = GGS_propertyKind_2E_toOne () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_toOne_3F_::description (String & ioString,
-                                                 const int32_t inIndentation) const {
-  ioString.appendCString ("<optional @") ;
-  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
-  ioString.appendCString (": ") ;
-  switch (mState) {
-  case OptionalState::invalid :
-    ioString.appendCString ("invalid") ;
-    break ;
-  case OptionalState::isNil :
-    ioString.appendCString ("nil") ;
-    break ;
-  case OptionalState::valuated :
-    mValue.description (ioString, inIndentation) ;
-    break ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @propertyKind.toOne? generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_propertyKind_2E_toOne_3F_ ("propertyKind.toOne?",
-                                                                              nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_propertyKind_2E_toOne_3F_::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_propertyKind_2E_toOne_3F_ ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_arrayController::GGS_propertyKind_2E_arrayController (void) :
-mProperty_typeName (),
-mProperty_graphic () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_arrayController::GGS_propertyKind_2E_arrayController (const GGS_propertyKind_2E_arrayController & inSource) :
-mProperty_typeName (inSource.mProperty_typeName),
-mProperty_graphic (inSource.mProperty_graphic) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_arrayController & GGS_propertyKind_2E_arrayController::operator = (const GGS_propertyKind_2E_arrayController & inSource) {
-  mProperty_typeName = inSource.mProperty_typeName ;
-  mProperty_graphic = inSource.mProperty_graphic ;
-  return *this ;
-}
-
-//---Synthetized initializer -----------------------------------------------------------------------
-
-GGS_propertyKind_2E_arrayController GGS_propertyKind_2E_arrayController::init_21__21_ (const GGS_lstring & in_typeName,
-                                                                                       const GGS_bool & in_graphic,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_propertyKind_2E_arrayController result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_typeName = in_typeName ;
-  result.mProperty_graphic = in_graphic ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_arrayController::setInitializedProperties (Compiler * /* inCompiler */) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_arrayController::GGS_propertyKind_2E_arrayController (const GGS_lstring & inOperand0,
-                                                                          const GGS_bool & inOperand1) :
-mProperty_typeName (inOperand0),
-mProperty_graphic (inOperand1) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_propertyKind_2E_arrayController::isValid (void) const {
-  return mProperty_typeName.isValid () && mProperty_graphic.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_arrayController::drop (void) {
-  mProperty_typeName.drop () ;
-  mProperty_graphic.drop () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_arrayController::description (String & ioString,
-                                                       const int32_t inIndentation) const {
-  ioString.appendCString ("<struct @propertyKind.arrayController:") ;
-  if (! isValid ()) {
-    ioString.appendCString (" not built") ;
-  }else{
-    mProperty_typeName.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_graphic.description (ioString, inIndentation+1) ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @propertyKind.arrayController generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_propertyKind_2E_arrayController ("propertyKind.arrayController",
-                                                                                    nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_propertyKind_2E_arrayController::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_propertyKind_2E_arrayController ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//Optional @propertyKind_2E_arrayController_3F_
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_arrayController_3F_::GGS_propertyKind_2E_arrayController_3F_ (void) :
-AC_GALGAS_root (),
-mValue (),
-mState (OptionalState::invalid) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_arrayController_3F_::GGS_propertyKind_2E_arrayController_3F_ (const GGS_propertyKind_2E_arrayController & inSource) :
-AC_GALGAS_root (),
-mValue (inSource),
-mState (OptionalState::valuated) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_arrayController_3F_ GGS_propertyKind_2E_arrayController_3F_::init_nil (void) {
-  GGS_propertyKind_2E_arrayController_3F_ result ;
-  result.mState = OptionalState::isNil ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_propertyKind_2E_arrayController_3F_::isValid (void) const {
-  bool result = false ;
-  switch (mState) {
-  case OptionalState::invalid :
-    break ;
-  case OptionalState::isNil :
-    result = true ;
-    break ;
-  case OptionalState::valuated :
-    result = mValue.isValid () ;
-    break ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_propertyKind_2E_arrayController_3F_::isValuated (void) const {
-  return (mState == OptionalState::valuated) && mValue.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_arrayController_3F_::drop (void) {
-  mState = OptionalState::invalid ;
-  mValue = GGS_propertyKind_2E_arrayController () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_arrayController_3F_::description (String & ioString,
-                                                           const int32_t inIndentation) const {
-  ioString.appendCString ("<optional @") ;
-  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
-  ioString.appendCString (": ") ;
-  switch (mState) {
-  case OptionalState::invalid :
-    ioString.appendCString ("invalid") ;
-    break ;
-  case OptionalState::isNil :
-    ioString.appendCString ("nil") ;
-    break ;
-  case OptionalState::valuated :
-    mValue.description (ioString, inIndentation) ;
-    break ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @propertyKind.arrayController? generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_propertyKind_2E_arrayController_3F_ ("propertyKind.arrayController?",
-                                                                                        nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_propertyKind_2E_arrayController_3F_::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_propertyKind_2E_arrayController_3F_ ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_selectionController::GGS_propertyKind_2E_selectionController (void) :
-mProperty_typeName () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_selectionController::GGS_propertyKind_2E_selectionController (const GGS_propertyKind_2E_selectionController & inSource) :
-mProperty_typeName (inSource.mProperty_typeName) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_selectionController & GGS_propertyKind_2E_selectionController::operator = (const GGS_propertyKind_2E_selectionController & inSource) {
-  mProperty_typeName = inSource.mProperty_typeName ;
-  return *this ;
-}
-
-//---Synthetized initializer -----------------------------------------------------------------------
-
-GGS_propertyKind_2E_selectionController GGS_propertyKind_2E_selectionController::init_21_ (const GGS_string & in_typeName,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_propertyKind_2E_selectionController result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_typeName = in_typeName ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_selectionController::setInitializedProperties (Compiler * /* inCompiler */) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_selectionController::GGS_propertyKind_2E_selectionController (const GGS_string & inOperand0) :
-mProperty_typeName (inOperand0) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_propertyKind_2E_selectionController::isValid (void) const {
-  return mProperty_typeName.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_selectionController::drop (void) {
-  mProperty_typeName.drop () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyKind_2E_selectionController::description (String & ioString,
-                                                           const int32_t inIndentation) const {
-  ioString.appendCString ("<struct @propertyKind.selectionController:") ;
-  if (! isValid ()) {
-    ioString.appendCString (" not built") ;
-  }else{
-    mProperty_typeName.description (ioString, inIndentation+1) ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @propertyKind.selectionController generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_propertyKind_2E_selectionController ("propertyKind.selectionController",
-                                                                                        nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_propertyKind_2E_selectionController::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_propertyKind_2E_selectionController ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //Optional @propertyKind_2E_selectionController_3F_
 //--------------------------------------------------------------------------------------------------
 
@@ -2383,111 +1229,101 @@ GGS_string extensionGetter_typeName (const GGS_propertyKind & inObject,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutTableViewControllerBoundColumnAST::GGS_autoLayoutTableViewControllerBoundColumnAST (void) :
-mProperty_mEditable (),
-mProperty_mPropertyName (),
-mProperty_mColumnParameterListAST (),
-mProperty_mSortPropertyName () {
+GGS_astAutoLayoutViewInstructionParameter::GGS_astAutoLayoutViewInstructionParameter (void) :
+mProperty_mParameterName (),
+mProperty_mParameterType (),
+mProperty_mParameter () {
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutTableViewControllerBoundColumnAST::GGS_autoLayoutTableViewControllerBoundColumnAST (const GGS_autoLayoutTableViewControllerBoundColumnAST & inSource) :
-mProperty_mEditable (inSource.mProperty_mEditable),
-mProperty_mPropertyName (inSource.mProperty_mPropertyName),
-mProperty_mColumnParameterListAST (inSource.mProperty_mColumnParameterListAST),
-mProperty_mSortPropertyName (inSource.mProperty_mSortPropertyName) {
+GGS_astAutoLayoutViewInstructionParameter::GGS_astAutoLayoutViewInstructionParameter (const GGS_astAutoLayoutViewInstructionParameter & inSource) :
+mProperty_mParameterName (inSource.mProperty_mParameterName),
+mProperty_mParameterType (inSource.mProperty_mParameterType),
+mProperty_mParameter (inSource.mProperty_mParameter) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutTableViewControllerBoundColumnAST & GGS_autoLayoutTableViewControllerBoundColumnAST::operator = (const GGS_autoLayoutTableViewControllerBoundColumnAST & inSource) {
-  mProperty_mEditable = inSource.mProperty_mEditable ;
-  mProperty_mPropertyName = inSource.mProperty_mPropertyName ;
-  mProperty_mColumnParameterListAST = inSource.mProperty_mColumnParameterListAST ;
-  mProperty_mSortPropertyName = inSource.mProperty_mSortPropertyName ;
+GGS_astAutoLayoutViewInstructionParameter & GGS_astAutoLayoutViewInstructionParameter::operator = (const GGS_astAutoLayoutViewInstructionParameter & inSource) {
+  mProperty_mParameterName = inSource.mProperty_mParameterName ;
+  mProperty_mParameterType = inSource.mProperty_mParameterType ;
+  mProperty_mParameter = inSource.mProperty_mParameter ;
   return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GGS_autoLayoutTableViewControllerBoundColumnAST GGS_autoLayoutTableViewControllerBoundColumnAST::init_21__21__21__21_ (const GGS_bool & in_mEditable,
-                                                                                                                       const GGS_lstring & in_mPropertyName,
-                                                                                                                       const GGS_astAutoLayoutViewInstructionParameterList & in_mColumnParameterListAST,
-                                                                                                                       const GGS_lstring & in_mSortPropertyName,
-                                                                                                                       Compiler * inCompiler
-                                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_autoLayoutTableViewControllerBoundColumnAST result ;
+GGS_astAutoLayoutViewInstructionParameter GGS_astAutoLayoutViewInstructionParameter::init_21__21__21_ (const GGS_lstring & in_mParameterName,
+                                                                                                       const GGS_autoLayoutClassParameterType & in_mParameterType,
+                                                                                                       const GGS_astAutoLayoutViewInstructionParameterValue & in_mParameter,
+                                                                                                       Compiler * inCompiler
+                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_astAutoLayoutViewInstructionParameter result ;
   result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mEditable = in_mEditable ;
-  result.mProperty_mPropertyName = in_mPropertyName ;
-  result.mProperty_mColumnParameterListAST = in_mColumnParameterListAST ;
-  result.mProperty_mSortPropertyName = in_mSortPropertyName ;
+  result.mProperty_mParameterName = in_mParameterName ;
+  result.mProperty_mParameterType = in_mParameterType ;
+  result.mProperty_mParameter = in_mParameter ;
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutTableViewControllerBoundColumnAST::setInitializedProperties (Compiler * /* inCompiler */) {
+void GGS_astAutoLayoutViewInstructionParameter::setInitializedProperties (Compiler * /* inCompiler */) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutTableViewControllerBoundColumnAST::GGS_autoLayoutTableViewControllerBoundColumnAST (const GGS_bool & inOperand0,
-                                                                                                  const GGS_lstring & inOperand1,
-                                                                                                  const GGS_astAutoLayoutViewInstructionParameterList & inOperand2,
-                                                                                                  const GGS_lstring & inOperand3) :
-mProperty_mEditable (inOperand0),
-mProperty_mPropertyName (inOperand1),
-mProperty_mColumnParameterListAST (inOperand2),
-mProperty_mSortPropertyName (inOperand3) {
+GGS_astAutoLayoutViewInstructionParameter::GGS_astAutoLayoutViewInstructionParameter (const GGS_lstring & inOperand0,
+                                                                                      const GGS_autoLayoutClassParameterType & inOperand1,
+                                                                                      const GGS_astAutoLayoutViewInstructionParameterValue & inOperand2) :
+mProperty_mParameterName (inOperand0),
+mProperty_mParameterType (inOperand1),
+mProperty_mParameter (inOperand2) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GGS_autoLayoutTableViewControllerBoundColumnAST::isValid (void) const {
-  return mProperty_mEditable.isValid () && mProperty_mPropertyName.isValid () && mProperty_mColumnParameterListAST.isValid () && mProperty_mSortPropertyName.isValid () ;
+bool GGS_astAutoLayoutViewInstructionParameter::isValid (void) const {
+  return mProperty_mParameterName.isValid () && mProperty_mParameterType.isValid () && mProperty_mParameter.isValid () ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutTableViewControllerBoundColumnAST::drop (void) {
-  mProperty_mEditable.drop () ;
-  mProperty_mPropertyName.drop () ;
-  mProperty_mColumnParameterListAST.drop () ;
-  mProperty_mSortPropertyName.drop () ;
+void GGS_astAutoLayoutViewInstructionParameter::drop (void) {
+  mProperty_mParameterName.drop () ;
+  mProperty_mParameterType.drop () ;
+  mProperty_mParameter.drop () ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutTableViewControllerBoundColumnAST::description (String & ioString,
-                                                                   const int32_t inIndentation) const {
-  ioString.appendCString ("<struct @autoLayoutTableViewControllerBoundColumnAST:") ;
+void GGS_astAutoLayoutViewInstructionParameter::description (String & ioString,
+                                                             const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @astAutoLayoutViewInstructionParameter:") ;
   if (! isValid ()) {
     ioString.appendCString (" not built") ;
   }else{
-    mProperty_mEditable.description (ioString, inIndentation+1) ;
+    mProperty_mParameterName.description (ioString, inIndentation+1) ;
     ioString.appendCString (", ") ;
-    mProperty_mPropertyName.description (ioString, inIndentation+1) ;
+    mProperty_mParameterType.description (ioString, inIndentation+1) ;
     ioString.appendCString (", ") ;
-    mProperty_mColumnParameterListAST.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mSortPropertyName.description (ioString, inIndentation+1) ;
+    mProperty_mParameter.description (ioString, inIndentation+1) ;
   }
   ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
-//     @autoLayoutTableViewControllerBoundColumnAST generic code implementation
+//     @astAutoLayoutViewInstructionParameter generic code implementation
 //--------------------------------------------------------------------------------------------------
 
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerBoundColumnAST ("autoLayoutTableViewControllerBoundColumnAST",
-                                                                                                nullptr) ;
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astAutoLayoutViewInstructionParameter ("astAutoLayoutViewInstructionParameter",
+                                                                                          nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
-const GALGAS_TypeDescriptor * GGS_autoLayoutTableViewControllerBoundColumnAST::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_autoLayoutTableViewControllerBoundColumnAST ;
+const GALGAS_TypeDescriptor * GGS_astAutoLayoutViewInstructionParameter::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astAutoLayoutViewInstructionParameter ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4111,6 +2947,95 @@ const GALGAS_TypeDescriptor * GGS_multipleBindingGeneration::staticTypeDescripto
 }
 
 //--------------------------------------------------------------------------------------------------
+
+GGS_viewGeneration::GGS_viewGeneration (void) :
+mProperty_mViewName (),
+mProperty_mView () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_viewGeneration::GGS_viewGeneration (const GGS_viewGeneration & inSource) :
+mProperty_mViewName (inSource.mProperty_mViewName),
+mProperty_mView (inSource.mProperty_mView) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_viewGeneration & GGS_viewGeneration::operator = (const GGS_viewGeneration & inSource) {
+  mProperty_mViewName = inSource.mProperty_mViewName ;
+  mProperty_mView = inSource.mProperty_mView ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_viewGeneration GGS_viewGeneration::init_21__21_ (const GGS_string & in_mViewName,
+                                                     const GGS_abstractViewGeneration & in_mView,
+                                                     Compiler * inCompiler
+                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_viewGeneration result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mViewName = in_mViewName ;
+  result.mProperty_mView = in_mView ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_viewGeneration::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_viewGeneration::GGS_viewGeneration (const GGS_string & inOperand0,
+                                        const GGS_abstractViewGeneration & inOperand1) :
+mProperty_mViewName (inOperand0),
+mProperty_mView (inOperand1) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_viewGeneration::isValid (void) const {
+  return mProperty_mViewName.isValid () && mProperty_mView.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_viewGeneration::drop (void) {
+  mProperty_mViewName.drop () ;
+  mProperty_mView.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_viewGeneration::description (String & ioString,
+                                      const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @viewGeneration:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mViewName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mView.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @viewGeneration generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_viewGeneration ("viewGeneration",
+                                                                   nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_viewGeneration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_viewGeneration ;
+}
+
+//--------------------------------------------------------------------------------------------------
 // @autoLayoutDocumentFileGeneration reference class
 //--------------------------------------------------------------------------------------------------
 
@@ -4150,8 +3075,8 @@ init_21__21__21__21__21__21__21__21__21__21__21__21__21__21__21__21_ (const GGS_
                                                                       const GGS__5B_multipleBindingGeneration_5D_ & in_multipleBindingGenerationList,
                                                                       const GGS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
                                                                       const GGS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList,
-                                                                      const GGS_viewGenerationList & in_mViewDeclarationList,
-                                                                      const GGS_implicitViewFunctionGenerationList & in_mImplicitViewFunctionGenerationList,
+                                                                      const GGS__5B_viewGeneration_5D_ & in_mViewDeclarationList,
+                                                                      const GGS__5B_abstractViewInstructionGeneration_5D_ & in_mImplicitViewFunctionGenerationList,
                                                                       const GGS_autoLayoutConfiguratorMap & in_mConfiguratorMap,
                                                                       const GGS_string & in_mCustomSuperClassName,
                                                                       const GGS__5B_autoLayoutOutletLinkerGeneration_5D_ & in_mOutletLinkerGenerationList,
@@ -4179,8 +3104,8 @@ autoLayoutDocumentFileGeneration_init_21__21__21__21__21__21__21__21__21__21__21
                                                                                                        const GGS__5B_multipleBindingGeneration_5D_ & in_multipleBindingGenerationList,
                                                                                                        const GGS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
                                                                                                        const GGS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList,
-                                                                                                       const GGS_viewGenerationList & in_mViewDeclarationList,
-                                                                                                       const GGS_implicitViewFunctionGenerationList & in_mImplicitViewFunctionGenerationList,
+                                                                                                       const GGS__5B_viewGeneration_5D_ & in_mViewDeclarationList,
+                                                                                                       const GGS__5B_abstractViewInstructionGeneration_5D_ & in_mImplicitViewFunctionGenerationList,
                                                                                                        const GGS_autoLayoutConfiguratorMap & in_mConfiguratorMap,
                                                                                                        const GGS_string & in_mCustomSuperClassName,
                                                                                                        const GGS__5B_autoLayoutOutletLinkerGeneration_5D_ & in_mOutletLinkerGenerationList,
@@ -4343,9 +3268,9 @@ GGS_ebViewGraphicControllerBindingGenerationList GGS_autoLayoutDocumentFileGener
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_viewGenerationList GGS_autoLayoutDocumentFileGeneration::readProperty_mViewDeclarationList (void) const {
+GGS__5B_viewGeneration_5D_ GGS_autoLayoutDocumentFileGeneration::readProperty_mViewDeclarationList (void) const {
   if (nullptr == mObjectPtr) {
-    return GGS_viewGenerationList () ;
+    return GGS__5B_viewGeneration_5D_ () ;
   }else{
     cPtr_autoLayoutDocumentFileGeneration * p = (cPtr_autoLayoutDocumentFileGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_autoLayoutDocumentFileGeneration) ;
@@ -4355,9 +3280,9 @@ GGS_viewGenerationList GGS_autoLayoutDocumentFileGeneration::readProperty_mViewD
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_implicitViewFunctionGenerationList GGS_autoLayoutDocumentFileGeneration::readProperty_mImplicitViewFunctionGenerationList (void) const {
+GGS__5B_abstractViewInstructionGeneration_5D_ GGS_autoLayoutDocumentFileGeneration::readProperty_mImplicitViewFunctionGenerationList (void) const {
   if (nullptr == mObjectPtr) {
-    return GGS_implicitViewFunctionGenerationList () ;
+    return GGS__5B_abstractViewInstructionGeneration_5D_ () ;
   }else{
     cPtr_autoLayoutDocumentFileGeneration * p = (cPtr_autoLayoutDocumentFileGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_autoLayoutDocumentFileGeneration) ;
@@ -4438,8 +3363,8 @@ cPtr_autoLayoutDocumentFileGeneration::cPtr_autoLayoutDocumentFileGeneration (co
                                                                               const GGS__5B_multipleBindingGeneration_5D_ & in_multipleBindingGenerationList,
                                                                               const GGS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
                                                                               const GGS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList,
-                                                                              const GGS_viewGenerationList & in_mViewDeclarationList,
-                                                                              const GGS_implicitViewFunctionGenerationList & in_mImplicitViewFunctionGenerationList,
+                                                                              const GGS__5B_viewGeneration_5D_ & in_mViewDeclarationList,
+                                                                              const GGS__5B_abstractViewInstructionGeneration_5D_ & in_mImplicitViewFunctionGenerationList,
                                                                               const GGS_autoLayoutConfiguratorMap & in_mConfiguratorMap,
                                                                               const GGS_string & in_mCustomSuperClassName,
                                                                               const GGS__5B_autoLayoutOutletLinkerGeneration_5D_ & in_mOutletLinkerGenerationList,
@@ -14874,7 +13799,7 @@ void cGrammar_easyBindings_5F_grammar::nt_auto_5F_layout_5F_func_5F_call_5F_list
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_auto_5F_layout_5F_func_5F_call_5F_list_ (GGS_stringset &  parameter_1,
-                                GGS_astAutoLayoutViewFunctionCallList &  parameter_2,
+                                GGS__5B_astAutoLayoutViewFunctionCall_5D_ &  parameter_2,
                                 Lexique_easyBindings_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 33) {
   rule_easyBindings_5F_syntax_auto_5F_layout_5F_func_5F_call_5F_list_i33_(parameter_1, parameter_2, inLexique) ;
@@ -14899,8 +13824,8 @@ void cGrammar_easyBindings_5F_grammar::nt_view_5F_instruction_5F_list_indexing (
 
 void cGrammar_easyBindings_5F_grammar::nt_view_5F_instruction_5F_list_ (const GGS_bool  parameter_1,
                                 GGS_stringset &  parameter_2,
-                                GGS_astNewStackViewDeclarationList &  parameter_3,
-                                GGS_astViewInstructionList &  parameter_4,
+                                GGS__5B_astNewStackViewDeclaration_5D_ &  parameter_3,
+                                GGS__5B_astAbstractViewInstructionDeclaration_5D_ &  parameter_4,
                                 Lexique_easyBindings_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 34) {
   rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i34_(parameter_1, parameter_2, parameter_3, parameter_4, inLexique) ;
@@ -14996,7 +13921,7 @@ void cGrammar_easyBindings_5F_grammar::nt_view_5F_actual_5F_parameter_5F_list_in
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_view_5F_actual_5F_parameter_5F_list_ (GGS_stringset &  parameter_1,
-                                GGS_astAutoLayoutViewInstructionParameterList &  parameter_2,
+                                GGS__5B_astAutoLayoutViewInstructionParameter_5D_ &  parameter_2,
                                 Lexique_easyBindings_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 38) {
   rule_easyBindings_5F_syntax_view_5F_actual_5F_parameter_5F_list_i38_(parameter_1, parameter_2, inLexique) ;
@@ -16340,4 +15265,377 @@ int32_t cGrammar_easyBindings_5F_grammar::select_easyBindings_5F_syntax_97 (Lexi
 }
 
 //--------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_outletClassBindingSpecification::GGS_outletClassBindingSpecification (void) :
+mProperty_mOutletClassName (),
+mProperty_mBindingName (),
+mProperty_mOutletClassBindingSpecificationModelList (),
+mProperty_mBindingOptionList () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_outletClassBindingSpecification::GGS_outletClassBindingSpecification (const GGS_outletClassBindingSpecification & inSource) :
+mProperty_mOutletClassName (inSource.mProperty_mOutletClassName),
+mProperty_mBindingName (inSource.mProperty_mBindingName),
+mProperty_mOutletClassBindingSpecificationModelList (inSource.mProperty_mOutletClassBindingSpecificationModelList),
+mProperty_mBindingOptionList (inSource.mProperty_mBindingOptionList) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_outletClassBindingSpecification & GGS_outletClassBindingSpecification::operator = (const GGS_outletClassBindingSpecification & inSource) {
+  mProperty_mOutletClassName = inSource.mProperty_mOutletClassName ;
+  mProperty_mBindingName = inSource.mProperty_mBindingName ;
+  mProperty_mOutletClassBindingSpecificationModelList = inSource.mProperty_mOutletClassBindingSpecificationModelList ;
+  mProperty_mBindingOptionList = inSource.mProperty_mBindingOptionList ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_outletClassBindingSpecification GGS_outletClassBindingSpecification::init_21__21__21__21_ (const GGS_lstring & in_mOutletClassName,
+                                                                                               const GGS_lstring & in_mBindingName,
+                                                                                               const GGS__5B_outletClassBindingSpecificationModel_5D_ & in_mOutletClassBindingSpecificationModelList,
+                                                                                               const GGS__5B_controllerBindingOption_5D_ & in_mBindingOptionList,
+                                                                                               Compiler * inCompiler
+                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_outletClassBindingSpecification result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mOutletClassName = in_mOutletClassName ;
+  result.mProperty_mBindingName = in_mBindingName ;
+  result.mProperty_mOutletClassBindingSpecificationModelList = in_mOutletClassBindingSpecificationModelList ;
+  result.mProperty_mBindingOptionList = in_mBindingOptionList ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_outletClassBindingSpecification::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_outletClassBindingSpecification::GGS_outletClassBindingSpecification (const GGS_lstring & inOperand0,
+                                                                          const GGS_lstring & inOperand1,
+                                                                          const GGS__5B_outletClassBindingSpecificationModel_5D_ & inOperand2,
+                                                                          const GGS__5B_controllerBindingOption_5D_ & inOperand3) :
+mProperty_mOutletClassName (inOperand0),
+mProperty_mBindingName (inOperand1),
+mProperty_mOutletClassBindingSpecificationModelList (inOperand2),
+mProperty_mBindingOptionList (inOperand3) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_outletClassBindingSpecification::isValid (void) const {
+  return mProperty_mOutletClassName.isValid () && mProperty_mBindingName.isValid () && mProperty_mOutletClassBindingSpecificationModelList.isValid () && mProperty_mBindingOptionList.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_outletClassBindingSpecification::drop (void) {
+  mProperty_mOutletClassName.drop () ;
+  mProperty_mBindingName.drop () ;
+  mProperty_mOutletClassBindingSpecificationModelList.drop () ;
+  mProperty_mBindingOptionList.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_outletClassBindingSpecification::description (String & ioString,
+                                                       const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @outletClassBindingSpecification:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mOutletClassName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mBindingName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mOutletClassBindingSpecificationModelList.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mBindingOptionList.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @outletClassBindingSpecification generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_outletClassBindingSpecification ("outletClassBindingSpecification",
+                                                                                    nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_outletClassBindingSpecification::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_outletClassBindingSpecification ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutViewClassBindingSpecification::GGS_autoLayoutViewClassBindingSpecification (void) :
+mProperty_mOutletClassName (),
+mProperty_mBindingName (),
+mProperty_mOutletClassBindingSpecificationModelList (),
+mProperty_mBindingOptionList () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutViewClassBindingSpecification::GGS_autoLayoutViewClassBindingSpecification (const GGS_autoLayoutViewClassBindingSpecification & inSource) :
+mProperty_mOutletClassName (inSource.mProperty_mOutletClassName),
+mProperty_mBindingName (inSource.mProperty_mBindingName),
+mProperty_mOutletClassBindingSpecificationModelList (inSource.mProperty_mOutletClassBindingSpecificationModelList),
+mProperty_mBindingOptionList (inSource.mProperty_mBindingOptionList) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutViewClassBindingSpecification & GGS_autoLayoutViewClassBindingSpecification::operator = (const GGS_autoLayoutViewClassBindingSpecification & inSource) {
+  mProperty_mOutletClassName = inSource.mProperty_mOutletClassName ;
+  mProperty_mBindingName = inSource.mProperty_mBindingName ;
+  mProperty_mOutletClassBindingSpecificationModelList = inSource.mProperty_mOutletClassBindingSpecificationModelList ;
+  mProperty_mBindingOptionList = inSource.mProperty_mBindingOptionList ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_autoLayoutViewClassBindingSpecification GGS_autoLayoutViewClassBindingSpecification::init_21__21__21__21_ (const GGS_lstring & in_mOutletClassName,
+                                                                                                               const GGS_lstring & in_mBindingName,
+                                                                                                               const GGS__5B_outletClassBindingSpecificationModel_5D_ & in_mOutletClassBindingSpecificationModelList,
+                                                                                                               const GGS__5B_controllerBindingOption_5D_ & in_mBindingOptionList,
+                                                                                                               Compiler * inCompiler
+                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_autoLayoutViewClassBindingSpecification result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mOutletClassName = in_mOutletClassName ;
+  result.mProperty_mBindingName = in_mBindingName ;
+  result.mProperty_mOutletClassBindingSpecificationModelList = in_mOutletClassBindingSpecificationModelList ;
+  result.mProperty_mBindingOptionList = in_mBindingOptionList ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_autoLayoutViewClassBindingSpecification::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutViewClassBindingSpecification::GGS_autoLayoutViewClassBindingSpecification (const GGS_lstring & inOperand0,
+                                                                                          const GGS_lstring & inOperand1,
+                                                                                          const GGS__5B_outletClassBindingSpecificationModel_5D_ & inOperand2,
+                                                                                          const GGS__5B_controllerBindingOption_5D_ & inOperand3) :
+mProperty_mOutletClassName (inOperand0),
+mProperty_mBindingName (inOperand1),
+mProperty_mOutletClassBindingSpecificationModelList (inOperand2),
+mProperty_mBindingOptionList (inOperand3) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_autoLayoutViewClassBindingSpecification::isValid (void) const {
+  return mProperty_mOutletClassName.isValid () && mProperty_mBindingName.isValid () && mProperty_mOutletClassBindingSpecificationModelList.isValid () && mProperty_mBindingOptionList.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_autoLayoutViewClassBindingSpecification::drop (void) {
+  mProperty_mOutletClassName.drop () ;
+  mProperty_mBindingName.drop () ;
+  mProperty_mOutletClassBindingSpecificationModelList.drop () ;
+  mProperty_mBindingOptionList.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_autoLayoutViewClassBindingSpecification::description (String & ioString,
+                                                               const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @autoLayoutViewClassBindingSpecification:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mOutletClassName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mBindingName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mOutletClassBindingSpecificationModelList.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mBindingOptionList.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @autoLayoutViewClassBindingSpecification generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutViewClassBindingSpecification ("autoLayoutViewClassBindingSpecification",
+                                                                                            nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_autoLayoutViewClassBindingSpecification::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_autoLayoutViewClassBindingSpecification ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astDeclarationStruct::GGS_astDeclarationStruct (void) :
+mProperty_mUnifiedDeclarationList (),
+mProperty_mBindingSpecificationListMap (),
+mProperty_mAutoLayoutBindingSpecificationList (),
+mProperty_mPreferences (),
+mProperty_mXcodeProject (),
+mProperty_mGraphvizList (),
+mProperty_mAutoLayoutVStackFunctionMap (),
+mProperty_mAutoLayoutHStackFunctionMap (),
+mProperty_mEnumerationFunctionListAST () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astDeclarationStruct::GGS_astDeclarationStruct (const GGS_astDeclarationStruct & inSource) :
+mProperty_mUnifiedDeclarationList (inSource.mProperty_mUnifiedDeclarationList),
+mProperty_mBindingSpecificationListMap (inSource.mProperty_mBindingSpecificationListMap),
+mProperty_mAutoLayoutBindingSpecificationList (inSource.mProperty_mAutoLayoutBindingSpecificationList),
+mProperty_mPreferences (inSource.mProperty_mPreferences),
+mProperty_mXcodeProject (inSource.mProperty_mXcodeProject),
+mProperty_mGraphvizList (inSource.mProperty_mGraphvizList),
+mProperty_mAutoLayoutVStackFunctionMap (inSource.mProperty_mAutoLayoutVStackFunctionMap),
+mProperty_mAutoLayoutHStackFunctionMap (inSource.mProperty_mAutoLayoutHStackFunctionMap),
+mProperty_mEnumerationFunctionListAST (inSource.mProperty_mEnumerationFunctionListAST) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astDeclarationStruct & GGS_astDeclarationStruct::operator = (const GGS_astDeclarationStruct & inSource) {
+  mProperty_mUnifiedDeclarationList = inSource.mProperty_mUnifiedDeclarationList ;
+  mProperty_mBindingSpecificationListMap = inSource.mProperty_mBindingSpecificationListMap ;
+  mProperty_mAutoLayoutBindingSpecificationList = inSource.mProperty_mAutoLayoutBindingSpecificationList ;
+  mProperty_mPreferences = inSource.mProperty_mPreferences ;
+  mProperty_mXcodeProject = inSource.mProperty_mXcodeProject ;
+  mProperty_mGraphvizList = inSource.mProperty_mGraphvizList ;
+  mProperty_mAutoLayoutVStackFunctionMap = inSource.mProperty_mAutoLayoutVStackFunctionMap ;
+  mProperty_mAutoLayoutHStackFunctionMap = inSource.mProperty_mAutoLayoutHStackFunctionMap ;
+  mProperty_mEnumerationFunctionListAST = inSource.mProperty_mEnumerationFunctionListAST ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_astDeclarationStruct GGS_astDeclarationStruct::init (Compiler * inCompiler
+                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_astDeclarationStruct result ;
+  result.setInitializedProperties (inCompiler) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_astDeclarationStruct::setInitializedProperties (Compiler * inCompiler) {
+GGS__5B_abstractDeclarationAST_5D_ temp_0 = GGS__5B_abstractDeclarationAST_5D_::init (inCompiler COMMA_SOURCE_FILE ("grammar-syntax.galgas4", 15)) ;
+  mProperty_mUnifiedDeclarationList = temp_0 ;
+GGS__5B_outletClassBindingSpecification_5D_ temp_1 = GGS__5B_outletClassBindingSpecification_5D_::init (inCompiler COMMA_SOURCE_FILE ("grammar-syntax.galgas4", 16)) ;
+  mProperty_mBindingSpecificationListMap = temp_1 ;
+GGS__5B_autoLayoutViewClassBindingSpecification_5D_ temp_2 = GGS__5B_autoLayoutViewClassBindingSpecification_5D_::init (inCompiler COMMA_SOURCE_FILE ("grammar-syntax.galgas4", 17)) ;
+  mProperty_mAutoLayoutBindingSpecificationList = temp_2 ;
+  mProperty_mPreferences = GGS_prefDeclaration::init (inCompiler COMMA_HERE) ;
+  mProperty_mXcodeProject = GGS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("grammar-syntax.galgas4", 19)) ;
+GGS__5B_lstring_5D_ temp_3 = GGS__5B_lstring_5D_::init (inCompiler COMMA_SOURCE_FILE ("grammar-syntax.galgas4", 20)) ;
+  mProperty_mGraphvizList = temp_3 ;
+  mProperty_mAutoLayoutVStackFunctionMap = GGS_astAutoLayoutViewFunctionMap::init (inCompiler COMMA_HERE) ;
+  mProperty_mAutoLayoutHStackFunctionMap = GGS_astAutoLayoutViewFunctionMap::init (inCompiler COMMA_HERE) ;
+GGS_enumerationFunctionListAST temp_4 = GGS_enumerationFunctionListAST::init (inCompiler COMMA_SOURCE_FILE ("grammar-syntax.galgas4", 23)) ;
+  mProperty_mEnumerationFunctionListAST = temp_4 ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astDeclarationStruct::GGS_astDeclarationStruct (const GGS__5B_abstractDeclarationAST_5D_ & inOperand0,
+                                                    const GGS__5B_outletClassBindingSpecification_5D_ & inOperand1,
+                                                    const GGS__5B_autoLayoutViewClassBindingSpecification_5D_ & inOperand2,
+                                                    const GGS_prefDeclaration & inOperand3,
+                                                    const GGS_lstring & inOperand4,
+                                                    const GGS__5B_lstring_5D_ & inOperand5,
+                                                    const GGS_astAutoLayoutViewFunctionMap & inOperand6,
+                                                    const GGS_astAutoLayoutViewFunctionMap & inOperand7,
+                                                    const GGS_enumerationFunctionListAST & inOperand8) :
+mProperty_mUnifiedDeclarationList (inOperand0),
+mProperty_mBindingSpecificationListMap (inOperand1),
+mProperty_mAutoLayoutBindingSpecificationList (inOperand2),
+mProperty_mPreferences (inOperand3),
+mProperty_mXcodeProject (inOperand4),
+mProperty_mGraphvizList (inOperand5),
+mProperty_mAutoLayoutVStackFunctionMap (inOperand6),
+mProperty_mAutoLayoutHStackFunctionMap (inOperand7),
+mProperty_mEnumerationFunctionListAST (inOperand8) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_astDeclarationStruct::isValid (void) const {
+  return mProperty_mUnifiedDeclarationList.isValid () && mProperty_mBindingSpecificationListMap.isValid () && mProperty_mAutoLayoutBindingSpecificationList.isValid () && mProperty_mPreferences.isValid () && mProperty_mXcodeProject.isValid () && mProperty_mGraphvizList.isValid () && mProperty_mAutoLayoutVStackFunctionMap.isValid () && mProperty_mAutoLayoutHStackFunctionMap.isValid () && mProperty_mEnumerationFunctionListAST.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_astDeclarationStruct::drop (void) {
+  mProperty_mUnifiedDeclarationList.drop () ;
+  mProperty_mBindingSpecificationListMap.drop () ;
+  mProperty_mAutoLayoutBindingSpecificationList.drop () ;
+  mProperty_mPreferences.drop () ;
+  mProperty_mXcodeProject.drop () ;
+  mProperty_mGraphvizList.drop () ;
+  mProperty_mAutoLayoutVStackFunctionMap.drop () ;
+  mProperty_mAutoLayoutHStackFunctionMap.drop () ;
+  mProperty_mEnumerationFunctionListAST.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_astDeclarationStruct::description (String & ioString,
+                                            const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @astDeclarationStruct:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mUnifiedDeclarationList.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mBindingSpecificationListMap.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mAutoLayoutBindingSpecificationList.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mPreferences.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mXcodeProject.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mGraphvizList.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mAutoLayoutVStackFunctionMap.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mAutoLayoutHStackFunctionMap.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mEnumerationFunctionListAST.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @astDeclarationStruct generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astDeclarationStruct ("astDeclarationStruct",
+                                                                         nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_astDeclarationStruct::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astDeclarationStruct ;
+}
 

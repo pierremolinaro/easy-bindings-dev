@@ -86,8 +86,8 @@ void routine_analyzeAutoLayoutBinding_3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F
                                                                                                                        const class GGS_multipleBindingDescriptor constinArgument12,
                                                                                                                        const class GGS_graphicController constinArgument13,
                                                                                                                        const class GGS__5B_regularBinding_5D_ constinArgument14,
-                                                                                                                       class GGS_autoLayoutRegularBindingsGenerationList & outArgument15,
-                                                                                                                       class GGS_autoLayoutMultipleBindingGenerationList & outArgument16,
+                                                                                                                       class GGS__5B_autoLayoutRegularBindingsGeneration_5D_ & outArgument15,
+                                                                                                                       class GGS__5B_autoLayoutMultipleBindingGeneration_5D_ & outArgument16,
                                                                                                                        class GGS_autolayoutRunBindingForGeneration & outArgument17,
                                                                                                                        class GGS_string & outArgument18,
                                                                                                                        class GGS_autoLayoutViewGraphicControllerBindingGeneration & outArgument19,
@@ -108,7 +108,7 @@ void routine_analyzeAutoLayoutRegularBinding_3F_prefs_3F__3F__3F__3F__3F__3F__3F
                                                                                        const class GGS_lstring constinArgument5,
                                                                                        const class GGS__5B_regularBinding_5D_ constinArgument6,
                                                                                        const class GGS_string constinArgument7,
-                                                                                       class GGS_autoLayoutRegularBindingsGenerationList & ioArgument8,
+                                                                                       class GGS__5B_autoLayoutRegularBindingsGeneration_5D_ & ioArgument8,
                                                                                        class Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) ;
 
@@ -426,4 +426,36 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementatio
 GGS_string filewrapperTemplate_entityGenerationTemplate_managedObjectFactory (class Compiler * inCompiler,
                                                                               const class GGS_entityListForGeneratingEBManagedObjectContext & in_ENTITY_5F_LIST
                                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'computedPropertyManager'
+//
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const cDirectoryWrapper gWrapperDirectory_0_computedPropertyManager ;
+extern const cDirectoryWrapper gWrapperDirectory_1_computedPropertyManager ;
+extern const cDirectoryWrapper gWrapperDirectory_2_computedPropertyManager ;
+extern const cDirectoryWrapper gWrapperDirectory_3_computedPropertyManager ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'computedPropertyManager computedComputationFunctionFile'
+//
+//--------------------------------------------------------------------------------------------------
+
+GGS_string filewrapperTemplate_computedPropertyManager_computedComputationFunctionFile (class Compiler * inCompiler,
+                                                                                        const class GGS_string & in_OWNER_5F_NAME,
+                                                                                        const class GGS_string & in_COMPUTED_5F_PROPERTY_5F_NAME,
+                                                                                        const class GGS_typeKind & in_TRANSIENT_5F_TYPE
+                                                                                        COMMA_LOCATION_ARGS) ;
 

@@ -159,8 +159,8 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   )
 //-- Check auto layout view declarations
   var @autoLayoutViewDeclarationMap viewDeclarationMap = ()
-  var @viewGenerationList viewGenerationList = []
-  var @implicitViewFunctionGenerationList implicitViewFunctionGenerationList = []
+  var [@viewGeneration] viewGenerationList = []
+  var [@abstractViewInstructionGeneration] implicitViewFunctionGenerationList = []
   var @autoLayoutConfiguratorMap configuratorMap = ()
   var @autoLayoutOutletMap autoLayoutOutletMap = ()
   for view in self.mDeclaration.mViewDeclarationList do
@@ -220,8 +220,8 @@ class @preferencesForGeneration : @abstractFileGeneration {
   public let @externSwiftFunctionList mExternSwiftFunctionList
   public let @tableViewBindingGenerationList mTableViewBindingGenerationList
   public let @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
-  public let @viewGenerationList mViewGenerationList
-  public let @implicitViewFunctionGenerationList mImplicitViewFunctionGenerationList
+  public let [@viewGeneration] mViewGenerationList
+  public let [@abstractViewInstructionGeneration] mImplicitViewFunctionGenerationList
   public let @autoLayoutConfiguratorMap mConfiguratorMap
   public let @autoLayoutOutletMap mAutoLayoutOutletMap
 }
@@ -241,8 +241,8 @@ private filewrapper prefsGenerationTemplate in "generation-templates" {
     @externSwiftFunctionList EXTERN_SWIFT_FUNCTION_LIST,
     @tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST,
     @ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST,
-    @viewGenerationList VIEW_GENERATION_LIST,
-    @implicitViewFunctionGenerationList IMPLICIT_VIEW_GENERATION_FUNCTION_LIST,
+    [@viewGeneration] VIEW_GENERATION_LIST,
+    [@abstractViewInstructionGeneration] IMPLICIT_VIEW_GENERATION_FUNCTION_LIST,
     @autoLayoutOutletMap AUTO_LAYOUT_OUTLET_MAP
   )
 }

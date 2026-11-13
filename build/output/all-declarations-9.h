@@ -10,38 +10,6 @@
 
 //--------------------------------------------------------------------------------------------------
 //
-//Filewrapper 'computedPropertyManager'
-//
-//--------------------------------------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------------------------------------
-
-extern const cDirectoryWrapper gWrapperDirectory_0_computedPropertyManager ;
-extern const cDirectoryWrapper gWrapperDirectory_1_computedPropertyManager ;
-extern const cDirectoryWrapper gWrapperDirectory_2_computedPropertyManager ;
-extern const cDirectoryWrapper gWrapperDirectory_3_computedPropertyManager ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Filewrapper template 'computedPropertyManager computedComputationFunctionFile'
-//
-//--------------------------------------------------------------------------------------------------
-
-GGS_string filewrapperTemplate_computedPropertyManager_computedComputationFunctionFile (class Compiler * inCompiler,
-                                                                                        const class GGS_string & in_OWNER_5F_NAME,
-                                                                                        const class GGS_string & in_COMPUTED_5F_PROPERTY_5F_NAME,
-                                                                                        const class GGS_typeKind & in_TRANSIENT_5F_TYPE
-                                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
 //Filewrapper 'actionGenerationTemplate'
 //
 //--------------------------------------------------------------------------------------------------
