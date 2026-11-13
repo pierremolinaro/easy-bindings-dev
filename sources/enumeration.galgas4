@@ -120,15 +120,15 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
        ?!@generationStruct ioGeneration)
 {
   var @enumConstantMap enumConstantMap = ()
-  for (s) in self.mEnumConstantNameList do
+  for s in self.mEnumConstantNameList do
     !?enumConstantMap.insertKey (s, enumConstantMap.count )
   end
   var @enumFuncMap enumFuncMap = ()
-  for (enumTypeName, funcName, associationList) in ioSemanticContext.mEnumerationFunctionListAST do
-    if enumTypeName.string == self.mClassName.string then
+  for (mEnumName, mFunctionName, mAssociationList) in ioSemanticContext.mEnumerationFunctionListAST do
+    if mEnumName.string == self.mClassName.string then
       var @stringset definedConstantNameSet = []
       var @enumFunAssociationSortedList associationSortedList = []
-      for association in associationList do
+      for association in mAssociationList do
         enumConstantMap.searchKey (association.mValue0, ?let idx)
         !?associationSortedList.insert (idx, association.mValue1.string)
         if definedConstantNameSet.contains (association.mValue0) then
@@ -136,12 +136,12 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
         end
         !?definedConstantNameSet.insert (association.mValue0)
       end
-      for (s) in self.mEnumConstantNameList do
+      for s in self.mEnumConstantNameList do
         if not definedConstantNameSet.contains (s) then
-          error (funcName : "No association for '" + s + "' constant")
+          error (mFunctionName : "No association for '" + s + "' constant")
         end
       end
-      !?enumFuncMap.insertKey (funcName, associationSortedList)
+      !?enumFuncMap.insertKey (mFunctionName, associationSortedList)
     end
   end
   !?ioSemanticContext.mClassMap.insertKey (

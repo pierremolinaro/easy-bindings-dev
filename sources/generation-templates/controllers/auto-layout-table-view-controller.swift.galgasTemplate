@@ -154,12 +154,12 @@ if [SORTED_COLUMNS count] > 0 then
     super.init ()
     self.sortedArray_property.startsBeingObserved (by: self.mSortedArrayValuesObserver)
 %
-for (mEditable mSortPropertyName mDisplayedPropertyName mColumnObjectTypeName mRunAction mActualParameterList) in BOUND_COLUMNS do
-%  //--- Observe '%!mDisplayedPropertyName%' column
-    self.sortedArray_property.toMany_%!mDisplayedPropertyName%_StartsBeingObserved (by: self.mSortedArrayValuesObserver)
+for (column) in BOUND_COLUMNS do
+%  //--- Observe '%!column.mDisplayedPropertyName%' column
+    self.sortedArray_property.toMany_%!column.mDisplayedPropertyName%_StartsBeingObserved (by: self.mSortedArrayValuesObserver)
 %
-if (mSortPropertyName != "") & (mSortPropertyName != mDisplayedPropertyName) then
-  %     self.sortedArray_property.toMany_%!mSortPropertyName%_StartsBeingObserved (by: self.mSortedArrayValuesObserver)\n%
+if (column.mSortPropertyName != "") & (column.mSortPropertyName != column.mDisplayedPropertyName) then
+  %     self.sortedArray_property.toMany_%!column.mSortPropertyName%_StartsBeingObserved (by: self.mSortedArrayValuesObserver)\n%
 end
 end
 %  //---
@@ -192,28 +192,28 @@ end
       rowCountCallBack: { [weak self] in self?.sortedArray_property.propval.count ?? 0 },
       delegate: self
     )
-%for (mEditable mSortPropertyName mDisplayedPropertyName mColumnObjectTypeName mRunAction mActualParameterList) in BOUND_COLUMNS do
-%  //--- Configure '%!mDisplayedPropertyName%' column
-    inTableView.addColumn_%!mColumnObjectTypeName% (
-      valueGetterDelegate: { [weak self] in return self?.sortedArray_property.propval [$0].%!mDisplayedPropertyName% },
+%for (column) in BOUND_COLUMNS do
+%  //--- Configure '%!column.mDisplayedPropertyName%' column
+    inTableView.addColumn_%!column.mColumnObjectTypeName% (
+      valueGetterDelegate: { [weak self] in return self?.sortedArray_property.propval [$0].%!column.mDisplayedPropertyName% },
       valueSetterDelegate: %
-  if mEditable then
-   %{ [weak self] (inRowIndex, inNewValue) in self?.sortedArray_property.propval [inRowIndex].%!mDisplayedPropertyName% = inNewValue }%
+  if column.mEditable then
+   %{ [weak self] (inRowIndex, inNewValue) in self?.sortedArray_property.propval [inRowIndex].%!column.mDisplayedPropertyName% = inNewValue }%
   else
     %nil%
   end
 %,
       sortDelegate: %
-if mSortPropertyName != "" then
+if column.mSortPropertyName != "" then
 %{ [weak self] (ascending) in
-        self?.mSortDescriptorArray.append ({ (_ left : %!ELEMENT_TYPE_NAME%, _ right : %!ELEMENT_TYPE_NAME%) in return compare_%!mColumnObjectTypeName%_properties (left.%!mSortPropertyName%_property, ascending, right.%!mSortPropertyName%_property) })
+        self?.mSortDescriptorArray.append ({ (_ left : %!ELEMENT_TYPE_NAME%, _ right : %!ELEMENT_TYPE_NAME%) in return compare_%!column.mColumnObjectTypeName%_properties (left.%!column.mSortPropertyName%_property, ascending, right.%!column.mSortPropertyName%_property) })
       }%
 else
   %nil%
 end
 %,
 %
-for (entry) in mActualParameterList
+for (entry) in column.mActualParameterList
   do %      %!entry.mValue0%: %!entry.mValue1%%
   between %,\n%
 end

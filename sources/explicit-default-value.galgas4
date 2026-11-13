@@ -90,7 +90,7 @@ syntax extension easyBindings_syntax {
 //------------------------------------------------------------------------------------------------
 
 abstract proc @abstractDefaultValue.analyzeDefaultValueType (
-  let @typeKindList inAttributeActualTypeList,
+  let [@typeKind] inAttributeActualTypeList,
   let @propertyMap inPreferencesPropertyMap,
   !@string outSwiftDefaultValueAsString)
 
@@ -104,14 +104,14 @@ proc @abstractDefaultValue.enterDefaultValuePrecedence(
 //------------------------------------------------------------------------------------------------
 
 override proc @boolAsDefaultValue.analyzeDefaultValueType (
-  let @typeKindList inAttributeActualTypeList,
+  let [@typeKind] inAttributeActualTypeList,
   let @propertyMap _inPreferencesPropertyMap,
   !@string outSwiftDefaultValueAsString)
 {
   outSwiftDefaultValueAsString = ""
   var @bool found = false
-  for (mType) in inAttributeActualTypeList while not found do
-    switch mType
+  for type in inAttributeActualTypeList while not found do
+    switch type
     case boolType :
       outSwiftDefaultValueAsString = if self.mValue.bool then "true" else "false" end
       found = true
@@ -134,14 +134,14 @@ override proc @boolAsDefaultValue.analyzeDefaultValueType (
 //------------------------------------------------------------------------------------------------
 
 override proc @integerAsDefaultValue.analyzeDefaultValueType (
-  let @typeKindList inAttributeActualTypeList,
+  let [@typeKind] inAttributeActualTypeList,
   let @propertyMap _inPreferencesPropertyMap,
   !@string outSwiftDefaultValueAsString)
 {
   outSwiftDefaultValueAsString = ""
   var @bool found = false
-  for (mType) in inAttributeActualTypeList while not found do
-    switch mType
+  for type in inAttributeActualTypeList while not found do
+    switch type
     case integerType :
       outSwiftDefaultValueAsString = if self.mNegative then "-" else "" end + self.mValue.uint.string
       found = true
@@ -177,14 +177,14 @@ override proc @integerAsDefaultValue.analyzeDefaultValueType (
 //------------------------------------------------------------------------------------------------
 
 override proc @doubleAsDefaultValue.analyzeDefaultValueType (
-  let @typeKindList inAttributeActualTypeList,
+  let [@typeKind] inAttributeActualTypeList,
   let @propertyMap _inPreferencesPropertyMap,
   !@string outSwiftDefaultValueAsString)
 {
   outSwiftDefaultValueAsString = ""
   var @bool found = false
-  for (mType) in  inAttributeActualTypeList while not found do
-    switch mType
+  for type in  inAttributeActualTypeList while not found do
+    switch type
     case doubleType :
       outSwiftDefaultValueAsString = self.mValue.double.string
       found = true
@@ -207,14 +207,14 @@ override proc @doubleAsDefaultValue.analyzeDefaultValueType (
 //------------------------------------------------------------------------------------------------
 
 override proc @stringAsDefaultValue.analyzeDefaultValueType (
-  let @typeKindList inAttributeActualTypeList,
+  let [@typeKind] inAttributeActualTypeList,
   let @propertyMap _inPreferencesPropertyMap,
   !@string outSwiftDefaultValueAsString)
 {
   outSwiftDefaultValueAsString = ""
   var @bool found = false
-  for (mType) in  inAttributeActualTypeList while not found do
-    switch mType
+  for type in inAttributeActualTypeList while not found do
+    switch type
     case canariLengthType, canariLengthUnitType :
       outSwiftDefaultValueAsString = self.mValue.string
       found = true
@@ -294,14 +294,14 @@ func #once predefinedColors() -> @stringset {
 //------------------------------------------------------------------------------------------------
 
 override proc @identifierAsDefaultValue.analyzeDefaultValueType (
-  let @typeKindList inAttributeActualTypeList,
+  let [@typeKind] inAttributeActualTypeList,
   let @propertyMap _inPreferencesPropertyMap,
   !@string outSwiftDefaultValueAsString)
 {
   outSwiftDefaultValueAsString = ""
   var @bool found = false
-  for (mType) in inAttributeActualTypeList while not found do
-    switch mType
+  for type in inAttributeActualTypeList while not found do
+    switch type
     case dateType :
       found = true
       if predefinedDates ().contains (self.mValue.string) then
@@ -388,7 +388,7 @@ override proc @identifierAsDefaultValue.analyzeDefaultValueType (
 //------------------------------------------------------------------------------------------------
 
 override proc @prefsAsDefaultValue.analyzeDefaultValueType (
-  let @typeKindList inAttributeActualTypeList,
+  let [@typeKind] inAttributeActualTypeList,
   let @propertyMap inPreferencesPropertyMap,
   !@string outSwiftDefaultValueAsString)
 {
@@ -396,7 +396,7 @@ override proc @prefsAsDefaultValue.analyzeDefaultValueType (
   switch kind
   case property (@typeKind type, *) :
     var found = false
-    for (t) in inAttributeActualTypeList while not found do
+    for t in inAttributeActualTypeList while not found do
       found = type == t
     end
     if not found then

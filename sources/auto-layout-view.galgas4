@@ -651,34 +651,34 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
                                 ?!@autoLayoutOutletMap ioOutletMap,
                                 !@autoLayoutViewInstructionGenerationFuncCallList outFuncCallList) {
   outFuncCallList = []
-  for (functionName, actualParameterList) in self do
-    var mangleName = functionName.string + "("
-    for (parameterName, 2*) in actualParameterList do
-      mangleName += parameterName.string + ":"
+  for (mFunctionName, mParameterList) in self do
+    var mangleName = mFunctionName.string + "("
+    for (mParameterName, 2*) in mParameterList do
+      mangleName += mParameterName.string + ":"
     end
     mangleName += ")"
-    inFunctionMap.searchKey (@(mangleName, functionName.location), ?let formalParameterList)
+    inFunctionMap.searchKey (@(mangleName, mFunctionName.location), ?let formalParameterList)
     var @autoLayoutViewInstructionGenerationParameterList parameterList = []
-    if formalParameterList.count != actualParameterList.count then
-      error (functionName
-      : formalParameterList.count .string + " parameter(s) required, " + actualParameterList.count + " provided"
+    if formalParameterList.count != mParameterList.count then
+      error (mFunctionName
+      : mParameterList.count .string + " parameter(s) required, " + mParameterList.count + " provided"
       )
     else
-      for (name, type, value) in actualParameterList, (formalName, formalType) in formalParameterList do
-        if let formalTypeEnum = formalType.getTypeEnum, let actualTypeEnum = type.getTypeEnum then
+      for actual in mParameterList, formal in formalParameterList do
+        if let formalTypeEnum = formal.mParameterType.getTypeEnum, let actualTypeEnum = actual.mParameterType.getTypeEnum then
           inClassMap.searchKey (formalTypeEnum.name, ?let typeKind, ?3*)
           if let atomicTypeKind = typeKind.getAtomic, let atomicEnumType = atomicTypeKind.kind.getEnumType then
             atomicEnumType.constantMap.searchKey (actualTypeEnum.name, ?*)
           else
             error (formalTypeEnum.name : "this type name is not an enum")
           end
-        elsif type != formalType then
-          error (name : "the formal parameter requires " + formalType + ", actual parameter is " + type)
+        elsif actual.mParameterType != formal.mParameterType then
+          error (actual.mParameterName : "the formal parameter requires " + formal.mParameterType + ", actual parameter is " + actual.mParameterType)
         end
-        if name.string != formalName.string then
-          error (name : "the parameter name should be '" + formalName + "'")
+        if actual.mParameterName.string != formal.mParameterName.string then
+          error (actual.mParameterName : "the parameter name should be '" + formal.mParameterName + "'")
         end
-        switch value
+        switch actual.mParameter
         case viewFunc (instruction) :
           instruction.generateViewCode (
             inViewDeclarationMap,
@@ -697,18 +697,18 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
           )
           let viewInstructionString = viewInstruction.generateViewInstruction (
             !prefs: inPreferences,
-            name,
+            actual.mParameterName,
             "" // Indentation
           )
-          !?parameterList.append (name, "{ () -> NSView in " + viewInstructionString + " ; return " + name + " } ()")
+          !?parameterList.append (actual.mParameterName, "{ () -> NSView in " + viewInstructionString + " ; return " + actual.mParameterName + " } ()")
         case string (stringValue) :
-          !?parameterList.append (name, stringValue)
+          !?parameterList.append (actual.mParameterName, stringValue)
         case entity (entityName) :
           inClassMap.searchKey (entityName, ?let classKind, ?3*)
           if not classKind.isEntity then
             error (entityName: "an entity is required here")
           end
-          !?parameterList.append (name, entityName.string + ".self")
+          !?parameterList.append (actual.mParameterName, entityName.string + ".self")
         case menuItem (title, run, enabledBinding) :
           analyzeAutoLayoutRunBinding (
             run,
@@ -745,7 +745,7 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
             s += ", enableBinding: " + binding.expressionString
           end
           s += ")"
-          !?parameterList.append (name, s)
+          !?parameterList.append (actual.mParameterName, s)
         case enumFunc (enumTypeName, funcName) :
           inSemanticContext.mClassMap.searchKey (enumTypeName, ?let type, ?3*)
           if not type.isAtomic then
@@ -759,11 +759,11 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
               error (enumTypeName : "this type should be an enum type")
             end
           end
-          !?parameterList.append (name, enumTypeName.string + "." + funcName + " ()")
+          !?parameterList.append (actual.mParameterName, enumTypeName.string + "." + funcName + " ()")
         end
       end
     end
-    !?outFuncCallList.append (functionName.string, parameterList)
+    !?outFuncCallList.append (mFunctionName.string, parameterList)
   end
 }
 
@@ -803,8 +803,8 @@ override proc @astComputedHorizontalViewDeclaration.checkView(
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   )
   var @autoLayoutViewInstructionGenerationList instructionList = []
-  for (instruction) in self.mInstructionList do
-    instruction.generateViewCode
+  for instruction in self.mInstructionList do
+    instruction.mInstruction.generateViewCode
       (inViewDeclarationMap,
       !prefs: inPreferences,
       inRootObservablePropertyMap,
@@ -843,8 +843,8 @@ override proc @astComputedVerticalViewDeclaration.checkView(
                                   !@abstractViewGeneration outGeneration) {
   inClassMap.searchKey (@(preferencesName (), .nowhere), ?2*, ?let preferencesActionMap, ?*)
   var @autoLayoutViewInstructionGenerationList instructionList = []
-  self.mFunctionCallList.checkViewFunctionCallList
-     (inSemanticContext.mAutoLayoutVStackFunctionMap,
+  self.mFunctionCallList.checkViewFunctionCallList (
+     inSemanticContext.mAutoLayoutVStackFunctionMap,
      inViewDeclarationMap,
      inPreferences,
      preferencesActionMap,
@@ -860,9 +860,9 @@ override proc @astComputedVerticalViewDeclaration.checkView(
      !?ioOutletMap,
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   )
-  for (instruction) in self.mInstructionList do
-   instruction.generateViewCode
-      (inViewDeclarationMap,
+  for instruction in self.mInstructionList do
+   instruction.mInstruction.generateViewCode (
+      inViewDeclarationMap,
       !prefs: inPreferences,
       inRootObservablePropertyMap,
       inPreferencesPropertyMap,
@@ -990,24 +990,24 @@ override proc @astComputedViewInstruction.generateViewCode(
     : formalParameterList.count .string + " parameter(s) required, " + self.mParameterList.count + " provided"
     )
   else
-    for (name, type, value) in self.mParameterList, (formalName, formalType) in formalParameterList do
-      if let formalTypeEnum = formalType.getTypeEnum, let actualTypeEnum = type.getTypeEnum then
+    for actual in self.mParameterList, formal in formalParameterList do
+      if let formalTypeEnum = formal.mParameterType.getTypeEnum, let actualTypeEnum = actual.mParameterType.getTypeEnum then
         inClassMap.searchKey (formalTypeEnum.name, ?let typeKind, ?3*)
         if let atomicTypeKind = typeKind.getAtomic, let enumKind = atomicTypeKind.kind.getEnumType then
           enumKind.constantMap.searchKey (actualTypeEnum.name, ?*)
         else
           error (formalTypeEnum.name : "this type name is not an enum")
         end
-      elsif type != formalType then
-        error (name : "the formal parameter requires " + formalType + ", actual parameter is " + type)
+      elsif actual.mParameterType != formal.mParameterType then
+        error (actual.mParameterName : "the formal parameter requires " + formal.mParameterType + ", actual parameter is " + actual.mParameterType)
       end
-      if name.string != formalName.string then
-        error (name : "the parameter name should be '" + formalName + "'")
+      if actual.mParameterName.string != formal.mParameterName.string then
+        error (actual.mParameterName : "the parameter name should be '" + formal.mParameterName + "'")
       end
-      switch value
+      switch actual.mParameter
         case viewFunc (instruction) :
-          instruction.generateViewCode
-            (inViewDeclarationMap,
+          instruction.generateViewCode (
+            inViewDeclarationMap,
             !prefs: inPreferences,
             inRootObservablePropertyMap,
             inPreferencesPropertyMap,
@@ -1021,16 +1021,16 @@ override proc @astComputedViewInstruction.generateViewCode(
             !?ioOutletMap,
             ?let @abstractViewInstructionGeneration viewInstruction
           )
-          !?parameterList.append (name, "self.computeImplicitView_" + ioImplicitViewFunctionGenerationList.count + " ()")
+          !?parameterList.append (actual.mParameterName, "self.computeImplicitView_" + ioImplicitViewFunctionGenerationList.count + " ()")
           !?ioImplicitViewFunctionGenerationList.append (viewInstruction)
       case entity (entityName) :
         inClassMap.searchKey (entityName, ?let classKind, ?3*)
         if not classKind.isEntity then
           error (entityName: "an entity is required here")
         end
-        !?parameterList.append (name, entityName.string + ".self")
+        !?parameterList.append (actual.mParameterName, entityName.string + ".self")
       case string (stringValue) :
-        !?parameterList.append (name, stringValue)
+        !?parameterList.append (actual.mParameterName, stringValue)
       case menuItem (title, run, enabledBinding) :
         analyzeAutoLayoutRunBinding (
           run,
@@ -1067,7 +1067,7 @@ override proc @astComputedViewInstruction.generateViewCode(
           s += ", enableBinding: " + binding.expressionString
         end
         s += ")"
-        !?parameterList.append (name, s)
+        !?parameterList.append (actual.mParameterName, s)
       case enumFunc (enumTypeName, funcName) :
         inSemanticContext.mClassMap.searchKey (enumTypeName, ?let type, ?3*)
         if not type.isAtomic then
@@ -1081,7 +1081,7 @@ override proc @astComputedViewInstruction.generateViewCode(
             error (enumTypeName : "this type should be an enum type")
           end
         end
-        !?parameterList.append (name, enumTypeName.string + "." + funcName + " ()")
+        !?parameterList.append (actual.mParameterName, enumTypeName.string + "." + funcName + " ()")
       end
     end
   end
@@ -1497,13 +1497,13 @@ proc analyzeAutoLayoutRegularBinding(
         + boundModelTypeList.count + ")"
       )
     else
-      for (required_mModelType, required_mModelShouldBeWritableProperty) in outletBindingSpecificationModelList, (found_mKind, found_mErrorLocation) in boundModelTypeList do
-        if required_mModelShouldBeWritableProperty && found_mKind.isTransient then
-          error (found_mErrorLocation : "the model is transient and the binding requires an writable model")
+      for required in outletBindingSpecificationModelList, found in boundModelTypeList do
+        if required.mModelShouldBeWritableProperty && found.mKind.isTransient then
+          error (found.mErrorLocation : "the model is transient and the binding requires an writable model")
         end
-        if required_mModelType.isEnumType && found_mKind.isEnumType then // Ok
-        elsif required_mModelType.swiftTypeName != found_mKind.swiftTypeName then
-          error (found_mErrorLocation : "the model type should be " + required_mModelType.swiftTypeName)
+        if required.mModelType.isEnumType && found.mKind.isEnumType then // Ok
+        elsif required.mModelType.swiftTypeName != found.mKind.swiftTypeName then
+          error (found.mErrorLocation : "the model type should be " + required.mModelType.swiftTypeName)
         end
       end
     end
@@ -1521,16 +1521,16 @@ proc analyzeAutoLayoutRegularBinding(
       end
       error (mBindingName : s)
     else
-      for (controller_mOptionType, controller_mOptionName) in controllerBindingOptionDecoratedList, (binding_mOptionName, binding_mOptionValue) in mBindingOptionList do
-        if controller_mOptionName.string != binding_mOptionName.string then
-          error (binding_mOptionName : "the option name should be '" + controller_mOptionName + "'")
+      for controller in controllerBindingOptionDecoratedList, binding in mBindingOptionList do
+        if controller.mOptionName.string != binding.mOptionName.string then
+          error (binding.mOptionName : "the option name should be '" + controller.mOptionName + "'")
         end
-        binding_mOptionValue.analyzeDefaultValueType (
-          [@(controller_mOptionType)],
+        binding.mOptionValue.analyzeDefaultValueType (
+          [controller.mOptionType],
           inPreferencesPropertyMap,
           ?let @string optionValueAsString
         )
-        bindingOptionString += ", " + controller_mOptionName.string + ":" + optionValueAsString
+        bindingOptionString += ", " + controller.mOptionName.string + ":" + optionValueAsString
       end
     end
   //-- Generate binding
@@ -1599,8 +1599,8 @@ override proc @astHStackViewInstructionDeclaration.generateViewCode(
       hiddenExpression
     )
   end
-  for (instruction) in self.mInstructionList do
-   instruction.generateViewCode
+  for instruction in self.mInstructionList do
+   instruction.mInstruction.generateViewCode
       (inViewDeclarationMap,
       !prefs: inPreferences,
       inRootObservablePropertyMap,
@@ -1679,8 +1679,8 @@ override proc @astVStackViewInstructionDeclaration.generateViewCode(
     end
     !?multipleBindingGenerationList.append ("hidden", hiddenExpression)
   end
-  for (instruction) in self.mInstructionList do
-   instruction.generateViewCode (
+  for instruction in self.mInstructionList do
+   instruction.mInstruction.generateViewCode (
       inViewDeclarationMap,
       !prefs: inPreferences,
       inRootObservablePropertyMap,
@@ -1906,10 +1906,10 @@ list @autoLayoutViewInstructionGenerationFuncCallList {
 //--------------------------------------------------------------------------------------------------
 
 proc @autoLayoutViewInstructionGenerationFuncCallList.generate (let @string inIndentation, ?!@string ioStr) {
-  for (funcName, parameterList) in self do
-    ioStr += inIndentation + "  ." + funcName + " ("
-    for (parameterName, parameterStringValue) in parameterList
-      do ioStr += parameterName + ": " + parameterStringValue
+  for (mFunctionName, mParameters) in self do
+    ioStr += inIndentation + "  ." + mFunctionName + " ("
+    for (mParameterName, mParameterValue) in mParameters
+      do ioStr += mParameterName + ": " + mParameterValue
       between ioStr += ", "
     end
     ioStr += ")\n"
@@ -1934,11 +1934,11 @@ override func @computedHorizontalViewGeneration.generateViewBuilder (?prefs: let
   result = "  final func " + inViewName + " () -> AutoLayoutHorizontalStackView {\n"
   result += "    let hStackView = AutoLayoutHorizontalStackView ()\n"
   self.mFuncCallList.generate ("    ", !?result)
-  for (instance, type) in self.mNewStackViewDeclarationList do
-    result += "    let " + instance + " = self." + type + " ()\n"
+  for (mInstanciedStackViewName, mTypeStackViewName) in self.mNewStackViewDeclarationList do
+    result += "    let " + mInstanciedStackViewName + " = self." + mTypeStackViewName + " ()\n"
   end
-  for (instruction) in self.mInstructionList do // (index)
-    result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: "hStackView", "    ")
+  for instruction in self.mInstructionList do // (index)
+    result += instruction.mInstruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: "hStackView", "    ")
   end
   result += "    return hStackView\n"
   result += "  }\n\n"
@@ -1960,11 +1960,11 @@ override func @computedVerticalViewGeneration.generateViewBuilder (?prefs: let @
     result += "    self.configure_" + self.mConfiguratorName + " (vStackView)\n"
   end
   self.mFuncCallList.generate ("    ", !?result)
-  for (instance, type) in self.mNewStackViewDeclarationList do
-    result += "    let " + instance + " = self." + type + " ()\n"
+  for (mInstanciedStackViewName, mTypeStackViewName) in self.mNewStackViewDeclarationList do
+    result += "    let " + mInstanciedStackViewName + " = self." + mTypeStackViewName + " ()\n"
   end
-  for (instruction) in self.mInstructionList do
-    result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: "vStackView", "    ")
+  for instruction in self.mInstructionList do
+    result += instruction.mInstruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: "vStackView", "    ")
   end
   result += "    return vStackView\n"
   result += "  }\n\n"
@@ -1984,7 +1984,6 @@ override func @autoLayoutSpaceViewInstructionGeneration.generateViewInstruction 
 override func @autoLayoutSpaceViewInstructionGeneration.generateAppendViewInstruction (?prefs: let @bool _inPreferences,
                                              ?receiverView: let @string inReceiverViewName,
                                              let @string inIndentation) -> @string {
-//  result = inIndentation + "_ = " + inReceiverViewName + ".appendView (AutoLayoutFlexibleSpace ())\n"
   result = inIndentation + "_ = " + inReceiverViewName + ".appendFlexibleSpace ()\n"
 }
 
@@ -2037,16 +2036,16 @@ override func @autoLayoutComputedViewInstructionGeneration.generateViewInstructi
   end
   result += ")\n"
   self.mFunctionCallList.generate (inIndentation, !?result)
-  for (bindingName, boundObjectList, optionListString) in self.mRegularBindingsGenerationList do
-    result += inIndentation + "  .bind_" + bindingName + " ("
-    for (boundObjectString, *) in boundObjectList
-      do result += boundObjectString
+  for (mBindingName, mBoundObjectList, mBindingOptionsString) in self.mRegularBindingsGenerationList do
+    result += inIndentation + "  .bind_" + mBindingName + " ("
+    for (mBoundObjectString, *) in mBoundObjectList
+      do result += mBoundObjectString
       between result += ", "
     end
-    result += optionListString + ")\n"
+    result += mBindingOptionsString + ")\n"
   end
-  for (bindingName, binding) in self.mMultipleBindingGenerationList do
-    result += inIndentation + "  .bind_" + bindingName + " (" + binding.expressionString + ")\n"
+  for (mBindingName, mBoundObjectExpression) in self.mMultipleBindingGenerationList do
+    result += inIndentation + "  .bind_" + mBindingName + " (" + mBoundObjectExpression.expressionString + ")\n"
   end
   switch self.mRunBindingGeneration
   case none :
@@ -2094,16 +2093,16 @@ override func @autoLayoutComputedViewInstructionGeneration.generateAppendViewIns
   end
   result += ")\n"
   self.mFunctionCallList.generate (indentation, !?result)
-  for (bindingName, boundObjectList, optionListString) in self.mRegularBindingsGenerationList do
-    result += indentation + "  .bind_" + bindingName + " ("
-    for (boundObjectString, *) in boundObjectList
-      do result += boundObjectString
+  for (mBindingName, mBoundObjectList, mBindingOptionsString) in self.mRegularBindingsGenerationList do
+    result += indentation + "  .bind_" + mBindingName + " ("
+    for (mBoundObjectString, *) in mBoundObjectList
+      do result += mBoundObjectString
       between result += ", "
     end
-    result += optionListString + ")\n"
+    result += mBindingOptionsString + ")\n"
   end
-  for (bindingName, binding) in self.mMultipleBindingGenerationList do
-    result += indentation + "  .bind_" + bindingName + " (" + binding.expressionString + ")\n"
+  for (mBindingName, mBoundObjectExpression) in self.mMultipleBindingGenerationList do
+    result += indentation + "  .bind_" + mBindingName + " (" + mBoundObjectExpression.expressionString + ")\n"
   end
   switch self.mRunBindingGeneration
   case none :
@@ -2144,14 +2143,14 @@ override func @hStackViewInstructionGeneration.generateViewInstruction (
                          let @string inIndentation) -> @string {
   result = inIndentation + "let " + inName + " = AutoLayoutHorizontalStackView ()\n"
   self.mFuncCallList.generate (inIndentation, !?result)
-  for (bindingName, binding) in self.mMultipleBindingGenerationList do
-    result += inIndentation + "  .bind_" + bindingName + " (" + binding.expressionString + ")\n"
+  for (mBindingName, mBoundObjectExpression) in self.mMultipleBindingGenerationList do
+    result += inIndentation + "  .bind_" + mBindingName + " (" + mBoundObjectExpression.expressionString + ")\n"
   end
-  for (instance, type) in self.mNewStackViewDeclarationList do
-    result += inIndentation + "let " + instance + " = self." + type + " ()\n"
+  for (mInstanciedStackViewName, mTypeStackViewName) in self.mNewStackViewDeclarationList do
+    result += inIndentation + "let " + mInstanciedStackViewName + " = self." + mTypeStackViewName + " ()\n"
   end
-  for (instruction) in self.mInstructionList do
-     result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: inName, inIndentation)
+  for instruction in self.mInstructionList do
+     result += instruction.mInstruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: inName, inIndentation)
   end
 }
 
@@ -2165,14 +2164,14 @@ override func @hStackViewInstructionGeneration.generateAppendViewInstruction (?p
   let name = inReceiverViewName + "_view"
   result += indentation + "let " + name + " = AutoLayoutHorizontalStackView ()\n"
   self.mFuncCallList.generate (indentation, !?result)
-  for (bindingName, binding) in self.mMultipleBindingGenerationList do
-    result += indentation + "  .bind_" + bindingName + " (" + binding.expressionString + ")\n"
+  for (mBindingName, mBoundObjectExpression) in self.mMultipleBindingGenerationList do
+    result += indentation + "  .bind_" + mBindingName + " (" + mBoundObjectExpression.expressionString + ")\n"
   end
-  for (instance, type) in self.mNewStackViewDeclarationList do
-    result += indentation + "let " + instance + " = self." + type + " ()\n"
+  for (mInstanciedStackViewName, mTypeStackViewName) in self.mNewStackViewDeclarationList do
+    result += indentation + "let " + mInstanciedStackViewName + " = self." + mTypeStackViewName + " ()\n"
   end
-  for (instruction) in self.mInstructionList do
-     result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: name, indentation)
+  for instruction in self.mInstructionList do
+     result += instruction.mInstruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: name, indentation)
   end
   result += indentation + "_ = " + inReceiverViewName + " .appendView (" + name + ")\n"
   result += inIndentation + "}\n"
@@ -2195,14 +2194,14 @@ override func @vStackViewInstructionGeneration.generateViewInstruction (
     result += "    self.configure_" + self.mConfiguratorName + " (" + inName + ")\n"
   end
   self.mFuncCallList.generate (inIndentation, !?result)
-  for (bindingName, binding) in self.mMultipleBindingGenerationList do
-    result += inIndentation + "  .bind_" + bindingName + " (" + binding.expressionString + ")\n"
+  for (mBindingName, mBoundObjectExpression) in self.mMultipleBindingGenerationList do
+    result += inIndentation + "  .bind_" + mBindingName + " (" + mBoundObjectExpression.expressionString + ")\n"
   end
-  for (instance, type) in self.mNewStackViewDeclarationList do
-    result += inIndentation + "let " + instance + " = self." + type + " ()\n"
+  for (mInstanciedStackViewName, mTypeStackViewName) in self.mNewStackViewDeclarationList do
+    result += inIndentation + "let " + mInstanciedStackViewName + " = self." + mTypeStackViewName + " ()\n"
   end
-  for (instruction) in self.mInstructionList do
-     result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: inName, inIndentation)
+  for instruction in self.mInstructionList do
+     result += instruction.mInstruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: inName, inIndentation)
   end
 }
 
@@ -2222,14 +2221,14 @@ override func @vStackViewInstructionGeneration.generateAppendViewInstruction (?p
   end
   result += " ()\n"
   self.mFuncCallList.generate (indentation, !?result)
-  for (bindingName, binding) in self.mMultipleBindingGenerationList do
-    result += indentation + "  .bind_" + bindingName + " (" + binding.expressionString + ")\n"
+  for (mBindingName, mBoundObjectExpression) in self.mMultipleBindingGenerationList do
+    result += indentation + "  .bind_" + mBindingName + " (" + mBoundObjectExpression.expressionString + ")\n"
   end
-  for (instance, type) in self.mNewStackViewDeclarationList do
-    result += indentation + "let " + instance + " = self." + type + " ()\n"
+  for (mInstanciedStackViewName, mTypeStackViewName) in self.mNewStackViewDeclarationList do
+    result += indentation + "let " + mInstanciedStackViewName + " = self." + mTypeStackViewName + " ()\n"
   end
-  for (instruction) in self.mInstructionList do // (index)
-     result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: name, indentation)
+  for instruction in self.mInstructionList do // (index)
+     result += instruction.mInstruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: name, indentation)
   end
   result += indentation + "_ = " + inReceiverViewName + ".appendView (" + name + ")\n"
   if self.mConfiguratorName.string != "" then

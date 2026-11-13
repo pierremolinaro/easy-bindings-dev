@@ -2,14 +2,8 @@
 //   AST   
 //------------------------------------------------------------------------------------------------
 
-list @mainXibDescriptorList {
-  public var @mainXibLineDescriptorList mLine
-}
-
-//------------------------------------------------------------------------------------------------
-
-list @mainXibLineDescriptorList {
-  public var @mainXibElement mElement
+struct @mainXibDescriptor {
+  public var [@mainXibElement] mLine
 }
 
 //------------------------------------------------------------------------------------------------
@@ -27,21 +21,21 @@ syntax extension easyBindings_syntax {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
-  rule <main_xib> (?!@mainXibDescriptorList ioElementList) {
+  rule <main_xib> (?![@mainXibDescriptor] ioElementList) {
     $mainxib$
     ${$
     repeat
       select
         $Identifier$ (?let @lstring outletType)
         $identifier$ (?let @lstring outletName)
-        !?ioElementList.append ([@(.outlet (!outletType:outletType, !outletName:outletName))])
+        ioElementList ++= @([.outlet (!outletType:outletType, !outletName:outletName)])
       or
         $literal_string$ (?let @lstring s)
-        !?ioElementList.append ([@(.text (!text:s))])
+        ioElementList ++= @([.text (!text:s)])
       or
         ${$
-        <main_xib_line> (?let @mainXibLineDescriptorList lineDescription)
-        !?ioElementList.append (lineDescription)
+        <main_xib_line> (?let [@mainXibElement] lineDescription)
+        ioElementList ++= @(lineDescription)
         $}$
       end
     while
@@ -52,7 +46,7 @@ syntax extension easyBindings_syntax {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
-  rule <main_xib_line> (!@mainXibLineDescriptorList outLineDescription) {
+  rule <main_xib_line> (![@mainXibElement] outLineDescription) {
     outLineDescription = []
     repeat
       select
@@ -78,18 +72,18 @@ syntax extension easyBindings_syntax {
 //   CODE GENERATION                       
 //------------------------------------------------------------------------------------------------
 
-func @mainXibDescriptorList.generateCode() -> @string outResult {
+func [@mainXibDescriptor].generateCode() -> @string outResult {
   outResult = ""
   if self.count > 0 then
     outResult =  "    var y = OUTLET_HEIGHT * 1.5 * " + self.count + ".0\n"
     outResult += "    let view = NSView (frame:NSRect (x:0.0, y:0.0, width:10.0, height:10.0))\n"
     var idx = 0
     var columnMax = 1
-    for (mLine) in self do
+    for line in self do
       var column = 0
       outResult += "    y -= OUTLET_HEIGHT\n"
-      for (mElement) in mLine do
-        switch mElement
+      for element in line.mLine do
+        switch element
         case text (t) :
           idx += 1
           outResult += "  //--- Text " + t + "\n"
@@ -123,13 +117,13 @@ func @mainXibDescriptorList.generateCode() -> @string outResult {
 
 proc generateTestFile (let @string inBundleIdentifier,
                        let @string inProjectName,
-                       let @mainXibDescriptorList inMainXibDescriptorList,
+                       let [@mainXibDescriptor] inMainXibDescriptorList,
                        let @string inOutputDirectory) {
   if (inMainXibDescriptorList.count > 0) && (inBundleIdentifier != "") then
     var [@string] outlet_identifier_list = []
-    for (mLine) in inMainXibDescriptorList do
-      for (mElement) in mLine do
-        switch mElement
+    for line in inMainXibDescriptorList do
+      for element in line.mLine do
+        switch element
         case text (*) :
         case outlet (*, outletName) :
           !?outlet_identifier_list.append (outletName.string)

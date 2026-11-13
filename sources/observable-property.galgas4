@@ -764,7 +764,7 @@ proc @observablePropertyAST.analyzeObservableProperty (@propertyMap inRootProper
       outSwiftTypeStringForTransientFunctionArgument = outKind.swiftTypeName
       inSemanticContext.mClassMap.searchKey (@(preferencesName (), .nowhere), ?*, ?let preferencesPropertyMap, ?2*)
       defaultValue.analyzeDefaultValueType (
-        [@(propertyType)],
+        [propertyType],
         preferencesPropertyMap,
         ?outDefaultValue
       )

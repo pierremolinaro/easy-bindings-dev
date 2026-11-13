@@ -151,12 +151,12 @@ mutating proc @XcodeProjectDescriptor.addAppTarget(
   !?self.getReferenceKey (?ref: let frameworkBuildRef)
   !?self.getReferenceKey (?ref: let resourceBuildRef)
   var [@2string] dependentTargets = []
-  for (ref) in inDependentTargetRefList do
+  for ref in inDependentTargetRefList do
     !?self.getReferenceKey (?ref: let dependencyBuildRef)
     dependentTargets ++= @(dependencyBuildRef, ref)
   end
   var [@string] resourceFileBuildRefs = inResourceFileBuildRefs
-  for (copy) in inProductCopyList do
+  for copy in inProductCopyList do
     !?self.addBuildFile (!fileRef:copy.mValue0, !fileName:copy.mValue1, ?buildRef:let @string buildRef)
     !?resourceFileBuildRefs.append (buildRef)
   end
@@ -224,7 +224,7 @@ mutating proc @XcodeProjectDescriptor.addGroupWithFiles(
   !?self.getReferenceKey (?ref: outGroupRef)
 //--
   var [@string] childrenRefs = []
-  for (f) in inFileNames do
+  for f in inFileNames do
     if f.pathExtension == "cpp" then
       !?self.addCppFile (!fileName:f, ?fileRef:let @string cppFileRef)
       !?childrenRefs.append (cppFileRef)

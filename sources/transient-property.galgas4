@@ -419,21 +419,21 @@ list @transientDependencyListForGeneration {
     let uwself = if inPreferences then "preferences_" else "unwSelf." end
     result = ""
     let ident = "        "
-    for (dependency, 2*, defaultValue, *) in self do (idx)
-      if defaultValue != "" then
-        result += ident + "var s" + idx + " = " + dependency.modelStringForSelf (uwself) + ".selection" + "\n"
+    for (mDependency, 2*, mDefaultValueAsString, *) in self do (idx)
+      if mDefaultValueAsString != "" then
+        result += ident + "var s" + idx + " = " + mDependency.modelStringForSelf (uwself) + ".selection" + "\n"
         result += ident + "switch s" + idx + " {\n"
         result += ident + "case .single :\n"
         result += ident + "  ()\n"
         result += ident + "case .empty, .multiple :\n"
-        result += ident + "  s" + idx + " = .single (" + defaultValue + ")\n"
+        result += ident + "  s" + idx + " = .single (" + mDefaultValueAsString + ")\n"
         result += ident + "}\n"
       else
-        result += ident + "let s" + idx + " = " + dependency.modelStringForSelf (uwself) + ".selection" + "\n"
+        result += ident + "let s" + idx + " = " + mDependency.modelStringForSelf (uwself) + ".selection" + "\n"
       end
     end
     result += ident + "switch ("
-    for (5*) in self
+    for * in self
     do (idx)
       result += "s" + idx
     between
@@ -441,7 +441,7 @@ list @transientDependencyListForGeneration {
     end
     result += ") {\n"
     result += ident + "case ("
-    for (5*) in self
+    for * in self
     do (idx)
       result += ".single (let v" + idx + ")"
     between
@@ -476,8 +476,8 @@ list @transientDependencyListForGeneration {
 
   func needs_unwSelf (@bool inPreferences) -> @bool {
     result = false
-    for (dep, 4*) in self while not result do
-      result = dep.needs_unwSelf (inPreferences)
+    for (mDependency, 4*) in self while not result do
+      result = mDependency.needs_unwSelf (inPreferences)
     end
   }
 

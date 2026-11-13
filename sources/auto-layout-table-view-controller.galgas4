@@ -2,7 +2,7 @@
 //   AST
 //------------------------------------------------------------------------------------------------
 
-list @autoLayoutTableViewControllerBoundColumnListAST {
+struct @autoLayoutTableViewControllerBoundColumnAST {
   public let @bool mEditable
   public let @lstring mPropertyName
   public let @astAutoLayoutViewInstructionParameterList mColumnParameterListAST
@@ -11,7 +11,7 @@ list @autoLayoutTableViewControllerBoundColumnListAST {
 
 //------------------------------------------------------------------------------------------------
 
-list @autoLayoutTableViewControllerAttributListAST {
+struct @autoLayoutTableViewControllerAttributeAST {
   public let @lstring mAttributeName
   public let @abstractDefaultValue mAttributeValue
 }
@@ -23,8 +23,8 @@ class @autoLayoutTableViewControllerDeclarationAST : @abstractDeclarationAST {
   public let @bool mIsRoot
   public let @lstring mRootEntityName
   public let @lstring mToManyPropertyName
-  public let @autoLayoutTableViewControllerBoundColumnListAST mTableViewControllerBoundColumnListAST
-  public let @autoLayoutTableViewControllerAttributListAST mTableViewControllerAttributListAST
+  public let [@autoLayoutTableViewControllerBoundColumnAST] mTableViewControllerBoundColumnListAST
+  public let [@autoLayoutTableViewControllerAttributeAST] mTableViewControllerAttributListAST
 }
 
 //------------------------------------------------------------------------------------------------
@@ -62,13 +62,13 @@ syntax extension easyBindings_syntax {
   {
     $tableViewController$
     $controllerName$ (?let @lstring controllerName)
-    var @autoLayoutTableViewControllerAttributListAST arrayControllerAttributListAST = []
+    var [@autoLayoutTableViewControllerAttributeAST] arrayControllerAttributListAST = []
     $($
     repeat
       $identifier$ (?let @lstring attributeName)
       $:$
       <explicit_value> (?let @abstractDefaultValue attributeValue)
-      !?arrayControllerAttributListAST.append (attributeName, attributeValue)
+      arrayControllerAttributListAST ++= @(attributeName, attributeValue)
     while
       $,$
     end
@@ -84,7 +84,7 @@ syntax extension easyBindings_syntax {
     end
     $.$
     $identifier$ (?let @lstring relationshipName)
-    var @autoLayoutTableViewControllerBoundColumnListAST arrayControllerBoundColumnListAST = []
+    var [@autoLayoutTableViewControllerBoundColumnAST] arrayControllerBoundColumnListAST = []
     select
       $;$
     or
@@ -109,7 +109,7 @@ syntax extension easyBindings_syntax {
           $sortkey$
           $identifier$ (?sortPropertyName)
         end
-        !?arrayControllerBoundColumnListAST.append (
+        arrayControllerBoundColumnListAST ++= @(
           editableColumn,
           propertyName,
           columnParameterListAST,
@@ -219,19 +219,19 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
   )
 //----------------------------------------------------------- Check array controller attributes
   let attributes = @stringset ["allowsEmptySelection", "allowsMultipleSelection"]
-  let allowedTypes = @typeKindList [@(.boolType)]
+  let allowedTypes = [@typeKind] [.boolType]
   var @stringset definedAttributes = []
   var [@2string] attributeListForGeneration = []
-  for (name, value) in self.mTableViewControllerAttributListAST do
-    if not attributes.contains (name.string) then
-      error (name : "unknown attribute")
-    elsif definedAttributes.contains (name.string) then
-      error (name : "attribute multiply defined")
+  for att in self.mTableViewControllerAttributListAST do
+    if not attributes.contains (att.mAttributeName.string) then
+      error (att.mAttributeName : "unknown attribute")
+    elsif definedAttributes.contains (att.mAttributeName.string) then
+      error (att.mAttributeName : "attribute multiply defined")
     else
-      !?definedAttributes.insert (name.string)
+      !?definedAttributes.insert (att.mAttributeName.string)
     end
-    value.analyzeDefaultValueType (allowedTypes, preferencesPropertyMap, ?let valueAsString)
-    attributeListForGeneration ++= @(name.string, valueAsString)
+    att.mAttributeValue.analyzeDefaultValueType (allowedTypes, preferencesPropertyMap, ?let valueAsString)
+    attributeListForGeneration ++= @(att.mAttributeName.string, valueAsString)
   end
   for s in attributes do
     if not definedAttributes.contains (s) then
@@ -291,9 +291,9 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
       : "a toMany property is required here"
       spoil graphic, arrayControllerModelKind, propertyMap, elementTypeName)
   end
-  var @autoLayoutTableViewControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = []
-  var @autoLayoutTableViewControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = []
-  for (editable, propertyName, columnParameterList, sortPropertyName) in self.mTableViewControllerBoundColumnListAST do
+  var [@autoLayoutTableViewControllerBoundColumnForGeneration] arrayControllerBoundColumnListForGeneration = []
+  var [@autoLayoutTableViewControllerSortedColumnForGeneration] arrayControllerSortedColumnListForGeneration = []
+  for column in self.mTableViewControllerBoundColumnListAST do
   //------- Arguments
     var @autoLayoutClassParameterList formalArgumentList = []
     !?formalArgumentList.append ("title".nowhere , .typeString)
@@ -302,56 +302,56 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
     !?formalArgumentList.append ("headerAlignment".nowhere , .typeEnum (!name: "TextAlignment".nowhere ))
     !?formalArgumentList.append ("contentAlignment".nowhere , .typeEnum (!name: "TextAlignment".nowhere ))
     var [@2string] actualParameterList = []
-    if formalArgumentList.count != columnParameterList.count then
-      error (propertyName : columnParameterList.count .string + " parameter(s), " + formalArgumentList.count + " required")
+    if formalArgumentList.count != column.mColumnParameterListAST.count then
+      error (column.mPropertyName : column.mColumnParameterListAST.count .string + " parameter(s), " + formalArgumentList.count + " required")
     else
-      for (formalName, formalType) in formalArgumentList, (actualName, actualType, actualParameter) in columnParameterList do
-        if formalName.string != actualName.string then
-          error (actualName : "required argument name: " + formalName)
+      for formal in formalArgumentList, actual in column.mColumnParameterListAST do
+        if formal.mParameterName.string != actual.mParameterName.string then
+          error (actual.mParameterName : "required argument name: " + formal.mParameterName)
         end
-        if let formalTypeEnum = formalType.getTypeEnum, let actualTypeEnum = actualType.getTypeEnum then
+        if let formalTypeEnum = formal.mParameterType.getTypeEnum, let actualTypeEnum = actual.mParameterType.getTypeEnum then
           ioSemanticContext.mClassMap.searchKey (formalTypeEnum.name, ?let typeKind, ?3*)
           if let atomicTypeKind = typeKind.getAtomic, let atomicEnumType = atomicTypeKind.kind.getEnumType then
             atomicEnumType.constantMap.searchKey (actualTypeEnum.name, ?*)
           else
             error (formalTypeEnum.name : "this type name is not an enum")
           end
-        elsif actualType != formalType then
-          error (actualName : "the formal parameter requires " + formalType + ", actual parameter is " + actualType)
+        elsif actual.mParameterType != formal.mParameterType then
+          error (actual.mParameterName : "the formal parameter requires " + formal.mParameterType + ", actual parameter is " + actual.mParameterType)
         end
-        if let actualString = actualParameter.getString then
-          actualParameterList ++= @(formalName.string, actualString.value)
+        if let actualString = actual. mParameter.getString then
+          actualParameterList ++= @(formal.mParameterName.string, actualString.value)
         else
-          error (actualName :"parameter value is not string convertible")
+          error (actual.mParameterName :"parameter value is not string convertible")
         end
       end
     end
   //-- Sorted ?
-    if sortPropertyName.string != "" then
-      propertyMap.searchKey
-        (sortPropertyName,
+    if column.mSortPropertyName.string != "" then
+      propertyMap.searchKey (
+        column.mSortPropertyName,
         ?let sortPropertyKind,
         ?2*
       )
       if not sortPropertyKind.isComparable then
-        error (sortPropertyName : "this property is not comparable")
+        error (column.mSortPropertyName : "this property is not comparable")
       end
-      !?arrayControllerSortedColumnListForGeneration.append (
-        propertyName.string,
+      arrayControllerSortedColumnListForGeneration ++= @(
+        column.mPropertyName.string,
         sortPropertyKind,
-        sortPropertyName.string
+        column.mSortPropertyName.string
       )
     end
   //------- Column generation
-    propertyMap.searchKey
-      (propertyName,
+    propertyMap.searchKey (
+      column.mPropertyName,
       ?let propertyKind,
       ?2*
     )
-    !?arrayControllerBoundColumnListForGeneration.append (
-      editable,
-      sortPropertyName.string,
-      propertyName.string,
+    arrayControllerBoundColumnListForGeneration ++= @(
+      column.mEditable,
+      column.mSortPropertyName.string,
+      column.mPropertyName.string,
       propertyKind.swiftTypeName , // columnOutletTypeName.string
       "", // columnBindings.mRunActionName.string
       actualParameterList
@@ -444,8 +444,8 @@ class @autoLayoutTableViewControllerGeneration : @abstractFileGeneration {
   public let @string mOwnerName // document name, prefs name, ...
   public let @lstring mControllerName
   public let @string mModelString
-  public let @autoLayoutTableViewControllerBoundColumnListForGeneration mTableViewControllerBoundColumnListForGeneration
-  public let @autoLayoutTableViewControllerSortedColumnListForGeneration mTableViewControllerSortedColumnListForGeneration
+  public let [@autoLayoutTableViewControllerBoundColumnForGeneration] mTableViewControllerBoundColumnListForGeneration
+  public let [@autoLayoutTableViewControllerSortedColumnForGeneration] mTableViewControllerSortedColumnListForGeneration
   public let @string mModelTypeName
   public let @autoLayoutTableViewControllerModelKind mTableViewControllerModelKind
   public let @string mElementTypeName
@@ -455,7 +455,7 @@ class @autoLayoutTableViewControllerGeneration : @abstractFileGeneration {
 
 //------------------------------------------------------------------------------------------------
 
-list @autoLayoutTableViewControllerBoundColumnListForGeneration {
+struct @autoLayoutTableViewControllerBoundColumnForGeneration {
   public let @bool mEditable
   public let @string mSortPropertyName
   public let @string mDisplayedPropertyName
@@ -466,7 +466,7 @@ list @autoLayoutTableViewControllerBoundColumnListForGeneration {
 
 //------------------------------------------------------------------------------------------------
 
-list @autoLayoutTableViewControllerSortedColumnListForGeneration {
+struct @autoLayoutTableViewControllerSortedColumnForGeneration {
   public let @string mColumnName
   public let @propertyKind mSortPropertyKind
   public let @string mObservablePropertyForSorting
@@ -483,8 +483,8 @@ private filewrapper autoLayoutTableViewControllerGenerationTemplate in "generati
     @string MODEL_STRING,
     @autoLayoutTableViewControllerModelKind MODEL_KIND,
     @string MODEL_TYPE_NAME,
-    @autoLayoutTableViewControllerBoundColumnListForGeneration BOUND_COLUMNS,
-    @autoLayoutTableViewControllerSortedColumnListForGeneration SORTED_COLUMNS,
+    [@autoLayoutTableViewControllerBoundColumnForGeneration] BOUND_COLUMNS,
+    [@autoLayoutTableViewControllerSortedColumnForGeneration] SORTED_COLUMNS,
     @string ELEMENT_TYPE_NAME,
     @stringset OBSERVED_PROPERTIES_FOR_SORTING,
     [@2string] ATTRIBUTE_VALUES
@@ -511,8 +511,8 @@ override proc @autoLayoutTableViewControllerGeneration.generateCodePhase2 (
     ?!@stringset _ioGeneratedFileSet) {
 //-- Build observed property set (for sorting and filtering)
   var @stringset observedProperties = []
-  for (2*, mObservablePropertyForSorting) in self.mTableViewControllerSortedColumnListForGeneration do
-    !?observedProperties.insert (mObservablePropertyForSorting)
+  for column in self.mTableViewControllerSortedColumnListForGeneration do
+    !?observedProperties.insert (column.mObservablePropertyForSorting)
   end
   let s = filewrapper [autoLayoutTableViewControllerGenerationTemplate.autoLayoutTableViewControllerImplementation:
     self.mOwnerName,

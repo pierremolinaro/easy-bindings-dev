@@ -210,10 +210,10 @@ proc analyzeOutlets(
   outletMap = ()
   outTableViewBindingGenerationList = []
   outEBViewGraphicControllerBindingGenerationList = []
-  for (outlet_mOutletTypeName, outlet_mOutletName, outlet_mTableValueBindingDescriptor, outlet_mRunDescriptor, outlet_mEnabledBindingDescriptor, outlet_mHiddenBindingDescriptor, outlet_mRegularBindingList, outlet_mGraphicController) in inOutletDeclarationList do
-    !?outletMap.insertKey (outlet_mOutletName, outlet_mOutletTypeName.string)
-    inSemanticContext.mOutletClassMap.searchKey
-      (outlet_mOutletTypeName,
+  for outlet in inOutletDeclarationList do
+    !?outletMap.insertKey (outlet.mOutletName, outlet.mOutletTypeName.string)
+    inSemanticContext.mOutletClassMap.searchKey (
+      outlet.mOutletTypeName,
       ?*,
       ?let @bool handlesRunAction,
       ?let @bool handlesTableViewBinding,
@@ -223,14 +223,14 @@ proc analyzeOutlets(
       ?let @bool outletClassIsUserDefined
     )
     if not outletClassIsUserDefined then
-      !?ioGeneration.mNeededOutletClasses.insert (outlet_mOutletTypeName.string)
+      !?ioGeneration.mNeededOutletClasses.insert (outlet.mOutletTypeName.string)
     end
   //-- $graphicController
-    switch outlet_mGraphicController
+    switch outlet.mGraphicController
     case none :
     case defined (@lstring controllerName, @lstring propertyName) :
       if not handleGraphicControllerBinding then
-        error (outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle the $graphicController binding")
+        error (outlet.mOutletTypeName : "the '" + outlet.mOutletTypeName + "' type does not handle the $graphicController binding")
       else
         inObservablePropertyMap.searchKey
           (controllerName,
@@ -276,17 +276,17 @@ proc analyzeOutlets(
           error (controllerName : "the bound model should be an array controller")
         end
         !?outEBViewGraphicControllerBindingGenerationList.append (
-          outlet_mOutletName.string,
+          outlet.mOutletName.string,
           controllerName.string
         )
       end
     end
   //-- $tableView
-    switch outlet_mTableValueBindingDescriptor
+    switch outlet.mTableValueBindingDescriptor
     case noTableValueBinding :
     case tableValueBinding (@lstring controllerName) :
       if not handlesTableViewBinding then
-        error (outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle the $tableView binding")
+        error (outlet.mOutletTypeName : "the '" + outlet.mOutletTypeName + "' type does not handle the $tableView binding")
       else
         inObservablePropertyMap.searchKey (
           controllerName,
@@ -297,21 +297,21 @@ proc analyzeOutlets(
           error (controllerName : "the bound model should be an array controller")
         end
         !?outTableViewBindingGenerationList.append (
-          outlet_mOutletName.string,
+          outlet.mOutletName.string,
           controllerName.string
         )
       end
     end
   //-- $run
-    switch outlet_mRunDescriptor
+    switch outlet.mRunDescriptor
     case noAction :
     case action (@lstring target, @lstring action) :
       if not handlesRunAction then
-        error (outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle run action")
+        error (outlet.mOutletTypeName : "the '" + outlet.mOutletTypeName + "' type does not handle run action")
       elsif target.string == "self" then
         inActionMap.searchKey (action)
         !?outTargetActionList.append (
-          outlet_mOutletName.string,
+          outlet.mOutletName.string,
           "self",
           action.string,
           inReceiverSwiftTypeName
@@ -325,7 +325,7 @@ proc analyzeOutlets(
         )
         controllerActionMap.searchKey (action)
         !?outTargetActionList.append (
-          outlet_mOutletName.string,
+          outlet.mOutletName.string,
           if inPreferences then "preferences_" else "" end + target.string,
           action.string,
           "Controller_" + inReceiverSwiftTypeName + "_" + target
@@ -333,7 +333,7 @@ proc analyzeOutlets(
       end
     end
   //-- Enabled
-    switch outlet_mEnabledBindingDescriptor
+    switch outlet.mEnabledBindingDescriptor
     case noBinding :
     case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
       expression.analyzeExpressionForMultipleBinding
@@ -353,13 +353,13 @@ proc analyzeOutlets(
         error (errorLocation : "expression is not boolean")
       end
       !?outMultipleBindingGenerationList.append (
-        outlet_mOutletName.string,
+        outlet.mOutletName.string,
         "enabled",
         enableExpression
       )
     end
   //-- Hidden
-    switch outlet_mHiddenBindingDescriptor
+    switch outlet.mHiddenBindingDescriptor
     case noBinding :
     case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
       expression.analyzeExpressionForMultipleBinding
@@ -379,7 +379,7 @@ proc analyzeOutlets(
         error (errorLocation : "cet outlet n'accepte pas le binding $hidden")
       end
       !?outMultipleBindingGenerationList.append (
-        outlet_mOutletName.string,
+        outlet.mOutletName.string,
         "hidden",
         hiddenExpression
       )
@@ -390,9 +390,9 @@ proc analyzeOutlets(
       inPreferencesPropertyMap,
       inSemanticContext,
       inObservablePropertyMap,
-      outlet_mOutletTypeName,
-      outlet_mOutletName.string,
-      outlet_mRegularBindingList,
+      outlet.mOutletTypeName,
+      outlet.mOutletName.string,
+      outlet.mRegularBindingList,
       if inPreferences then "preferences_" else "self." end,
       !?outRegularBindingsGenerationList
     )
@@ -475,13 +475,13 @@ proc analyzeRegularBinding(
         + boundModelTypeList.count + ")"
       )
     else
-      for (required_mModelType, required_mModelShouldBeWritableProperty) in outletBindingSpecificationModelList, (found_mKind, found_mErrorLocation) in boundModelTypeList do
-        if required_mModelShouldBeWritableProperty && found_mKind.isTransient then
-          error (found_mErrorLocation : "the model is transient and the binding requires an writable model")
+      for required in outletBindingSpecificationModelList, found in boundModelTypeList do
+        if required.mModelShouldBeWritableProperty && found.mKind.isTransient then
+          error (found.mErrorLocation : "the model is transient and the binding requires an writable model")
         end
-        if required_mModelType.isEnumType && found_mKind.isEnumType then // Ok
-        elsif required_mModelType.swiftTypeName != found_mKind.swiftTypeName then
-          error (found_mErrorLocation : "the model type should be " + required_mModelType.swiftTypeName)
+        if required.mModelType.isEnumType && found.mKind.isEnumType then // Ok
+        elsif required.mModelType.swiftTypeName != found.mKind.swiftTypeName then
+          error (found.mErrorLocation : "the model type should be " + required.mModelType.swiftTypeName)
         end
       end
     end
@@ -499,17 +499,16 @@ proc analyzeRegularBinding(
       end
       error (mBindingName : s)
     else
-      for (controller_mOptionType, controller_mOptionName) in controllerBindingOptionDecoratedList,
-          (binding_mOptionName, binding_mOptionValue) in mBindingOptionList do
-        if controller_mOptionName.string != binding_mOptionName.string then
-          error (binding_mOptionName : "the option name should be '" + controller_mOptionName + "'")
+      for controller in controllerBindingOptionDecoratedList, binding in mBindingOptionList do
+        if controller.mOptionName.string != binding.mOptionName.string then
+          error (binding.mOptionName : "the option name should be '" + controller.mOptionName + "'")
         end
-        binding_mOptionValue.analyzeDefaultValueType (
-          [@(controller_mOptionType)],
+        binding.mOptionValue.analyzeDefaultValueType (
+          [controller.mOptionType],
           inPreferencesPropertyMap,
           ?let @string optionValueAsString
         )
-        bindingOptionString += ", " + controller_mOptionName.string + ":" + optionValueAsString
+        bindingOptionString += ", " + controller.mOptionName.string + ":" + optionValueAsString
       end
     end
   //-- Generate binding

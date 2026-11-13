@@ -260,15 +260,15 @@ proc generateSelectionControllers(
   let @selectionControllerForGeneration inArrayControllerListForGeneration,
   let @string inOutputDirectory,
   ?!@stringset ioGeneratedFileSet) {
-  for (ownerName, selectionControllerName, 2*, baseTypeName, selectionTypeName, selectionObservablePropertyMap, propertyGenerationList) in inArrayControllerListForGeneration do
-    if baseTypeName == selectionTypeName then
+  for (mOwnerName, mSelectionControllerName, 2*, mBaseTypeName, mSelectionTypeName, mSelectionObservablePropertyMap, mPropertyGenerationList) in inArrayControllerListForGeneration do
+    if mBaseTypeName == mSelectionTypeName then
       let s = filewrapper [selectionControllerGenerationTemplate.baseSelectionControllerImplementation:
-        ownerName,
-        selectionControllerName,
-        baseTypeName,
-        selectionObservablePropertyMap
+        mOwnerName,
+        mSelectionControllerName,
+        mBaseTypeName,
+        mSelectionObservablePropertyMap
       ]
-      let fileName = "selectionController-" + ownerName + "-" +  selectionControllerName + ".swift"
+      let fileName = "selectionController-" + mOwnerName + "-" +  mSelectionControllerName + ".swift"
       !?ioGeneratedFileSet.insert (fileName)
       @string.generateFile (
         inOutputDirectory,
@@ -277,18 +277,18 @@ proc generateSelectionControllers(
       )
     else
       var hasAtomicStoredProperties = false
-      for (property) in propertyGenerationList while not hasAtomicStoredProperties do
-        hasAtomicStoredProperties = property is @atomicPropertyGeneration
+      for property in mPropertyGenerationList while not hasAtomicStoredProperties do
+        hasAtomicStoredProperties = property.mProperty is @atomicPropertyGeneration
       end
       let s = filewrapper [selectionControllerGenerationTemplate.derivedSelectionControllerImplementation:
-        ownerName,
-        selectionControllerName,
-        baseTypeName,
-        selectionTypeName,
-        propertyGenerationList,
+        mOwnerName,
+        mSelectionControllerName,
+        mBaseTypeName,
+        mSelectionTypeName,
+        mPropertyGenerationList,
         hasAtomicStoredProperties
       ]
-      let fileName = "selectionController-" + ownerName + "-" +  selectionControllerName + ".swift"
+      let fileName = "selectionController-" + mOwnerName + "-" +  mSelectionControllerName + ".swift"
       !?ioGeneratedFileSet.insert (fileName)
       @string.generateFile (
         inOutputDirectory,

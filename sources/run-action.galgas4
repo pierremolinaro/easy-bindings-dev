@@ -44,8 +44,8 @@ proc buildActionMap(
   !@actionMap outActionMap)
 {
   outActionMap = ()
-  for (mValue) in inActionDeclarationList do
-    !?outActionMap.insertKey (mValue)
+  for action in inActionDeclarationList do
+    !?outActionMap.insertKey (action)
   end
 }
 

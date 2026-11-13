@@ -195,11 +195,11 @@ override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSe
     )
   //-- Merge properties
     var newPropertyMap = inheritedPropertyMap
-    for (lkey, kind, actionMap, isOverriding) in propertyMap do
-      if isOverriding then
+    for (lkey, mKind, mActionMap, mIsOverriding) in propertyMap do
+      if mIsOverriding then
         inheritedPropertyMap.searchKey (lkey, ?3*)
       else
-        !?newPropertyMap.insertKey (lkey, kind, actionMap, false)
+        !?newPropertyMap.insertKey (lkey, mKind, mActionMap, false)
       end
     end
   //-- Replace property map
@@ -267,7 +267,7 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
   var canCopyAndPaste_option = false
   var cannotBeDeleted_option = false
 
-  for (graphicOption) in self.mGraphicOptionArray do
+  for graphicOption in self.mGraphicOptionArray do
     if graphicOption.string == "canCopyAndPaste" then
       if canCopyAndPaste_option then
         error (graphicOption : "duplicated option")
@@ -359,23 +359,23 @@ class @entityForGeneration : @abstractFileGeneration {
     var @transientPropertyGenerationList transientPropertyGenerationList = []
     var @computedPropertyGenerationList computedPropertyGenerationList = []
     var @toOnePropertyGenerationList toOnePropertyGenerationList = []
-    var @toManyPropertyGenerationList toManyPropertyGenerationList = []
+    var [@toManyPropertyGeneration] toManyPropertyGenerationList = []
     var @atomicProxyGenerationList proxyGenerationList = []
     var @toManyProxyGenerationList toManyProxyGenerationList = []
-    for (property) in self.mPropertyGenerationList do
-      if let atomicProperty = property as @atomicPropertyGeneration then
+    for property in self.mPropertyGenerationList do
+      if let atomicProperty = property.mProperty as @atomicPropertyGeneration then
         !?atomicPropertyGenerationList.append (atomicProperty)
-      elsif let transientProperty = property as @transientPropertyGeneration then
+      elsif let transientProperty = property.mProperty as @transientPropertyGeneration then
         !?transientPropertyGenerationList.append (transientProperty)
-      elsif let computedProperty = property as @computedPropertyGeneration then
+      elsif let computedProperty = property.mProperty as @computedPropertyGeneration then
         !?computedPropertyGenerationList.append (computedProperty)
-      elsif let toManyProxy = property as @toManyProxyGeneration then
+      elsif let toManyProxy = property.mProperty as @toManyProxyGeneration then
         !?toManyProxyGenerationList.append (toManyProxy)
-      elsif let proxyProperty = property as @atomicProxyGeneration then
+      elsif let proxyProperty = property.mProperty as @atomicProxyGeneration then
         !?proxyGenerationList.append (proxyProperty)
-      elsif let toOneProperty = property as @toOnePropertyGeneration then
+      elsif let toOneProperty = property.mProperty as @toOnePropertyGeneration then
         !?toOnePropertyGenerationList.append (toOneProperty)
-      elsif let toOneProperty = property as @toManyPropertyGeneration then
+      elsif let toOneProperty = property.mProperty as @toManyPropertyGeneration then
         !?toManyPropertyGenerationList.append (toOneProperty)
       end
     end
@@ -519,7 +519,7 @@ private filewrapper entityGenerationTemplate in "generation-templates" {
     @transientPropertyGenerationList TRANSIENT_LIST_FOR_IMPLEMENTATION,
     @computedPropertyGenerationList COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION,
     @toOnePropertyGenerationList TO_ONE_RELATIONSHIP_LIST,
-    @toManyPropertyGenerationList TO_MANY_RELATIONSHIP_LIST,
+    [@toManyPropertyGeneration] TO_MANY_RELATIONSHIP_LIST,
     @stringset SIGNATURE_SET,
     @bool IS_GRAPHIC_ENTITY,
     @bool IS_ABSTRACT,
@@ -542,7 +542,7 @@ private filewrapper entityGenerationTemplate in "generation-templates" {
     @transientPropertyGenerationList TRANSIENT_LIST_FOR_IMPLEMENTATION,
     @computedPropertyGenerationList COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION,
     @toOnePropertyGenerationList TO_ONE_RELATIONSHIP_LIST,
-    @toManyPropertyGenerationList TO_MANY_RELATIONSHIP_LIST,
+    [@toManyPropertyGeneration] TO_MANY_RELATIONSHIP_LIST,
     @stringset SIGNATURE_SET,
     @bool IS_GRAPHIC_ENTITY,
     @bool IS_ABSTRACT,
@@ -567,7 +567,7 @@ private filewrapper entityGenerationTemplate in "generation-templates" {
     @transientPropertyGenerationList TRANSIENT_LIST_FOR_IMPLEMENTATION,
     @computedPropertyGenerationList COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION,
     @toOnePropertyGenerationList TO_ONE_RELATIONSHIP_LIST,
-    @toManyPropertyGenerationList TO_MANY_RELATIONSHIP_LIST,
+    [@toManyPropertyGeneration] TO_MANY_RELATIONSHIP_LIST,
     @stringset SIGNATURE_SET,
     @bool IS_GRAPHIC_ENTITY,
     @bool IS_ABSTRACT,

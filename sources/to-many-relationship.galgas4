@@ -218,12 +218,6 @@ class @toManyPropertyGeneration : @propertyGeneration {
 
 //------------------------------------------------------------------------------------------------
 
-list @toManyPropertyGenerationList {
-  public var @toManyPropertyGeneration mProperty
-}
-
-//------------------------------------------------------------------------------------------------
-
 override func @toManyPropertyGeneration.propertyDeclarationCode (let @bool _inPreferences,
                                                             let @bool _inGenerationDirectAccess,
                                                             let @stringset _inOverriddenTransients) -> @string {

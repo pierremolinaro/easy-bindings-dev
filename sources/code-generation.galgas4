@@ -35,13 +35,13 @@ list @fileGenerationList {
 //--------------------------------------------------------------------------------------------------
 
 struct @generationStruct {
-  public var @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration = []
+  public var [@validationStubRoutineForGeneration] mValidationStubRoutineListForGeneration = []
   public var @fileGenerationList mFileGenerationList = []
   public var @entityListForGeneratingEBManagedObjectContext mEntityListForGeneration = []
   public var @bool mGenerateEBManagedXibDocumentSwift = false
   public var @bool mGenerateEBManagedAutoLayoutDocumentSwift = false
   public var @stringset mNeededOutletClasses = []
-  public var @mainXibDescriptorList mMainXibDescriptorList = []
+  public var [@mainXibDescriptor] mMainXibDescriptorList = []
 
   public var @stringset mToOneClassImplementations = []
   public var @stringset mToManyClassImplementations = []
@@ -69,16 +69,16 @@ proc generateCode (@string inXcodeProjectString,
   let fileOutputDirectory = outputDirectory + "/../" + projectName
   var @stringset generatedFileSet = ()
   var @stringset usedProtocolSet = ()
-  for (fileGeneration) in inGeneration.mFileGenerationList do
-    fileGeneration.generateCodePhase1 (
+  for fileGeneration in inGeneration.mFileGenerationList do
+    fileGeneration.mFileGeneration.generateCodePhase1 (
       fileOutputDirectory,
       inGeneration,
       !?usedProtocolSet,
       !?generatedFileSet
     )
   end
-  for (fileGeneration) in inGeneration.mFileGenerationList do
-    fileGeneration.generateCodePhase2 (
+  for fileGeneration in inGeneration.mFileGenerationList do
+    fileGeneration.mFileGeneration.generateCodePhase2 (
       fileOutputDirectory,
       inGeneration,
       usedProtocolSet,
@@ -157,14 +157,14 @@ private proc generateStandardProperties (let @string inOutputDirectory,
   generateScalarProperty (inOutputDirectory, "Date", !transient: false, "", !?ioGeneratedFileSet)
   generateScalarProperty (inOutputDirectory, "BezierPathArray", !transient: false, "", !?ioGeneratedFileSet)
 //-- Add class property types
-  for (propertyClass) in inPropertyClassList do
+  for propertyClass in inPropertyClassList do
     generateClassProperty (inOutputDirectory, propertyClass, !transient: false, !?ioGeneratedFileSet)
   end
-  for (propertyType, isClass) in inTransientPropertyExternTypeList do
-    if isClass then
-      generateClassProperty (inOutputDirectory, propertyType, !transient: true, !?ioGeneratedFileSet)
+  for (mTypeName, mIsClass) in inTransientPropertyExternTypeList do
+    if mIsClass then
+      generateClassProperty (inOutputDirectory, mTypeName, !transient: true, !?ioGeneratedFileSet)
     else
-      generateScalarProperty (inOutputDirectory, propertyType, !transient: true, "", !?ioGeneratedFileSet)
+      generateScalarProperty (inOutputDirectory, mTypeName, !transient: true, "", !?ioGeneratedFileSet)
     end
   end
   generateClassProperty (inOutputDirectory, "NSBezierPath", !transient: false, !?ioGeneratedFileSet)

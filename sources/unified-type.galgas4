@@ -84,12 +84,6 @@ func @typeKind.isGraphic() -> @bool outResult {
 
 //------------------------------------------------------------------------------------------------
 
-list @typeKindList {
-  public var @typeKind mType
-}
-
-//------------------------------------------------------------------------------------------------
-
 func @propertyKind.typeName () -> @string {
   switch self
   case property (type, *) :

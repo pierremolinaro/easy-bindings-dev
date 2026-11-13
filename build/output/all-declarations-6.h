@@ -290,9 +290,9 @@ class GGS_autoLayoutTableViewControllerGeneration : public GGS_abstractFileGener
 
   public: class GGS_string readProperty_mModelString (void) const ;
 
-  public: class GGS_autoLayoutTableViewControllerBoundColumnListForGeneration readProperty_mTableViewControllerBoundColumnListForGeneration (void) const ;
+  public: class GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_ readProperty_mTableViewControllerBoundColumnListForGeneration (void) const ;
 
-  public: class GGS_autoLayoutTableViewControllerSortedColumnListForGeneration readProperty_mTableViewControllerSortedColumnListForGeneration (void) const ;
+  public: class GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_ readProperty_mTableViewControllerSortedColumnListForGeneration (void) const ;
 
   public: class GGS_string readProperty_mModelTypeName (void) const ;
 
@@ -310,8 +310,8 @@ class GGS_autoLayoutTableViewControllerGeneration : public GGS_abstractFileGener
   public: static GGS_autoLayoutTableViewControllerGeneration init_21__21__21__21__21__21__21__21__21__21_ (const class GGS_string & inOperand0,
                                                                                                            const class GGS_lstring & inOperand1,
                                                                                                            const class GGS_string & inOperand2,
-                                                                                                           const class GGS_autoLayoutTableViewControllerBoundColumnListForGeneration & inOperand3,
-                                                                                                           const class GGS_autoLayoutTableViewControllerSortedColumnListForGeneration & inOperand4,
+                                                                                                           const class GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_ & inOperand3,
+                                                                                                           const class GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_ & inOperand4,
                                                                                                            const class GGS_string & inOperand5,
                                                                                                            const class GGS_autoLayoutTableViewControllerModelKind & inOperand6,
                                                                                                            const class GGS_string & inOperand7,
@@ -355,8 +355,8 @@ class cPtr_autoLayoutTableViewControllerGeneration : public cPtr_abstractFileGen
   public: void autoLayoutTableViewControllerGeneration_init_21__21__21__21__21__21__21__21__21__21_ (const class GGS_string & inOperand0,
                                                                                                      const class GGS_lstring & inOperand1,
                                                                                                      const class GGS_string & inOperand2,
-                                                                                                     const class GGS_autoLayoutTableViewControllerBoundColumnListForGeneration & inOperand3,
-                                                                                                     const class GGS_autoLayoutTableViewControllerSortedColumnListForGeneration & inOperand4,
+                                                                                                     const class GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_ & inOperand3,
+                                                                                                     const class GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_ & inOperand4,
                                                                                                      const class GGS_string & inOperand5,
                                                                                                      const class GGS_autoLayoutTableViewControllerModelKind & inOperand6,
                                                                                                      const class GGS_string & inOperand7,
@@ -383,8 +383,8 @@ class cPtr_autoLayoutTableViewControllerGeneration : public cPtr_abstractFileGen
   public: GGS_string mProperty_mOwnerName ;
   public: GGS_lstring mProperty_mControllerName ;
   public: GGS_string mProperty_mModelString ;
-  public: GGS_autoLayoutTableViewControllerBoundColumnListForGeneration mProperty_mTableViewControllerBoundColumnListForGeneration ;
-  public: GGS_autoLayoutTableViewControllerSortedColumnListForGeneration mProperty_mTableViewControllerSortedColumnListForGeneration ;
+  public: GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_ mProperty_mTableViewControllerBoundColumnListForGeneration ;
+  public: GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_ mProperty_mTableViewControllerSortedColumnListForGeneration ;
   public: GGS_string mProperty_mModelTypeName ;
   public: GGS_autoLayoutTableViewControllerModelKind mProperty_mTableViewControllerModelKind ;
   public: GGS_string mProperty_mElementTypeName ;
@@ -399,8 +399,8 @@ class cPtr_autoLayoutTableViewControllerGeneration : public cPtr_abstractFileGen
   public: cPtr_autoLayoutTableViewControllerGeneration (const GGS_string & in_mOwnerName,
                                                         const GGS_lstring & in_mControllerName,
                                                         const GGS_string & in_mModelString,
-                                                        const GGS_autoLayoutTableViewControllerBoundColumnListForGeneration & in_mTableViewControllerBoundColumnListForGeneration,
-                                                        const GGS_autoLayoutTableViewControllerSortedColumnListForGeneration & in_mTableViewControllerSortedColumnListForGeneration,
+                                                        const GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_ & in_mTableViewControllerBoundColumnListForGeneration,
+                                                        const GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_ & in_mTableViewControllerSortedColumnListForGeneration,
                                                         const GGS_string & in_mModelTypeName,
                                                         const GGS_autoLayoutTableViewControllerModelKind & in_mTableViewControllerModelKind,
                                                         const GGS_string & in_mElementTypeName,

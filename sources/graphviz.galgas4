@@ -27,7 +27,7 @@ proc graphvizAnalysis (
   let [@lstring] inGraphvizList)
 {
   if @uint.errorCount == 0 then
-    for (rootEntityName) in inGraphvizList do
+    for rootEntityName in inGraphvizList do
       graphvizRootEntityAnalysis (inSourceFileDirectory, inSemanticContext, rootEntityName.string)
       graphvizRootEntityStrongAnalysis (inSourceFileDirectory, inSemanticContext, rootEntityName.string)
     end
@@ -55,12 +55,12 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
       end
       !?arrowList.append ("  " + entityName + " -> " + superEntityName +  " [dir=both arrowtail=dot arrowhead=normal]")
     end
-    for (propertyName, propertyKind, 2*) in propertyMap do
-      switch propertyKind
+    for (lkey, mKind, 2*) in propertyMap do
+      switch mKind
       case property (type, accessibility) :
         switch accessibility
         case stored :
-          node += "|" + type.swiftTypeName + " " + propertyName
+          node += "|" + type.swiftTypeName + " " + lkey
         case transient (*) :
         case computed :
         end
@@ -68,41 +68,41 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
       case selectionController (*) :
       case toMany (@lstring typeName, @propertyAccessibility accessibility, *, optionKind) :
        if accessibility.isStored then
-         node += "|<" + propertyName + ">[" + typeName + "] " + propertyName
+         node += "|<" + lkey + ">[" + typeName + "] " + lkey
          switch optionKind
          case none :
            if not reachableEntityNameSet.contains (typeName) then
               !?reachableEntityNameSet.insert (typeName)
               !?exploreArray.append (typeName)
            end
-           !?arrowList.append ("  " + entityName + ":" + propertyName
+           !?arrowList.append ("  " + entityName + ":" + lkey
              + " -> " + typeName + " [dir=both arrowtail=none arrowhead=veevee]")
          case hasOpposite (oppositeName) :
            if not reachableEntityNameSet.contains (typeName) then
              !?reachableEntityNameSet.insert (typeName)
              !?exploreArray.append (typeName)
            end
-           !?arrowList.append ("  " + entityName + ":" + propertyName
+           !?arrowList.append ("  " + entityName + ":" + lkey
               + " -> " + typeName + ":" + oppositeName + " [dir=both arrowtail=onormal arrowhead=veevee]")
          case hasDependance (*) :
            if not reachableEntityNameSet.contains (typeName) then
              !?reachableEntityNameSet.insert (typeName)
              !?exploreArray.append (typeName)
            end
-           !?arrowList.append ("  " + entityName + ":" + propertyName
+           !?arrowList.append ("  " + entityName + ":" + lkey
               + " -> " + typeName + " [dir=both arrowtail=none arrowhead=veevee]")
          end
         end
       case toOne (@lstring typeName, @propertyAccessibility accessibility, *, opposite, *) :
         if accessibility.isStored then
-          node += "|<" + propertyName + ">" + typeName + "? " + propertyName
+          node += "|<" + lkey + ">" + typeName + "? " + lkey
           switch opposite
           case none :
             if not reachableEntityNameSet.contains (typeName) then
               !?reachableEntityNameSet.insert (typeName)
               !?exploreArray.append (typeName)
             end
-            !?arrowList.append ("  " + entityName + ":" + propertyName
+            !?arrowList.append ("  " + entityName + ":" + lkey
                + " -> " + typeName + ":" + typeName + " [dir=both arrowtail=none arrowhead=onormal]")
           case oppositeIsToMany (*) : // No generation
           case oppositeIsToOne (oppositeName) :
@@ -110,8 +110,8 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
               !?reachableEntityNameSet.insert (typeName)
               !?exploreArray.append (typeName)
             end
-            if propertyName.string > oppositeName.string then
-              !?arrowList.append ("  " + entityName + ":" + propertyName
+            if lkey.string > oppositeName.string then
+              !?arrowList.append ("  " + entityName + ":" + lkey
                    + " -> " + typeName + ":" + oppositeName + " [dir=both arrowtail=onormal arrowhead=onormal]")
             end
           end
@@ -125,16 +125,15 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
   var s = "digraph G {\n"
   s += "  rankdir=LR ;\n"
   s += "  node [shape=record fontname=helvetica style=rounded] ;\n"
-  for (node) in nodeList do
+  for node in nodeList do
     s += node + " ;\n"
   end
-  for (arrow) in arrowList do
+  for arrow in arrowList do
     s += arrow + " ;\n"
   end
   s += "}\n"
   let filePath = inSourceFileDirectory + "/models/graph-" + inRootEntityName + ".dot"
   let temp = filePath.deletingLastPathComponent ; temp.makeDirectory ()
-//  filePath.deletingLastPathComponent ().makeDirectory ()
 }
 
 //------------------------------------------------------------------------------------------------
@@ -167,8 +166,8 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
       !?arrowList.append (superEntityName + " -> " + entityName +  " [arrowtail=dot arrowhead=normal]")
       !?entityStrongReferenceGraph.addEdge (!from: @(superEntityName, .nowhere), !to: @(entityName, .nowhere))
     end
-    for (*, propertyKind, 2*) in propertyMap do
-      switch propertyKind
+    for (*, mKind, 2*) in propertyMap do
+      switch mKind
       case property (2 *) :
       case arrayController (2*) :
       case selectionController (*) :
@@ -208,10 +207,10 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
   var s = "digraph G {\n"
   s += "  rankdir=LR ;\n"
   s += "  node [shape=record fontname=helvetica style=rounded] ;\n"
-  for (node) in nodeList do
+  for node in nodeList do
     s += "  " + node + " ;\n"
   end
-  for (arrow) in arrowList do
+  for arrow in arrowList do
     s += "  " + arrow + " ;\n"
   end
   s += "}\n"
@@ -225,7 +224,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
   let undefinedNodeList = entityStrongReferenceGraph.undefinedNodeKeyList
   if undefinedNodeList.count > 0 then
     var s = "for " + inRootEntityName + " graph , the following entities are not defined"
-    for (node) in undefinedNodeList do
+    for node in undefinedNodeList do
       s += "\n -- " + node
     end
     error (.nowhere : s)
@@ -237,7 +236,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
       []
     )
     let accessibleNodeSet = @stringset (!lstringArray: accessibleNodeList)
-    for (node) in nodeList do
+    for node in nodeList do
       if not accessibleNodeSet.contains (node) then
         error (.nowhere : node + " entity is not reachable via strong reference from " + inRootEntityName)
       end
