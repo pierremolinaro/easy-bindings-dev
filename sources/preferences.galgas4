@@ -6,7 +6,7 @@ struct @prefDeclaration {
   public var [@outletDeclarationAST] mOutletDeclarationList = []
   public var [@simpleStoredProperty] mSimpleStoredAttributeList = []
   public var [@lstring] mActionDeclarationList = []
-  public var @externSwiftFunctionList mExternSwiftFunctionList = []
+  public var [@externSwiftFunction] mExternSwiftFunctionList = []
   public var @stringset mSignatureList = []
   public var [@mainXibDescriptor] mMainXibDescriptorList = []
   public var [@astViewDeclaration] mViewDeclarationList = []
@@ -120,14 +120,14 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
 //-- Analyze extern functions
   let @stringset availableCallers = ["awakeFromNib", "init"]
   var @externFunctionMap externFunctionMap = ()
-  for (mExternSwiftFunctionName, mCallerName) in self.mDeclaration.mExternSwiftFunctionList do
-    !?externFunctionMap.insertKey (mExternSwiftFunctionName)
-    if not availableCallers.contains (mCallerName.string) then
+  for externFunc in self.mDeclaration.mExternSwiftFunctionList do
+    !?externFunctionMap.insertKey (externFunc.mExternSwiftFunctionName)
+    if not availableCallers.contains (externFunc.mCallerName.string) then
       var s = "invalid caller; available callers:"
       for str in availableCallers do
         s += "\n  - " + str
       end
-      error (mCallerName : s)
+      error (externFunc.mCallerName : s)
     end
   end
 //-- Get preference property map
@@ -150,12 +150,12 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
     actionMap,
     preferencesName (),
     !?ioGeneration,
-    ?let @regularBindingsGenerationList regularBindingsGenerationList,
+    ?let [@regularBindingsGeneration] regularBindingsGenerationList,
     ?let [@multipleBindingGeneration] multipleBindingGenerationList,
-    ?let @actionBindingListForGeneration actionBindingListForGeneration,
+    ?let [@actionBindingForGeneration] actionBindingListForGeneration,
     ?let @decoratedOutletMap outletMap,
-    ?let @tableViewBindingGenerationList tableViewBindingGenerationList,
-    ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
+    ?let [@tableViewBindingGeneration] tableViewBindingGenerationList,
+    ?let [@ebViewGraphicControllerBindingGeneration] ebViewGraphicControllerBindingGenerationList
   )
 //-- Check auto layout view declarations
   var @autoLayoutViewDeclarationMap viewDeclarationMap = ()
@@ -211,15 +211,15 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
 //--------------------------------------------------------------------------------------------------
 
 class @preferencesForGeneration : @abstractFileGeneration {
-  public let @propertyGenerationList mPropertyListForGeneration
+  public let [@propertyGeneration] mPropertyListForGeneration
   public let [@mainXibDescriptor] mMainXibDescriptorList
-  public let @regularBindingsGenerationList mRegularBindingsGenerationList
+  public let [@regularBindingsGeneration] mRegularBindingsGenerationList
   public let [@multipleBindingGeneration] mMultipleBindingGenerationList
-  public let @actionBindingListForGeneration mActionBindingListForGeneration
+  public let [@actionBindingForGeneration] mActionBindingListForGeneration
   public let @decoratedOutletMap mOutletMap
-  public let @externSwiftFunctionList mExternSwiftFunctionList
-  public let @tableViewBindingGenerationList mTableViewBindingGenerationList
-  public let @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
+  public let [@externSwiftFunction] mExternSwiftFunctionList
+  public let [@tableViewBindingGeneration] mTableViewBindingGenerationList
+  public let [@ebViewGraphicControllerBindingGeneration] mEBViewBindingGenerationList
   public let [@viewGeneration] mViewGenerationList
   public let [@abstractViewInstructionGeneration] mImplicitViewFunctionGenerationList
   public let @autoLayoutConfiguratorMap mConfiguratorMap
@@ -232,15 +232,15 @@ private filewrapper prefsGenerationTemplate in "generation-templates" {
 }{
 }{
   template preferences : "preferences.swift.galgasTemplate" (
-    @propertyGenerationList PROPERTY_LIST_FOR_GENERATION,
+    [@propertyGeneration] PROPERTY_LIST_FOR_GENERATION,
     [@mainXibDescriptor] MAIN_XIB_DESCRIPTOR_LIST,
     @decoratedOutletMap OUTLET_MAP,
-    @regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST,
-    @actionBindingListForGeneration TARGET_ACTION_LIST,
+    [@regularBindingsGeneration] REGULAR_BINDINGS_GENERATION_LIST,
+    [@actionBindingForGeneration] TARGET_ACTION_LIST,
     [@multipleBindingGeneration] MULTIPLE_BINDING_GENERATION_LIST,
-    @externSwiftFunctionList EXTERN_SWIFT_FUNCTION_LIST,
-    @tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST,
-    @ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST,
+    [@externSwiftFunction] EXTERN_SWIFT_FUNCTION_LIST,
+    [@tableViewBindingGeneration] TABLE_VALUE_BINDING_GENERATION_LIST,
+    [@ebViewGraphicControllerBindingGeneration] EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST,
     [@viewGeneration] VIEW_GENERATION_LIST,
     [@abstractViewInstructionGeneration] IMPLICIT_VIEW_GENERATION_FUNCTION_LIST,
     @autoLayoutOutletMap AUTO_LAYOUT_OUTLET_MAP

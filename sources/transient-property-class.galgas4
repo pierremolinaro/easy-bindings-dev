@@ -65,7 +65,7 @@ override proc @transientClassDeclarationAST.firstAnalysisPhase(
     (),
     []
   )
-  !?ioGeneration.mTransientPropertyTypeList.append (self.mClassName.string, self.mIsClass)
+  ioGeneration.mTransientPropertyTypeList ++= @(self.mClassName.string, self.mIsClass)
 }
 
 //------------------------------------------------------------------------------------------------

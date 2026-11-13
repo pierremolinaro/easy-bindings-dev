@@ -2,8 +2,8 @@
 //--------------------------------------------------------------------------------------------------
 
 @MainActor func %!TRANSIENT_FUNCTION_NAME_PREFIX%_%!OWNER_NAME%_%!TRANSIENT_NAME% (%?^
-for (* mFunctionArgumentName mFunctionArgumentTypeString 2*) in DEPENDENCY_LIST
-do %\n       _ %!mFunctionArgumentName% : %!mFunctionArgumentTypeString
+for (property) in DEPENDENCY_LIST
+do %\n       _ %!property.mFunctionArgumentName% : %!property.mFunctionArgumentTypeString
 between %,%!^
 end
 %

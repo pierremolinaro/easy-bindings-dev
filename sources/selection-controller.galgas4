@@ -220,14 +220,14 @@ override func @selectionControllerPropertyGeneration.initCode() -> @string {
 //------------------------------------------------------------------------------------------------
 
 struct @selectionControllerForGeneration {
-  public var @string mOwnerName // document name, prefs name, ...
-  public var @string mSelectionControllerName
-  public var @string mBoundControllerName
-  public var @string mBoundControllerPropertyName
-  public var @string mBaseTypeName
-  public var @string mSelectionTypeName
-  public var @propertyMap mSelectionObservablePropertyMap
-  public var @propertyGenerationList mPropertyGenerationList
+  let @string mOwnerName // document name, prefs name, ...
+  let @string mSelectionControllerName
+  let @string mBoundControllerName
+  let @string mBoundControllerPropertyName
+  let @string mBaseTypeName
+  let @string mSelectionTypeName
+  let @propertyMap mSelectionObservablePropertyMap
+  let [@propertyGeneration] mPropertyGenerationList
 }
 
 //------------------------------------------------------------------------------------------------
@@ -247,7 +247,7 @@ private filewrapper selectionControllerGenerationTemplate in "generation-templat
     @string SELECTION_CONTROLLER_NAME,
     @string BASE_ELEMENT_TYPE_NAME,
     @string DERIVED_ELEMENT_TYPE_NAME,
-    @propertyGenerationList PROPERTY_GENERATION_LIST,
+    [@propertyGeneration] PROPERTY_GENERATION_LIST,
     @bool HAS_ATOMIC_PROPERTIES
   )
 }
@@ -278,7 +278,7 @@ proc generateSelectionControllers(
     else
       var hasAtomicStoredProperties = false
       for property in controller.mPropertyGenerationList while not hasAtomicStoredProperties do
-        hasAtomicStoredProperties = property.mProperty is @atomicPropertyGeneration
+        hasAtomicStoredProperties = property is @atomicPropertyGeneration
       end
       let s = filewrapper [selectionControllerGenerationTemplate.derivedSelectionControllerImplementation:
         controller.mOwnerName,

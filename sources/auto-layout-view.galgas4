@@ -790,7 +790,7 @@ override proc @astComputedHorizontalViewDeclaration.checkView(
      !?ioOutletMap,
      ?let [@autoLayoutViewInstructionGenerationFuncCall] funcCallList
   )
-  var @autoLayoutViewInstructionGenerationList instructionList = []
+  var [@abstractViewInstructionGeneration] instructionList = []
   for instruction in self.mInstructionList do
     instruction.generateViewCode
       (inViewDeclarationMap,
@@ -830,7 +830,7 @@ override proc @astComputedVerticalViewDeclaration.checkView(
                                   ?!@autoLayoutOutletMap ioOutletMap,
                                   !@abstractViewGeneration outGeneration) {
   inClassMap.searchKey (@(preferencesName (), .nowhere), ?2*, ?let preferencesActionMap, ?*)
-  var @autoLayoutViewInstructionGenerationList instructionList = []
+  var [@abstractViewInstructionGeneration] instructionList = []
   self.mFunctionCallList.checkViewFunctionCallList (
      inSemanticContext.mAutoLayoutVStackFunctionMap,
      inViewDeclarationMap,
@@ -864,7 +864,7 @@ override proc @astComputedVerticalViewDeclaration.checkView(
       !?ioOutletMap,
       ?let generatedInstruction
     )
-    instructionList ++= @(generatedInstruction)
+    instructionList ++= generatedInstruction
   end
   outGeneration = @computedVerticalViewGeneration (
     self.mHasVerticalScroller,
@@ -1427,8 +1427,8 @@ proc analyzeAutoLayoutRegularBinding(
 {
   for binding in inRegularBindingList do
   //-- Analyze model
-    var @outletBindingModelList boundModelTypeList = []
-    var @boundObjectList boundModelListForGeneration = []
+    var [@outletBindingModel] boundModelTypeList = []
+    var [@boundObject] boundModelListForGeneration = []
     for observableProperty in binding.mObservablePropertyList do
       observableProperty.analyzeObservableProperty (
         inRootPropertyMap,
@@ -1450,8 +1450,8 @@ proc analyzeAutoLayoutRegularBinding(
       case selectionController (*) :
         error (observableProperty.location :"a selection controller cannot be bound")
       end
-      !?boundModelListForGeneration.append (observableProperty.modelStringForSelf (inSelfSwiftName), kind)
-      !?boundModelTypeList.append (kind, observableProperty.location )
+      boundModelListForGeneration ++= @(observableProperty.modelStringForSelf (inSelfSwiftName), kind)
+      boundModelTypeList ++= @(kind, observableProperty.location )
     end
   //-- Analyze outlet binding
     var [@outletBindingSpecificationModel] outletBindingSpecificationModelList = []
@@ -1547,7 +1547,7 @@ override proc @astHStackViewInstructionDeclaration.generateViewCode(
                         ?!@autoLayoutOutletMap ioOutletMap,
                         !@abstractViewInstructionGeneration outInstruction) {
   inClassMap.searchKey (@(preferencesName (), .nowhere), ?2*, ?let preferencesActionMap, ?*)
-  var @autoLayoutViewInstructionGenerationList instructionList = []
+  var [@abstractViewInstructionGeneration] instructionList = []
   self.mFunctionCallList.checkViewFunctionCallList (
      inSemanticContext.mAutoLayoutHStackFunctionMap,
      inViewDeclarationMap,
@@ -1630,7 +1630,7 @@ override proc @astVStackViewInstructionDeclaration.generateViewCode(
                         ?!@autoLayoutOutletMap ioOutletMap,
                         !@abstractViewInstructionGeneration outInstruction) {
   inClassMap.searchKey (@(preferencesName (), .nowhere), ?2*, ?let preferencesActionMap, ?*)
-  var @autoLayoutViewInstructionGenerationList instructionList = []
+  var [@abstractViewInstructionGeneration] instructionList = []
   self.mFunctionCallList.checkViewFunctionCallList (
      inSemanticContext.mAutoLayoutVStackFunctionMap,
      inViewDeclarationMap,
@@ -1683,7 +1683,7 @@ override proc @astVStackViewInstructionDeclaration.generateViewCode(
       !?ioOutletMap,
       ?let generatedInstruction
     )
-    instructionList ++= @(generatedInstruction)
+    instructionList ++= generatedInstruction
   end
   outInstruction = @vStackViewInstructionGeneration (
     self.mHasVerticalScroller,
@@ -1706,7 +1706,7 @@ abstract class @abstractViewGeneration {
 
 class @computedHorizontalViewGeneration : @abstractViewGeneration {
   let [@autoLayoutViewInstructionGenerationFuncCall] mFuncCallList
-  let @autoLayoutViewInstructionGenerationList mInstructionList
+  let [@abstractViewInstructionGeneration] mInstructionList
   let [@astNewStackViewDeclaration] mNewStackViewDeclarationList
 }
 
@@ -1716,7 +1716,7 @@ class @computedVerticalViewGeneration : @abstractViewGeneration {
   let @bool mHasVerticalScroller
   let @lstring mConfiguratorName
   let [@autoLayoutViewInstructionGenerationFuncCall] mFuncCallList
-  let @autoLayoutViewInstructionGenerationList mInstructionList
+  let [@abstractViewInstructionGeneration] mInstructionList
   let [@astNewStackViewDeclaration] mNewStackViewDeclarationList
 }
 
@@ -1745,7 +1745,7 @@ abstract class @abstractViewInstructionGeneration {
 
 class @hStackViewInstructionGeneration : @abstractViewInstructionGeneration {
   let [@autoLayoutViewInstructionGenerationFuncCall] mFuncCallList
-  let @autoLayoutViewInstructionGenerationList mInstructionList
+  let [@abstractViewInstructionGeneration] mInstructionList
   let [@autoLayoutMultipleBindingGeneration] mMultipleBindingGenerationList
   let [@astNewStackViewDeclaration] mNewStackViewDeclarationList
 }
@@ -1756,7 +1756,7 @@ class @vStackViewInstructionGeneration : @abstractViewInstructionGeneration {
   let @bool mHasVerticalScroller
   let @lstring mConfiguratorName
   let [@autoLayoutViewInstructionGenerationFuncCall] mFuncCallList
-  let @autoLayoutViewInstructionGenerationList mInstructionList
+  let [@abstractViewInstructionGeneration] mInstructionList
   let [@autoLayoutMultipleBindingGeneration] mMultipleBindingGenerationList
   let [@astNewStackViewDeclaration] mNewStackViewDeclarationList
 }
@@ -1829,7 +1829,7 @@ class @autoLayoutLocalViewInstructionGeneration : @abstractViewInstructionGenera
 
 struct @autoLayoutRegularBindingsGeneration {
   let @string mBindingName
-  let @boundObjectList mBoundObjectList
+  let [@boundObject] mBoundObjectList
   let @string mBindingOptionsString
 }
 
@@ -1906,12 +1906,6 @@ proc [@autoLayoutViewInstructionGenerationFuncCall].generate (let @string inInde
 
 //--------------------------------------------------------------------------------------------------
 
-list @autoLayoutViewInstructionGenerationList {
-  let @abstractViewInstructionGeneration mInstruction
-}
-
-//--------------------------------------------------------------------------------------------------
-
 abstract func @abstractViewGeneration.generateViewBuilder (?prefs: let @bool inPreferences,
                                                            let @string inViewName) -> @string
 
@@ -1926,7 +1920,7 @@ override func @computedHorizontalViewGeneration.generateViewBuilder (?prefs: let
     result += "    let " + stackView.mInstanciedStackViewName + " = self." + stackView.mTypeStackViewName + " ()\n"
   end
   for instruction in self.mInstructionList do // (index)
-    result += instruction.mInstruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: "hStackView", "    ")
+    result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: "hStackView", "    ")
   end
   result += "    return hStackView\n"
   result += "  }\n\n"
@@ -1952,7 +1946,7 @@ override func @computedVerticalViewGeneration.generateViewBuilder (?prefs: let @
     result += "    let " + stackView.mInstanciedStackViewName + " = self." + stackView.mTypeStackViewName + " ()\n"
   end
   for instruction in self.mInstructionList do
-    result += instruction.mInstruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: "vStackView", "    ")
+    result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: "vStackView", "    ")
   end
   result += "    return vStackView\n"
   result += "  }\n\n"
@@ -2026,8 +2020,8 @@ override func @autoLayoutComputedViewInstructionGeneration.generateViewInstructi
   self.mFunctionCallList.generate (inIndentation, !?result)
   for binding in self.mRegularBindingsGenerationList do
     result += inIndentation + "  .bind_" + binding.mBindingName + " ("
-    for (mBoundObjectString, *) in binding.mBoundObjectList
-      do result += mBoundObjectString
+    for object in binding.mBoundObjectList
+      do result += object.mBoundObjectString
       between result += ", "
     end
     result += binding.mBindingOptionsString + ")\n"
@@ -2083,8 +2077,8 @@ override func @autoLayoutComputedViewInstructionGeneration.generateAppendViewIns
   self.mFunctionCallList.generate (indentation, !?result)
   for binding in self.mRegularBindingsGenerationList do
     result += indentation + "  .bind_" + binding.mBindingName + " ("
-    for (mBoundObjectString, *) in binding.mBoundObjectList
-      do result += mBoundObjectString
+    for object in binding.mBoundObjectList
+      do result += object.mBoundObjectString
       between result += ", "
     end
     result += binding.mBindingOptionsString + ")\n"
@@ -2138,7 +2132,7 @@ override func @hStackViewInstructionGeneration.generateViewInstruction (
     result += inIndentation + "let " + stackView.mInstanciedStackViewName + " = self." + stackView.mTypeStackViewName + " ()\n"
   end
   for instruction in self.mInstructionList do
-     result += instruction.mInstruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: inName, inIndentation)
+     result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: inName, inIndentation)
   end
 }
 
@@ -2159,7 +2153,7 @@ override func @hStackViewInstructionGeneration.generateAppendViewInstruction (?p
     result += indentation + "let " + stackView.mInstanciedStackViewName + " = self." + stackView.mTypeStackViewName + " ()\n"
   end
   for instruction in self.mInstructionList do
-     result += instruction.mInstruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: name, indentation)
+     result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: name, indentation)
   end
   result += indentation + "_ = " + inReceiverViewName + " .appendView (" + name + ")\n"
   result += inIndentation + "}\n"
@@ -2189,7 +2183,7 @@ override func @vStackViewInstructionGeneration.generateViewInstruction (
     result += inIndentation + "let " + stackView.mInstanciedStackViewName + " = self." + stackView.mTypeStackViewName + " ()\n"
   end
   for instruction in self.mInstructionList do
-     result += instruction.mInstruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: inName, inIndentation)
+     result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: inName, inIndentation)
   end
 }
 
@@ -2216,7 +2210,7 @@ override func @vStackViewInstructionGeneration.generateAppendViewInstruction (?p
     result += indentation + "let " + stackView.mInstanciedStackViewName + " = self." + stackView.mTypeStackViewName + " ()\n"
   end
   for instruction in self.mInstructionList do // (index)
-     result += instruction.mInstruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: name, indentation)
+     result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: name, indentation)
   end
   result += indentation + "_ = " + inReceiverViewName + ".appendView (" + name + ")\n"
   if self.mConfiguratorName.string != "" then

@@ -43,17 +43,11 @@ abstract func @propertyGeneration.initCode () -> @string
 
 //------------------------------------------------------------------------------------------------
 
-list @propertyGenerationList {
-  public var @propertyGeneration mProperty
-}
-
-//------------------------------------------------------------------------------------------------
-
 map @classMap {
   public let @classKind mClassKind
   public let @propertyMap mPropertyMap
   public let @actionMap mActionMap
-  public let @propertyGenerationList mPropertyGenerationList
+  public let [@propertyGeneration] mPropertyGenerationList
   #insertSetter insertKey #errorMessage "the '%K' class is already declared in %L"
   #searchMethod searchKey #errorMessage "there is no '%K' class"
   #searchSubscript searchKey #errorMessage "there is no '%K' class"

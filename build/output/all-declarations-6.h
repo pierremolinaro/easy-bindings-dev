@@ -10,836 +10,6 @@
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension func '@typeKind typeName' (as function)
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_string extensionGetter_typeName (const class GGS_typeKind & inObject,
-                                           class Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension func '@propertyKind typeName' (as function)
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_string extensionGetter_typeName (const class GGS_propertyKind & inObject,
-                                           class Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @autoLayoutTableViewControllerDeclarationAST_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_autoLayoutTableViewControllerDeclarationAST_2E_weak : public GGS_abstractDeclarationAST_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_autoLayoutTableViewControllerDeclarationAST_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_autoLayoutTableViewControllerDeclarationAST_2E_weak (const class GGS_autoLayoutTableViewControllerDeclarationAST & inSource) ;
-
-  public: GGS_autoLayoutTableViewControllerDeclarationAST_2E_weak & operator = (const class GGS_autoLayoutTableViewControllerDeclarationAST & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_autoLayoutTableViewControllerDeclarationAST_2E_weak init_nil (void) {
-    GGS_autoLayoutTableViewControllerDeclarationAST_2E_weak result ;
-    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_autoLayoutTableViewControllerDeclarationAST bang_autoLayoutTableViewControllerDeclarationAST_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_autoLayoutTableViewControllerDeclarationAST unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-//--------------------------------- GALGAS class functions
-  public: static class GGS_autoLayoutTableViewControllerDeclarationAST_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_autoLayoutTableViewControllerDeclarationAST_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerDeclarationAST_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @autoLayoutTableViewControllerPropertyGeneration reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_autoLayoutTableViewControllerPropertyGeneration : public GGS_propertyGeneration {
-//--------------------------------- Default constructor
-  public: GGS_autoLayoutTableViewControllerPropertyGeneration (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_autoLayoutTableViewControllerPropertyGeneration (const class cPtr_autoLayoutTableViewControllerPropertyGeneration * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_string readProperty_mModelString (void) const ;
-
-  public: class GGS_string readProperty_mOwnerName (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_autoLayoutTableViewControllerPropertyGeneration init_21__21__21_ (const class GGS_string & inOperand0,
-                                                                                       const class GGS_string & inOperand1,
-                                                                                       const class GGS_string & inOperand2,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_autoLayoutTableViewControllerPropertyGeneration & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerPropertyGeneration ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @autoLayoutTableViewControllerPropertyGeneration class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_autoLayoutTableViewControllerPropertyGeneration : public cPtr_propertyGeneration {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void autoLayoutTableViewControllerPropertyGeneration_init_21__21__21_ (const class GGS_string & inOperand0,
-                                                                                 const class GGS_string & inOperand1,
-                                                                                 const class GGS_string & inOperand2,
-                                                                                 Compiler * inCompiler) ;
-
-
-//--- Extension func configurationCode
-  public: virtual class GGS_string getter_configurationCode (const class GGS_bool inPreferences,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension func initCode
-  public: virtual class GGS_string getter_initCode (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension func propertyDeclarationCode
-  public: virtual class GGS_string getter_propertyDeclarationCode (const class GGS_bool inPreferences,
-           const class GGS_bool inGenerationDirectAccess,
-           const class GGS_stringset inOverriddenTransients,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Properties
-  public: GGS_string mProperty_mModelString ;
-  public: GGS_string mProperty_mOwnerName ;
-
-
-//--- Default constructor
-  public: cPtr_autoLayoutTableViewControllerPropertyGeneration (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_autoLayoutTableViewControllerPropertyGeneration (const GGS_string & in_mPropertyName,
-                                                                const GGS_string & in_mModelString,
-                                                                const GGS_string & in_mOwnerName,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @autoLayoutTableViewControllerPropertyGeneration_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak : public GGS_propertyGeneration_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak (const class GGS_autoLayoutTableViewControllerPropertyGeneration & inSource) ;
-
-  public: GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak & operator = (const class GGS_autoLayoutTableViewControllerPropertyGeneration & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak init_nil (void) {
-    GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak result ;
-    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_autoLayoutTableViewControllerPropertyGeneration bang_autoLayoutTableViewControllerPropertyGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_autoLayoutTableViewControllerPropertyGeneration unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-//--------------------------------- GALGAS class functions
-  public: static class GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerPropertyGeneration_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @autoLayoutTableViewControllerGeneration reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_autoLayoutTableViewControllerGeneration : public GGS_abstractFileGeneration {
-//--------------------------------- Default constructor
-  public: GGS_autoLayoutTableViewControllerGeneration (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_autoLayoutTableViewControllerGeneration (const class cPtr_autoLayoutTableViewControllerGeneration * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_string readProperty_mOwnerName (void) const ;
-
-  public: class GGS_lstring readProperty_mControllerName (void) const ;
-
-  public: class GGS_string readProperty_mModelString (void) const ;
-
-  public: class GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_ readProperty_mTableViewControllerBoundColumnListForGeneration (void) const ;
-
-  public: class GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_ readProperty_mTableViewControllerSortedColumnListForGeneration (void) const ;
-
-  public: class GGS_string readProperty_mModelTypeName (void) const ;
-
-  public: class GGS_autoLayoutTableViewControllerModelKind readProperty_mTableViewControllerModelKind (void) const ;
-
-  public: class GGS_string readProperty_mElementTypeName (void) const ;
-
-  public: class GGS_bool readProperty_mElementTypeIsGraphic (void) const ;
-
-  public: class GGS__5B__32_string_5D_ readProperty_mAttributeListForGeneration (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_autoLayoutTableViewControllerGeneration init_21__21__21__21__21__21__21__21__21__21_ (const class GGS_string & inOperand0,
-                                                                                                           const class GGS_lstring & inOperand1,
-                                                                                                           const class GGS_string & inOperand2,
-                                                                                                           const class GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_ & inOperand3,
-                                                                                                           const class GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_ & inOperand4,
-                                                                                                           const class GGS_string & inOperand5,
-                                                                                                           const class GGS_autoLayoutTableViewControllerModelKind & inOperand6,
-                                                                                                           const class GGS_string & inOperand7,
-                                                                                                           const class GGS_bool & inOperand8,
-                                                                                                           const class GGS__5B__32_string_5D_ & inOperand9,
-                                                                                                           Compiler * inCompiler
-                                                                                                           COMMA_LOCATION_ARGS) ;
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_autoLayoutTableViewControllerGeneration & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerGeneration ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @autoLayoutTableViewControllerGeneration class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_autoLayoutTableViewControllerGeneration : public cPtr_abstractFileGeneration {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void autoLayoutTableViewControllerGeneration_init_21__21__21__21__21__21__21__21__21__21_ (const class GGS_string & inOperand0,
-                                                                                                     const class GGS_lstring & inOperand1,
-                                                                                                     const class GGS_string & inOperand2,
-                                                                                                     const class GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_ & inOperand3,
-                                                                                                     const class GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_ & inOperand4,
-                                                                                                     const class GGS_string & inOperand5,
-                                                                                                     const class GGS_autoLayoutTableViewControllerModelKind & inOperand6,
-                                                                                                     const class GGS_string & inOperand7,
-                                                                                                     const class GGS_bool & inOperand8,
-                                                                                                     const class GGS__5B__32_string_5D_ & inOperand9,
-                                                                                                     Compiler * inCompiler) ;
-
-
-//--- Extension proc generateCodePhase1
-  public: virtual void method_generateCodePhase_31_ (const class GGS_string arg_inOutputDirectory,
-           const class GGS_generationStruct arg_inGenerationStruct,
-           class GGS_stringset & arg_ioUsedProtocolSet,
-           class GGS_stringset & arg_ioGeneratedFileSet,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension proc generateCodePhase2
-  public: virtual void method_generateCodePhase_32_ (const class GGS_string arg_inOutputDirectory,
-           const class GGS_generationStruct arg_inGenerationStruct,
-           const class GGS_stringset arg_inUsedProtocolSet,
-           class GGS_stringset & arg_ioGeneratedFileSet,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_string mProperty_mOwnerName ;
-  public: GGS_lstring mProperty_mControllerName ;
-  public: GGS_string mProperty_mModelString ;
-  public: GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_ mProperty_mTableViewControllerBoundColumnListForGeneration ;
-  public: GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_ mProperty_mTableViewControllerSortedColumnListForGeneration ;
-  public: GGS_string mProperty_mModelTypeName ;
-  public: GGS_autoLayoutTableViewControllerModelKind mProperty_mTableViewControllerModelKind ;
-  public: GGS_string mProperty_mElementTypeName ;
-  public: GGS_bool mProperty_mElementTypeIsGraphic ;
-  public: GGS__5B__32_string_5D_ mProperty_mAttributeListForGeneration ;
-
-
-//--- Default constructor
-  public: cPtr_autoLayoutTableViewControllerGeneration (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_autoLayoutTableViewControllerGeneration (const GGS_string & in_mOwnerName,
-                                                        const GGS_lstring & in_mControllerName,
-                                                        const GGS_string & in_mModelString,
-                                                        const GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_ & in_mTableViewControllerBoundColumnListForGeneration,
-                                                        const GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_ & in_mTableViewControllerSortedColumnListForGeneration,
-                                                        const GGS_string & in_mModelTypeName,
-                                                        const GGS_autoLayoutTableViewControllerModelKind & in_mTableViewControllerModelKind,
-                                                        const GGS_string & in_mElementTypeName,
-                                                        const GGS_bool & in_mElementTypeIsGraphic,
-                                                        const GGS__5B__32_string_5D_ & in_mAttributeListForGeneration,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @autoLayoutTableViewControllerGeneration_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_autoLayoutTableViewControllerGeneration_2E_weak : public GGS_abstractFileGeneration_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_autoLayoutTableViewControllerGeneration_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_autoLayoutTableViewControllerGeneration_2E_weak (const class GGS_autoLayoutTableViewControllerGeneration & inSource) ;
-
-  public: GGS_autoLayoutTableViewControllerGeneration_2E_weak & operator = (const class GGS_autoLayoutTableViewControllerGeneration & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_autoLayoutTableViewControllerGeneration_2E_weak init_nil (void) {
-    GGS_autoLayoutTableViewControllerGeneration_2E_weak result ;
-    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_autoLayoutTableViewControllerGeneration bang_autoLayoutTableViewControllerGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_autoLayoutTableViewControllerGeneration unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-//--------------------------------- GALGAS class functions
-  public: static class GGS_autoLayoutTableViewControllerGeneration_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_autoLayoutTableViewControllerGeneration_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerGeneration_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @XcodeProjectDescriptor struct
-//--------------------------------------------------------------------------------------------------
-
-class GGS_XcodeProjectDescriptor : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public: GGS_uint mProperty_mSequenceNumber ;
-  public: inline GGS_uint readProperty_mSequenceNumber (void) const {
-    return mProperty_mSequenceNumber ;
-  }
-
-  public: GGS_string mProperty_mMainGroupReference ;
-  public: inline GGS_string readProperty_mMainGroupReference (void) const {
-    return mProperty_mMainGroupReference ;
-  }
-
-  public: GGS__5B_string_5D_ mProperty_mMainGroupChildrenRefs ;
-  public: inline GGS__5B_string_5D_ readProperty_mMainGroupChildrenRefs (void) const {
-    return mProperty_mMainGroupChildrenRefs ;
-  }
-
-  public: GGS_string mProperty_mProjectObjectReference ;
-  public: inline GGS_string readProperty_mProjectObjectReference (void) const {
-    return mProperty_mProjectObjectReference ;
-  }
-
-  public: GGS__5B_XCodeGroup_5D_ mProperty_mGroupList ;
-  public: inline GGS__5B_XCodeGroup_5D_ readProperty_mGroupList (void) const {
-    return mProperty_mGroupList ;
-  }
-
-  public: GGS__5B_XCodeToolTarget_5D_ mProperty_mToolTargetList ;
-  public: inline GGS__5B_XCodeToolTarget_5D_ readProperty_mToolTargetList (void) const {
-    return mProperty_mToolTargetList ;
-  }
-
-  public: GGS__5B_XCodeAppTarget_5D_ mProperty_mAppTargetList ;
-  public: inline GGS__5B_XCodeAppTarget_5D_ readProperty_mAppTargetList (void) const {
-    return mProperty_mAppTargetList ;
-  }
-
-  public: GGS__5B__32_string_5D_ mProperty_mCppFileList ;
-  public: inline GGS__5B__32_string_5D_ readProperty_mCppFileList (void) const {
-    return mProperty_mCppFileList ;
-  }
-
-  public: GGS__5B__32_string_5D_ mProperty_m_5F_M_5F_FileList ;
-  public: inline GGS__5B__32_string_5D_ readProperty_m_5F_M_5F_FileList (void) const {
-    return mProperty_m_5F_M_5F_FileList ;
-  }
-
-  public: GGS__5B__32_string_5D_ mProperty_m_5F_MM_5F_FileList ;
-  public: inline GGS__5B__32_string_5D_ readProperty_m_5F_MM_5F_FileList (void) const {
-    return mProperty_m_5F_MM_5F_FileList ;
-  }
-
-  public: GGS__5B__32_string_5D_ mProperty_m_5F_SwiftFileList ;
-  public: inline GGS__5B__32_string_5D_ readProperty_m_5F_SwiftFileList (void) const {
-    return mProperty_m_5F_SwiftFileList ;
-  }
-
-  public: GGS__5B__32_string_5D_ mProperty_mFrameworkFileList ;
-  public: inline GGS__5B__32_string_5D_ readProperty_mFrameworkFileList (void) const {
-    return mProperty_mFrameworkFileList ;
-  }
-
-  public: GGS__5B__32_string_5D_ mProperty_mHeaderFileList ;
-  public: inline GGS__5B__32_string_5D_ readProperty_mHeaderFileList (void) const {
-    return mProperty_mHeaderFileList ;
-  }
-
-  public: GGS__5B_BuildFile_5D_ mProperty_mBuildFileList ;
-  public: inline GGS__5B_BuildFile_5D_ readProperty_mBuildFileList (void) const {
-    return mProperty_mBuildFileList ;
-  }
-
-  public: GGS_string mProperty_mDefaultConfigurationRef ;
-  public: inline GGS_string readProperty_mDefaultConfigurationRef (void) const {
-    return mProperty_mDefaultConfigurationRef ;
-  }
-
-  public: GGS__5B_string_5D_ mProperty_mDefaultConfigurationSettingList ;
-  public: inline GGS__5B_string_5D_ readProperty_mDefaultConfigurationSettingList (void) const {
-    return mProperty_mDefaultConfigurationSettingList ;
-  }
-
-  public: GGS_string mProperty_mProjectBuildConfigurationRef ;
-  public: inline GGS_string readProperty_mProjectBuildConfigurationRef (void) const {
-    return mProperty_mProjectBuildConfigurationRef ;
-  }
-
-  public: GGS__5B__32_string_5D_ mProperty_mInfoPlistFileList ;
-  public: inline GGS__5B__32_string_5D_ readProperty_mInfoPlistFileList (void) const {
-    return mProperty_mInfoPlistFileList ;
-  }
-
-  public: GGS__5B__32_string_5D_ mProperty_mXIB_5F_fileList ;
-  public: inline GGS__5B__32_string_5D_ readProperty_mXIB_5F_fileList (void) const {
-    return mProperty_mXIB_5F_fileList ;
-  }
-
-  public: GGS__5B__32_string_5D_ mProperty_mTIFF_5F_fileList ;
-  public: inline GGS__5B__32_string_5D_ readProperty_mTIFF_5F_fileList (void) const {
-    return mProperty_mTIFF_5F_fileList ;
-  }
-
-  public: GGS__5B__32_string_5D_ mProperty_mICNS_5F_fileList ;
-  public: inline GGS__5B__32_string_5D_ readProperty_mICNS_5F_fileList (void) const {
-    return mProperty_mICNS_5F_fileList ;
-  }
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
-  public: VIRTUAL_IN_DEBUG void drop (void) override ;
-
-//--------------------------------- Default constructor
-  public: GGS_XcodeProjectDescriptor (void) ;
-
-//--------------------------------- Property setters
-  public: inline void setter_setMSequenceNumber (const GGS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mSequenceNumber = inValue ;
-  }
-
-  public: inline void setter_setMMainGroupReference (const GGS_string & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mMainGroupReference = inValue ;
-  }
-
-  public: inline void setter_setMMainGroupChildrenRefs (const GGS__5B_string_5D_ & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mMainGroupChildrenRefs = inValue ;
-  }
-
-  public: inline void setter_setMProjectObjectReference (const GGS_string & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mProjectObjectReference = inValue ;
-  }
-
-  public: inline void setter_setMGroupList (const GGS__5B_XCodeGroup_5D_ & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mGroupList = inValue ;
-  }
-
-  public: inline void setter_setMToolTargetList (const GGS__5B_XCodeToolTarget_5D_ & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mToolTargetList = inValue ;
-  }
-
-  public: inline void setter_setMAppTargetList (const GGS__5B_XCodeAppTarget_5D_ & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mAppTargetList = inValue ;
-  }
-
-  public: inline void setter_setMCppFileList (const GGS__5B__32_string_5D_ & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mCppFileList = inValue ;
-  }
-
-  public: inline void setter_setM_5F_M_5F_FileList (const GGS__5B__32_string_5D_ & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_m_5F_M_5F_FileList = inValue ;
-  }
-
-  public: inline void setter_setM_5F_MM_5F_FileList (const GGS__5B__32_string_5D_ & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_m_5F_MM_5F_FileList = inValue ;
-  }
-
-  public: inline void setter_setM_5F_SwiftFileList (const GGS__5B__32_string_5D_ & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_m_5F_SwiftFileList = inValue ;
-  }
-
-  public: inline void setter_setMFrameworkFileList (const GGS__5B__32_string_5D_ & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mFrameworkFileList = inValue ;
-  }
-
-  public: inline void setter_setMHeaderFileList (const GGS__5B__32_string_5D_ & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mHeaderFileList = inValue ;
-  }
-
-  public: inline void setter_setMBuildFileList (const GGS__5B_BuildFile_5D_ & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mBuildFileList = inValue ;
-  }
-
-  public: inline void setter_setMDefaultConfigurationRef (const GGS_string & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mDefaultConfigurationRef = inValue ;
-  }
-
-  public: inline void setter_setMDefaultConfigurationSettingList (const GGS__5B_string_5D_ & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mDefaultConfigurationSettingList = inValue ;
-  }
-
-  public: inline void setter_setMProjectBuildConfigurationRef (const GGS_string & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mProjectBuildConfigurationRef = inValue ;
-  }
-
-  public: inline void setter_setMInfoPlistFileList (const GGS__5B__32_string_5D_ & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mInfoPlistFileList = inValue ;
-  }
-
-  public: inline void setter_setMXIB_5F_fileList (const GGS__5B__32_string_5D_ & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mXIB_5F_fileList = inValue ;
-  }
-
-  public: inline void setter_setMTIFF_5F_fileList (const GGS__5B__32_string_5D_ & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mTIFF_5F_fileList = inValue ;
-  }
-
-  public: inline void setter_setMICNS_5F_fileList (const GGS__5B__32_string_5D_ & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mICNS_5F_fileList = inValue ;
-  }
-
-//--------------------------------- Set initialized properties
-  private: void setInitializedProperties (Compiler * inCompiler) ;
-
-//--------------------------------- Native constructor
-  public: GGS_XcodeProjectDescriptor (const GGS_uint & in_mSequenceNumber,
-                                      const GGS_string & in_mMainGroupReference,
-                                      const GGS__5B_string_5D_ & in_mMainGroupChildrenRefs,
-                                      const GGS_string & in_mProjectObjectReference,
-                                      const GGS__5B_XCodeGroup_5D_ & in_mGroupList,
-                                      const GGS__5B_XCodeToolTarget_5D_ & in_mToolTargetList,
-                                      const GGS__5B_XCodeAppTarget_5D_ & in_mAppTargetList,
-                                      const GGS__5B__32_string_5D_ & in_mCppFileList,
-                                      const GGS__5B__32_string_5D_ & in_m_5F_M_5F_FileList,
-                                      const GGS__5B__32_string_5D_ & in_m_5F_MM_5F_FileList,
-                                      const GGS__5B__32_string_5D_ & in_m_5F_SwiftFileList,
-                                      const GGS__5B__32_string_5D_ & in_mFrameworkFileList,
-                                      const GGS__5B__32_string_5D_ & in_mHeaderFileList,
-                                      const GGS__5B_BuildFile_5D_ & in_mBuildFileList,
-                                      const GGS_string & in_mDefaultConfigurationRef,
-                                      const GGS__5B_string_5D_ & in_mDefaultConfigurationSettingList,
-                                      const GGS_string & in_mProjectBuildConfigurationRef,
-                                      const GGS__5B__32_string_5D_ & in_mInfoPlistFileList,
-                                      const GGS__5B__32_string_5D_ & in_mXIB_5F_fileList,
-                                      const GGS__5B__32_string_5D_ & in_mTIFF_5F_fileList,
-                                      const GGS__5B__32_string_5D_ & in_mICNS_5F_fileList) ;
-
-//--------------------------------- Copy constructor
-  public: GGS_XcodeProjectDescriptor (const GGS_XcodeProjectDescriptor & inSource) ;
-
-//--------------------------------- Assignment operator
-  public: GGS_XcodeProjectDescriptor & operator = (const GGS_XcodeProjectDescriptor & inSource) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_XcodeProjectDescriptor init (Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-//--------------------------------- Implementation of func 'description'
-  public: void description (String & ioString,
-                            const int32_t inIndentation) const override ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_XcodeProjectDescriptor ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension mutating proc '@XcodeProjectDescriptor addTIFF_file'
-//
-//--------------------------------------------------------------------------------------------------
-
-void extensionSetter_addTIFF_5F_file (class GGS_XcodeProjectDescriptor & ioObject,
-                                      const class GGS_string constin_inFileName,
-                                      class GGS_string & out_outFileRef,
-                                      class Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension mutating proc '@XcodeProjectDescriptor getReferenceKey'
-//
-//--------------------------------------------------------------------------------------------------
-
-void extensionSetter_getReferenceKey (class GGS_XcodeProjectDescriptor & ioObject,
-                                      class GGS_string & out_outRef,
-                                      class Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension mutating proc '@XcodeProjectDescriptor addInfoPlistFile'
-//
-//--------------------------------------------------------------------------------------------------
-
-void extensionSetter_addInfoPlistFile (class GGS_XcodeProjectDescriptor & ioObject,
-                                       const class GGS_string constin_inFileName,
-                                       class GGS_string & out_outFileRef,
-                                       class Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension mutating proc '@XcodeProjectDescriptor addXIBFile'
-//
-//--------------------------------------------------------------------------------------------------
-
-void extensionSetter_addXIBFile (class GGS_XcodeProjectDescriptor & ioObject,
-                                 const class GGS_string constin_inFileName,
-                                 class GGS_string & out_outFileRef,
-                                 class Compiler * inCompiler
-                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension mutating proc '@XcodeProjectDescriptor addFrameworkFile'
-//
-//--------------------------------------------------------------------------------------------------
-
-void extensionSetter_addFrameworkFile (class GGS_XcodeProjectDescriptor & ioObject,
-                                       const class GGS_string constin_inFileName,
-                                       class GGS_string & out_outFileRef,
-                                       class Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension mutating proc '@XcodeProjectDescriptor addMFile'
-//
-//--------------------------------------------------------------------------------------------------
-
-void extensionSetter_addMFile (class GGS_XcodeProjectDescriptor & ioObject,
-                               const class GGS_string constin_inFileName,
-                               class GGS_string & out_outFileRef,
-                               class Compiler * inCompiler
-                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension mutating proc '@XcodeProjectDescriptor addSwiftFile'
-//
-//--------------------------------------------------------------------------------------------------
-
-void extensionSetter_addSwiftFile (class GGS_XcodeProjectDescriptor & ioObject,
-                                   const class GGS_string constin_inFileName,
-                                   class GGS_string & out_outFileRef,
-                                   class Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
 //Extension mutating proc '@XcodeProjectDescriptor addMMFile'
 //
 //--------------------------------------------------------------------------------------------------
@@ -1049,4 +219,112 @@ GGS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (clas
                                                                             const class GGS__5B_string_5D_ & in_DEFAULT_5F_CONFIGURATION_5F_SETTING_5F_LIST,
                                                                             const class GGS_string & in_PROJECT_5F_BUILD_5F_DEFAULT_5F_CONFIGURATION_5F_REF
                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension func '@propertyMap.element isAbstract' (as function)
+//
+//--------------------------------------------------------------------------------------------------
+
+class GGS_bool extensionGetter_isAbstract (const class GGS_propertyMap_2E_element & inObject,
+                                           class Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'println?'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_println_3F_ (const class GGS_string constinArgument0,
+                          class Compiler * inCompiler
+                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'print?'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_print_3F_ (const class GGS_string constinArgument0,
+                        class Compiler * inCompiler
+                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'autoLayoutTableViewControllerGenerationTemplate'
+//
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const cDirectoryWrapper gWrapperDirectory_0_autoLayoutTableViewControllerGenerationTemplate ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'autoLayoutTableViewControllerGenerationTemplate autoLayoutTableViewControllerImplementation'
+//
+//--------------------------------------------------------------------------------------------------
+
+GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_autoLayoutTableViewControllerImplementation (class Compiler * inCompiler,
+                                                                                                                            const class GGS_string & in_OWNER_5F_NAME,
+                                                                                                                            const class GGS_string & in_TABLE_5F_VIEW_5F_CONTROLLER_5F_NAME,
+                                                                                                                            const class GGS_string & in_MODEL_5F_STRING,
+                                                                                                                            const class GGS_autoLayoutTableViewControllerModelKind & in_MODEL_5F_KIND,
+                                                                                                                            const class GGS_string & in_MODEL_5F_TYPE_5F_NAME,
+                                                                                                                            const class GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_ & in_BOUND_5F_COLUMNS,
+                                                                                                                            const class GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_ & in_SORTED_5F_COLUMNS,
+                                                                                                                            const class GGS_string & in_ELEMENT_5F_TYPE_5F_NAME,
+                                                                                                                            const class GGS_stringset & in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING,
+                                                                                                                            const class GGS__5B__32_string_5D_ & in_ATTRIBUTE_5F_VALUES
+                                                                                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'generateTestFile????'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_generateTestFile_3F__3F__3F__3F_ (const class GGS_string constinArgument0,
+                                               const class GGS_string constinArgument1,
+                                               const class GGS__5B_mainXibDescriptor_5D_ constinArgument2,
+                                               const class GGS_string constinArgument3,
+                                               class Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'testFiles'
+//
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const cDirectoryWrapper gWrapperDirectory_0_testFiles ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'testFiles test_py'
+//
+//--------------------------------------------------------------------------------------------------
+
+GGS_string filewrapperTemplate_testFiles_test_5F_py (class Compiler * inCompiler,
+                                                     const class GGS_string & in_BUNDLE_5F_IDENTIFIER,
+                                                     const class GGS_string & in_PROJECT_5F_NAME,
+                                                     const class GGS__5B_string_5D_ & in_OUTLET_5F_IDENTIFIER_5F_LIST
+                                                     COMMA_LOCATION_ARGS) ;
 

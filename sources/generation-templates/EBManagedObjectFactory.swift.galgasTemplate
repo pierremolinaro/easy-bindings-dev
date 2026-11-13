@@ -9,11 +9,11 @@ import CanariGeometry
 
 fileprivate let kEntityDictionary : [String : EBManagedObject.Type] = [
 %
-for (mEntityName mObsoleteEntityNames) in ENTITY_LIST
+for (entity) in ENTITY_LIST
 do
-  %  "%!mEntityName%" : %!mEntityName%.self%
-  for (mValue) in mObsoleteEntityNames do
-    %,\n  "%!mValue.string%" : %!mEntityName%.self%
+  %  "%!entity.mEntityName%" : %!entity.mEntityName%.self%
+  for (mValue) in entity.mObsoleteEntityNames do
+    %,\n  "%!mValue.string%" : %!entity.mEntityName%.self%
   end
 between
   %,\n%

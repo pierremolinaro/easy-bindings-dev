@@ -203,7 +203,7 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
 //-- Current class properties
   ioSemanticContext.mClassMap.searchKey (self.mClassName, ?let currentClassKind, ?let properties, ?2*)
 //-- Analyse master properties
-  var @transientDependencyListForGeneration dependencies = []
+  var [@transientDependencyForGeneration] dependencies = []
   for observableProperty in self.mDependencyList do
     observableProperty.analyzeObservableProperty (
       rootProperties,
@@ -224,7 +224,7 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
     case selectionController (*) :
       error (observableProperty.location : "only an atomic property can be observed")
     end
-    !?dependencies.append (
+    dependencies ++= @(
       observableProperty,
       observableProperty.modelStringFunctionArgument ,
       swiftTypeStringForTransientFunctionArgument,
@@ -275,14 +275,8 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
 class @transientPropertyGeneration : @propertyGeneration {
   public var @string mClassName
   public var @typeKind mType
-  public var @transientDependencyListForGeneration mDependencyList
+  public var [@transientDependencyForGeneration] mDependencyList
   public var @bool mGenerate
-}
-
-//--------------------------------------------------------------------------------------------------
-
-list @transientPropertyGenerationList {
-  public var @transientPropertyGeneration mProperty
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -390,8 +384,8 @@ override func @transientPropertyGeneration.configurationCode (let @bool inPrefer
       result += self.mDependencyList.transientComputeFunctionCall (inPreferences, self.mClassName, self.mPropertyName, "transient")
     end
     result += "    }\n"
-    for (mDependency, 4*) in self.mDependencyList do
-      let s = mDependency.generateAddObserverCall (inPreferences)
+    for property in self.mDependencyList do
+      let s = property.mDependency.generateAddObserverCall (inPreferences)
       if s != "" then
         result += "    " + s + " (by: " + prefix + self.mPropertyName + "_property)\n"
       end
@@ -403,12 +397,17 @@ override func @transientPropertyGeneration.configurationCode (let @bool inPrefer
 //   GENERATION TYPE
 //--------------------------------------------------------------------------------------------------
 
-list @transientDependencyListForGeneration {
+struct @transientDependencyForGeneration {
   public let @observablePropertyAST mDependency
   public let @string mFunctionArgumentName
   public let @string mFunctionArgumentTypeString
   public let @string mDefaultValueAsString
   public let @string mProtocolName
+}
+
+//--------------------------------------------------------------------------------------------------
+
+extension [@transientDependencyForGeneration] {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -419,17 +418,17 @@ list @transientDependencyListForGeneration {
     let uwself = if inPreferences then "preferences_" else "unwSelf." end
     result = ""
     let ident = "        "
-    for (mDependency, 2*, mDefaultValueAsString, *) in self do (idx)
-      if mDefaultValueAsString != "" then
-        result += ident + "var s" + idx + " = " + mDependency.modelStringForSelf (uwself) + ".selection" + "\n"
+    for property in self do (idx)
+      if property.mDefaultValueAsString != "" then
+        result += ident + "var s" + idx + " = " + property.mDependency.modelStringForSelf (uwself) + ".selection" + "\n"
         result += ident + "switch s" + idx + " {\n"
         result += ident + "case .single :\n"
         result += ident + "  ()\n"
         result += ident + "case .empty, .multiple :\n"
-        result += ident + "  s" + idx + " = .single (" + mDefaultValueAsString + ")\n"
+        result += ident + "  s" + idx + " = .single (" + property.mDefaultValueAsString + ")\n"
         result += ident + "}\n"
       else
-        result += ident + "let s" + idx + " = " + mDependency.modelStringForSelf (uwself) + ".selection" + "\n"
+        result += ident + "let s" + idx + " = " + property.mDependency.modelStringForSelf (uwself) + ".selection" + "\n"
       end
     end
     result += ident + "switch ("
@@ -451,7 +450,7 @@ list @transientDependencyListForGeneration {
     result += ident + "  return .single ("
     result += inFunctionNamePrefix + "_" + inOwnerName + "_" + inTransientName
     result += " ("
-    for (5*) in self
+    for * in self
     do (idx)
       result += "v" + idx
     between
@@ -459,7 +458,7 @@ list @transientDependencyListForGeneration {
     end
     result += "))\n"
     result += ident + "case ("
-    for (5*) in self
+    for * in self
     do
       result += ".multiple"
     between
@@ -476,8 +475,8 @@ list @transientDependencyListForGeneration {
 
   func needs_unwSelf (@bool inPreferences) -> @bool {
     result = false
-    for (mDependency, 4*) in self while not result do
-      result = mDependency.needs_unwSelf (inPreferences)
+    for property in self while not result do
+      result = property.mDependency.needs_unwSelf (inPreferences)
     end
   }
 
@@ -595,7 +594,7 @@ class @transientRoutineGeneration : @abstractFileGeneration {
   private let @string mTransientName
   private let @typeKind mTransientType
   private let @string mGeneratedFunctionNamePrefix
-  private let @transientDependencyListForGeneration mDependencyList
+  private let [@transientDependencyForGeneration] mDependencyList
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -659,7 +658,7 @@ private filewrapper transientManager in "generation-templates" {
   template transientComputationFunctionFile : "transient-computation-function.swift.galgasTemplate" (
     @string OWNER_NAME,
     @string TRANSIENT_NAME,
-    @transientDependencyListForGeneration DEPENDENCY_LIST,
+    [@transientDependencyForGeneration] DEPENDENCY_LIST,
     @typeKind TRANSIENT_TYPE,
     @string TRANSIENT_FUNCTION_NAME_PREFIX
   )

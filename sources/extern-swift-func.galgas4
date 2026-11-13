@@ -2,7 +2,7 @@
 //   AST   
 //------------------------------------------------------------------------------------------------
 
-list @externSwiftFunctionList {
+struct @externSwiftFunction {
   public var @lstring mExternSwiftFunctionName
   public var @lstring mCallerName
 }
@@ -15,13 +15,13 @@ syntax extension easyBindings_syntax {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
-  rule <extern_swift_func> (?!@externSwiftFunctionList ioExternSwiftFunctionList) {
+  rule <extern_swift_func> (?![@externSwiftFunction] ioExternSwiftFunctionList) {
     $externFunc$
     $identifier$ (?let @lstring externFunctionName)
     $calledBy$
     $identifier$ (?let @lstring callerName)
     $;$
-    !?ioExternSwiftFunctionList.append (externFunctionName, callerName)
+    ioExternSwiftFunctionList ++= @(externFunctionName, callerName)
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

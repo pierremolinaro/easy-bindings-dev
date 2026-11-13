@@ -2,7 +2,7 @@
 //  AST
 //--------------------------------------------------------------------------------------------------
 
-list @bindingOptionList {
+struct @bindingOption {
   let @lstring mOptionName
   let @abstractDefaultValue mOptionValue
 }
@@ -165,23 +165,23 @@ syntax extension easyBindings_syntax {
 //  SEMANTICS
 //--------------------------------------------------------------------------------------------------
 
-list @outletBindingModelList {
-  public var @propertyKind mKind
-  public var @location mErrorLocation
+struct @outletBindingModel {
+  let @propertyKind mKind
+  let @location mErrorLocation
 }
 
 //--------------------------------------------------------------------------------------------------
 
-list @tableViewBindingGenerationList {
-  public var @string mTableValueBindingOutletName
-  public var @string mTableValueBindingControllerName
+struct @tableViewBindingGeneration {
+  let @string mTableValueBindingOutletName
+  let @string mTableValueBindingControllerName
 }
 
 //--------------------------------------------------------------------------------------------------
 
-list @ebViewGraphicControllerBindingGenerationList {
-  public var @string mEBViewOutletName
-  public var @string mArrayControllerControllerName
+struct @ebViewGraphicControllerBindingGeneration {
+  let @string mEBViewOutletName
+  let @string mArrayControllerControllerName
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -197,12 +197,12 @@ proc analyzeOutlets(
   let @actionMap inActionMap,
   let @string inReceiverSwiftTypeName,
   ?!@generationStruct ioGeneration,
-  !@regularBindingsGenerationList outRegularBindingsGenerationList,
+  ![@regularBindingsGeneration] outRegularBindingsGenerationList,
   ![@multipleBindingGeneration] outMultipleBindingGenerationList,
-  !@actionBindingListForGeneration outTargetActionList,
+  ![@actionBindingForGeneration] outTargetActionList,
   !@decoratedOutletMap outletMap,
-  !@tableViewBindingGenerationList outTableViewBindingGenerationList,
-  !@ebViewGraphicControllerBindingGenerationList outEBViewGraphicControllerBindingGenerationList)
+  ![@tableViewBindingGeneration] outTableViewBindingGenerationList,
+  ![@ebViewGraphicControllerBindingGeneration] outEBViewGraphicControllerBindingGenerationList)
 {
   outRegularBindingsGenerationList = []
   outTargetActionList = []
@@ -275,7 +275,7 @@ proc analyzeOutlets(
         case selectionController (*) :
           error (controllerName : "the bound model should be an array controller")
         end
-        !?outEBViewGraphicControllerBindingGenerationList.append (
+        outEBViewGraphicControllerBindingGenerationList ++= @(
           outlet.mOutletName.string,
           controllerName.string
         )
@@ -296,7 +296,7 @@ proc analyzeOutlets(
         if not kind.isArrayController then
           error (controllerName : "the bound model should be an array controller")
         end
-        !?outTableViewBindingGenerationList.append (
+        outTableViewBindingGenerationList ++= @(
           outlet.mOutletName.string,
           controllerName.string
         )
@@ -310,7 +310,7 @@ proc analyzeOutlets(
         error (outlet.mOutletTypeName : "the '" + outlet.mOutletTypeName + "' type does not handle run action")
       elsif target.string == "self" then
         inActionMap.searchKey (action)
-        !?outTargetActionList.append (
+        outTargetActionList ++= @(
           outlet.mOutletName.string,
           "self",
           action.string,
@@ -324,7 +324,7 @@ proc analyzeOutlets(
           ?*
         )
         controllerActionMap.searchKey (action)
-        !?outTargetActionList.append (
+        outTargetActionList ++= @(
           outlet.mOutletName.string,
           if inPreferences then "preferences_" else "" end + target.string,
           action.string,
@@ -410,12 +410,12 @@ proc analyzeRegularBinding(
   let @string inOutletName,
   let [@regularBinding] inRegularBindingList,
   let @string inSelfSwiftName,
-  ?!@regularBindingsGenerationList ioRegularBindingsGenerationList)
+  ?![@regularBindingsGeneration] ioRegularBindingsGenerationList)
 {
   for binding in inRegularBindingList do
   //-- Analyze model
-    var @outletBindingModelList boundModelTypeList = []
-    var @boundObjectList boundModelListForGeneration = []
+    var [@outletBindingModel] boundModelTypeList = []
+    var [@boundObject] boundModelListForGeneration = []
     for observableProperty in binding.mObservablePropertyList do
       observableProperty.analyzeObservableProperty
         (inRootPropertyMap,
@@ -437,11 +437,11 @@ proc analyzeRegularBinding(
       case selectionController (*) :
         error (observableProperty.location :"a selection controller cannot be bound")
       end
-      !?boundModelListForGeneration.append (
+      boundModelListForGeneration ++= @(
         observableProperty.modelStringForSelf (inSelfSwiftName),
         kind
       )
-      !?boundModelTypeList.append (kind, observableProperty.location )
+      boundModelTypeList ++= @(kind, observableProperty.location )
     end
   //-- Analyze outlet binding
     var [@outletBindingSpecificationModel] outletBindingSpecificationModelList = []
@@ -512,7 +512,7 @@ proc analyzeRegularBinding(
       end
     end
   //-- Generate binding
-    !?ioRegularBindingsGenerationList.append (
+    ioRegularBindingsGenerationList ++= @(
       inOutletName,
       binding.mBindingName.string,
       boundModelListForGeneration,
@@ -525,23 +525,23 @@ proc analyzeRegularBinding(
 //   GENERATION TYPES
 //--------------------------------------------------------------------------------------------------
 
-list @boundObjectList {
+struct @boundObject {
   let @string mBoundObjectString
   let @propertyKind mKind
 }
 
 //--------------------------------------------------------------------------------------------------
 
-list @regularBindingsGenerationList {
+struct @regularBindingsGeneration {
   let @string mOutletName
   let @string mBindingName
-  let @boundObjectList mBoundObjectList
+  let [@boundObject] mBoundObjectList
   let @string mBindingOptionsString
 }
 
 //--------------------------------------------------------------------------------------------------
 
-list @actionBindingListForGeneration {
+struct @actionBindingForGeneration {
   let @string mOutletName
   let @string mTargetName
   let @string mActionName

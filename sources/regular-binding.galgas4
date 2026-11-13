@@ -5,7 +5,7 @@
 struct @regularBinding {
   public let @lstring mBindingName
   public let [@observablePropertyAST] mObservablePropertyList
-  public let @bindingOptionList mBindingOptionList
+  public let [@bindingOption] mBindingOptionList
 }
 
 //------------------------------------------------------------------------------------------------
@@ -16,7 +16,7 @@ syntax extension easyBindings_syntax {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
-  rule <binding_option_list> (!@bindingOptionList outBindingOptions) {
+  rule <binding_option_list> (![@bindingOption] outBindingOptions) {
     outBindingOptions = []
     select
     or
@@ -25,7 +25,7 @@ syntax extension easyBindings_syntax {
         $identifier$ (?let @lstring optionName)
         $:$
         <explicit_value> (?let @abstractDefaultValue optionValue)
-        !?outBindingOptions.append (optionName, optionValue)
+        outBindingOptions ++= @(optionName, optionValue)
       while
         $,$
       end

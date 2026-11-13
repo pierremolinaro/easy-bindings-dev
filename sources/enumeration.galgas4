@@ -21,7 +21,7 @@ override func @enumerationDeclarationAST.nodeKey() -> @lstring {
 
 //------------------------------------------------------------------------------------------------
 
-list @enumerationFunctionListAST {
+struct @enumerationFunctionAST {
   public var @lstring mEnumName
   public var @lstring mFunctionName
   public var [@2lstring] mAssociationList
@@ -79,7 +79,7 @@ syntax extension easyBindings_syntax {
       associationList ++= @(constantName, associatedString)
     end
     $}$
-    !?ioDeclarationAST.mEnumerationFunctionListAST.append (enumName, funcName, associationList)
+    ioDeclarationAST.mEnumerationFunctionListAST ++= @(enumName, funcName, associationList)
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -124,11 +124,11 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
     !?enumConstantMap.insertKey (s, enumConstantMap.count )
   end
   var @enumFuncMap enumFuncMap = ()
-  for (mEnumName, mFunctionName, mAssociationList) in ioSemanticContext.mEnumerationFunctionListAST do
-    if mEnumName.string == self.mClassName.string then
+  for enumFunc in ioSemanticContext.mEnumerationFunctionListAST do
+    if enumFunc.mEnumName.string == self.mClassName.string then
       var @stringset definedConstantNameSet = []
       var @enumFunAssociationSortedList associationSortedList = []
-      for association in mAssociationList do
+      for association in enumFunc.mAssociationList do
         enumConstantMap.searchKey (association.mValue0, ?let idx)
         !?associationSortedList.insert (idx, association.mValue1.string)
         if definedConstantNameSet.contains (association.mValue0) then
@@ -138,10 +138,10 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
       end
       for s in self.mEnumConstantNameList do
         if not definedConstantNameSet.contains (s) then
-          error (mFunctionName : "No association for '" + s + "' constant")
+          error (enumFunc.mFunctionName : "No association for '" + s + "' constant")
         end
       end
-      !?enumFuncMap.insertKey (mFunctionName, associationSortedList)
+      !?enumFuncMap.insertKey (enumFunc.mFunctionName, associationSortedList)
     end
   end
   !?ioSemanticContext.mClassMap.insertKey (

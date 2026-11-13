@@ -178,12 +178,6 @@ class @toOnePropertyGeneration : @propertyGeneration {
 
 //------------------------------------------------------------------------------------------------
 
-list @toOnePropertyGenerationList {
-  public let @toOnePropertyGeneration mProperty
-}
-
-//------------------------------------------------------------------------------------------------
-
 override func @toOnePropertyGeneration.propertyDeclarationCode
                                                    (let @bool _inPreferences,
                                                     let @bool _inGenerationDirectAccess,

@@ -179,7 +179,7 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
 //-- Current class properties
   ioSemanticContext.mClassMap.searchKey (self.mClassName, ?let currentClassKind, ?let properties, ?2*)
 //-- Analyse master properties
-  var @transientDependencyListForGeneration dependencies = []
+  var [@transientDependencyForGeneration] dependencies = []
   for observableProperty in self.mDependencyList do
     observableProperty.analyzeObservableProperty (
       rootProperties,
@@ -199,7 +199,7 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
     case selectionController (*) :
       error (observableProperty.location : "only an atomic property can be observed")
     end
-    !?dependencies.append (
+    dependencies ++= @(
       observableProperty,
       observableProperty.modelStringFunctionArgument ,
       swiftTypeStringForTransientFunctionArgument,
@@ -259,14 +259,8 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
 class @computedPropertyGeneration : @propertyGeneration {
   public var @string mClassName
   public var @typeKind mType
-  public var @transientDependencyListForGeneration mDependencyList
+  public var [@transientDependencyForGeneration] mDependencyList
   public var @bool mGenerate
-}
-
-//--------------------------------------------------------------------------------------------------
-
-list @computedPropertyGenerationList {
-  public var @computedPropertyGeneration mProperty
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -386,8 +380,8 @@ override func @computedPropertyGeneration.configurationCode (let @bool inPrefere
     end
     result += "    }\n"
     result += "    " + prefix + self.mPropertyName + "_property.mWriteModelFunction = { [weak self] in self?.compute_" + self.mPropertyName + "_property ($0) }\n"
-    for (mDependency, 4*) in self.mDependencyList do
-      let s = mDependency.generateAddObserverCall (inPreferences)
+    for property in self.mDependencyList do
+      let s = property.mDependency.generateAddObserverCall (inPreferences)
       if s != "" then
         result += "    " + s + " (by: " + prefix + self.mPropertyName + "_property)\n"
       end
@@ -403,7 +397,7 @@ class @computeRoutineGeneration : @abstractFileGeneration {
   public var @string mOwnerName
   public var @string mTransientName
   public var @typeKind mTransientType
-  public var @transientDependencyListForGeneration mDependencyList
+  public var [@transientDependencyForGeneration] mDependencyList
 }
 
 //--------------------------------------------------------------------------------------------------

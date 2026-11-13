@@ -122,9 +122,9 @@ for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
 end
 %    //--- Extern functions
 %
-  for (mExternSwiftFunctionName mCallerName) in EXTERN_SWIFT_FUNCTION_LIST do
-    if mCallerName.string == "init" then
-      %      self.%!mExternSwiftFunctionName.string% ()\n%
+  for (externFunc) in EXTERN_SWIFT_FUNCTION_LIST do
+    if externFunc.mCallerName.string == "init" then
+      %      self.%!externFunc.mExternSwiftFunctionName.string% ()\n%
     end
   end
 %//    }
@@ -153,13 +153,13 @@ for (lkey mOutletTypeName) in OUTLET_MAP do
 end
 %    //--------------------------- Install bindings
 %
-for (mOutletName mBindingName mBoundObjectList mBindingOptionsString) in REGULAR_BINDINGS_GENERATION_LIST do
-  %      self.%!mOutletName%?.bind_%!mBindingName% (%
-  for (mBoundObjectString mKind) in mBoundObjectList
-    do !mBoundObjectString
+for (binding) in REGULAR_BINDINGS_GENERATION_LIST do
+  %      self.%!binding.mOutletName%?.bind_%!binding.mBindingName% (%
+  for (object) in binding.mBoundObjectList
+    do !object.mBoundObjectString
     between %, %
   end
-  !mBindingOptionsString%)\n%
+  !binding.mBindingOptionsString%)\n%
 end
 %    //--------------------------- Install multiple bindings
 %
@@ -174,22 +174,22 @@ for (binding) in MULTIPLE_BINDING_GENERATION_LIST do
 end
 %    //--------------------------- Array controller
 %
-for (mTableValueBindingOutletName mTableValueBindingControllerName) in TABLE_VALUE_BINDING_GENERATION_LIST do
-  %      preferences_%!mTableValueBindingControllerName%.bind_tableView (self.%!mTableValueBindingOutletName%)\n%
+for (binding) in TABLE_VALUE_BINDING_GENERATION_LIST do
+  %      preferences_%!binding.mTableValueBindingControllerName%.bind_tableView (self.%!binding.mTableValueBindingOutletName%)\n%
 end
-for (mEBViewOutletName mArrayControllerControllerName) in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
-  %      preferences_%!mArrayControllerControllerName%.bind_ebView (self.%!mEBViewOutletName%)\n%
+for (binding) in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
+  %      preferences_%!binding.mArrayControllerControllerName%.bind_ebView (self.%!binding.mEBViewOutletName%)\n%
 end
 %    //--------------------------- Set targets / actions
-%for (mOutletName mTargetName mActionName mTargetTypeName) in TARGET_ACTION_LIST do
-%      self.%!mOutletName%?.target = %!mTargetName%\n%
-%      self.%!mOutletName%?.action = #selector (%!mTargetTypeName%.%!mActionName% (_:))\n%
+%for (target) in TARGET_ACTION_LIST do
+%      self.%!target.mOutletName%?.target = %!target.mTargetName%\n%
+%      self.%!target.mOutletName%?.action = #selector (%!target.mTargetTypeName%.%!target.mActionName% (_:))\n%
 end
 %    //--------------------------- Extern functions
 %
-  for (mExternSwiftFunctionName mCallerName) in EXTERN_SWIFT_FUNCTION_LIST do
-    if mCallerName.string == "awakeFromNib" then
-      %      self.%!mExternSwiftFunctionName.string% ()\n%
+  for (externFunc) in EXTERN_SWIFT_FUNCTION_LIST do
+    if externFunc.mCallerName.string == "awakeFromNib" then
+      %      self.%!externFunc.mExternSwiftFunctionName.string% ()\n%
     end
   end
 %    }

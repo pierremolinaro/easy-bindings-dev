@@ -10,11 +10,11 @@ enum @proxyKind #equatable {
 //------------------------------------------------------------------------------------------------
 
 class @proxyDeclarationAST : @abstractDeclarationAST {
-  public var @proxyKind mProxyKind
-  public var @lstring mProxyTypeName
-  public var @lstring mProxyName
-  public var @lstring mToOneRelationshipName
-  public var @lstring mPropertyName
+  let @proxyKind mProxyKind
+  let @lstring mProxyTypeName
+  let @lstring mProxyName
+  let @lstring mToOneRelationshipName
+  let @lstring mPropertyName
 }
 
 //------------------------------------------------------------------------------------------------
@@ -191,16 +191,10 @@ override proc @proxyDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSem
 //------------------------------------------------------------------------------------------------
 
 class @toManyProxyGeneration : @propertyGeneration {
-  public var @proxyKind mProxyKind
-  public var @string mToManyTypeName
-  public var @string mObservedRelationshipName
-  public var @string mObservedPropertyName
-}
-
-//------------------------------------------------------------------------------------------------
-
-list @toManyProxyGenerationList {
-  public var @toManyProxyGeneration mProperty
+  let @proxyKind mProxyKind
+  let @string mToManyTypeName
+  let @string mObservedRelationshipName
+  let @string mObservedPropertyName
 }
 
 //------------------------------------------------------------------------------------------------
@@ -275,16 +269,10 @@ override func @toManyProxyGeneration.configurationCode (let @bool _inPreferences
 //------------------------------------------------------------------------------------------------
 
 class @atomicProxyGeneration : @propertyGeneration {
-  public var @proxyKind mProxyKind
-  public var @typeKind mType
-  public var @string mObservedRelationshipName
-  public var @string mObservedPropertyName
-}
-
-//------------------------------------------------------------------------------------------------
-
-list @atomicProxyGenerationList {
-  public var @atomicProxyGeneration mProperty
+  let @proxyKind mProxyKind
+  let @typeKind mType
+  let @string mObservedRelationshipName
+  let @string mObservedPropertyName
 }
 
 //------------------------------------------------------------------------------------------------

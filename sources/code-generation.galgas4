@@ -2,9 +2,9 @@
 //   SEMANTIC TYPES
 //--------------------------------------------------------------------------------------------------
 
-list @transientExternTypeList {
-  public var @string mTypeName
-  public var @bool mIsClass
+struct @transientExternType {
+  let @string mTypeName
+  let @bool mIsClass
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -28,15 +28,9 @@ abstract proc @abstractFileGeneration.generateCodePhase2 (@string inOutputDirect
 
 //--------------------------------------------------------------------------------------------------
 
-list @fileGenerationList {
-  public var @abstractFileGeneration mFileGeneration
-}
-
-//--------------------------------------------------------------------------------------------------
-
 struct @generationStruct {
-  public var @fileGenerationList mFileGenerationList = []
-  public var @entityListForGeneratingEBManagedObjectContext mEntityListForGeneration = []
+  public var [@abstractFileGeneration] mFileGenerationList = []
+  public var [@entityForGeneratingEBManagedObjectContext] mEntityListForGeneration = []
   public var @bool mGenerateEBManagedXibDocumentSwift = false
   public var @bool mGenerateEBManagedAutoLayoutDocumentSwift = false
   public var @stringset mNeededOutletClasses = []
@@ -47,7 +41,7 @@ struct @generationStruct {
 
   public var [@selectionControllerForGeneration] mSelectionControllerListForGeneration = []
   public var [@string] mPropertyClassList = []
-  public var @transientExternTypeList mTransientPropertyTypeList = []
+  public var [@transientExternType] mTransientPropertyTypeList = []
 
   public var @stringset mGenerateClass_PreferencesArrayOf_ = []
   public var @stringset mGenerateClass_ProxyArrayOf_ = []
@@ -69,7 +63,7 @@ proc generateCode (@string inXcodeProjectString,
   var @stringset generatedFileSet = ()
   var @stringset usedProtocolSet = ()
   for fileGeneration in inGeneration.mFileGenerationList do
-    fileGeneration.mFileGeneration.generateCodePhase1 (
+    fileGeneration.generateCodePhase1 (
       fileOutputDirectory,
       inGeneration,
       !?usedProtocolSet,
@@ -77,7 +71,7 @@ proc generateCode (@string inXcodeProjectString,
     )
   end
   for fileGeneration in inGeneration.mFileGenerationList do
-    fileGeneration.mFileGeneration.generateCodePhase2 (
+    fileGeneration.generateCodePhase2 (
       fileOutputDirectory,
       inGeneration,
       usedProtocolSet,
@@ -141,7 +135,7 @@ filewrapper standard_properties in "generation-templates/standard-properties" {
 
 private proc generateStandardProperties (let @string inOutputDirectory,
                                          let [@string] inPropertyClassList,
-                                         let @transientExternTypeList inTransientPropertyExternTypeList,
+                                         let [@transientExternType] inTransientPropertyExternTypeList,
                                          ?!@stringset ioGeneratedFileSet) {
 //-- Add scalar property types
   generateScalarProperty (inOutputDirectory, "CanariLength", !transient: false, "", !?ioGeneratedFileSet)
@@ -159,11 +153,11 @@ private proc generateStandardProperties (let @string inOutputDirectory,
   for propertyClass in inPropertyClassList do
     generateClassProperty (inOutputDirectory, propertyClass, !transient: false, !?ioGeneratedFileSet)
   end
-  for (mTypeName, mIsClass) in inTransientPropertyExternTypeList do
-    if mIsClass then
-      generateClassProperty (inOutputDirectory, mTypeName, !transient: true, !?ioGeneratedFileSet)
+  for transient in inTransientPropertyExternTypeList do
+    if transient.mIsClass then
+      generateClassProperty (inOutputDirectory, transient.mTypeName, !transient: true, !?ioGeneratedFileSet)
     else
-      generateScalarProperty (inOutputDirectory, mTypeName, !transient: true, "", !?ioGeneratedFileSet)
+      generateScalarProperty (inOutputDirectory, transient.mTypeName, !transient: true, "", !?ioGeneratedFileSet)
     end
   end
   generateClassProperty (inOutputDirectory, "NSBezierPath", !transient: false, !?ioGeneratedFileSet)

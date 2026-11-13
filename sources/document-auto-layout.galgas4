@@ -187,12 +187,12 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     documentActionMap,
     self.mClassName,
     !?ioGeneration,
-    ?let @regularBindingsGenerationList regularBindingsGenerationList,
+    ?let [@regularBindingsGeneration] regularBindingsGenerationList,
     ?[@multipleBindingGeneration] multipleBindingGenerationList,
-    ?let @actionBindingListForGeneration actionBindingListForGeneration,
+    ?let [@actionBindingForGeneration] actionBindingListForGeneration,
     ?let @decoratedOutletMap outletMap,
-    ?let @tableViewBindingGenerationList tableViewBindingGenerationList,
-    ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
+    ?let [@tableViewBindingGeneration] tableViewBindingGenerationList,
+    ?let [@ebViewGraphicControllerBindingGeneration] ebViewGraphicControllerBindingGenerationList
   )
 //-- Analyze controller bindings
   for controller in self.mArrayControllerBindingListAST do
@@ -294,14 +294,14 @@ class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
   public let @string mDocumentName
   public let @string mRootEntityName
   public let @string mMainViewName
-  public let @propertyGenerationList mDocumentPropertyGenearionList
+  public let [@propertyGeneration] mDocumentPropertyGenearionList
   public let @decoratedOutletMap mOutletMap
   public let @autoLayoutOutletMap mAutoLayoutOutletMap
-  public let @actionBindingListForGeneration mTargetActionList
-  public let @regularBindingsGenerationList mRegularBindingsGenerationList
+  public let [@actionBindingForGeneration] mTargetActionList
+  public let [@regularBindingsGeneration] mRegularBindingsGenerationList
   public let [@multipleBindingGeneration] multipleBindingGenerationList
-  public let @tableViewBindingGenerationList mTableViewBindingGenerationList
-  public let @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
+  public let [@tableViewBindingGeneration] mTableViewBindingGenerationList
+  public let [@ebViewGraphicControllerBindingGeneration] mEBViewBindingGenerationList
   public let [@viewGeneration] mViewDeclarationList
   public let [@abstractViewInstructionGeneration] mImplicitViewFunctionGenerationList
   public let @autoLayoutConfiguratorMap mConfiguratorMap
@@ -412,14 +412,14 @@ filewrapper autoLayoutDocumentGenerationTemplate in "generation-templates" {
     @string DOCUMENT_CLASS_NAME,
     @string ROOT_ENTITY_NAME,
     @string MAIN_VIEW_NAME,
-    @propertyGenerationList DOCUMENT_PROPERTY_LIST,
+    [@propertyGeneration] DOCUMENT_PROPERTY_LIST,
     @decoratedOutletMap OUTLET_GENERATION_MAP,
     @autoLayoutOutletMap AUTO_LAYOUT_OUTLET_MAP,
-    @actionBindingListForGeneration TARGET_ACTION_LIST,
-    @regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST,
+    [@actionBindingForGeneration] TARGET_ACTION_LIST,
+    [@regularBindingsGeneration] REGULAR_BINDINGS_GENERATION_LIST,
     [@multipleBindingGeneration] MULTIPLE_BINDING_GENERATION_LIST,
-    @tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST,
-    @ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST,
+    [@tableViewBindingGeneration] TABLE_VALUE_BINDING_GENERATION_LIST,
+    [@ebViewGraphicControllerBindingGeneration] EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST,
     [@viewGeneration] VIEW_GENERATION_LIST,
     [@abstractViewInstructionGeneration] IMPLICIT_VIEW_GENERATION_FUNCTION_LIST,
     @string DOCUMENT_SUPER_CLASS_NAME,

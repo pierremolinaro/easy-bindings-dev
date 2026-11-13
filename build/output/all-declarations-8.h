@@ -10,110 +10,6 @@
 
 //--------------------------------------------------------------------------------------------------
 //
-//Filewrapper 'selectionControllerGenerationTemplate'
-//
-//--------------------------------------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------------------------------------
-
-extern const cDirectoryWrapper gWrapperDirectory_0_selectionControllerGenerationTemplate ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Filewrapper template 'selectionControllerGenerationTemplate baseSelectionControllerImplementation'
-//
-//--------------------------------------------------------------------------------------------------
-
-GGS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSelectionControllerImplementation (class Compiler * inCompiler,
-                                                                                                            const class GGS_string & in_OWNER_5F_NAME,
-                                                                                                            const class GGS_string & in_SELECTION_5F_CONTROLLER_5F_NAME,
-                                                                                                            const class GGS_string & in_ELEMENT_5F_TYPE_5F_NAME,
-                                                                                                            const class GGS_propertyMap & in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP
-                                                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Filewrapper template 'selectionControllerGenerationTemplate derivedSelectionControllerImplementation'
-//
-//--------------------------------------------------------------------------------------------------
-
-GGS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedSelectionControllerImplementation (class Compiler * inCompiler,
-                                                                                                               const class GGS_string & in_OWNER_5F_NAME,
-                                                                                                               const class GGS_string & in_SELECTION_5F_CONTROLLER_5F_NAME,
-                                                                                                               const class GGS_string & in_BASE_5F_ELEMENT_5F_TYPE_5F_NAME,
-                                                                                                               const class GGS_string & in_DERIVED_5F_ELEMENT_5F_TYPE_5F_NAME,
-                                                                                                               const class GGS_propertyGenerationList & in_PROPERTY_5F_GENERATION_5F_LIST,
-                                                                                                               const class GGS_bool & in_HAS_5F_ATOMIC_5F_PROPERTIES
-                                                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'generateSelectionControllers??&'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_generateSelectionControllers_3F__3F__26_ (const class GGS__5B_selectionControllerForGeneration_5D_ constinArgument0,
-                                                       const class GGS_string constinArgument1,
-                                                       class GGS_stringset & ioArgument2,
-                                                       class Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'analyzeAutoLayoutBinding???????????????!!!!!'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_analyzeAutoLayoutBinding_3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__21__21__21__21__21_ (const class GGS_bool constinArgument0,
-                                                                                                                       const class GGS_propertyMap constinArgument1,
-                                                                                                                       const class GGS_propertyMap constinArgument2,
-                                                                                                                       const class GGS_actionMap constinArgument3,
-                                                                                                                       const class GGS_semanticContext constinArgument4,
-                                                                                                                       const class GGS_propertyMap constinArgument5,
-                                                                                                                       const class GGS_actionMap constinArgument6,
-                                                                                                                       const class GGS_string constinArgument7,
-                                                                                                                       const class GGS_lstring constinArgument8,
-                                                                                                                       const class GGS_tableValueBinding constinArgument9,
-                                                                                                                       const class GGS_runActionDescriptor constinArgument10,
-                                                                                                                       const class GGS_multipleBindingDescriptor constinArgument11,
-                                                                                                                       const class GGS_multipleBindingDescriptor constinArgument12,
-                                                                                                                       const class GGS_graphicController constinArgument13,
-                                                                                                                       const class GGS__5B_regularBinding_5D_ constinArgument14,
-                                                                                                                       class GGS__5B_autoLayoutRegularBindingsGeneration_5D_ & outArgument15,
-                                                                                                                       class GGS__5B_autoLayoutMultipleBindingGeneration_5D_ & outArgument16,
-                                                                                                                       class GGS_autolayoutRunBindingForGeneration & outArgument17,
-                                                                                                                       class GGS_string & outArgument18,
-                                                                                                                       class GGS_autoLayoutViewGraphicControllerBindingGeneration & outArgument19,
-                                                                                                                       class Compiler * inCompiler
-                                                                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'analyzeAutoLayoutRegularBinding?prefs???????&'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_analyzeAutoLayoutRegularBinding_3F_prefs_3F__3F__3F__3F__3F__3F__3F__26_ (const class GGS_bool constinArgument0,
-                                                                                       const class GGS_propertyMap constinArgument1,
-                                                                                       const class GGS_propertyMap constinArgument2,
-                                                                                       const class GGS_semanticContext constinArgument3,
-                                                                                       const class GGS_propertyMap constinArgument4,
-                                                                                       const class GGS_lstring constinArgument5,
-                                                                                       const class GGS__5B_regularBinding_5D_ constinArgument6,
-                                                                                       const class GGS_string constinArgument7,
-                                                                                       class GGS__5B_autoLayoutRegularBindingsGeneration_5D_ & ioArgument8,
-                                                                                       class Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
 //Routine 'analyzeRegularBinding????????&'
 //
 //--------------------------------------------------------------------------------------------------
@@ -126,7 +22,7 @@ void routine_analyzeRegularBinding_3F__3F__3F__3F__3F__3F__3F__3F__26_ (const cl
                                                                         const class GGS_string constinArgument5,
                                                                         const class GGS__5B_regularBinding_5D_ constinArgument6,
                                                                         const class GGS_string constinArgument7,
-                                                                        class GGS_regularBindingsGenerationList & ioArgument8,
+                                                                        class GGS__5B_regularBindingsGeneration_5D_ & ioArgument8,
                                                                         class Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
 
@@ -159,7 +55,7 @@ extern const cDirectoryWrapper gWrapperDirectory_3_transientManager ;
 GGS_string filewrapperTemplate_transientManager_transientComputationFunctionFile (class Compiler * inCompiler,
                                                                                   const class GGS_string & in_OWNER_5F_NAME,
                                                                                   const class GGS_string & in_TRANSIENT_5F_NAME,
-                                                                                  const class GGS_transientDependencyListForGeneration & in_DEPENDENCY_5F_LIST,
+                                                                                  const class GGS__5B_transientDependencyForGeneration_5D_ & in_DEPENDENCY_5F_LIST,
                                                                                   const class GGS_typeKind & in_TRANSIENT_5F_TYPE,
                                                                                   const class GGS_string & in_TRANSIENT_5F_FUNCTION_5F_NAME_5F_PREFIX
                                                                                   COMMA_LOCATION_ARGS) ;
@@ -182,7 +78,7 @@ void routine_generateCode_3F__3F__3F_ (const class GGS_string constinArgument0,
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_generateEBManagedObjectContext_3F__3F__26_ (const class GGS_entityListForGeneratingEBManagedObjectContext constinArgument0,
+void routine_generateEBManagedObjectContext_3F__3F__26_ (const class GGS__5B_entityForGeneratingEBManagedObjectContext_5D_ constinArgument0,
                                                          const class GGS_string constinArgument1,
                                                          class GGS_stringset & ioArgument2,
                                                          class Compiler * inCompiler
@@ -196,7 +92,7 @@ void routine_generateEBManagedObjectContext_3F__3F__26_ (const class GGS_entityL
 
 void routine_generateStandardProperties_3F__3F__3F__26_ (const class GGS_string constinArgument0,
                                                          const class GGS__5B_string_5D_ constinArgument1,
-                                                         const class GGS_transientExternTypeList constinArgument2,
+                                                         const class GGS__5B_transientExternType_5D_ constinArgument2,
                                                          class GGS_stringset & ioArgument3,
                                                          class Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
@@ -341,14 +237,14 @@ extern const cDirectoryWrapper gWrapperDirectory_3_entityGenerationTemplate ;
 GGS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationInSwift (class Compiler * inCompiler,
                                                                                      const class GGS_string & in_ENTITY_5F_NAME,
                                                                                      const class GGS_string & in_SUPER_5F_CLASS_5F_NAME,
-                                                                                     const class GGS_propertyGenerationList & in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                                     const class GGS__5B_propertyGeneration_5D_ & in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
                                                                                      const class GGS_stringset & in_USED_5F_PROTOCOL_5F_SET,
-                                                                                     const class GGS_atomicProxyGenerationList & in_PROXY_5F_LIST_5F_FOR_5F_GENERATION,
-                                                                                     const class GGS_toManyProxyGenerationList & in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                                     const class GGS__5B_atomicProxyGeneration_5D_ & in_PROXY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                                     const class GGS__5B_toManyProxyGeneration_5D_ & in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION,
                                                                                      const class GGS__5B_atomicPropertyGeneration_5D_ & in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
-                                                                                     const class GGS_transientPropertyGenerationList & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
-                                                                                     const class GGS_computedPropertyGenerationList & in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
-                                                                                     const class GGS_toOnePropertyGenerationList & in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST,
+                                                                                     const class GGS__5B_transientPropertyGeneration_5D_ & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
+                                                                                     const class GGS__5B_computedPropertyGeneration_5D_ & in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
+                                                                                     const class GGS__5B_toOnePropertyGeneration_5D_ & in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST,
                                                                                      const class GGS__5B_toManyPropertyGeneration_5D_ & in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST,
                                                                                      const class GGS_stringset & in_SIGNATURE_5F_SET,
                                                                                      const class GGS_bool & in_IS_5F_GRAPHIC_5F_ENTITY,
@@ -371,13 +267,13 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplementati
                                                                                            const class GGS_string & in_ENTITY_5F_NAME,
                                                                                            const class GGS_string & in_SUPER_5F_CLASS_5F_NAME,
                                                                                            const class GGS_bool & in_HANDLING_5F_OPPOSITE,
-                                                                                           const class GGS_propertyGenerationList & in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
-                                                                                           const class GGS_atomicProxyGenerationList & in_PROXY_5F_LIST_5F_FOR_5F_GENERATION,
-                                                                                           const class GGS_toManyProxyGenerationList & in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                                           const class GGS__5B_propertyGeneration_5D_ & in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                                           const class GGS__5B_atomicProxyGeneration_5D_ & in_PROXY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                                           const class GGS__5B_toManyProxyGeneration_5D_ & in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION,
                                                                                            const class GGS__5B_atomicPropertyGeneration_5D_ & in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
-                                                                                           const class GGS_transientPropertyGenerationList & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
-                                                                                           const class GGS_computedPropertyGenerationList & in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
-                                                                                           const class GGS_toOnePropertyGenerationList & in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST,
+                                                                                           const class GGS__5B_transientPropertyGeneration_5D_ & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
+                                                                                           const class GGS__5B_computedPropertyGeneration_5D_ & in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
+                                                                                           const class GGS__5B_toOnePropertyGeneration_5D_ & in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST,
                                                                                            const class GGS__5B_toManyPropertyGeneration_5D_ & in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST,
                                                                                            const class GGS_stringset & in_SIGNATURE_5F_SET,
                                                                                            const class GGS_bool & in_IS_5F_GRAPHIC_5F_ENTITY,
@@ -402,13 +298,13 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementatio
                                                                                           const class GGS_string & in_ENTITY_5F_NAME,
                                                                                           const class GGS_string & in_SUPER_5F_CLASS_5F_NAME,
                                                                                           const class GGS_bool & in_HANDLING_5F_OPPOSITE,
-                                                                                          const class GGS_propertyGenerationList & in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
-                                                                                          const class GGS_atomicProxyGenerationList & in_PROXY_5F_LIST_5F_FOR_5F_GENERATION,
-                                                                                          const class GGS_toManyProxyGenerationList & in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                                          const class GGS__5B_propertyGeneration_5D_ & in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                                          const class GGS__5B_atomicProxyGeneration_5D_ & in_PROXY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                                          const class GGS__5B_toManyProxyGeneration_5D_ & in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION,
                                                                                           const class GGS__5B_atomicPropertyGeneration_5D_ & in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
-                                                                                          const class GGS_transientPropertyGenerationList & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
-                                                                                          const class GGS_computedPropertyGenerationList & in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
-                                                                                          const class GGS_toOnePropertyGenerationList & in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST,
+                                                                                          const class GGS__5B_transientPropertyGeneration_5D_ & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
+                                                                                          const class GGS__5B_computedPropertyGeneration_5D_ & in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
+                                                                                          const class GGS__5B_toOnePropertyGeneration_5D_ & in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST,
                                                                                           const class GGS__5B_toManyPropertyGeneration_5D_ & in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST,
                                                                                           const class GGS_stringset & in_SIGNATURE_5F_SET,
                                                                                           const class GGS_bool & in_IS_5F_GRAPHIC_5F_ENTITY,
@@ -424,7 +320,7 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementatio
 //--------------------------------------------------------------------------------------------------
 
 GGS_string filewrapperTemplate_entityGenerationTemplate_managedObjectFactory (class Compiler * inCompiler,
-                                                                              const class GGS_entityListForGeneratingEBManagedObjectContext & in_ENTITY_5F_LIST
+                                                                              const class GGS__5B_entityForGeneratingEBManagedObjectContext_5D_ & in_ENTITY_5F_LIST
                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -458,4 +354,35 @@ GGS_string filewrapperTemplate_computedPropertyManager_computedComputationFuncti
                                                                                         const class GGS_string & in_COMPUTED_5F_PROPERTY_5F_NAME,
                                                                                         const class GGS_typeKind & in_TRANSIENT_5F_TYPE
                                                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'actionGenerationTemplate'
+//
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const cDirectoryWrapper gWrapperDirectory_0_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_1_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_2_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_3_actionGenerationTemplate ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'actionGenerationTemplate actionGeneration'
+//
+//--------------------------------------------------------------------------------------------------
+
+GGS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (class Compiler * inCompiler,
+                                                                          const class GGS_string & in_EXTENDED_5F_CLASS_5F_NAME,
+                                                                          const class GGS_string & in_ACTION_5F_NAME
+                                                                          COMMA_LOCATION_ARGS) ;
 

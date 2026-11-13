@@ -10,7 +10,7 @@ struct @semanticContext {
   public var @autoLayoutBindingSpecificationMap mAutoLayoutBindingSpecificationMap = ()
   public var @astAutoLayoutViewFunctionMap mAutoLayoutVStackFunctionMap = ()
   public var @astAutoLayoutViewFunctionMap mAutoLayoutHStackFunctionMap = ()
-  public var @enumerationFunctionListAST mEnumerationFunctionListAST = ()
+  public var [@enumerationFunctionAST] mEnumerationFunctionListAST = ()
 }
 
 //------------------------------------------------------------------------------------------------
@@ -71,14 +71,14 @@ case ."eb"
   end
 //---------------------------------------- Check enum type is declared for every enum function
   if @uint.errorCount == 0 then
-    for (mEnumName, 2*) in semanticContext.mEnumerationFunctionListAST do
-      semanticContext.mClassMap.searchKey (mEnumName, ?let type, ?3*)
+    for enumFunc in semanticContext.mEnumerationFunctionListAST do
+      semanticContext.mClassMap.searchKey (enumFunc.mEnumName, ?let type, ?3*)
       if not type.isAtomic then
-        error (mEnumName : "this type should be an enum type")
+        error (enumFunc.mEnumName : "this type should be an enum type")
       else
         type.extractAtomic (?kind:let typeKind)
         if not typeKind.isEnumType then
-          error (mEnumName : "this type should be an enum type")
+          error (enumFunc.mEnumName : "this type should be an enum type")
         end
       end
     end
