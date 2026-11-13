@@ -13,8 +13,8 @@ grammar easyBindings_grammar "SLR" {
 
 struct @astDeclarationStruct {
   public var [@abstractDeclarationAST] mUnifiedDeclarationList = []
-  public var @outletClassBindingSpecificationList mBindingSpecificationListMap = []
-  public var @autoLayoutViewClassBindingSpecificationList mAutoLayoutBindingSpecificationList = []
+  public var [@outletClassBindingSpecification] mBindingSpecificationListMap = []
+  public var [@autoLayoutViewClassBindingSpecification] mAutoLayoutBindingSpecificationList = []
   public var @prefDeclaration mPreferences = @prefDeclaration ()
   public var @lstring mXcodeProject = "".nowhere
   public var [@lstring] mGraphvizList = []

@@ -39,8 +39,8 @@ end
   //    Multiple bindings controllers
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-%for (mOutletName mBindingName mBoundObjectExpression) in MULTIPLE_BINDING_GENERATION_LIST do
-  %//  final var mController_%!mOutletName%_%!mBindingName% : MultipleBindingController_%!mBindingName%? = nil\n%
+%for (binding) in MULTIPLE_BINDING_GENERATION_LIST do
+  %//  final var mController_%!binding.mOutletName%_%!binding.mBindingName% : MultipleBindingController_%!binding.mBindingName%? = nil\n%
 end
 %
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -104,9 +104,9 @@ end
     self.configureProperties ()
     let mainView = self.%!MAIN_VIEW_NAME% ()
   //--- Call outlet linkers\n%
-     for (mLinkerName mOutletNameAndTypeNameList) in AUTO_LAYOUT_LINKER_LIST do
-     %    self.linker_%!mLinkerName% (%
-       for (entry) in mOutletNameAndTypeNameList
+     for (linker) in AUTO_LAYOUT_LINKER_LIST do
+     %    self.linker_%!linker.mLinkerName% (%
+       for (entry) in linker.mOutletNameAndTypeNameList
        do %self.%!entry.mValue0
        between %, %
        end

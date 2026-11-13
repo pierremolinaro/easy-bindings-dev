@@ -3,13 +3,13 @@
 //--------------------------------------------------------------------------------------------------
 
 struct @prefDeclaration {
-  public var @outletDeclarationList mOutletDeclarationList = []
-  public var @simpleStoredPropertyList mSimpleStoredAttributeList = []
+  public var [@outletDeclarationAST] mOutletDeclarationList = []
+  public var [@simpleStoredProperty] mSimpleStoredAttributeList = []
   public var [@lstring] mActionDeclarationList = []
   public var @externSwiftFunctionList mExternSwiftFunctionList = []
   public var @stringset mSignatureList = []
   public var [@mainXibDescriptor] mMainXibDescriptorList = []
-  public var @astViewDeclarationList mViewDeclarationList = []
+  public var [@astViewDeclaration] mViewDeclarationList = []
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -52,13 +52,13 @@ syntax extension easyBindings_syntax {
     var [@arrayControllerBindingAST] arrayControllerBindingListAST = []
     repeat
     while
-      var @astViewDeclarationList viewDeclarationList = []
+      var [@astViewDeclaration] viewDeclarationList = []
       <stack_view_declaration> (!?viewDeclarationList)
       ioDeclarationAST.mPreferences.mViewDeclarationList += viewDeclarationList
     while
       <action_declaration> (!?ioDeclarationAST.mPreferences.mActionDeclarationList)
     while
-      var @simpleStoredPropertyList simpleStoredPropertyList = []
+      var [@simpleStoredProperty] simpleStoredPropertyList = []
       <simple_stored_declaration>(
         prefs,
         !?simpleStoredPropertyList,
@@ -151,7 +151,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
     preferencesName (),
     !?ioGeneration,
     ?let @regularBindingsGenerationList regularBindingsGenerationList,
-    ?let @multipleBindingGenerationList multipleBindingGenerationList,
+    ?let [@multipleBindingGeneration] multipleBindingGenerationList,
     ?let @actionBindingListForGeneration actionBindingListForGeneration,
     ?let @decoratedOutletMap outletMap,
     ?let @tableViewBindingGenerationList tableViewBindingGenerationList,
@@ -163,10 +163,10 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   var @implicitViewFunctionGenerationList implicitViewFunctionGenerationList = []
   var @autoLayoutConfiguratorMap configuratorMap = ()
   var @autoLayoutOutletMap autoLayoutOutletMap = ()
-  for (mViewName, mView) in self.mDeclaration.mViewDeclarationList do
-    !?viewDeclarationMap.insertKey (mViewName)
-    mView.checkView (
-      mViewName,
+  for view in self.mDeclaration.mViewDeclarationList do
+    !?viewDeclarationMap.insertKey (view.mViewName)
+    view.mView.checkView (
+      view.mViewName,
       viewDeclarationMap,
       !prefs: true,
       (), // rootPropertyMap
@@ -181,7 +181,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
       !?autoLayoutOutletMap,
       ?let viewGeneration
     )
-    !?viewGenerationList.append (mViewName, viewGeneration)
+    viewGenerationList ++= @(view.mViewName, viewGeneration)
   end
   if not viewDeclarationMap.contains ("mPrefsMainView") then
     error (.nowhere : "Preferences should define 'mPrefsMainView' stack view")
@@ -214,7 +214,7 @@ class @preferencesForGeneration : @abstractFileGeneration {
   public let @propertyGenerationList mPropertyListForGeneration
   public let [@mainXibDescriptor] mMainXibDescriptorList
   public let @regularBindingsGenerationList mRegularBindingsGenerationList
-  public let @multipleBindingGenerationList mMultipleBindingGenerationList
+  public let [@multipleBindingGeneration] mMultipleBindingGenerationList
   public let @actionBindingListForGeneration mActionBindingListForGeneration
   public let @decoratedOutletMap mOutletMap
   public let @externSwiftFunctionList mExternSwiftFunctionList
@@ -237,7 +237,7 @@ private filewrapper prefsGenerationTemplate in "generation-templates" {
     @decoratedOutletMap OUTLET_MAP,
     @regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST,
     @actionBindingListForGeneration TARGET_ACTION_LIST,
-    @multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST,
+    [@multipleBindingGeneration] MULTIPLE_BINDING_GENERATION_LIST,
     @externSwiftFunctionList EXTERN_SWIFT_FUNCTION_LIST,
     @tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST,
     @ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST,

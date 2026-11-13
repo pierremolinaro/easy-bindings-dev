@@ -3,15 +3,15 @@
 //------------------------------------------------------------------------------------------------
 
 class @autoLayoutViewClassDeclarationAST : @abstractDeclarationAST {
-  public var @bool mUserDefined
-  public var @lstring mSuperClassName
-  public var @bool mHasRunAction
-  public var @bool mHasEnabled
-  public var @bool mHandlesTableValueBinding
-  public var @bool mHandlesGraphicControllerBinding
-  public var @bool mHasHidden
-  public var @autoLayoutClassParameterList mParameterList
-  public var @astAutoLayoutViewFunctionMap mAutoLayoutViewFunctionMap
+  let @bool mUserDefined
+  let @lstring mSuperClassName
+  let @bool mHasRunAction
+  let @bool mHasEnabled
+  let @bool mHandlesTableValueBinding
+  let @bool mHandlesGraphicControllerBinding
+  let @bool mHasHidden
+  let [@autoLayoutClassParameter] mParameterList
+  let @astAutoLayoutViewFunctionMap mAutoLayoutViewFunctionMap
 }
 
 //------------------------------------------------------------------------------------------------
@@ -44,15 +44,15 @@ func @autoLayoutClassParameterType.string() -> @string {
 
 //------------------------------------------------------------------------------------------------
 
-list @autoLayoutClassParameterList {
-  public var @lstring mParameterName
-  public var @autoLayoutClassParameterType mParameterType
+struct @autoLayoutClassParameter {
+  let @lstring mParameterName
+  let @autoLayoutClassParameterType mParameterType
 }
 
 //------------------------------------------------------------------------------------------------
 
 map @astAutoLayoutViewFunctionMap {
-  public var @autoLayoutClassParameterList mFomalParameterList
+  let [@autoLayoutClassParameter] mFomalParameterList
   #insertSetter insertKey #errorMessage "the '%K' function is already declared in %L"
   #searchMethod searchKey #errorMessage "there is no '%K' function"
 }
@@ -113,7 +113,7 @@ syntax extension easyBindings_syntax {
     $autolayout$
     $class$
     $Identifier$ (?let @lstring outletClassName)
-    let @autoLayoutClassParameterList parameterList
+    let [@autoLayoutClassParameter] parameterList
     select
       parameterList = []
     or
@@ -178,7 +178,7 @@ syntax extension easyBindings_syntax {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
   rule <autolayout_formal_parameter_list> (let @lstring inFunctionName,
-                                          !@autoLayoutClassParameterList ioParameterList,
+                                          ![@autoLayoutClassParameter] ioParameterList,
                                           !@lstring outMangledName) {
     ioParameterList = []
     var mangledName = inFunctionName.string + "("
@@ -191,25 +191,25 @@ syntax extension easyBindings_syntax {
         $:$
         select
           $view$
-          !?ioParameterList.append (parameterName, .typeView)
+          ioParameterList ++= @(parameterName, .typeView)
         or
           $menuItem$
-          !?ioParameterList.append (parameterName, .menuItem)
+          ioParameterList ++= @(parameterName, .menuItem)
         or
           $entity$
-          !?ioParameterList.append (parameterName, .entity)
+          ioParameterList ++= @(parameterName, .entity)
         or
           $Identifier$ (?let parameterTypeName)
           if parameterTypeName.string == "String" then
-            !?ioParameterList.append (parameterName, .typeString)
+            ioParameterList ++= @(parameterName, .typeString)
           elsif parameterTypeName.string == "StringArray" then
-            !?ioParameterList.append (parameterName, .typeStringArray)
+            ioParameterList ++= @(parameterName, .typeStringArray)
           elsif parameterTypeName.string == "Int" then
-            !?ioParameterList.append (parameterName, .typeInt)
+            ioParameterList ++= @(parameterName, .typeInt)
           elsif parameterTypeName.string == "Bool" then
-            !?ioParameterList.append (parameterName, .typeBool)
+            ioParameterList ++= @(parameterName, .typeBool)
           else
-            !?ioParameterList.append (parameterName, .typeEnum (!name: parameterTypeName))
+            ioParameterList ++= @(parameterName, .typeEnum (!name: parameterTypeName))
           end
         end
       while
@@ -293,15 +293,15 @@ override proc @autoLayoutViewClassDeclarationAST.firstAnalysisPhase(
 //------------------------------------------------------------------------------------------------
 
 map @autolayoutViewClassMap {
-  public var @lstring mSuperClassName
-  public var @bool mHandlesRunAction
-  public var @bool mHandlesTableValueBinding
-  public var @bool mHandleEnabledBinding
-  public var @bool mHandleHiddenBinding
-  public var @bool mHandleGraphicControllerBinding
-  public var @bool mUserDefined
-  public var @autoLayoutClassParameterList mParameterList
-  public var @astAutoLayoutViewFunctionMap mAutoLayoutViewFunctionMap
+  let @lstring mSuperClassName
+  let @bool mHandlesRunAction
+  let @bool mHandlesTableValueBinding
+  let @bool mHandleEnabledBinding
+  let @bool mHandleHiddenBinding
+  let @bool mHandleGraphicControllerBinding
+  let @bool mUserDefined
+  let [@autoLayoutClassParameter] mParameterList
+  let @astAutoLayoutViewFunctionMap mAutoLayoutViewFunctionMap
   #insertSetter insertKey #errorMessage "the '%K' outlet class is already declared in %L"
   #searchMethod searchKey #errorMessage "there is no '%K' outlet class"
 }

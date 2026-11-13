@@ -6,7 +6,7 @@ class @computedPropertyDeclarationAST : @abstractDeclarationAST {
   public var @lstring mRootEntityName
   public var @lstring mComputedPropertyTypeName
   public var @lstring mComputedPropertyName
-  public var @observablePropertyList mDependencyList
+  public var [@observablePropertyAST] mDependencyList
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -17,7 +17,7 @@ override proc @computedPropertyDeclarationAST.enterInPrecedenceGraph (?!@declara
   !?ioGraph.addEdge (!from: node, !to: self.mClassName)
   !?ioGraph.addEdge (!from: node, !to: self.mComputedPropertyTypeName)
   for dependency in self.mDependencyList do
-    switch dependency.mObservableProperty
+    switch dependency
     case rootProperty (propertyName) :
       if self.mRootEntityName.string != "" then
         !?ioGraph.addEdge (!from: node, !to: @(self.mRootEntityName.string + " " + propertyName, propertyName.location))
@@ -98,10 +98,10 @@ syntax extension easyBindings_syntax {
     $Identifier$ (?let transientTypeName)
     $identifier$ (?let @lstring transientName)
     $dependsFrom$
-    var @observablePropertyList dependanceList = []
+    var [@observablePropertyAST] dependanceList = []
     repeat
       <observable_property> (?let @observablePropertyAST observablePropertyAST)
-      !?dependanceList.append (observablePropertyAST)
+      dependanceList ++= observablePropertyAST
     while
       $,$
     end
@@ -180,8 +180,8 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
   ioSemanticContext.mClassMap.searchKey (self.mClassName, ?let currentClassKind, ?let properties, ?2*)
 //-- Analyse master properties
   var @transientDependencyListForGeneration dependencies = []
-  for (mObservableProperty) in self.mDependencyList do
-    mObservableProperty.analyzeObservableProperty (
+  for observableProperty in self.mDependencyList do
+    observableProperty.analyzeObservableProperty (
       rootProperties,
       ioSemanticContext,
       properties,
@@ -195,13 +195,13 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
     case toMany (4*) :
     case toOne (5*) :
     case arrayController (2*) :
-      error (mObservableProperty.location : "only an atomic property can be observed")
+      error (observableProperty.location : "only an atomic property can be observed")
     case selectionController (*) :
-      error (mObservableProperty.location : "only an atomic property can be observed")
+      error (observableProperty.location : "only an atomic property can be observed")
     end
     !?dependencies.append (
-      mObservableProperty,
-      mObservableProperty.modelStringFunctionArgument ,
+      observableProperty,
+      observableProperty.modelStringFunctionArgument ,
       swiftTypeStringForTransientFunctionArgument,
       defaultValueAsString,
       protocolTypeName

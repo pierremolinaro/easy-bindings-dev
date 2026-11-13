@@ -5,26 +5,26 @@
 class @autoLayoutDocumentDeclarationAST : @abstractDeclarationAST {
   public let @lstring mRootEntityName
   public let @lstring mMainViewName
-  public let @outletDeclarationList mOutletDeclarationList
+  public let [@outletDeclarationAST] mOutletDeclarationList
   public let [@lstring] mActionDeclarationList
   public let [@arrayControllerBindingAST] mArrayControllerBindingListAST
-  public let @astViewDeclarationList mViewDeclarationList
+  public let [@astViewDeclaration] mViewDeclarationList
   public let @string mCustomSuperClassName // Empty String if no custom superclass
-  public let @astAutoLayoutOutletLinkerList mOutletLinkerList
+  public let [@astAutoLayoutOutletLinker] mOutletLinkerList
 }
 
 //--------------------------------------------------------------------------------------------------
 
-list @astAutoLayoutOutletLinkerList {
-  public var @lstring mLinkerName
-  public var [@lstring] mOutletNameList
+struct @astAutoLayoutOutletLinker {
+  let @lstring mLinkerName
+  let [@lstring] mOutletNameList
 }
 
 //--------------------------------------------------------------------------------------------------
 
-list @autoLayoutOutletLinkerGenerationList {
-  public var @string mLinkerName
-  public var [@2string] mOutletNameAndTypeNameList
+struct @autoLayoutOutletLinkerGeneration {
+  let @string mLinkerName
+  let [@2string] mOutletNameAndTypeNameList
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -64,11 +64,11 @@ syntax extension easyBindings_syntax {
     $stackView$
     $viewName$ (?let @lstring mainViewName)
     ${$
-    var @outletDeclarationList outletDeclarationList = []
+    var [@outletDeclarationAST] outletDeclarationList = []
     var [@lstring] actionDeclarationList = []
     var [@arrayControllerBindingAST] arrayControllerBindingListAST = []
-    var @astViewDeclarationList viewDeclarationList = []
-    var @astAutoLayoutOutletLinkerList autoLayoutOutletLinkerList = []
+    var [@astViewDeclaration] viewDeclarationList = []
+    var [@astAutoLayoutOutletLinker] autoLayoutOutletLinkerList = []
     repeat
     while
       <stack_view_declaration> (!?viewDeclarationList)
@@ -92,7 +92,7 @@ syntax extension easyBindings_syntax {
         $,$
       end
       $)$
-      !?autoLayoutOutletLinkerList.append (linkerName, outletNameList)
+      autoLayoutOutletLinkerList ++= @(linkerName, outletNameList)
     end
     $}$
     !?ioDeclarationAST.mUnifiedDeclarationList.append (@autoLayoutDocumentDeclarationAST (
@@ -188,7 +188,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     self.mClassName,
     !?ioGeneration,
     ?let @regularBindingsGenerationList regularBindingsGenerationList,
-    ?@multipleBindingGenerationList multipleBindingGenerationList,
+    ?[@multipleBindingGeneration] multipleBindingGenerationList,
     ?let @actionBindingListForGeneration actionBindingListForGeneration,
     ?let @decoratedOutletMap outletMap,
     ?let @tableViewBindingGenerationList tableViewBindingGenerationList,
@@ -213,7 +213,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
       if not type.isBoolType then
         error (errorLocation : "expression is not boolean")
       end
-      !?multipleBindingGenerationList.append (
+      multipleBindingGenerationList ++= @(
         controller.mControllerName.string,
         "hidden",
         hiddenExpression
@@ -226,10 +226,10 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
   var @implicitViewFunctionGenerationList implicitViewFunctionGenerationList = []
   var @autoLayoutConfiguratorMap configuratorMap = ()
   var @autoLayoutOutletMap autoLayoutOutletMap = ()
-  for (mViewName, mView) in self.mViewDeclarationList do
-    !?viewDeclarationMap.insertKey (mViewName)
-    mView.checkView (
-      mViewName,
+  for view in self.mViewDeclarationList do
+    !?viewDeclarationMap.insertKey (view.mViewName)
+    view.mView.checkView (
+      view.mViewName,
       viewDeclarationMap,
       !prefs: false,
       rootPropertyMap,
@@ -244,25 +244,25 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
       !?autoLayoutOutletMap,
       ?let viewGeneration
     )
-    !?viewGenerationList.append (mViewName, viewGeneration)
+    !?viewGenerationList.append (view.mViewName, viewGeneration)
   end
   viewDeclarationMap.searchKey (self.mMainViewName)
 //-- Code generation
   ioGeneration.mGenerateEBManagedAutoLayoutDocumentSwift = true
 //-- Check outlet linker
-  var @autoLayoutOutletLinkerGenerationList outletLinkerGenerationList = []
+  var [@autoLayoutOutletLinkerGeneration] outletLinkerGenerationList = []
   var @stringset linkerNameSet = []
-  for (mLinkerName, mOutletNameList) in self.mOutletLinkerList do
-    if linkerNameSet.contains (mLinkerName.string) then
-      error (mLinkerName : "duplicated linker name")
+  for linker in self.mOutletLinkerList do
+    if linkerNameSet.contains (linker.mLinkerName.string) then
+      error (linker.mLinkerName : "duplicated linker name")
     end
-    !?linkerNameSet.insert (mLinkerName.string)
+    !?linkerNameSet.insert (linker.mLinkerName.string)
     var [@2string] outletNameAndTypeNameList = []
-    for outletName in mOutletNameList do
+    for outletName in linker.mOutletNameList do
       autoLayoutOutletMap.searchKey (outletName, ?let outletTypeName, ?let _outletIsArray)
       outletNameAndTypeNameList ++= @(outletName.string, outletTypeName)
     end
-    !?outletLinkerGenerationList.append (mLinkerName.string, outletNameAndTypeNameList)
+    outletLinkerGenerationList ++= @(linker.mLinkerName.string, outletNameAndTypeNameList)
   end
 //--
   !?ioGeneration.mFileGenerationList.append (@autoLayoutDocumentFileGeneration (
@@ -299,7 +299,7 @@ class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
   public let @autoLayoutOutletMap mAutoLayoutOutletMap
   public let @actionBindingListForGeneration mTargetActionList
   public let @regularBindingsGenerationList mRegularBindingsGenerationList
-  public let @multipleBindingGenerationList multipleBindingGenerationList
+  public let [@multipleBindingGeneration] multipleBindingGenerationList
   public let @tableViewBindingGenerationList mTableViewBindingGenerationList
   public let @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
   public let @viewGenerationList mViewDeclarationList
@@ -307,7 +307,7 @@ class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
   public let @implicitViewFunctionGenerationList mImplicitViewFunctionGenerationList
   public let @autoLayoutConfiguratorMap mConfiguratorMap
   public let @string mCustomSuperClassName // Empty String if no custom superclass
-  public let @autoLayoutOutletLinkerGenerationList mOutletLinkerGenerationList
+  public let [@autoLayoutOutletLinkerGeneration] mOutletLinkerGenerationList
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -376,11 +376,11 @@ override proc @autoLayoutDocumentFileGeneration.generateCodePhase2 (
       !makeExecutable:false
     )
   end
-  for (mLinkerName, mOutletNameAndTypeNameList) in self.mOutletLinkerGenerationList do
+  for linker in self.mOutletLinkerGenerationList do
     let s = filewrapper [autoLayoutDocumentGenerationTemplate.outletLinkerImplementation:
       self.mDocumentName,
-      mLinkerName,
-      mOutletNameAndTypeNameList
+      linker.mLinkerName,
+      linker.mOutletNameAndTypeNameList
     ]
     let header = "//" + @string.stringWithSequenceOfCharacters ('-', 98) + "\n"
       "//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n"
@@ -388,7 +388,7 @@ override proc @autoLayoutDocumentFileGeneration.generateCodePhase2 (
       + "import AppKit\n"
       + "import CanariGeometry\n\n"
       + "//" + @string.stringWithSequenceOfCharacters ('-', 98) + "\n\n"
-    let fileName = "linker-" + self.mDocumentName + "-" + mLinkerName + ".swift"
+    let fileName = "linker-" + self.mDocumentName + "-" + linker.mLinkerName + ".swift"
     !?ioGeneratedFileSet.insert (fileName)
     @string.generateFileWithPattern (
       !startPath: inOutputDirectory,
@@ -418,13 +418,13 @@ filewrapper autoLayoutDocumentGenerationTemplate in "generation-templates" {
     @autoLayoutOutletMap AUTO_LAYOUT_OUTLET_MAP,
     @actionBindingListForGeneration TARGET_ACTION_LIST,
     @regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST,
-    @multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST,
+    [@multipleBindingGeneration] MULTIPLE_BINDING_GENERATION_LIST,
     @tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST,
     @ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST,
     @viewGenerationList VIEW_GENERATION_LIST,
     @implicitViewFunctionGenerationList IMPLICIT_VIEW_GENERATION_FUNCTION_LIST,
     @string DOCUMENT_SUPER_CLASS_NAME,
-    @autoLayoutOutletLinkerGenerationList AUTO_LAYOUT_LINKER_LIST
+    [@autoLayoutOutletLinkerGeneration] AUTO_LAYOUT_LINKER_LIST
   )
 
   template documentOutletConfiguratorImplementation : "configure-auto-layout-outlet.swift.galgasTemplate" (

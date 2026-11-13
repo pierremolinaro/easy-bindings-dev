@@ -2,19 +2,19 @@
 //   AST   
 //--------------------------------------------------------------------------------------------------
 
-list @simpleStoredPropertyList {
-  public var @lstring mPropertyTypeName
-  public var @lstring mPropertyName
-  public var @abstractDefaultValue mDefaultValue
+struct @simpleStoredProperty {
+  let @lstring mPropertyTypeName
+  let @lstring mPropertyName
+  let @abstractDefaultValue mDefaultValue
 }
 
 //--------------------------------------------------------------------------------------------------
 
 class @atomicPropertyDeclarationAST : @abstractDeclarationAST {
-  public var @lstring mPropertyTypeName
-  public var @lstring mPropertyName
-  public var @abstractDefaultValue mDefaultValue
-  public var @bool generateResetMethod #initArgLabel
+  let @lstring mPropertyTypeName
+  let @lstring mPropertyName
+  let @abstractDefaultValue mDefaultValue
+  let @bool generateResetMethod #initArgLabel
   public let @bool generateDirectRead #initArgLabel
   public let @bool generateDirectAccess #initArgLabel
   public let @bool standalone #initArgLabel
@@ -45,7 +45,7 @@ syntax extension easyBindings_syntax {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
   rule <simple_stored_declaration> (let @lstring inClassName,
-                                    ?!@simpleStoredPropertyList ioAttributeList,
+                                    ?![@simpleStoredProperty] ioAttributeList,
                                     ?!@stringset ioSignatureList,
                                     ?!@astDeclarationStruct ioDeclarationAST) {
     $property$
@@ -106,7 +106,7 @@ syntax extension easyBindings_syntax {
         !standalone: false
       )
     )
-    !?ioAttributeList.append (
+    ioAttributeList ++= @(
       attributeTypeName,
       attributeName,
       defaultValue
@@ -116,7 +116,7 @@ syntax extension easyBindings_syntax {
  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
   rule <simple_stored_declaration> (let @lstring inClassName,
-                                    ?!@simpleStoredPropertyList ioAttributeList,
+                                    ?![@simpleStoredProperty] ioAttributeList,
                                     ?!@stringset _ioSignatureList,
                                     ?!@astDeclarationStruct ioDeclarationAST) {
     $standalone$
@@ -138,7 +138,7 @@ syntax extension easyBindings_syntax {
         !standalone: true
       )
     )
-    !?ioAttributeList.append (
+    ioAttributeList ++= @(
       attributeTypeName,
       attributeName,
       defaultValue
@@ -207,12 +207,6 @@ class @atomicPropertyGeneration : @propertyGeneration {
   private let @bool mIsProxy
   private let @string mDefaultValueInSwift
   private let @bool mInPreferences
-}
-
-//--------------------------------------------------------------------------------------------------
-
-list @atomicPropertyGenerationList {
-  public var @atomicPropertyGeneration mProperty
 }
 
 //--------------------------------------------------------------------------------------------------

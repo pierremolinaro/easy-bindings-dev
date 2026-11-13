@@ -2,9 +2,9 @@
 //   AST   
 //------------------------------------------------------------------------------------------------
 
-list @regularBindingList {
+struct @regularBinding {
   public let @lstring mBindingName
-  public let @observablePropertyList mObservablePropertyList
+  public let [@observablePropertyAST] mObservablePropertyList
   public let @bindingOptionList mBindingOptionList
 }
 

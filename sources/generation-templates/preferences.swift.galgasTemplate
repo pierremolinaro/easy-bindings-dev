@@ -86,8 +86,8 @@ end
   //    Multiple bindings controllers
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-%for (mOutletName mBindingName mBoundObjectExpression) in MULTIPLE_BINDING_GENERATION_LIST do
-  %  private var mController_%!mOutletName%_%!mBindingName% : MultipleBindingController_%!mBindingName%?\n%
+%for (binding) in MULTIPLE_BINDING_GENERATION_LIST do
+  %  private var mController_%!binding.mOutletName%_%!binding.mBindingName% : MultipleBindingController_%!binding.mBindingName%?\n%
 end
 %
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -163,13 +163,13 @@ for (mOutletName mBindingName mBoundObjectList mBindingOptionsString) in REGULAR
 end
 %    //--------------------------- Install multiple bindings
 %
-for (mOutletName mBindingName mBoundObjectExpression) in MULTIPLE_BINDING_GENERATION_LIST do
+for (binding) in MULTIPLE_BINDING_GENERATION_LIST do
   %      do{\n%
-  %        let controller = MultipleBindingController_%!mBindingName% (\n%
-  %          computeFunction: %![mBoundObjectExpression expressionString]%,\n%
-  %          outlet: self.%!mOutletName%\n%
+  %        let controller = MultipleBindingController_%!binding.mBindingName% (\n%
+  %          computeFunction: %![binding.mBoundObjectExpression expressionString]%,\n%
+  %          outlet: self.%!binding.mOutletName%\n%
   %        )\n%
-  %        self.mController_%!mOutletName%_%!mBindingName% = controller\n%
+  %        self.mController_%!binding.mOutletName%_%!binding.mBindingName% = controller\n%
   %      }\n%
 end
 %    //--------------------------- Array controller

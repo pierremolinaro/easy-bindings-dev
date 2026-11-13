@@ -295,12 +295,12 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
   var [@autoLayoutTableViewControllerSortedColumnForGeneration] arrayControllerSortedColumnListForGeneration = []
   for column in self.mTableViewControllerBoundColumnListAST do
   //------- Arguments
-    var @autoLayoutClassParameterList formalArgumentList = []
-    !?formalArgumentList.append ("title".nowhere , .typeString)
-    !?formalArgumentList.append ("minWidth".nowhere , .typeInt)
-    !?formalArgumentList.append ("maxWidth".nowhere , .typeInt)
-    !?formalArgumentList.append ("headerAlignment".nowhere , .typeEnum (!name: "TextAlignment".nowhere ))
-    !?formalArgumentList.append ("contentAlignment".nowhere , .typeEnum (!name: "TextAlignment".nowhere ))
+    var [@autoLayoutClassParameter] formalArgumentList = []
+    formalArgumentList ++= @("title".nowhere , .typeString)
+    formalArgumentList ++= @("minWidth".nowhere , .typeInt)
+    formalArgumentList ++= @("maxWidth".nowhere , .typeInt)
+    formalArgumentList ++= @("headerAlignment".nowhere , .typeEnum (!name: "TextAlignment".nowhere ))
+    formalArgumentList ++= @("contentAlignment".nowhere , .typeEnum (!name: "TextAlignment".nowhere ))
     var [@2string] actualParameterList = []
     if formalArgumentList.count != column.mColumnParameterListAST.count then
       error (column.mPropertyName : column.mColumnParameterListAST.count .string + " parameter(s), " + formalArgumentList.count + " required")

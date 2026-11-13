@@ -143,7 +143,7 @@ override proc @selectionControllerDeclarationAST.fourthAnalysisPhase(
        ?*,
        ?let selectionGenerationList
      )
-     !?ioGeneration.mSelectionControllerListForGeneration.append (
+     ioGeneration.mSelectionControllerListForGeneration ++= @(
        self.mClassName,
        self.mSelectionControllerName.string,
        self.mModelControllerName.string,
@@ -219,7 +219,7 @@ override func @selectionControllerPropertyGeneration.initCode() -> @string {
 //   GENERATION TYPES                      
 //------------------------------------------------------------------------------------------------
 
-list @selectionControllerForGeneration {
+struct @selectionControllerForGeneration {
   public var @string mOwnerName // document name, prefs name, ...
   public var @string mSelectionControllerName
   public var @string mBoundControllerName
@@ -257,18 +257,18 @@ private filewrapper selectionControllerGenerationTemplate in "generation-templat
 //------------------------------------------------------------------------------------------------
 
 proc generateSelectionControllers(
-  let @selectionControllerForGeneration inArrayControllerListForGeneration,
+  let [@selectionControllerForGeneration] inArrayControllerListForGeneration,
   let @string inOutputDirectory,
   ?!@stringset ioGeneratedFileSet) {
-  for (mOwnerName, mSelectionControllerName, 2*, mBaseTypeName, mSelectionTypeName, mSelectionObservablePropertyMap, mPropertyGenerationList) in inArrayControllerListForGeneration do
-    if mBaseTypeName == mSelectionTypeName then
+  for controller in inArrayControllerListForGeneration do
+    if controller.mBaseTypeName == controller.mSelectionTypeName then
       let s = filewrapper [selectionControllerGenerationTemplate.baseSelectionControllerImplementation:
-        mOwnerName,
-        mSelectionControllerName,
-        mBaseTypeName,
-        mSelectionObservablePropertyMap
+        controller.mOwnerName,
+        controller.mSelectionControllerName,
+        controller.mBaseTypeName,
+        controller.mSelectionObservablePropertyMap
       ]
-      let fileName = "selectionController-" + mOwnerName + "-" +  mSelectionControllerName + ".swift"
+      let fileName = "selectionController-" + controller.mOwnerName + "-" + controller.mSelectionControllerName + ".swift"
       !?ioGeneratedFileSet.insert (fileName)
       @string.generateFile (
         inOutputDirectory,
@@ -277,18 +277,18 @@ proc generateSelectionControllers(
       )
     else
       var hasAtomicStoredProperties = false
-      for property in mPropertyGenerationList while not hasAtomicStoredProperties do
+      for property in controller.mPropertyGenerationList while not hasAtomicStoredProperties do
         hasAtomicStoredProperties = property.mProperty is @atomicPropertyGeneration
       end
       let s = filewrapper [selectionControllerGenerationTemplate.derivedSelectionControllerImplementation:
-        mOwnerName,
-        mSelectionControllerName,
-        mBaseTypeName,
-        mSelectionTypeName,
-        mPropertyGenerationList,
+        controller.mOwnerName,
+        controller.mSelectionControllerName,
+        controller.mBaseTypeName,
+        controller.mSelectionTypeName,
+        controller.mPropertyGenerationList,
         hasAtomicStoredProperties
       ]
-      let fileName = "selectionController-" + mOwnerName + "-" +  mSelectionControllerName + ".swift"
+      let fileName = "selectionController-" + controller.mOwnerName + "-" + controller.mSelectionControllerName + ".swift"
       !?ioGeneratedFileSet.insert (fileName)
       @string.generateFile (
         inOutputDirectory,

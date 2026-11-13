@@ -79,7 +79,7 @@ GGS_string cPtr_computedPropertyGeneration::getter_configurationCode (const GGS_
   }else if (GalgasBool::boolFalse == test_1) {
     temp_0 = GGS_string ("self.") ;
   }
-  GGS_string var_prefix_16670 = temp_0 ;
+  GGS_string var_prefix_16637 = temp_0 ;
   result_result = GGS_string::makeEmptyString () ;
   GalgasBool test_2 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_2) {
@@ -87,15 +87,15 @@ GGS_string cPtr_computedPropertyGeneration::getter_configurationCode (const GGS_
     test_2 = GGS_bool (ComparisonKind::greaterThan, temp_3.readProperty_mDependencyList ().getter_count (SOURCE_FILE ("computed-property.galgas4", 373)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
     if (GalgasBool::boolTrue == test_2) {
       const GGS_computedPropertyGeneration temp_4 = this ;
-      GGS_bool var_needs_5F_unwSelf_16797 = extensionGetter_needs_5F_unwSelf (temp_4.readProperty_mDependencyList (), constinArgument_inPreferences, inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 374)) ;
+      GGS_bool var_needs_5F_unwSelf_16764 = extensionGetter_needs_5F_unwSelf (temp_4.readProperty_mDependencyList (), constinArgument_inPreferences, inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 374)) ;
       const GGS_computedPropertyGeneration temp_5 = this ;
       result_result.plusAssignOperation(GGS_string ("  //--- Computed property: ").add_operation (temp_5.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 375)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 375)), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 375)) ;
       GalgasBool test_6 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_6) {
-        test_6 = var_needs_5F_unwSelf_16797.boolEnum () ;
+        test_6 = var_needs_5F_unwSelf_16764.boolEnum () ;
         if (GalgasBool::boolTrue == test_6) {
           const GGS_computedPropertyGeneration temp_7 = this ;
-          result_result.plusAssignOperation(GGS_string ("    ").add_operation (var_prefix_16670, inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 377)).add_operation (temp_7.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 377)).add_operation (GGS_string ("_property.mReadModelFunction = { [weak self] in\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 377)), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 377)) ;
+          result_result.plusAssignOperation(GGS_string ("    ").add_operation (var_prefix_16637, inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 377)).add_operation (temp_7.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 377)).add_operation (GGS_string ("_property.mReadModelFunction = { [weak self] in\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 377)), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 377)) ;
           result_result.plusAssignOperation(GGS_string ("      if let unwSelf = self {\n"), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 378)) ;
           const GGS_computedPropertyGeneration temp_8 = this ;
           const GGS_computedPropertyGeneration temp_9 = this ;
@@ -108,7 +108,7 @@ GGS_string cPtr_computedPropertyGeneration::getter_configurationCode (const GGS_
       }
       if (GalgasBool::boolFalse == test_6) {
         const GGS_computedPropertyGeneration temp_11 = this ;
-        result_result.plusAssignOperation(GGS_string ("    ").add_operation (var_prefix_16670, inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 384)).add_operation (temp_11.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 384)).add_operation (GGS_string ("_property.mReadModelFunction = {\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 384)), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 384)) ;
+        result_result.plusAssignOperation(GGS_string ("    ").add_operation (var_prefix_16637, inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 384)).add_operation (temp_11.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 384)).add_operation (GGS_string ("_property.mReadModelFunction = {\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 384)), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 384)) ;
         const GGS_computedPropertyGeneration temp_12 = this ;
         const GGS_computedPropertyGeneration temp_13 = this ;
         const GGS_computedPropertyGeneration temp_14 = this ;
@@ -117,20 +117,20 @@ GGS_string cPtr_computedPropertyGeneration::getter_configurationCode (const GGS_
       result_result.plusAssignOperation(GGS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 387)) ;
       const GGS_computedPropertyGeneration temp_15 = this ;
       const GGS_computedPropertyGeneration temp_16 = this ;
-      result_result.plusAssignOperation(GGS_string ("    ").add_operation (var_prefix_16670, inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 388)).add_operation (temp_15.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 388)).add_operation (GGS_string ("_property.mWriteModelFunction = { [weak self] in self\?.compute_"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 388)).add_operation (temp_16.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 388)).add_operation (GGS_string ("_property ($0) }\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 388)), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 388)) ;
+      result_result.plusAssignOperation(GGS_string ("    ").add_operation (var_prefix_16637, inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 388)).add_operation (temp_15.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 388)).add_operation (GGS_string ("_property.mWriteModelFunction = { [weak self] in self\?.compute_"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 388)).add_operation (temp_16.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 388)).add_operation (GGS_string ("_property ($0) }\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 388)), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 388)) ;
       const GGS_computedPropertyGeneration temp_17 = this ;
-      UpEnumerator_transientDependencyListForGeneration enumerator_17803 (temp_17.readProperty_mDependencyList ()) ;
-      while (enumerator_17803.hasCurrentObject ()) {
-        GGS_string var_s_17843 = extensionGetter_generateAddObserverCall (enumerator_17803.current_mDependency (HERE), constinArgument_inPreferences, inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 390)) ;
+      UpEnumerator_transientDependencyListForGeneration enumerator_17770 (temp_17.readProperty_mDependencyList ()) ;
+      while (enumerator_17770.hasCurrentObject ()) {
+        GGS_string var_s_17810 = extensionGetter_generateAddObserverCall (enumerator_17770.current_mDependency (HERE), constinArgument_inPreferences, inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 390)) ;
         GalgasBool test_18 = GalgasBool::boolTrue ;
         if (GalgasBool::boolTrue == test_18) {
-          test_18 = GGS_bool (ComparisonKind::notEqual, var_s_17843.objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
+          test_18 = GGS_bool (ComparisonKind::notEqual, var_s_17810.objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
           if (GalgasBool::boolTrue == test_18) {
             const GGS_computedPropertyGeneration temp_19 = this ;
-            result_result.plusAssignOperation(GGS_string ("    ").add_operation (var_s_17843, inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 392)).add_operation (GGS_string (" (by: "), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 392)).add_operation (var_prefix_16670, inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 392)).add_operation (temp_19.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 392)).add_operation (GGS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 392)), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 392)) ;
+            result_result.plusAssignOperation(GGS_string ("    ").add_operation (var_s_17810, inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 392)).add_operation (GGS_string (" (by: "), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 392)).add_operation (var_prefix_16637, inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 392)).add_operation (temp_19.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 392)).add_operation (GGS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 392)), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 392)) ;
           }
         }
-        enumerator_17803.gotoNextObject () ;
+        enumerator_17770.gotoNextObject () ;
       }
     }
   }
@@ -169,25 +169,25 @@ void cPtr_computeRoutineGeneration::method_generateCodePhase_32_ (const GGS_stri
       const GGS_computeRoutineGeneration temp_2 = this ;
       const GGS_computeRoutineGeneration temp_3 = this ;
       const GGS_computeRoutineGeneration temp_4 = this ;
-      GGS_string var_s_19201 = GGS_string (filewrapperTemplate_computedPropertyManager_computedComputationFunctionFile (inCompiler, temp_2.readProperty_mOwnerName (), temp_3.readProperty_mTransientName (), temp_4.readProperty_mTransientType () COMMA_SOURCE_FILE ("computed-property.galgas4", 426))) ;
+      GGS_string var_s_19168 = GGS_string (filewrapperTemplate_computedPropertyManager_computedComputationFunctionFile (inCompiler, temp_2.readProperty_mOwnerName (), temp_3.readProperty_mTransientName (), temp_4.readProperty_mTransientType () COMMA_SOURCE_FILE ("computed-property.galgas4", 426))) ;
       const GGS_computeRoutineGeneration temp_5 = this ;
       const GGS_computeRoutineGeneration temp_6 = this ;
-      GGS_string var_fileName_19365 = GGS_string ("compute-").add_operation (temp_5.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 431)).add_operation (GGS_string ("-"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 431)).add_operation (temp_6.readProperty_mTransientName (), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 431)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 431)) ;
+      GGS_string var_fileName_19332 = GGS_string ("compute-").add_operation (temp_5.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 431)).add_operation (GGS_string ("-"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 431)).add_operation (temp_6.readProperty_mTransientName (), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 431)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 431)) ;
       {
-      ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_19365, inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 432)) ;
+      ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_19332, inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 432)) ;
       }
-      GGS_string var_header_19495 = GGS_string ("//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("computed-property.galgas4", 433)), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 433)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 433)) ;
-      var_header_19495.plusAssignOperation(GGS_string ("//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n"), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 434)) ;
-      var_header_19495.plusAssignOperation(GGS_string ("//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("computed-property.galgas4", 435)), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 435)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 435)), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 435)) ;
-      var_header_19495.plusAssignOperation(GGS_string ("import AppKit\n\n"), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 436)) ;
-      var_header_19495.plusAssignOperation(GGS_string ("import CanariGeometry\n\n"), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 437)) ;
-      var_header_19495.plusAssignOperation(GGS_string ("//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("computed-property.galgas4", 438)), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 438)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 438)), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 438)) ;
-      GGS_string var_generatedZone_33__19907 = GGS_string ("  }\n\n") ;
-      var_generatedZone_33__19907.plusAssignOperation(GGS_string ("  //").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (96U))  COMMA_SOURCE_FILE ("computed-property.galgas4", 440)), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 440)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 440)), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 440)) ;
-      var_generatedZone_33__19907.plusAssignOperation(GGS_string ("}\n\n"), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 441)) ;
-      var_generatedZone_33__19907.plusAssignOperation(GGS_string ("//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("computed-property.galgas4", 442)), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 442)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 442)), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 442)) ;
+      GGS_string var_header_19462 = GGS_string ("//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("computed-property.galgas4", 433)), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 433)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 433)) ;
+      var_header_19462.plusAssignOperation(GGS_string ("//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n"), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 434)) ;
+      var_header_19462.plusAssignOperation(GGS_string ("//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("computed-property.galgas4", 435)), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 435)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 435)), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 435)) ;
+      var_header_19462.plusAssignOperation(GGS_string ("import AppKit\n\n"), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 436)) ;
+      var_header_19462.plusAssignOperation(GGS_string ("import CanariGeometry\n\n"), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 437)) ;
+      var_header_19462.plusAssignOperation(GGS_string ("//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("computed-property.galgas4", 438)), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 438)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 438)), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 438)) ;
+      GGS_string var_generatedZone_33__19874 = GGS_string ("  }\n\n") ;
+      var_generatedZone_33__19874.plusAssignOperation(GGS_string ("  //").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (96U))  COMMA_SOURCE_FILE ("computed-property.galgas4", 440)), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 440)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 440)), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 440)) ;
+      var_generatedZone_33__19874.plusAssignOperation(GGS_string ("}\n\n"), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 441)) ;
+      var_generatedZone_33__19874.plusAssignOperation(GGS_string ("//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (utf32 (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("computed-property.galgas4", 442)), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 442)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 442)), inCompiler  COMMA_SOURCE_FILE ("computed-property.galgas4", 442)) ;
       {
-      GGS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_19365, GGS_string ("//"), var_header_19495, GGS_string ("\n\n"), var_s_19201, GGS_string ("\n"), var_generatedZone_33__19907, GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 443)) ;
+      GGS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_19332, GGS_string ("//"), var_header_19462, GGS_string ("\n\n"), var_s_19168, GGS_string ("\n"), var_generatedZone_33__19874, GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("computed-property.galgas4", 443)) ;
       }
     }
   }

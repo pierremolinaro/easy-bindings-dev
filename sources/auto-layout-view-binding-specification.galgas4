@@ -2,11 +2,11 @@
 //   AST
 //------------------------------------------------------------------------------------------------
 
-list @autoLayoutViewClassBindingSpecificationList {
-  public var @lstring mOutletClassName
-  public var @lstring mBindingName
-  public var @outletClassBindingSpecificationModelList mOutletClassBindingSpecificationModelList
-  public var @controllerBindingOptionList mBindingOptionList
+struct @autoLayoutViewClassBindingSpecification {
+  let @lstring mOutletClassName
+  let @lstring mBindingName
+  let [@outletClassBindingSpecificationModel] mOutletClassBindingSpecificationModelList
+  let [@controllerBindingOption] mBindingOptionList
 }
 
 //------------------------------------------------------------------------------------------------
@@ -18,9 +18,9 @@ syntax extension easyBindings_syntax {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   rule <auto_layout_view_binding_specification> (let @lstring inClassName,
-                                                ?!@autoLayoutViewClassBindingSpecificationList ioBindingList) {
+                                                ?![@autoLayoutViewClassBindingSpecification] ioBindingList) {
     $bindingName$ (?let @lstring bindingName)
-    var @outletClassBindingSpecificationModelList outletClassBindingSpecificationModelList = []
+    var [@outletClassBindingSpecificationModel] outletClassBindingSpecificationModelList = []
     repeat
       let @bool modelShouldBeWritableProperty
       select
@@ -37,11 +37,11 @@ syntax extension easyBindings_syntax {
         $enum$
         modelTypeName = @("enum", .here)
       end
-      !?outletClassBindingSpecificationModelList.append (modelTypeName, modelShouldBeWritableProperty)
+      outletClassBindingSpecificationModelList ++= @(modelTypeName, modelShouldBeWritableProperty)
     while
       $,$
     end
-    var @controllerBindingOptionList bindingOptionList = []
+    var [@controllerBindingOption] bindingOptionList = []
     select
     or
       $($
@@ -49,13 +49,13 @@ syntax extension easyBindings_syntax {
         $identifier$ (?let @lstring optionName)
         $:$
         $Identifier$ (?let @lstring optionType)
-        !?bindingOptionList.append (optionName, optionType)
+        bindingOptionList ++= @(optionName, optionType)
       while
         $,$
       end
       $)$
     end
-    !?ioBindingList.append (
+    ioBindingList ++= @(
       inClassName,
       bindingName,
       outletClassBindingSpecificationModelList,
@@ -72,8 +72,8 @@ syntax extension easyBindings_syntax {
 //------------------------------------------------------------------------------------------------
 
 map @autoLayoutBindingSpecificationMap {
-  public var @lstring mOutletSuperClassName
-  public var @autoLayoutViewBindingSpecificationMap mBindingMap
+  let @lstring mOutletSuperClassName
+  let @autoLayoutViewBindingSpecificationMap mBindingMap
   #insertSetter insertKey #errorMessage "the '%K' binding is already declared in %L"
   #searchMethod searchKey #errorMessage "there is no '%K' binding"
   #removeSetter removeKey #errorMessage "there is no '%K' binding"
@@ -82,8 +82,8 @@ map @autoLayoutBindingSpecificationMap {
 //------------------------------------------------------------------------------------------------
 
 map @autoLayoutViewBindingSpecificationMap {
-  public var @outletBindingSpecificationModelList mOutletBindingSpecificationModelList
-  public var @controllerBindingOptionDecoratedList mControllerBindingOptionList
+  let [@outletBindingSpecificationModel] mOutletBindingSpecificationModelList
+  let [@controllerBindingOptionDecorated] mControllerBindingOptionList
   #insertSetter insertKey #errorMessage "the '%K' binding is already declared in %L"
   #searchMethod searchKey #errorMessage "there is no '%K' binding"
 }
@@ -92,63 +92,63 @@ map @autoLayoutViewBindingSpecificationMap {
 
 proc buildAutoLayoutBindingSpecificationMap(
   ?!@semanticContext ioSemanticContext,
-  let @autoLayoutViewClassBindingSpecificationList inBindingSpecificationListMap)
+  let [@autoLayoutViewClassBindingSpecification] inBindingSpecificationListMap)
 {
-  for (mOutletClassName, mBindingName, mOutletClassBindingSpecificationModelList, mBindingOptionList) in inBindingSpecificationListMap do
-    var @outletBindingSpecificationModelList outletBindingSpecificationModelList = []
-    for (mModelTypeName, mModelShouldBeWritableProperty) in mOutletClassBindingSpecificationModelList do
-      if mModelTypeName.string == "enum" then
-        !?outletBindingSpecificationModelList.append (
+  for binding in inBindingSpecificationListMap do
+    var [@outletBindingSpecificationModel] outletBindingSpecificationModelList = []
+    for bindingModel in binding.mOutletClassBindingSpecificationModelList do
+      if bindingModel.mModelTypeName.string == "enum" then
+        outletBindingSpecificationModelList ++= @(
           .enumType (!enumTypeName: "", !constantMap: (), !funcMap: ()), // Any enum type
-          mModelShouldBeWritableProperty
+          bindingModel.mModelShouldBeWritableProperty
         )
       else
-        ioSemanticContext.mClassMap.searchKey (mModelTypeName, ?let @classKind classKind, ?3*)
+        ioSemanticContext.mClassMap.searchKey (bindingModel.mModelTypeName, ?let @classKind classKind, ?3*)
         let @typeKind typeKind
         switch classKind
         case prefs :
-          error (mModelTypeName : "an atomic class is required here" spoil typeKind)
+          error (bindingModel.mModelTypeName : "an atomic class is required here" spoil typeKind)
         case atomic (@typeKind kind) :
           typeKind = kind
         case document (*) :
-          error (mModelTypeName : "an atomic class is required here" spoil typeKind)
+          error (bindingModel.mModelTypeName : "an atomic class is required here" spoil typeKind)
         case entity (4*) :
-          error (mModelTypeName : "an atomic class is required here" spoil typeKind)
+          error (bindingModel.mModelTypeName : "an atomic class is required here" spoil typeKind)
         end
-        !?outletBindingSpecificationModelList.append (typeKind, mModelShouldBeWritableProperty)
+        outletBindingSpecificationModelList ++= @(typeKind, bindingModel.mModelShouldBeWritableProperty)
       end
     end
-    var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = []
-    for (mOptionName, mOptionTypeName) in mBindingOptionList do
-      ioSemanticContext.mClassMap.searchKey (mOptionTypeName, ?let @classKind classKind, ?3*)
+    var [@controllerBindingOptionDecorated] controllerBindingOptionDecoratedList = []
+    for bindingOption in binding.mBindingOptionList do
+      ioSemanticContext.mClassMap.searchKey (bindingOption.mOptionTypeName, ?let classKind, ?3*)
       let @typeKind typeKind
       switch classKind
       case prefs :
-        error (mOptionTypeName : "an atomic class is required here" spoil typeKind)
+        error (bindingOption.mOptionTypeName : "an atomic class is required here" spoil typeKind)
       case atomic (@typeKind kind) :
         typeKind = kind
       case document (*) :
-        error (mOptionTypeName : "an atomic class is required here" spoil typeKind)
+        error (bindingOption.mOptionTypeName : "an atomic class is required here" spoil typeKind)
       case entity (4*) :
-        error (mOptionTypeName : "an atomic class is required here" spoil typeKind)
+        error (bindingOption.mOptionTypeName : "an atomic class is required here" spoil typeKind)
       end
-      !?controllerBindingOptionDecoratedList.append (typeKind, mOptionName)
+      controllerBindingOptionDecoratedList ++= @(typeKind, bindingOption.mOptionName)
     end
   //-- Insert in binding map
     var @autoLayoutViewBindingSpecificationMap bindingMap
     let @lstring outletSuperClassName
-    if ioSemanticContext.mAutoLayoutBindingSpecificationMap.contains (mOutletClassName.string) then
-      !?ioSemanticContext.mAutoLayoutBindingSpecificationMap.removeKey (mOutletClassName, ?outletSuperClassName, ?bindingMap)
+    if ioSemanticContext.mAutoLayoutBindingSpecificationMap.contains (binding.mOutletClassName.string) then
+      !?ioSemanticContext.mAutoLayoutBindingSpecificationMap.removeKey (binding.mOutletClassName, ?outletSuperClassName, ?bindingMap)
     else
       bindingMap = ()
-      ioSemanticContext.mAutolayoutViewClassMap.searchKey (mOutletClassName, ?outletSuperClassName, ?8*)
+      ioSemanticContext.mAutolayoutViewClassMap.searchKey (binding.mOutletClassName, ?outletSuperClassName, ?8*)
     end
     !?bindingMap.insertKey (
-      mBindingName,
+      binding.mBindingName,
       outletBindingSpecificationModelList,
       controllerBindingOptionDecoratedList
     )
-    !?ioSemanticContext.mAutoLayoutBindingSpecificationMap.insertKey (mOutletClassName, outletSuperClassName, bindingMap)
+    !?ioSemanticContext.mAutoLayoutBindingSpecificationMap.insertKey (binding.mOutletClassName, outletSuperClassName, bindingMap)
   end
 }
 

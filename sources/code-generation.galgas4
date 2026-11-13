@@ -35,7 +35,6 @@ list @fileGenerationList {
 //--------------------------------------------------------------------------------------------------
 
 struct @generationStruct {
-  public var [@validationStubRoutineForGeneration] mValidationStubRoutineListForGeneration = []
   public var @fileGenerationList mFileGenerationList = []
   public var @entityListForGeneratingEBManagedObjectContext mEntityListForGeneration = []
   public var @bool mGenerateEBManagedXibDocumentSwift = false
@@ -46,7 +45,7 @@ struct @generationStruct {
   public var @stringset mToOneClassImplementations = []
   public var @stringset mToManyClassImplementations = []
 
-  public var @selectionControllerForGeneration mSelectionControllerListForGeneration = []
+  public var [@selectionControllerForGeneration] mSelectionControllerListForGeneration = []
   public var [@string] mPropertyClassList = []
   public var @transientExternTypeList mTransientPropertyTypeList = []
 
@@ -95,11 +94,11 @@ proc generateCode (@string inXcodeProjectString,
     fileOutputDirectory,
     !?generatedFileSet
   )
-  generateValidationRoutineStubs (
-    fileOutputDirectory,
-    inGeneration.mValidationStubRoutineListForGeneration,
-    !?generatedFileSet
-  )
+//  generateValidationRoutineStubs (
+//    fileOutputDirectory,
+//    inGeneration.mValidationStubRoutineListForGeneration,
+//    !?generatedFileSet
+//  )
   generateStandardProperties (
     fileOutputDirectory,
     inGeneration.mPropertyClassList,

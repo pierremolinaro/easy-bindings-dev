@@ -26,48 +26,48 @@ abstract class @abstractBooleanMultipleBindingExpressionAST {
 //--------------------------------------------------------------------------------------------------
 
 class @literalIntMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
-  public var @luint mValue
+  let @luint mValue
 }
 
 //--------------------------------------------------------------------------------------------------
 
 class @negateBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
-  public var @abstractBooleanMultipleBindingExpressionAST mBinding
+  let @abstractBooleanMultipleBindingExpressionAST mBinding
 }
 
 //--------------------------------------------------------------------------------------------------
 
 class @comparisonMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
-  public var @abstractBooleanMultipleBindingExpressionAST mLeftBinding
-  public var @multipleBindingComparisonAST mOperator
-  public var @abstractBooleanMultipleBindingExpressionAST mRightBinding
+  let @abstractBooleanMultipleBindingExpressionAST mLeftBinding
+  let @multipleBindingComparisonAST mOperator
+  let @abstractBooleanMultipleBindingExpressionAST mRightBinding
 }
 
 //--------------------------------------------------------------------------------------------------
 
 class @andBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
-  public var @abstractBooleanMultipleBindingExpressionAST mLeftBinding
-  public var @abstractBooleanMultipleBindingExpressionAST mRightBinding
+  let @abstractBooleanMultipleBindingExpressionAST mLeftBinding
+  let @abstractBooleanMultipleBindingExpressionAST mRightBinding
 }
 
 //--------------------------------------------------------------------------------------------------
 
 class @orBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
-  public var @abstractBooleanMultipleBindingExpressionAST mLeftBinding
-  public var @abstractBooleanMultipleBindingExpressionAST mRightBinding
+  let @abstractBooleanMultipleBindingExpressionAST mLeftBinding
+  let @abstractBooleanMultipleBindingExpressionAST mRightBinding
 }
 
 //--------------------------------------------------------------------------------------------------
 
 class @xorBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
-  public var @abstractBooleanMultipleBindingExpressionAST mLeftBinding
-  public var @abstractBooleanMultipleBindingExpressionAST mRightBinding
+  let @abstractBooleanMultipleBindingExpressionAST mLeftBinding
+  let @abstractBooleanMultipleBindingExpressionAST mRightBinding
 }
 
 //--------------------------------------------------------------------------------------------------
 
 class @observablePropertyInMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
-  public var @observablePropertyAST mProperty
+  let @observablePropertyAST mProperty
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -186,10 +186,10 @@ syntax extension easyBindings_syntax {
 //   SEMANTIC TYPES                        
 //--------------------------------------------------------------------------------------------------
 
-list @multipleBindingGenerationList {
-  public var @string mOutletName
-  public var @string mBindingName
-  public var @abstractBooleanMultipleBindingExpressionForGeneration mBoundObjectExpression
+struct @multipleBindingGeneration {
+  let @string mOutletName
+  let @string mBindingName
+  let @abstractBooleanMultipleBindingExpressionForGeneration mBoundObjectExpression
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -200,48 +200,48 @@ abstract class @abstractBooleanMultipleBindingExpressionForGeneration {
 //--------------------------------------------------------------------------------------------------
 
 class @observablePropertyAsBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
-  public var @string mObservedModelString
+  let @string mObservedModelString
 }
 
 //--------------------------------------------------------------------------------------------------
 
 class @booleanMultipleBindingLiteralIntForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
-  public var @uint mValue
+  let @uint mValue
 }
 
 //--------------------------------------------------------------------------------------------------
 
 class @negateBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
-  public var @abstractBooleanMultipleBindingExpressionForGeneration mBinding
+  let @abstractBooleanMultipleBindingExpressionForGeneration mBinding
 }
 
 //--------------------------------------------------------------------------------------------------
 
 class @orBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
-  public var @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
-  public var @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
+  let @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
+  let @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
 }
 
 //--------------------------------------------------------------------------------------------------
 
 class @xorBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
-  public var @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
-  public var @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
+  let @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
+  let @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
 }
 
 //--------------------------------------------------------------------------------------------------
 
 class @andBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
-  public var @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
-  public var @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
+  let @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
+  let @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
 }
 
 //--------------------------------------------------------------------------------------------------
 
 class @comparisonMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
-  public var @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
-  public var @multipleBindingComparisonAST mOperator
-  public var @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
+  let @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
+  let @multipleBindingComparisonAST mOperator
+  let @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
 }
 
 //--------------------------------------------------------------------------------------------------

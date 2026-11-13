@@ -3,8 +3,8 @@
 //--------------------------------------------------------------------------------------------------
 
 list @bindingOptionList {
-  public var @lstring mOptionName
-  public var @abstractDefaultValue mOptionValue
+  let @lstring mOptionName
+  let @abstractDefaultValue mOptionValue
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -23,15 +23,15 @@ enum @graphicController {
 
 //--------------------------------------------------------------------------------------------------
 
-list @outletDeclarationList {
-  public var @lstring mOutletTypeName
-  public var @lstring mOutletName
-  public var @tableValueBinding mTableValueBindingDescriptor
-  public var @runActionDescriptor mRunDescriptor
-  public var @multipleBindingDescriptor mEnabledBindingDescriptor
-  public var @multipleBindingDescriptor mHiddenBindingDescriptor
-  public var @regularBindingList mRegularBindingList
-  public var @graphicController mGraphicController
+struct @outletDeclarationAST {
+  let @lstring mOutletTypeName
+  let @lstring mOutletName
+  let @tableValueBinding mTableValueBindingDescriptor
+  let @runActionDescriptor mRunDescriptor
+  let @multipleBindingDescriptor mEnabledBindingDescriptor
+  let @multipleBindingDescriptor mHiddenBindingDescriptor
+  let [@regularBinding] mRegularBindingList
+  let @graphicController mGraphicController
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -42,7 +42,7 @@ syntax extension easyBindings_syntax {
 
 //--------------------------------------------------------------------------------------------------
 
-  rule <outlet_declaration> (?!@outletDeclarationList ioOutletDeclarationList) {
+  rule <outlet_declaration> (?![@outletDeclarationAST] ioOutletDeclarationList) {
     $outlet$
     $Identifier$ (?let outletTypeName)
     $identifier$ (?let outletName)
@@ -51,9 +51,9 @@ syntax extension easyBindings_syntax {
                      ?let @multipleBindingDescriptor enabledBindingDescriptor,
                      ?let @multipleBindingDescriptor hiddenBindingDescriptor,
                      ?let @graphicController graphicController,
-                     ?let @regularBindingList regularBindingList)
+                     ?let [@regularBinding] regularBindingList)
     $;$
-    !?ioOutletDeclarationList.append (
+    ioOutletDeclarationList ++= @(
       outletTypeName,
       outletName,
       tableValueBinding,
@@ -72,7 +72,7 @@ syntax extension easyBindings_syntax {
                         !@multipleBindingDescriptor enabledBindingDescriptor,
                         !@multipleBindingDescriptor hiddenBindingDescriptor,
                         !@graphicController graphicController,
-                        !@regularBindingList regularBindingList)
+                        ![@regularBinding] regularBindingList)
 {
     tableValueBinding = @tableValueBinding.noTableValueBinding
     runActionDescriptor = @runActionDescriptor.noAction
@@ -125,7 +125,7 @@ syntax extension easyBindings_syntax {
   //-- Regular binding
     while
       $bindingName$ (?let @lstring bindingName)
-      var @observablePropertyList observablePropertyList = []
+      var [@observablePropertyAST] observablePropertyList = []
       repeat
         <observable_property> (?let @observablePropertyAST observableProperty)
         !?observablePropertyList.append (observableProperty)
@@ -133,7 +133,7 @@ syntax extension easyBindings_syntax {
         $,$
       end
       <binding_option_list> (?let bindingOptions)
-      !?regularBindingList.append (
+      regularBindingList ++= @(
         bindingName,
         observablePropertyList,
         bindingOptions
@@ -192,13 +192,13 @@ proc analyzeOutlets(
   let @propertyMap inPreferencesPropertyMap,
   let @string _inRootEntityName,
   let @semanticContext inSemanticContext,
-  let @outletDeclarationList inOutletDeclarationList,
+  let [@outletDeclarationAST] inOutletDeclarationList,
   let @propertyMap inObservablePropertyMap,
   let @actionMap inActionMap,
   let @string inReceiverSwiftTypeName,
   ?!@generationStruct ioGeneration,
   !@regularBindingsGenerationList outRegularBindingsGenerationList,
-  !@multipleBindingGenerationList outMultipleBindingGenerationList,
+  ![@multipleBindingGeneration] outMultipleBindingGenerationList,
   !@actionBindingListForGeneration outTargetActionList,
   !@decoratedOutletMap outletMap,
   !@tableViewBindingGenerationList outTableViewBindingGenerationList,
@@ -352,7 +352,7 @@ proc analyzeOutlets(
       if not type.isBoolType then
         error (errorLocation : "expression is not boolean")
       end
-      !?outMultipleBindingGenerationList.append (
+      outMultipleBindingGenerationList ++= @(
         outlet.mOutletName.string,
         "enabled",
         enableExpression
@@ -378,7 +378,7 @@ proc analyzeOutlets(
       if not handlesHiddenBinding then
         error (errorLocation : "cet outlet n'accepte pas le binding $hidden")
       end
-      !?outMultipleBindingGenerationList.append (
+      outMultipleBindingGenerationList ++= @(
         outlet.mOutletName.string,
         "hidden",
         hiddenExpression
@@ -408,16 +408,16 @@ proc analyzeRegularBinding(
   let @propertyMap inBoundModelPropertyMap,
   let @lstring inOutletTypeName,
   let @string inOutletName,
-  let @regularBindingList inRegularBindingList,
+  let [@regularBinding] inRegularBindingList,
   let @string inSelfSwiftName,
   ?!@regularBindingsGenerationList ioRegularBindingsGenerationList)
 {
-  for (mBindingName, mObservablePropertyList, mBindingOptionList) in inRegularBindingList do
+  for binding in inRegularBindingList do
   //-- Analyze model
     var @outletBindingModelList boundModelTypeList = []
     var @boundObjectList boundModelListForGeneration = []
-    for (mObservableProperty) in mObservablePropertyList do
-      mObservableProperty.analyzeObservableProperty
+    for observableProperty in binding.mObservablePropertyList do
+      observableProperty.analyzeObservableProperty
         (inRootPropertyMap,
         inSemanticContext,
         inBoundModelPropertyMap,
@@ -429,23 +429,23 @@ proc analyzeRegularBinding(
       switch kind
       case property (2*) : // Ok
       case toMany (4*) :
-        error (mObservableProperty.location :"a toMany property cannot be bound")
+        error (observableProperty.location :"a toMany property cannot be bound")
       case toOne (5*) :
-        error (mObservableProperty.location :"a toOne property cannot be bound")
+        error (observableProperty.location :"a toOne property cannot be bound")
       case arrayController (2*) :
-        error (mObservableProperty.location :"an array controller cannot be bound")
+        error (observableProperty.location :"an array controller cannot be bound")
       case selectionController (*) :
-        error (mObservableProperty.location :"a selection controller cannot be bound")
+        error (observableProperty.location :"a selection controller cannot be bound")
       end
       !?boundModelListForGeneration.append (
-        mObservableProperty.modelStringForSelf (inSelfSwiftName),
+        observableProperty.modelStringForSelf (inSelfSwiftName),
         kind
       )
-      !?boundModelTypeList.append (kind, mObservableProperty.location )
+      !?boundModelTypeList.append (kind, observableProperty.location )
     end
   //-- Analyze outlet binding
-    var @outletBindingSpecificationModelList outletBindingSpecificationModelList = []
-    var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = []
+    var [@outletBindingSpecificationModel] outletBindingSpecificationModelList = []
+    var [@controllerBindingOptionDecorated] controllerBindingOptionDecoratedList = []
     var outletTypeName = inOutletTypeName
     var continues = true
     loop (inSemanticContext.mBindingSpecificationMap.count + 1) while (outletTypeName.string != "") & continues do
@@ -455,9 +455,9 @@ proc analyzeRegularBinding(
         ?let superOutletClassName,
         ?let @outletBindingSpecificationMap bindingMap
       )
-      if bindingMap.contains (mBindingName.string) then
-        bindingMap.searchKey
-          (mBindingName,
+      if bindingMap.contains (binding.mBindingName.string) then
+        bindingMap.searchKey (
+          binding.mBindingName,
           ?outletBindingSpecificationModelList,
           ?controllerBindingOptionDecoratedList
         )
@@ -467,9 +467,9 @@ proc analyzeRegularBinding(
       end
     end
     if continues then
-      error (mBindingName : "this binding is not defined")
+      error (binding.mBindingName : "this binding is not defined")
     elsif boundModelTypeList.count != outletBindingSpecificationModelList.count then
-      error (mBindingName
+      error (binding.mBindingName
       : outletBindingSpecificationModelList.count .string
         + " model(s) required for this binding (found: "
         + boundModelTypeList.count + ")"
@@ -487,19 +487,19 @@ proc analyzeRegularBinding(
     end
   //-- Check options
     var bindingOptionString = ""
-    if controllerBindingOptionDecoratedList.count != mBindingOptionList.count then
+    if controllerBindingOptionDecoratedList.count != binding.mBindingOptionList.count then
       var @string s
       if controllerBindingOptionDecoratedList.count == 0 then
         s = "this binding has no option"
       else
         s = "this binding requires the following options:"
-        for (mOptionType, mOptionName) in controllerBindingOptionDecoratedList do
-          s += "\n  - " + mOptionName + " : " + mOptionType.swiftTypeName
+        for bindingOption in controllerBindingOptionDecoratedList do
+          s += "\n  - " + bindingOption.mOptionName + " : " + bindingOption.mOptionType.swiftTypeName
         end
       end
-      error (mBindingName : s)
+      error (binding.mBindingName : s)
     else
-      for controller in controllerBindingOptionDecoratedList, binding in mBindingOptionList do
+      for controller in controllerBindingOptionDecoratedList, binding in binding.mBindingOptionList do
         if controller.mOptionName.string != binding.mOptionName.string then
           error (binding.mOptionName : "the option name should be '" + controller.mOptionName + "'")
         end
@@ -514,7 +514,7 @@ proc analyzeRegularBinding(
   //-- Generate binding
     !?ioRegularBindingsGenerationList.append (
       inOutletName,
-      mBindingName.string,
+      binding.mBindingName.string,
       boundModelListForGeneration,
       bindingOptionString
     )
@@ -526,32 +526,32 @@ proc analyzeRegularBinding(
 //--------------------------------------------------------------------------------------------------
 
 list @boundObjectList {
-  public var @string mBoundObjectString
-  public var @propertyKind mKind
+  let @string mBoundObjectString
+  let @propertyKind mKind
 }
 
 //--------------------------------------------------------------------------------------------------
 
 list @regularBindingsGenerationList {
-  public var @string mOutletName
-  public var @string mBindingName
-  public var @boundObjectList mBoundObjectList
-  public var @string mBindingOptionsString
+  let @string mOutletName
+  let @string mBindingName
+  let @boundObjectList mBoundObjectList
+  let @string mBindingOptionsString
 }
 
 //--------------------------------------------------------------------------------------------------
 
 list @actionBindingListForGeneration {
-  public var @string mOutletName
-  public var @string mTargetName
-  public var @string mActionName
-  public var @string mTargetTypeName
+  let @string mOutletName
+  let @string mTargetName
+  let @string mActionName
+  let @string mTargetTypeName
 }
 
 //--------------------------------------------------------------------------------------------------
 
 map @decoratedOutletMap {
-  public var @string mOutletTypeName
+  let @string mOutletTypeName
   #insertSetter insertKey #errorMessage "the '%K' outlet is already declared"
   #searchMethod searchKey #errorMessage "the '%K' outlet is not declared"
 }
