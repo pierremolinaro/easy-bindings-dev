@@ -188,7 +188,10 @@ class GGS_typeKind : public AC_GALGAS_root {
   public: class GGS_bool getter_isUint_33__32_Type (LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -254,7 +257,10 @@ class GGS_typeKind_2E_classType : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -324,7 +330,10 @@ class GGS_typeKind_2E_classType_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -401,7 +410,10 @@ class GGS_typeKind_2E_entityType : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -471,7 +483,10 @@ class GGS_typeKind_2E_entityType_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -655,11 +670,14 @@ class GGS_enumConstantMap : public AC_GALGAS_root {
                                                           COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_enumConstantMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_enumConstantMap_2E_element_3F_ readSubcript__3F_ (const class GGS_string & in0,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -846,11 +864,14 @@ class GGS_enumFuncMap : public AC_GALGAS_root {
                                                       COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_enumFuncMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_enumFuncMap_2E_element_3F_ readSubcript__3F_ (const class GGS_string & in0,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -941,7 +962,10 @@ class GGS_typeKind_2E_enumType : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -1011,7 +1035,10 @@ class GGS_typeKind_2E_enumType_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -1077,7 +1104,10 @@ class GGS_typeKind_2E_transientPropertyExternType : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -1147,7 +1177,10 @@ class GGS_typeKind_2E_transientPropertyExternType_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -1166,7 +1199,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_typeKind_2E_transientP
 //--------------------------------------------------------------------------------------------------
 
 class GGS_bool extensionGetter_isComparable (const class GGS_typeKind & inObject,
-                                             class Compiler * inCompiler
+                                             Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -1176,7 +1209,7 @@ class GGS_bool extensionGetter_isComparable (const class GGS_typeKind & inObject
 //--------------------------------------------------------------------------------------------------
 
 class GGS_bool extensionGetter_isGraphic (const class GGS_typeKind & inObject,
-                                          class Compiler * inCompiler
+                                          Compiler * inCompiler
                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -1319,7 +1352,10 @@ class GGS_propertyKind : public AC_GALGAS_root {
   public: class GGS_bool getter_isToOne (LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -1394,7 +1430,10 @@ class GGS_propertyKind_2E_arrayController : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -1462,7 +1501,10 @@ class GGS_propertyKind_2E_arrayController_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -1545,7 +1587,10 @@ class GGS_propertyAccessibility : public AC_GALGAS_root {
   public: class GGS_bool getter_isTransient (LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -1620,7 +1665,10 @@ class GGS_propertyKind_2E_property : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -1688,7 +1736,10 @@ class GGS_propertyKind_2E_property_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -1752,7 +1803,10 @@ class GGS_propertyKind_2E_selectionController : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -1820,7 +1874,10 @@ class GGS_propertyKind_2E_selectionController_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -1911,7 +1968,10 @@ class GGS_toManyRelationshipOptionAST : public AC_GALGAS_root {
   public: class GGS_bool getter_isNone (LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -2008,7 +2068,10 @@ class GGS_propertyKind_2E_toMany : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -2076,7 +2139,10 @@ class GGS_propertyKind_2E_toMany_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -2169,7 +2235,10 @@ class GGS_toOneOppositeRelationship : public AC_GALGAS_root {
   public: class GGS_bool getter_isOppositeIsToOne (LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -2277,7 +2346,10 @@ class GGS_propertyKind_2E_toOne : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -2345,7 +2417,10 @@ class GGS_propertyKind_2E_toOne_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -2364,7 +2439,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_propertyKind_2E_toOne_
 //--------------------------------------------------------------------------------------------------
 
 class GGS_string extensionGetter_swiftTypeName (const class GGS_propertyKind & inObject,
-                                                class Compiler * inCompiler
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -2374,7 +2449,7 @@ class GGS_string extensionGetter_swiftTypeName (const class GGS_propertyKind & i
 //--------------------------------------------------------------------------------------------------
 
 class GGS_string extensionGetter_swiftTypeName (const class GGS_typeKind & inObject,
-                                                class Compiler * inCompiler
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -2384,7 +2459,7 @@ class GGS_string extensionGetter_swiftTypeName (const class GGS_typeKind & inObj
 //--------------------------------------------------------------------------------------------------
 
 class GGS_bool extensionGetter_isTransient (const class GGS_propertyKind & inObject,
-                                            class Compiler * inCompiler
+                                            Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -2394,7 +2469,7 @@ class GGS_bool extensionGetter_isTransient (const class GGS_propertyKind & inObj
 //--------------------------------------------------------------------------------------------------
 
 class GGS_bool extensionGetter_isComparable (const class GGS_propertyKind & inObject,
-                                             class Compiler * inCompiler
+                                             Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -2404,7 +2479,7 @@ class GGS_bool extensionGetter_isComparable (const class GGS_propertyKind & inOb
 //--------------------------------------------------------------------------------------------------
 
 class GGS_bool extensionGetter_isEntityType (const class GGS_propertyKind & inObject,
-                                             class Compiler * inCompiler
+                                             Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -2414,7 +2489,7 @@ class GGS_bool extensionGetter_isEntityType (const class GGS_propertyKind & inOb
 //--------------------------------------------------------------------------------------------------
 
 class GGS_bool extensionGetter_isEnumType (const class GGS_propertyKind & inObject,
-                                           class Compiler * inCompiler
+                                           Compiler * inCompiler
                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -2505,13 +2580,12 @@ class GGS__5B_astAutoLayoutViewInstructionParameter_5D_ final : public AC_GALGAS
 //--------------------------------- Initializers
   public: static GGS__5B_astAutoLayoutViewInstructionParameter_5D_ init (Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_astAutoLayoutViewInstructionParameter_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_astAutoLayoutViewInstructionParameter & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -2574,11 +2648,14 @@ class GGS__5B_astAutoLayoutViewInstructionParameter_5D_ final : public AC_GALGAS
                                                                                   COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_astAutoLayoutViewInstructionParameter readSubscript__3F_ (const class GGS_uint & in0,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_astAutoLayoutViewInstructionParameter readSubcript__3F_ (const class GGS_uint & in0,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -2715,7 +2792,10 @@ class GGS_astAutoLayoutViewInstructionParameterValue : public AC_GALGAS_root {
   public: class GGS_bool getter_isViewFunc (LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -2825,7 +2905,10 @@ class GGS_autoLayoutClassParameterType : public AC_GALGAS_root {
   public: class GGS_bool getter_isTypeView (LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -2911,7 +2994,10 @@ class GGS_astAutoLayoutViewInstructionParameter : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -3008,7 +3094,10 @@ class GGS_autoLayoutTableViewControllerBoundColumnAST : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -3047,7 +3136,10 @@ class GGS_abstractDefaultValue : public AC_GALGAS_reference_class {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -3190,13 +3282,12 @@ class GGS__5B_autoLayoutTableViewControllerBoundColumnAST_5D_ final : public AC_
 //--------------------------------- Initializers
   public: static GGS__5B_autoLayoutTableViewControllerBoundColumnAST_5D_ init (Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_autoLayoutTableViewControllerBoundColumnAST_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_autoLayoutTableViewControllerBoundColumnAST & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -3259,11 +3350,14 @@ class GGS__5B_autoLayoutTableViewControllerBoundColumnAST_5D_ final : public AC_
                                                                                         COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_autoLayoutTableViewControllerBoundColumnAST readSubscript__3F_ (const class GGS_uint & in0,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_autoLayoutTableViewControllerBoundColumnAST readSubcript__3F_ (const class GGS_uint & in0,
+                                                                                   Compiler * inCompiler
+                                                                                   COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -3366,13 +3460,12 @@ class GGS__5B_autoLayoutTableViewControllerAttributeAST_5D_ final : public AC_GA
 //--------------------------------- Initializers
   public: static GGS__5B_autoLayoutTableViewControllerAttributeAST_5D_ init (Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_autoLayoutTableViewControllerAttributeAST_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_autoLayoutTableViewControllerAttributeAST & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -3435,11 +3528,14 @@ class GGS__5B_autoLayoutTableViewControllerAttributeAST_5D_ final : public AC_GA
                                                                                       COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_autoLayoutTableViewControllerAttributeAST readSubscript__3F_ (const class GGS_uint & in0,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_autoLayoutTableViewControllerAttributeAST readSubcript__3F_ (const class GGS_uint & in0,
+                                                                                 Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -3517,7 +3613,10 @@ class GGS_autoLayoutTableViewControllerAttributeAST : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -3560,7 +3659,10 @@ class GGS_abstractDeclarationAST : public AC_GALGAS_reference_class {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -3694,7 +3796,10 @@ class GGS_abstractDeclarationAST_2E_weak : public AC_GALGAS_weak_reference {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -3794,13 +3899,12 @@ class GGS__5B_arrayControllerBindingAST_5D_ final : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS__5B_arrayControllerBindingAST_5D_ init (Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_arrayControllerBindingAST_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_arrayControllerBindingAST & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -3863,11 +3967,14 @@ class GGS__5B_arrayControllerBindingAST_5D_ final : public AC_GALGAS_root {
                                                                       COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_arrayControllerBindingAST readSubscript__3F_ (const class GGS_uint & in0,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_arrayControllerBindingAST readSubcript__3F_ (const class GGS_uint & in0,
+                                                                 Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -3950,7 +4057,10 @@ class GGS_multipleBindingDescriptor : public AC_GALGAS_root {
   public: class GGS_bool getter_isNoBinding (LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -4025,7 +4135,10 @@ class GGS_arrayControllerBindingAST : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -4125,13 +4238,12 @@ class GGS__5B_typeKind_5D_ final : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS__5B_typeKind_5D_ init (Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_typeKind_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_typeKind & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -4194,11 +4306,14 @@ class GGS__5B_typeKind_5D_ final : public AC_GALGAS_root {
                                                      COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_typeKind readSubscript__3F_ (const class GGS_uint & in0,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_typeKind readSubcript__3F_ (const class GGS_uint & in0,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -4301,13 +4416,12 @@ class GGS__5B__32_string_5D_ final : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS__5B__32_string_5D_ init (Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B__32_string_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS__32_string & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -4370,11 +4484,14 @@ class GGS__5B__32_string_5D_ final : public AC_GALGAS_root {
                                                        COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS__32_string readSubscript__3F_ (const class GGS_uint & in0,
-                                                   Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS__32_string readSubcript__3F_ (const class GGS_uint & in0,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -4452,7 +4569,10 @@ class GGS__32_string : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -4552,13 +4672,12 @@ class GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_ final : 
 //--------------------------------- Initializers
   public: static GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_ init (Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_autoLayoutTableViewControllerBoundColumnForGeneration & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -4621,11 +4740,14 @@ class GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_ final : 
                                                                                                   COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_autoLayoutTableViewControllerBoundColumnForGeneration readSubscript__3F_ (const class GGS_uint & in0,
-                                                                                              Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_autoLayoutTableViewControllerBoundColumnForGeneration readSubcript__3F_ (const class GGS_uint & in0,
+                                                                                             Compiler * inCompiler
+                                                                                             COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -4747,7 +4869,10 @@ class GGS_autoLayoutTableViewControllerBoundColumnForGeneration : public AC_GALG
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -4847,13 +4972,12 @@ class GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_ final :
 //--------------------------------- Initializers
   public: static GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_ init (Compiler * inCompiler
                                                                                           COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_autoLayoutTableViewControllerSortedColumnForGeneration & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -4916,11 +5040,14 @@ class GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_ final :
                                                                                                    COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_autoLayoutTableViewControllerSortedColumnForGeneration readSubscript__3F_ (const class GGS_uint & in0,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_autoLayoutTableViewControllerSortedColumnForGeneration readSubcript__3F_ (const class GGS_uint & in0,
+                                                                                              Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -5009,7 +5136,10 @@ class GGS_autoLayoutTableViewControllerSortedColumnForGeneration : public AC_GAL
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -5109,13 +5239,12 @@ class GGS__5B_autoLayoutClassParameter_5D_ final : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS__5B_autoLayoutClassParameter_5D_ init (Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_autoLayoutClassParameter_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_autoLayoutClassParameter & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -5178,11 +5307,14 @@ class GGS__5B_autoLayoutClassParameter_5D_ final : public AC_GALGAS_root {
                                                                      COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_autoLayoutClassParameter readSubscript__3F_ (const class GGS_uint & in0,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_autoLayoutClassParameter readSubcript__3F_ (const class GGS_uint & in0,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -5260,7 +5392,10 @@ class GGS_autoLayoutClassParameter : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -5303,7 +5438,10 @@ class GGS_propertyGeneration : public AC_GALGAS_reference_class {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -5432,7 +5570,10 @@ class GGS_propertyGeneration_2E_weak : public AC_GALGAS_weak_reference {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -5500,7 +5641,10 @@ class GGS_autoLayoutTableViewControllerModelKind : public AC_GALGAS_root {
   public: class GGS_bool getter_isTransientArray (LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -5539,7 +5683,10 @@ class GGS_abstractFileGeneration : public AC_GALGAS_reference_class {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -5655,7 +5802,10 @@ class GGS_abstractFileGeneration_2E_weak : public AC_GALGAS_weak_reference {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -5755,13 +5905,12 @@ class GGS__5B_mainXibElement_5D_ final : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS__5B_mainXibElement_5D_ init (Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_mainXibElement_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_mainXibElement & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -5824,11 +5973,14 @@ class GGS__5B_mainXibElement_5D_ final : public AC_GALGAS_root {
                                                            COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_mainXibElement readSubscript__3F_ (const class GGS_uint & in0,
-                                                       Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_mainXibElement readSubcript__3F_ (const class GGS_uint & in0,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -5920,7 +6072,10 @@ class GGS_mainXibElement : public AC_GALGAS_root {
   public: class GGS_bool getter_isText (LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -5995,7 +6150,10 @@ class GGS_mainXibElement_2E_outlet : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -6063,7 +6221,10 @@ class GGS_mainXibElement_2E_outlet_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -6127,7 +6288,10 @@ class GGS_mainXibElement_2E_text : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -6195,7 +6359,10 @@ class GGS_mainXibElement_2E_text_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -6259,7 +6426,10 @@ class GGS_mainXibDescriptor : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -6359,13 +6529,12 @@ class GGS__5B_mainXibDescriptor_5D_ final : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS__5B_mainXibDescriptor_5D_ init (Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_mainXibDescriptor_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_mainXibDescriptor & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -6428,11 +6597,14 @@ class GGS__5B_mainXibDescriptor_5D_ final : public AC_GALGAS_root {
                                                               COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_mainXibDescriptor readSubscript__3F_ (const class GGS_uint & in0,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_mainXibDescriptor readSubcript__3F_ (const class GGS_uint & in0,
+                                                         Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -6454,7 +6626,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS__5B_mainXibDescriptor_
 //--------------------------------------------------------------------------------------------------
 
 class GGS_string extensionGetter_generateCode (const class GGS__5B_mainXibDescriptor_5D_ & inObject,
-                                               class Compiler * inCompiler
+                                               Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -6716,7 +6888,10 @@ class GGS_toManyRelationshipOptionAST_2E_hasDependance : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -6784,7 +6959,10 @@ class GGS_toManyRelationshipOptionAST_2E_hasDependance_3F_ : public AC_GALGAS_ro
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -6848,7 +7026,10 @@ class GGS_toManyRelationshipOptionAST_2E_hasOpposite : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -6916,7 +7097,10 @@ class GGS_toManyRelationshipOptionAST_2E_hasOpposite_3F_ : public AC_GALGAS_root
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -6977,7 +7161,10 @@ class GGS_toManyRelationshipAST : public GGS_abstractDeclarationAST {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -7119,7 +7306,10 @@ class GGS_toManyRelationshipAST_2E_weak : public GGS_abstractDeclarationAST_2E_w
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -7213,7 +7403,10 @@ class GGS_toManyRelationshipOptionGeneration : public AC_GALGAS_root {
   public: class GGS_bool getter_isNone (LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -7288,7 +7481,10 @@ class GGS_toManyRelationshipOptionGeneration_2E_hasDependance : public AC_GALGAS
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -7356,7 +7552,10 @@ class GGS_toManyRelationshipOptionGeneration_2E_hasDependance_3F_ : public AC_GA
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -7420,7 +7619,10 @@ class GGS_toManyRelationshipOptionGeneration_2E_hasOpposite : public AC_GALGAS_r
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -7488,7 +7690,10 @@ class GGS_toManyRelationshipOptionGeneration_2E_hasOpposite_3F_ : public AC_GALG
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -7549,7 +7754,10 @@ class GGS_toManyPropertyGeneration : public GGS_propertyGeneration {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -7695,7 +7903,10 @@ class GGS_toManyPropertyGeneration_2E_weak : public GGS_propertyGeneration_2E_we
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -7795,13 +8006,12 @@ class GGS__5B_outletDeclarationAST_5D_ final : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS__5B_outletDeclarationAST_5D_ init (Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_outletDeclarationAST_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_outletDeclarationAST & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -7864,11 +8074,14 @@ class GGS__5B_outletDeclarationAST_5D_ final : public AC_GALGAS_root {
                                                                  COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_outletDeclarationAST readSubscript__3F_ (const class GGS_uint & in0,
-                                                             Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_outletDeclarationAST readSubcript__3F_ (const class GGS_uint & in0,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -7971,13 +8184,12 @@ class GGS__5B_regularBinding_5D_ final : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS__5B_regularBinding_5D_ init (Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_regularBinding_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_regularBinding & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -8040,11 +8252,14 @@ class GGS__5B_regularBinding_5D_ final : public AC_GALGAS_root {
                                                            COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_regularBinding readSubscript__3F_ (const class GGS_uint & in0,
-                                                       Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_regularBinding readSubcript__3F_ (const class GGS_uint & in0,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8128,7 +8343,10 @@ class GGS_graphicController : public AC_GALGAS_root {
   public: class GGS_bool getter_isNone (LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8211,7 +8429,10 @@ class GGS_runActionDescriptor : public AC_GALGAS_root {
   public: class GGS_bool getter_isNoAction (LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8291,7 +8512,10 @@ class GGS_tableValueBinding : public AC_GALGAS_root {
   public: class GGS_bool getter_isTableValueBinding (LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8432,7 +8656,10 @@ class GGS_outletDeclarationAST : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8532,13 +8759,12 @@ class GGS__5B_astViewDeclaration_5D_ final : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS__5B_astViewDeclaration_5D_ init (Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_astViewDeclaration_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_astViewDeclaration & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -8601,11 +8827,14 @@ class GGS__5B_astViewDeclaration_5D_ final : public AC_GALGAS_root {
                                                                COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_astViewDeclaration readSubscript__3F_ (const class GGS_uint & in0,
-                                                           Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_astViewDeclaration readSubcript__3F_ (const class GGS_uint & in0,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8647,7 +8876,10 @@ class GGS_astAbstractViewDeclaration : public AC_GALGAS_reference_class {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8722,7 +8954,10 @@ class GGS_astViewDeclaration : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8822,13 +9057,12 @@ class GGS__5B_astAutoLayoutOutletLinker_5D_ final : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS__5B_astAutoLayoutOutletLinker_5D_ init (Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_astAutoLayoutOutletLinker_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_astAutoLayoutOutletLinker & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -8891,11 +9125,14 @@ class GGS__5B_astAutoLayoutOutletLinker_5D_ final : public AC_GALGAS_root {
                                                                       COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_astAutoLayoutOutletLinker readSubscript__3F_ (const class GGS_uint & in0,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_astAutoLayoutOutletLinker readSubcript__3F_ (const class GGS_uint & in0,
+                                                                 Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8973,7 +9210,10 @@ class GGS_astAutoLayoutOutletLinker : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -9037,7 +9277,10 @@ class GGS_autoLayoutDocumentDeclarationAST : public GGS_abstractDeclarationAST {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -9187,7 +9430,10 @@ class GGS_autoLayoutDocumentDeclarationAST_2E_weak : public GGS_abstractDeclarat
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -9262,7 +9508,10 @@ class GGS_autoLayoutOutletLinkerGeneration : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -9362,13 +9611,12 @@ class GGS__5B_regularBindingsGeneration_5D_ final : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS__5B_regularBindingsGeneration_5D_ init (Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_regularBindingsGeneration_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_regularBindingsGeneration & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -9431,11 +9679,14 @@ class GGS__5B_regularBindingsGeneration_5D_ final : public AC_GALGAS_root {
                                                                       COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_regularBindingsGeneration readSubscript__3F_ (const class GGS_uint & in0,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_regularBindingsGeneration readSubcript__3F_ (const class GGS_uint & in0,
+                                                                 Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -9538,13 +9789,12 @@ class GGS__5B_boundObject_5D_ final : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS__5B_boundObject_5D_ init (Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_boundObject_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_boundObject & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -9607,11 +9857,14 @@ class GGS__5B_boundObject_5D_ final : public AC_GALGAS_root {
                                                         COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_boundObject readSubscript__3F_ (const class GGS_uint & in0,
-                                                    Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_boundObject readSubcript__3F_ (const class GGS_uint & in0,
+                                                   Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -9711,7 +9964,10 @@ class GGS_regularBindingsGeneration : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -9811,13 +10067,12 @@ class GGS__5B_multipleBindingGeneration_5D_ final : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS__5B_multipleBindingGeneration_5D_ init (Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_multipleBindingGeneration_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_multipleBindingGeneration & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -9880,11 +10135,14 @@ class GGS__5B_multipleBindingGeneration_5D_ final : public AC_GALGAS_root {
                                                                       COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_multipleBindingGeneration readSubscript__3F_ (const class GGS_uint & in0,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_multipleBindingGeneration readSubcript__3F_ (const class GGS_uint & in0,
+                                                                 Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -9926,7 +10184,10 @@ class GGS_abstractBooleanMultipleBindingExpressionForGeneration : public AC_GALG
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -10012,7 +10273,10 @@ class GGS_multipleBindingGeneration : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -10112,13 +10376,12 @@ class GGS__5B_actionBindingForGeneration_5D_ final : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS__5B_actionBindingForGeneration_5D_ init (Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_actionBindingForGeneration_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_actionBindingForGeneration & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -10181,11 +10444,14 @@ class GGS__5B_actionBindingForGeneration_5D_ final : public AC_GALGAS_root {
                                                                        COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_actionBindingForGeneration readSubscript__3F_ (const class GGS_uint & in0,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_actionBindingForGeneration readSubcript__3F_ (const class GGS_uint & in0,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -10285,7 +10551,10 @@ class GGS_actionBindingForGeneration : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -10385,13 +10654,12 @@ class GGS__5B_tableViewBindingGeneration_5D_ final : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS__5B_tableViewBindingGeneration_5D_ init (Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_tableViewBindingGeneration_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_tableViewBindingGeneration & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -10454,11 +10722,14 @@ class GGS__5B_tableViewBindingGeneration_5D_ final : public AC_GALGAS_root {
                                                                        COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_tableViewBindingGeneration readSubscript__3F_ (const class GGS_uint & in0,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_tableViewBindingGeneration readSubcript__3F_ (const class GGS_uint & in0,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -10536,7 +10807,10 @@ class GGS_tableViewBindingGeneration : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -10636,13 +10910,12 @@ class GGS__5B_ebViewGraphicControllerBindingGeneration_5D_ final : public AC_GAL
 //--------------------------------- Initializers
   public: static GGS__5B_ebViewGraphicControllerBindingGeneration_5D_ init (Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_ebViewGraphicControllerBindingGeneration_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_ebViewGraphicControllerBindingGeneration & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -10705,11 +10978,14 @@ class GGS__5B_ebViewGraphicControllerBindingGeneration_5D_ final : public AC_GAL
                                                                                      COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_ebViewGraphicControllerBindingGeneration readSubscript__3F_ (const class GGS_uint & in0,
-                                                                                 Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_ebViewGraphicControllerBindingGeneration readSubcript__3F_ (const class GGS_uint & in0,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -10787,7 +11063,10 @@ class GGS_ebViewGraphicControllerBindingGeneration : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -10887,13 +11166,12 @@ class GGS__5B_viewGeneration_5D_ final : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS__5B_viewGeneration_5D_ init (Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_viewGeneration_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_viewGeneration & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -10956,11 +11234,14 @@ class GGS__5B_viewGeneration_5D_ final : public AC_GALGAS_root {
                                                            COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_viewGeneration readSubscript__3F_ (const class GGS_uint & in0,
-                                                       Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_viewGeneration readSubcript__3F_ (const class GGS_uint & in0,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -11002,7 +11283,10 @@ class GGS_abstractViewGeneration : public AC_GALGAS_reference_class {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -11077,7 +11361,10 @@ class GGS_viewGeneration : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -11177,13 +11464,12 @@ class GGS__5B_abstractViewInstructionGeneration_5D_ final : public AC_GALGAS_roo
 //--------------------------------- Initializers
   public: static GGS__5B_abstractViewInstructionGeneration_5D_ init (Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_abstractViewInstructionGeneration_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_abstractViewInstructionGeneration & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -11246,11 +11532,14 @@ class GGS__5B_abstractViewInstructionGeneration_5D_ final : public AC_GALGAS_roo
                                                                               COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_abstractViewInstructionGeneration readSubscript__3F_ (const class GGS_uint & in0,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_abstractViewInstructionGeneration readSubcript__3F_ (const class GGS_uint & in0,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -11292,7 +11581,10 @@ class GGS_abstractViewInstructionGeneration : public AC_GALGAS_reference_class {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -11436,13 +11728,12 @@ class GGS__5B_autoLayoutOutletLinkerGeneration_5D_ final : public AC_GALGAS_root
 //--------------------------------- Initializers
   public: static GGS__5B_autoLayoutOutletLinkerGeneration_5D_ init (Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_autoLayoutOutletLinkerGeneration_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_autoLayoutOutletLinkerGeneration & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -11505,11 +11796,14 @@ class GGS__5B_autoLayoutOutletLinkerGeneration_5D_ final : public AC_GALGAS_root
                                                                              COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_autoLayoutOutletLinkerGeneration readSubscript__3F_ (const class GGS_uint & in0,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_autoLayoutOutletLinkerGeneration readSubcript__3F_ (const class GGS_uint & in0,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -11612,13 +11906,12 @@ class GGS__5B_propertyGeneration_5D_ final : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS__5B_propertyGeneration_5D_ init (Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_propertyGeneration_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_propertyGeneration & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -11681,11 +11974,14 @@ class GGS__5B_propertyGeneration_5D_ final : public AC_GALGAS_root {
                                                                COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_propertyGeneration readSubscript__3F_ (const class GGS_uint & in0,
-                                                           Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_propertyGeneration readSubcript__3F_ (const class GGS_uint & in0,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -11869,11 +12165,14 @@ class GGS_decoratedOutletMap : public AC_GALGAS_root {
                                                              COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_decoratedOutletMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_decoratedOutletMap_2E_element_3F_ readSubcript__3F_ (const class GGS_string & in0,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -11951,7 +12250,10 @@ class GGS_decoratedOutletMap_2E_element : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -12019,7 +12321,10 @@ class GGS_decoratedOutletMap_2E_element_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection

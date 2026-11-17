@@ -10,21 +10,18 @@ struct @transientExternType {
 //--------------------------------------------------------------------------------------------------
 
 abstract class @abstractFileGeneration {
+  
+  abstract proc generateCodePhase1 (@string inOutputDirectory,
+                                    @generationStruct inGenerationStruct,
+                                    ?!@stringset ioUsedProtocolSet,
+                                    ?!@stringset ioGeneratedFileSet)
+
+  abstract proc generateCodePhase2 (@string inOutputDirectory,
+                                    @generationStruct inGenerationStruct,
+                                    @stringset inUsedProtocolSet,
+                                    ?!@stringset ioGeneratedFileSet)
+
 }
-
-//--------------------------------------------------------------------------------------------------
-
-abstract proc @abstractFileGeneration.generateCodePhase1 (@string inOutputDirectory,
-                                                          @generationStruct inGenerationStruct,
-                                                          ?!@stringset ioUsedProtocolSet,
-                                                          ?!@stringset ioGeneratedFileSet)
-
-//--------------------------------------------------------------------------------------------------
-
-abstract proc @abstractFileGeneration.generateCodePhase2 (@string inOutputDirectory,
-                                                          @generationStruct inGenerationStruct,
-                                                          @stringset inUsedProtocolSet,
-                                                          ?!@stringset ioGeneratedFileSet)
 
 //--------------------------------------------------------------------------------------------------
 

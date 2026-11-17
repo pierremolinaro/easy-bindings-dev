@@ -1,15 +1,11 @@
 //--------------------------------------------------------------------------------------------------
 //
-//  Copyright (C) 2009, ..., 2024 Pierre Molinaro.
+//  Copyright (C) 2009, ..., 2026 Pierre Molinaro.
 //
 //--------------------------------------------------------------------------------------------------
 
 #include "all-predefined-types.h"
-#include "CollectionElementPtr.h"
-#include "Compiler.h"
 #include "galgas-input-output.h"
-#include "utf32.h"
-#include "C_galgas_CLI_Options.h"
 #include "BinaryFileWrite.h"
 #include "F_verbose_output.h"
 
@@ -127,16 +123,11 @@ GGS_string GGS_data::getter_cStringRepresentation (UNUSED_LOCATION_ARGS) const {
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_data::setter_appendByte (GGS_uint inArgument0,
-                                  Compiler * inCompiler
-                                  COMMA_LOCATION_ARGS) {
-  if (inArgument0.isValid ()) {
-    if (inArgument0.uintValue () > 255) {
-      inCompiler->onTheFlyRunTimeError ("'@data appendByte' modifier invoked with value greater than 255" COMMA_THERE) ;
-    }else{
-      const uint8_t byte = (uint8_t) (inArgument0.uintValue () & UINT8_MAX) ;
-      mData.appendByte (byte) ;
-    }
+void GGS_data::setter_appendByte (GGS_u_38_ inByte,
+                                  Compiler *
+                                  COMMA_UNUSED_LOCATION_ARGS) {
+  if (isValid () && inByte.isValid ()) {
+    mData.appendByte (inByte.u8Value()) ;
   }
 }
 
@@ -359,72 +350,6 @@ void GGS_data::method_writeToExecutableFile (GGS_string inFilePath,
 }
 
 //--------------------------------------------------------------------------------------------------
-//   cCollectionElement_data
-//--------------------------------------------------------------------------------------------------
-
-class cCollectionElement_data : public CollectionElementPtr {
-//--- Private member
-  protected: GGS_uint mProperty_data ;
-  public: inline GGS_uint attribute_data (void) const { return mProperty_data ; }
-
-//--- Default constructor
-  public: cCollectionElement_data (const GGS_uint & inData
-                                   COMMA_LOCATION_ARGS) ;
-
-//--- No copy
-  private: cCollectionElement_data (const cCollectionElement_data &) = delete ;
-  private: cCollectionElement_data & operator = (const cCollectionElement_data &) = delete ;
-
-//--- Virtual method that checks that all attributes are valid
-  public: virtual bool isValid (void) const ;
-
-//--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const CollectionElementPtr * inOperand) const ;
-
-//--- Virtual method that returns a copy of current object
-  public: virtual CollectionElementPtr * copy (void) ;
-
-//--- Description
- public: virtual void description (String & ioString, const int32_t inIndentation) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-cCollectionElement_data::cCollectionElement_data (const GGS_uint & inData
-                                                  COMMA_LOCATION_ARGS) :
-CollectionElementPtr (THERE),
-mProperty_data (inData) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool cCollectionElement_data::isValid (void) const {
-  return mProperty_data.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_data::compare (const CollectionElementPtr * inOperand) const {
-  const cCollectionElement_data * operand = (const cCollectionElement_data *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_data) ;
-  return mProperty_data.objectCompare (operand->mProperty_data) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-CollectionElementPtr * cCollectionElement_data::copy (void) {
-  cCollectionElement_data * p = nullptr ;
-  macroMyNew (p, cCollectionElement_data (mProperty_data COMMA_HERE)) ;
-  return p ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cCollectionElement_data::description (String & ioString, const int32_t inIndentation) const {
-  mProperty_data.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //
 //     Enumerator_data class
 //
@@ -437,39 +362,27 @@ void cCollectionElement_data::description (String & ioString, const int32_t inIn
 //--------------------------------------------------------------------------------------------------
 
 UpEnumerator_data::UpEnumerator_data (const GGS_data & inOperand) :
-mArray (inOperand.mData),
+mArray (inOperand.isValid () ? inOperand.mData : U8Data ()),
 mIndex (0) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_uint UpEnumerator_data::current_data (LOCATION_ARGS) const {
-  return GGS_uint (mArray (mIndex COMMA_THERE)) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_uint UpEnumerator_data::current (LOCATION_ARGS) const {
-  return GGS_uint (mArray (mIndex COMMA_THERE)) ;
+GGS_u_38_ UpEnumerator_data::current (LOCATION_ARGS) const {
+  return GGS_u_38_ (mArray (mIndex COMMA_THERE)) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
 DownEnumerator_data::DownEnumerator_data (const GGS_data & inOperand) :
-mArray (inOperand.mData),
-mIndex (inOperand.mData.count () - 1) {
+mArray (inOperand.isValid () ? inOperand.mData : U8Data ()),
+mIndex (inOperand.isValid () ? (inOperand.mData.count () - 1) : -1) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_uint DownEnumerator_data::current_data (LOCATION_ARGS) const {
-  return GGS_uint (mArray (mIndex COMMA_THERE)) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_uint DownEnumerator_data::current (LOCATION_ARGS) const {
-  return GGS_uint (mArray (mIndex COMMA_THERE)) ;
+GGS_u_38_ DownEnumerator_data::current (LOCATION_ARGS) const {
+  return GGS_u_38_ (mArray (mIndex COMMA_THERE)) ;
 }
 
 //--------------------------------------------------------------------------------------------------

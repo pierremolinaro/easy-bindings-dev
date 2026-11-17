@@ -5,7 +5,6 @@
 //--------------------------------------------------------------------------------------------------
 
 #include "all-predefined-types.h"
-#include "Compiler.h"
 
 //--------------------------------------------------------------------------------------------------
 
@@ -47,7 +46,7 @@ GGS_double GGS_double::class_func_doubleWithBinaryImage (const GGS_uint_36__34_ 
       uint64_t unsignedIntegerValue ;
       double   doubleValue ;
     } ;
-    unsignedIntegerValue = inImage.uint64Value () ;
+    unsignedIntegerValue = inImage.u64 () ;
     result = GGS_double (doubleValue) ;
   }
   return result ;
@@ -330,7 +329,7 @@ GGS_double GGS_double::add_operation (const GGS_double & inOperand2,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_double GGS_double::substract_operation (const GGS_double & inOperand2,
+GGS_double GGS_double::subtract_operation (const GGS_double & inOperand2,
                                             Compiler * /* inCompiler */
                                             COMMA_UNUSED_LOCATION_ARGS) const {
   GGS_double result ;
@@ -421,7 +420,7 @@ GGS_double GGS_double::divide_operation (const GGS_double & inOperand2,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_double GGS_double::divide_operation_no_ovf (const GGS_double & inOperand) const {
+GGS_double GGS_double::wrapping_divide_operation (const GGS_double & inOperand) const {
   GGS_double result ;
   if (isValid () && inOperand.isValid ()) {
     result = GGS_double ((inOperand.mDoubleValue == 0.0) ? 0.0 : (mDoubleValue / inOperand.mDoubleValue)) ;

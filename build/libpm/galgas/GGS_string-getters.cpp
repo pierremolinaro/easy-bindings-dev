@@ -6,7 +6,6 @@
 
 #include "all-predefined-types.h"
 #include "C_galgas_CLI_Options.h"
-#include "Compiler.h"
 #include "F_mainForLIBPM.h"
 #include "analyzeCommandLineOptions.h"
 #include "utf32.h"
@@ -139,17 +138,7 @@ GGS_bool GGS_string::getter_directoryExists (UNUSED_LOCATION_ARGS) const {
 GGS_uint GGS_string::getter_count (UNUSED_LOCATION_ARGS) const {
   GGS_uint result ;
   if (isValid ()) {
-    result = GGS_uint ((uint32_t) mString.length ()) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_range GGS_string::getter_range (UNUSED_LOCATION_ARGS) const {
-  GGS_range result ;
-  if (isValid ()) {
-    result = GGS_range (GGS_uint (0), GGS_uint ((uint32_t) mString.length ())) ;
+    result = GGS_uint (uint32_t (mString.length ())) ;
   }
   return result ;
 }
@@ -225,7 +214,8 @@ GGS_string GGS_string::getter_cStringRepresentation (UNUSED_LOCATION_ARGS) const
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string GGS_string::getter_utf_38_RepresentationEnclosedWithin (const GGS_char & inCharacter COMMA_UNUSED_LOCATION_ARGS) const {
+GGS_string GGS_string::getter_utf_38_RepresentationEnclosedWithin (const GGS_char & inCharacter
+                                                                   COMMA_UNUSED_LOCATION_ARGS) const {
   GGS_string result ;
   if (isValid () && inCharacter.isValid ()) {
     const bool escapeQuestionMark = true ;
@@ -721,7 +711,7 @@ GGS_sint GGS_string::getter_commandWithArguments (const GGS__5B_string_5D_ & inA
     String command = String ("'") + mString + "'" ;
     for (uint32_t i=0 ; i<inArguments.count () ; i++) {
       command.appendCString (" '") ;
-      command.appendString (inArguments.readSubscript__3F_ (GGS_uint (i), inCompiler COMMA_THERE).stringValue ()) ;
+      command.appendString (inArguments.readSubcript__3F_ (GGS_uint (i), inCompiler COMMA_THERE).stringValue ()) ;
       command.appendCString ("'") ;
     }
     result = GGS_sint (::system (command.cString ())) ;
@@ -739,7 +729,7 @@ GGS_string GGS_string::getter_hiddenCommandWithArguments (const GGS__5B_string_5
     String command = String ("'") + mString + "'" ;
     for (uint32_t i=0 ; i<inArguments.count () ; i++) {
       command.appendCString (" '") ;
-      command.appendString (inArguments.readSubscript__3F_ (GGS_uint (i), inCompiler COMMA_THERE).stringValue ()) ;
+      command.appendString (inArguments.readSubcript__3F_ (GGS_uint (i), inCompiler COMMA_THERE).stringValue ()) ;
       command.appendCString ("'") ;
     }
     result = GGS_string (command).getter_popen (inCompiler COMMA_THERE) ;

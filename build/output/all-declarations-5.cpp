@@ -9,366 +9,6 @@
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult GGS_toOneRelationshipAST_2E_weak::objectCompare (const GGS_toOneRelationshipAST_2E_weak & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    PtrWeakReferenceProxy * myPtr = mProxyPtr ;
-    const size_t myObjectPtr = size_t (myPtr) ;
-    PtrWeakReferenceProxy * operandPtr = inOperand.mProxyPtr ;
-    const size_t operandObjectPtr = size_t (operandPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_toOneRelationshipAST_2E_weak::GGS_toOneRelationshipAST_2E_weak (void) :
-GGS_abstractDeclarationAST_2E_weak () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_toOneRelationshipAST_2E_weak & GGS_toOneRelationshipAST_2E_weak::operator = (const GGS_toOneRelationshipAST & inSource) {
-  PtrWeakReferenceProxy * proxyPtr = nullptr ;
-  AbstractStrongPtrClass * p = (AbstractStrongPtrClass *) inSource.ptr () ;
-  if (p != nullptr) {
-    proxyPtr = p->getProxy () ;
-  }
-  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
-  return *this ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_toOneRelationshipAST_2E_weak::GGS_toOneRelationshipAST_2E_weak (const GGS_toOneRelationshipAST & inSource) :
-GGS_abstractDeclarationAST_2E_weak (inSource) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_toOneRelationshipAST_2E_weak GGS_toOneRelationshipAST_2E_weak::class_func_nil (LOCATION_ARGS) {
-  GGS_toOneRelationshipAST_2E_weak result ;
-  macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_toOneRelationshipAST GGS_toOneRelationshipAST_2E_weak::unwrappedValue (void) const {
-  GGS_toOneRelationshipAST result ;
-  if (isValid ()) {
-    const cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) ptr () ;
-    if (nullptr != p) {
-      result = GGS_toOneRelationshipAST (p) ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_toOneRelationshipAST GGS_toOneRelationshipAST_2E_weak::bang_toOneRelationshipAST_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  GGS_toOneRelationshipAST result ;
-  if (mProxyPtr != nullptr) {
-    AbstractStrongPtrClass * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == nullptr) {
-      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
-    }else{
-      macroValidSharedObject (strongPtr, cPtr_toOneRelationshipAST) ;
-      result = GGS_toOneRelationshipAST ((cPtr_toOneRelationshipAST *) strongPtr) ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @toOneRelationshipAST.weak generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_toOneRelationshipAST_2E_weak ("toOneRelationshipAST.weak",
-                                                                                 & kTypeDescriptor_GALGAS_abstractDeclarationAST_2E_weak) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_toOneRelationshipAST_2E_weak::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_toOneRelationshipAST_2E_weak ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_toOnePropertyGeneration_2E_weak::objectCompare (const GGS_toOnePropertyGeneration_2E_weak & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    PtrWeakReferenceProxy * myPtr = mProxyPtr ;
-    const size_t myObjectPtr = size_t (myPtr) ;
-    PtrWeakReferenceProxy * operandPtr = inOperand.mProxyPtr ;
-    const size_t operandObjectPtr = size_t (operandPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_toOnePropertyGeneration_2E_weak::GGS_toOnePropertyGeneration_2E_weak (void) :
-GGS_propertyGeneration_2E_weak () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_toOnePropertyGeneration_2E_weak & GGS_toOnePropertyGeneration_2E_weak::operator = (const GGS_toOnePropertyGeneration & inSource) {
-  PtrWeakReferenceProxy * proxyPtr = nullptr ;
-  AbstractStrongPtrClass * p = (AbstractStrongPtrClass *) inSource.ptr () ;
-  if (p != nullptr) {
-    proxyPtr = p->getProxy () ;
-  }
-  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
-  return *this ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_toOnePropertyGeneration_2E_weak::GGS_toOnePropertyGeneration_2E_weak (const GGS_toOnePropertyGeneration & inSource) :
-GGS_propertyGeneration_2E_weak (inSource) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_toOnePropertyGeneration_2E_weak GGS_toOnePropertyGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
-  GGS_toOnePropertyGeneration_2E_weak result ;
-  macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_toOnePropertyGeneration GGS_toOnePropertyGeneration_2E_weak::unwrappedValue (void) const {
-  GGS_toOnePropertyGeneration result ;
-  if (isValid ()) {
-    const cPtr_toOnePropertyGeneration * p = (cPtr_toOnePropertyGeneration *) ptr () ;
-    if (nullptr != p) {
-      result = GGS_toOnePropertyGeneration (p) ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_toOnePropertyGeneration GGS_toOnePropertyGeneration_2E_weak::bang_toOnePropertyGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  GGS_toOnePropertyGeneration result ;
-  if (mProxyPtr != nullptr) {
-    AbstractStrongPtrClass * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == nullptr) {
-      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
-    }else{
-      macroValidSharedObject (strongPtr, cPtr_toOnePropertyGeneration) ;
-      result = GGS_toOnePropertyGeneration ((cPtr_toOnePropertyGeneration *) strongPtr) ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @toOnePropertyGeneration.weak generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_toOnePropertyGeneration_2E_weak ("toOnePropertyGeneration.weak",
-                                                                                    & kTypeDescriptor_GALGAS_propertyGeneration_2E_weak) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_toOnePropertyGeneration_2E_weak::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_toOnePropertyGeneration_2E_weak ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_mainXibElement_2E_text::GGS_mainXibElement_2E_text (void) :
-mProperty_text () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_mainXibElement_2E_text::GGS_mainXibElement_2E_text (const GGS_mainXibElement_2E_text & inSource) :
-mProperty_text (inSource.mProperty_text) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_mainXibElement_2E_text & GGS_mainXibElement_2E_text::operator = (const GGS_mainXibElement_2E_text & inSource) {
-  mProperty_text = inSource.mProperty_text ;
-  return *this ;
-}
-
-//---Synthetized initializer -----------------------------------------------------------------------
-
-GGS_mainXibElement_2E_text GGS_mainXibElement_2E_text::init_21_ (const GGS_lstring & in_text,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_mainXibElement_2E_text result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_text = in_text ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_mainXibElement_2E_text::setInitializedProperties (Compiler * /* inCompiler */) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_mainXibElement_2E_text::GGS_mainXibElement_2E_text (const GGS_lstring & inOperand0) :
-mProperty_text (inOperand0) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_mainXibElement_2E_text::isValid (void) const {
-  return mProperty_text.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_mainXibElement_2E_text::drop (void) {
-  mProperty_text.drop () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_mainXibElement_2E_text::description (String & ioString,
-                                              const int32_t inIndentation) const {
-  ioString.appendCString ("<struct @mainXibElement.text:") ;
-  if (! isValid ()) {
-    ioString.appendCString (" not built") ;
-  }else{
-    mProperty_text.description (ioString, inIndentation+1) ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @mainXibElement.text generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_mainXibElement_2E_text ("mainXibElement.text",
-                                                                           nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_mainXibElement_2E_text::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_mainXibElement_2E_text ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//Optional @mainXibElement_2E_text_3F_
-//--------------------------------------------------------------------------------------------------
-
-GGS_mainXibElement_2E_text_3F_::GGS_mainXibElement_2E_text_3F_ (void) :
-AC_GALGAS_root (),
-mValue (),
-mState (OptionalState::invalid) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_mainXibElement_2E_text_3F_::GGS_mainXibElement_2E_text_3F_ (const GGS_mainXibElement_2E_text & inSource) :
-AC_GALGAS_root (),
-mValue (inSource),
-mState (OptionalState::valuated) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_mainXibElement_2E_text_3F_ GGS_mainXibElement_2E_text_3F_::init_nil (void) {
-  GGS_mainXibElement_2E_text_3F_ result ;
-  result.mState = OptionalState::isNil ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_mainXibElement_2E_text_3F_::isValid (void) const {
-  bool result = false ;
-  switch (mState) {
-  case OptionalState::invalid :
-    break ;
-  case OptionalState::isNil :
-    result = true ;
-    break ;
-  case OptionalState::valuated :
-    result = mValue.isValid () ;
-    break ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_mainXibElement_2E_text_3F_::isValuated (void) const {
-  return (mState == OptionalState::valuated) && mValue.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_mainXibElement_2E_text_3F_::drop (void) {
-  mState = OptionalState::invalid ;
-  mValue = GGS_mainXibElement_2E_text () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_mainXibElement_2E_text_3F_::description (String & ioString,
-                                                  const int32_t inIndentation) const {
-  ioString.appendCString ("<optional @") ;
-  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
-  ioString.appendCString (": ") ;
-  switch (mState) {
-  case OptionalState::invalid :
-    ioString.appendCString ("invalid") ;
-    break ;
-  case OptionalState::isNil :
-    ioString.appendCString ("nil") ;
-    break ;
-  case OptionalState::valuated :
-    mValue.description (ioString, inIndentation) ;
-    break ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @mainXibElement.text? generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_mainXibElement_2E_text_3F_ ("mainXibElement.text?",
-                                                                               nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_mainXibElement_2E_text_3F_::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_mainXibElement_2E_text_3F_ ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_mainXibElement_2E_outlet::GGS_mainXibElement_2E_outlet (void) :
 mProperty_outletType (),
 mProperty_outletName () {
@@ -16828,6 +16468,252 @@ void extensionSetter_addSwiftFile (GGS_XcodeProjectDescriptor & ioObject,
   extensionSetter_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 60)) ;
   }
   ioObject.mProperty_m_5F_SwiftFileList.plusPlusAssignOperation (GGS__32_string::init_21__21_ (outArgument_outFileRef, constinArgument_inFileName, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 61)) ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension proc '@XcodeProjectDescriptor addMMFile'
+//
+//--------------------------------------------------------------------------------------------------
+
+void extensionSetter_addMMFile (GGS_XcodeProjectDescriptor & ioObject,
+                                const GGS_string constinArgument_inFileName,
+                                GGS_string & outArgument_outFileRef,
+                                Compiler * inCompiler
+                                COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outFileRef.drop () ; // Release 'out' argument
+  {
+  extensionSetter_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 69)) ;
+  }
+  ioObject.mProperty_m_5F_MM_5F_FileList.plusPlusAssignOperation (GGS__32_string::init_21__21_ (outArgument_outFileRef, constinArgument_inFileName, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 70)) ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension proc '@XcodeProjectDescriptor addCppFile'
+//
+//--------------------------------------------------------------------------------------------------
+
+void extensionSetter_addCppFile (GGS_XcodeProjectDescriptor & ioObject,
+                                 const GGS_string constinArgument_inFileName,
+                                 GGS_string & outArgument_outFileRef,
+                                 Compiler * inCompiler
+                                 COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outFileRef.drop () ; // Release 'out' argument
+  {
+  extensionSetter_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 78)) ;
+  }
+  ioObject.mProperty_mCppFileList.plusPlusAssignOperation (GGS__32_string::init_21__21_ (outArgument_outFileRef, constinArgument_inFileName, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 79)) ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension proc '@XcodeProjectDescriptor addHeaderFile'
+//
+//--------------------------------------------------------------------------------------------------
+
+void extensionSetter_addHeaderFile (GGS_XcodeProjectDescriptor & ioObject,
+                                    const GGS_string constinArgument_inFileName,
+                                    GGS_string & outArgument_outFileRef,
+                                    Compiler * inCompiler
+                                    COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outFileRef.drop () ; // Release 'out' argument
+  {
+  extensionSetter_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 87)) ;
+  }
+  ioObject.mProperty_mHeaderFileList.plusPlusAssignOperation (GGS__32_string::init_21__21_ (outArgument_outFileRef, constinArgument_inFileName, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 88)) ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension proc '@XcodeProjectDescriptor addBuildFile'
+//
+//--------------------------------------------------------------------------------------------------
+
+void extensionSetter_addBuildFile (GGS_XcodeProjectDescriptor & ioObject,
+                                   const GGS_string constinArgument_inFileReference,
+                                   const GGS_string constinArgument_inFileName,
+                                   GGS_string & outArgument_outBuildRef,
+                                   Compiler * inCompiler
+                                   COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outBuildRef.drop () ; // Release 'out' argument
+  {
+  extensionSetter_getReferenceKey (ioObject, outArgument_outBuildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 97)) ;
+  }
+  ioObject.mProperty_mBuildFileList.plusPlusAssignOperation (GGS_BuildFile::init_21__21__21_ (constinArgument_inFileReference, constinArgument_inFileName, outArgument_outBuildRef, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 98)) ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension proc '@XcodeProjectDescriptor addToolTarget'
+//
+//--------------------------------------------------------------------------------------------------
+
+void extensionSetter_addToolTarget (GGS_XcodeProjectDescriptor & ioObject,
+                                    const GGS_string constinArgument_inTargetName,
+                                    const GGS_string constinArgument_inProductFileName,
+                                    const GGS__5B_string_5D_ constinArgument_inSourceList,
+                                    const GGS__5B_string_5D_ constinArgument_inToolFrameworksFileRefList,
+                                    const GGS__5B_string_5D_ constinArgument_inBuildConfigurationSettingList,
+                                    GGS_string & outArgument_outTargetRef,
+                                    GGS_string & outArgument_outProductFileRef,
+                                    Compiler * inCompiler
+                                    COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outTargetRef.drop () ; // Release 'out' argument
+  outArgument_outProductFileRef.drop () ; // Release 'out' argument
+  {
+  extensionSetter_getReferenceKey (ioObject, outArgument_outProductFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 111)) ;
+  }
+  GGS_string var_buildPhaseRef_4427 ;
+  {
+  extensionSetter_getReferenceKey (ioObject, var_buildPhaseRef_4427, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 112)) ;
+  }
+  {
+  extensionSetter_getReferenceKey (ioObject, outArgument_outTargetRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 113)) ;
+  }
+  GGS_string var_buildConfigurationListRef_4524 ;
+  {
+  extensionSetter_getReferenceKey (ioObject, var_buildConfigurationListRef_4524, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 114)) ;
+  }
+  GGS_string var_buildConfigurationRef_4587 ;
+  {
+  extensionSetter_getReferenceKey (ioObject, var_buildConfigurationRef_4587, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 115)) ;
+  }
+  GGS_string var_frameworkBuildRef_4646 ;
+  {
+  extensionSetter_getReferenceKey (ioObject, var_frameworkBuildRef_4646, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 116)) ;
+  }
+  ioObject.mProperty_mToolTargetList.plusPlusAssignOperation (GGS_XCodeToolTarget::init_21__21__21__21__21__21__21__21__21__21__21_ (outArgument_outTargetRef, constinArgument_inTargetName, outArgument_outProductFileRef, constinArgument_inProductFileName, constinArgument_inSourceList, var_buildPhaseRef_4427, var_buildConfigurationListRef_4524, constinArgument_inBuildConfigurationSettingList, var_buildConfigurationRef_4587, constinArgument_inToolFrameworksFileRefList, var_frameworkBuildRef_4646, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 117)) ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension proc '@XcodeProjectDescriptor addAppTarget'
+//
+//--------------------------------------------------------------------------------------------------
+
+void extensionSetter_addAppTarget (GGS_XcodeProjectDescriptor & ioObject,
+                                   const GGS_string constinArgument_inTargetName,
+                                   const GGS_string constinArgument_inProductFileName,
+                                   const GGS__5B_string_5D_ constinArgument_inSourceList,
+                                   const GGS__5B_string_5D_ constinArgument_inFrameworksFileRefList,
+                                   const GGS__5B_string_5D_ constinArgument_inResourceFileBuildRefs,
+                                   const GGS__5B_string_5D_ constinArgument_inBuildConfigurationSettingList,
+                                   const GGS__5B_string_5D_ constinArgument_inDependentTargetRefList,
+                                   const GGS__5B__32_string_5D_ constinArgument_inProductCopyList,
+                                   const GGS_string constinArgument_inInfoPList,
+                                   GGS_string & outArgument_outProductFileRef,
+                                   Compiler * inCompiler
+                                   COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outProductFileRef.drop () ; // Release 'out' argument
+  {
+  extensionSetter_getReferenceKey (ioObject, outArgument_outProductFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 146)) ;
+  }
+  GGS_string var_buildPhaseRef_5761 ;
+  {
+  extensionSetter_getReferenceKey (ioObject, var_buildPhaseRef_5761, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 147)) ;
+  }
+  GGS_string var_targetRef_5812 ;
+  {
+  extensionSetter_getReferenceKey (ioObject, var_targetRef_5812, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 148)) ;
+  }
+  GGS_string var_buildConfigurationListRef_5859 ;
+  {
+  extensionSetter_getReferenceKey (ioObject, var_buildConfigurationListRef_5859, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 149)) ;
+  }
+  GGS_string var_buildConfigurationRef_5922 ;
+  {
+  extensionSetter_getReferenceKey (ioObject, var_buildConfigurationRef_5922, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 150)) ;
+  }
+  GGS_string var_frameworkBuildRef_5981 ;
+  {
+  extensionSetter_getReferenceKey (ioObject, var_frameworkBuildRef_5981, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 151)) ;
+  }
+  GGS_string var_resourceBuildRef_6036 ;
+  {
+  extensionSetter_getReferenceKey (ioObject, var_resourceBuildRef_6036, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 152)) ;
+  }
+  GGS__5B__32_string_5D_ temp_0 = GGS__5B__32_string_5D_::init (inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 153)) ;
+  GGS__5B__32_string_5D_ var_dependentTargets_6071 = temp_0 ;
+  UpEnumerator__5B_string_5D_ enumerator_6106 (constinArgument_inDependentTargetRefList) ;
+  while (enumerator_6106.hasCurrentObject ()) {
+    GGS_string var_dependencyBuildRef_6172 ;
+    {
+    extensionSetter_getReferenceKey (ioObject, var_dependencyBuildRef_6172, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 155)) ;
+    }
+    var_dependentTargets_6071.plusPlusAssignOperation (GGS__32_string::init_21__21_ (var_dependencyBuildRef_6172, enumerator_6106.current (HERE), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 156)) ;
+    enumerator_6106.gotoNextObject () ;
+  }
+  GGS__5B_string_5D_ var_resourceFileBuildRefs_6266 = constinArgument_inResourceFileBuildRefs ;
+  UpEnumerator__5B__32_string_5D_ enumerator_6328 (constinArgument_inProductCopyList) ;
+  while (enumerator_6328.hasCurrentObject ()) {
+    GGS_string var_buildRef_6443 ;
+    {
+    extensionSetter_addBuildFile (ioObject, enumerator_6328.current (HERE).readProperty_mValue_30_ (), enumerator_6328.current (HERE).readProperty_mValue_31_ (), var_buildRef_6443, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 160)) ;
+    }
+    {
+    var_resourceFileBuildRefs_6266.setter_append (var_buildRef_6443, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 161)) ;
+    }
+    enumerator_6328.gotoNextObject () ;
+  }
+  ioObject.mProperty_mAppTargetList.plusPlusAssignOperation (GGS_XCodeAppTarget::init_21__21__21__21__21__21__21__21__21__21__21__21__21__21__21_ (var_targetRef_5812, constinArgument_inTargetName, outArgument_outProductFileRef, constinArgument_inProductFileName, constinArgument_inSourceList, var_buildPhaseRef_5761, var_buildConfigurationListRef_5859, constinArgument_inBuildConfigurationSettingList, var_buildConfigurationRef_5922, constinArgument_inFrameworksFileRefList, var_frameworkBuildRef_5981, var_dependentTargets_6071, var_resourceBuildRef_6036, var_resourceFileBuildRefs_6266, constinArgument_inInfoPList, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 163)) ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension proc '@XcodeProjectDescriptor addGroup'
+//
+//--------------------------------------------------------------------------------------------------
+
+void extensionSetter_addGroup (GGS_XcodeProjectDescriptor & ioObject,
+                               const GGS_string constinArgument_inGroupName,
+                               const GGS_string constinArgument_inGroupPath,
+                               const GGS__5B_string_5D_ constinArgument_inChildrenRefs,
+                               GGS_string & outArgument_outGroupRef,
+                               Compiler * inCompiler
+                               COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outGroupRef.drop () ; // Release 'out' argument
+  GalgasBool test_0 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_0) {
+    const GGS_XcodeProjectDescriptor temp_1 = ioObject ;
+    test_0 = GGS_bool (ComparisonKind::equal, temp_1.readProperty_mDefaultConfigurationRef ().objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
+    if (GalgasBool::boolTrue == test_0) {
+      {
+      extensionSetter_getReferenceKey (ioObject, ioObject.mProperty_mDefaultConfigurationRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 190)) ;
+      }
+    }
+  }
+  GalgasBool test_2 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_2) {
+    const GGS_XcodeProjectDescriptor temp_3 = ioObject ;
+    test_2 = GGS_bool (ComparisonKind::equal, temp_3.readProperty_mProjectBuildConfigurationRef ().objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
+    if (GalgasBool::boolTrue == test_2) {
+      {
+      extensionSetter_getReferenceKey (ioObject, ioObject.mProperty_mProjectBuildConfigurationRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 193)) ;
+      }
+    }
+  }
+  GalgasBool test_4 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_4) {
+    const GGS_XcodeProjectDescriptor temp_5 = ioObject ;
+    test_4 = GGS_bool (ComparisonKind::equal, temp_5.readProperty_mMainGroupReference ().objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
+    if (GalgasBool::boolTrue == test_4) {
+      {
+      extensionSetter_getReferenceKey (ioObject, ioObject.mProperty_mMainGroupReference, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 196)) ;
+      }
+    }
+  }
+  {
+  extensionSetter_getReferenceKey (ioObject, outArgument_outGroupRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 198)) ;
+  }
+  ioObject.mProperty_mGroupList.plusPlusAssignOperation (GGS_XCodeGroup::init_21__21__21__21_ (outArgument_outGroupRef, constinArgument_inGroupName, constinArgument_inGroupPath, constinArgument_inChildrenRefs, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("XcodeProjectGeneration.galgas4", 199)) ;
 }
 
 

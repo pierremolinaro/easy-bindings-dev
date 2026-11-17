@@ -16,7 +16,7 @@
 
 void routine_buildActionMap_3F__21_ (const class GGS__5B_lstring_5D_ constinArgument0,
                                      class GGS_actionMap & outArgument1,
-                                     class Compiler * inCompiler
+                                     Compiler * inCompiler
                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ void routine_analyzeOutlets_3F__3F__3F__3F__3F__3F__3F__3F__3F__26__21__21__21__
                                                                                              class GGS_decoratedOutletMap & outArgument13,
                                                                                              class GGS__5B_tableViewBindingGeneration_5D_ & outArgument14,
                                                                                              class GGS__5B_ebViewGraphicControllerBindingGeneration_5D_ & outArgument15,
-                                                                                             class Compiler * inCompiler
+                                                                                             Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ extern const cDirectoryWrapper gWrapperDirectory_3_autoLayoutDocumentGenerationT
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentImplementation (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentImplementation (Compiler * inCompiler,
                                                                                             const class GGS_string & in_DOCUMENT_5F_CLASS_5F_NAME,
                                                                                             const class GGS_string & in_ROOT_5F_ENTITY_5F_NAME,
                                                                                             const class GGS_string & in_MAIN_5F_VIEW_5F_NAME,
@@ -94,7 +94,7 @@ GGS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentImpl
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentOutletConfiguratorImplementation (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentOutletConfiguratorImplementation (Compiler * inCompiler,
                                                                                                               const class GGS_string & in_DOCUMENT_5F_TYPE_5F_NAME,
                                                                                                               const class GGS_string & in_OUTLET_5F_NAME,
                                                                                                               const class GGS_string & in_OUTLET_5F_TYPE_5F_NAME
@@ -106,7 +106,7 @@ GGS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentOutl
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_outletLinkerImplementation (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_outletLinkerImplementation (Compiler * inCompiler,
                                                                                                 const class GGS_string & in_DOCUMENT_5F_TYPE_5F_NAME,
                                                                                                 const class GGS_string & in_LINKER_5F_NAME,
                                                                                                 const class GGS__5B__32_string_5D_ & in_OUTLET_5F_NAME_5F_AND_5F_TYPE_5F_NAME_5F_LIST
@@ -138,7 +138,7 @@ extern const cDirectoryWrapper gWrapperDirectory_3_prefsGenerationTemplate ;
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_prefsGenerationTemplate_preferences (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_prefsGenerationTemplate_preferences (Compiler * inCompiler,
                                                                     const class GGS__5B_propertyGeneration_5D_ & in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
                                                                     const class GGS__5B_mainXibDescriptor_5D_ & in_MAIN_5F_XIB_5F_DESCRIPTOR_5F_LIST,
                                                                     const class GGS_decoratedOutletMap & in_OUTLET_5F_MAP,
@@ -162,7 +162,7 @@ GGS_string filewrapperTemplate_prefsGenerationTemplate_preferences (class Compil
 void routine_sortProperties_3F__3F__21_ (const class GGS_string constinArgument0,
                                          const class GGS__5B_abstractDeclarationAST_5D_ constinArgument1,
                                          class GGS__5B_abstractDeclarationAST_5D_ & outArgument2,
-                                         class Compiler * inCompiler
+                                         Compiler * inCompiler
                                          COMMA_LOCATION_ARGS) ;
 
 
@@ -194,7 +194,7 @@ extern BoolCommandLineOption gOption_easyBindings_5F_options_outputDeclarationDe
 //
 //--------------------------------------------------------------------------------------------------
 
-class GGS_stringset function_predefinedDates (class Compiler * inCompiler
+class GGS_stringset function_predefinedDates (Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -203,7 +203,7 @@ class GGS_stringset function_predefinedDates (class Compiler * inCompiler
 //
 //--------------------------------------------------------------------------------------------------
 
-class GGS_stringset function_predefinedColors (class Compiler * inCompiler
+class GGS_stringset function_predefinedColors (Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -232,7 +232,7 @@ extern const cDirectoryWrapper gWrapperDirectory_3_predefinedOutletClasses ;
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (class Compiler * inCompiler
+GGS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -242,7 +242,7 @@ GGS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (class Compile
 //--------------------------------------------------------------------------------------------------
 
 void routine_enterAtomicClassesIn_26_declarationList (class GGS__5B_abstractDeclarationAST_5D_ & ioArgument0,
-                                                      class Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -254,7 +254,7 @@ void routine_enterAtomicClassesIn_26_declarationList (class GGS__5B_abstractDecl
 void routine_graphvizAnalysis_3F__3F__3F_ (const class GGS_string constinArgument0,
                                            const class GGS_semanticContext constinArgument1,
                                            const class GGS__5B_lstring_5D_ constinArgument2,
-                                           class Compiler * inCompiler
+                                           Compiler * inCompiler
                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -266,7 +266,7 @@ void routine_graphvizAnalysis_3F__3F__3F_ (const class GGS_string constinArgumen
 void routine_graphvizRootEntityAnalysis_3F__3F__3F_ (const class GGS_string constinArgument0,
                                                      const class GGS_semanticContext constinArgument1,
                                                      const class GGS_string constinArgument2,
-                                                     class Compiler * inCompiler
+                                                     Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -278,7 +278,7 @@ void routine_graphvizRootEntityAnalysis_3F__3F__3F_ (const class GGS_string cons
 void routine_graphvizRootEntityStrongAnalysis_3F__3F__3F_ (const class GGS_string constinArgument0,
                                                            const class GGS_semanticContext constinArgument1,
                                                            const class GGS_string constinArgument2,
-                                                           class Compiler * inCompiler
+                                                           Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -291,7 +291,7 @@ void routine_generateXcodeProject_3F__3F__3F__3F_ (const class GGS_string consti
                                                    const class GGS_string constinArgument1,
                                                    const class GGS_stringset constinArgument2,
                                                    const class GGS_string constinArgument3,
-                                                   class Compiler * inCompiler
+                                                   Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -304,7 +304,7 @@ void routine_generateXcodeProjectInternal_3F__3F__3F__3F_ (const class GGS_strin
                                                            const class GGS_string constinArgument1,
                                                            const class GGS_stringset constinArgument2,
                                                            const class GGS_string constinArgument3,
-                                                           class Compiler * inCompiler
+                                                           Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -330,7 +330,7 @@ extern const cDirectoryWrapper gWrapperDirectory_0_additionalXcodeFiles ;
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_additionalXcodeFiles_main_5F_xib (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_additionalXcodeFiles_main_5F_xib (Compiler * inCompiler,
                                                                  const class GGS_string & in_PROJECT_5F_NAME
                                                                  COMMA_LOCATION_ARGS) ;
 
@@ -340,7 +340,7 @@ GGS_string filewrapperTemplate_additionalXcodeFiles_main_5F_xib (class Compiler 
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_additionalXcodeFiles_info_5F_plist (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_additionalXcodeFiles_info_5F_plist (Compiler * inCompiler,
                                                                    const class GGS_string & in_PROJECT_5F_NAME,
                                                                    const class GGS_string & in_APPLICATION_5F_BUNDLE_5F_BASE,
                                                                    const class GGS_string & in_VERSION_5F_STRING,
@@ -353,7 +353,7 @@ GGS_string filewrapperTemplate_additionalXcodeFiles_info_5F_plist (class Compile
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_additionalXcodeFiles_build_5F_command (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_additionalXcodeFiles_build_5F_command (Compiler * inCompiler,
                                                                       const class GGS_string & in_PROJECT_5F_NAME
                                                                       COMMA_LOCATION_ARGS) ;
 
@@ -365,7 +365,7 @@ GGS_string filewrapperTemplate_additionalXcodeFiles_build_5F_command (class Comp
 
 void routine_buildAutoLayoutBindingSpecificationMap_26__3F_ (class GGS_semanticContext & ioArgument0,
                                                              const class GGS__5B_autoLayoutViewClassBindingSpecification_5D_ constinArgument1,
-                                                             class Compiler * inCompiler
+                                                             Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -376,7 +376,7 @@ void routine_buildAutoLayoutBindingSpecificationMap_26__3F_ (class GGS_semanticC
 
 void routine_buildBindingSpecificationMap_26__3F_ (class GGS_semanticContext & ioArgument0,
                                                    const class GGS__5B_outletClassBindingSpecification_5D_ constinArgument1,
-                                                   class Compiler * inCompiler
+                                                   Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -402,7 +402,7 @@ extern const cDirectoryWrapper gWrapperDirectory_0_arrayControllerGenerationTemp
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControllerImplementationInSwift (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControllerImplementationInSwift (Compiler * inCompiler,
                                                                                                        const class GGS_string & in_OWNER_5F_NAME,
                                                                                                        const class GGS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
                                                                                                        const class GGS_arrayControllerModelKind & in_MODEL_5F_KIND,
@@ -434,7 +434,7 @@ extern const cDirectoryWrapper gWrapperDirectory_0_selectionControllerGeneration
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSelectionControllerImplementation (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSelectionControllerImplementation (Compiler * inCompiler,
                                                                                                             const class GGS_string & in_OWNER_5F_NAME,
                                                                                                             const class GGS_string & in_SELECTION_5F_CONTROLLER_5F_NAME,
                                                                                                             const class GGS_string & in_ELEMENT_5F_TYPE_5F_NAME,
@@ -447,7 +447,7 @@ GGS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSelecti
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedSelectionControllerImplementation (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedSelectionControllerImplementation (Compiler * inCompiler,
                                                                                                                const class GGS_string & in_OWNER_5F_NAME,
                                                                                                                const class GGS_string & in_SELECTION_5F_CONTROLLER_5F_NAME,
                                                                                                                const class GGS_string & in_BASE_5F_ELEMENT_5F_TYPE_5F_NAME,
@@ -465,7 +465,7 @@ GGS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedSele
 void routine_generateSelectionControllers_3F__3F__26_ (const class GGS__5B_selectionControllerForGeneration_5D_ constinArgument0,
                                                        const class GGS_string constinArgument1,
                                                        class GGS_stringset & ioArgument2,
-                                                       class Compiler * inCompiler
+                                                       Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -494,7 +494,7 @@ void routine_analyzeAutoLayoutBinding_3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F
                                                                                                                        class GGS_autolayoutRunBindingForGeneration & outArgument17,
                                                                                                                        class GGS_string & outArgument18,
                                                                                                                        class GGS_autoLayoutViewGraphicControllerBindingGeneration & outArgument19,
-                                                                                                                       class Compiler * inCompiler
+                                                                                                                       Compiler * inCompiler
                                                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -512,6 +512,6 @@ void routine_analyzeAutoLayoutRegularBinding_3F_prefs_3F__3F__3F__3F__3F__3F__3F
                                                                                        const class GGS__5B_regularBinding_5D_ constinArgument6,
                                                                                        const class GGS_string constinArgument7,
                                                                                        class GGS__5B_autoLayoutRegularBindingsGeneration_5D_ & ioArgument8,
-                                                                                       class Compiler * inCompiler
+                                                                                       Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) ;
 

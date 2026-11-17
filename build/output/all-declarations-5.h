@@ -9,153 +9,13 @@
 #include "all-declarations-4.h"
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @toOneRelationshipAST_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_toOneRelationshipAST_2E_weak : public GGS_abstractDeclarationAST_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_toOneRelationshipAST_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_toOneRelationshipAST_2E_weak (const class GGS_toOneRelationshipAST & inSource) ;
-
-  public: GGS_toOneRelationshipAST_2E_weak & operator = (const class GGS_toOneRelationshipAST & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_toOneRelationshipAST_2E_weak init_nil (void) {
-    GGS_toOneRelationshipAST_2E_weak result ;
-    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_toOneRelationshipAST bang_toOneRelationshipAST_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_toOneRelationshipAST unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-//--------------------------------- GALGAS class functions
-  public: static class GGS_toOneRelationshipAST_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_toOneRelationshipAST_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_toOneRelationshipAST_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @toOnePropertyGeneration_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_toOnePropertyGeneration_2E_weak : public GGS_propertyGeneration_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_toOnePropertyGeneration_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_toOnePropertyGeneration_2E_weak (const class GGS_toOnePropertyGeneration & inSource) ;
-
-  public: GGS_toOnePropertyGeneration_2E_weak & operator = (const class GGS_toOnePropertyGeneration & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_toOnePropertyGeneration_2E_weak init_nil (void) {
-    GGS_toOnePropertyGeneration_2E_weak result ;
-    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_toOnePropertyGeneration bang_toOnePropertyGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_toOnePropertyGeneration unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-//--------------------------------- GALGAS class functions
-  public: static class GGS_toOnePropertyGeneration_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_toOnePropertyGeneration_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_toOnePropertyGeneration_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
 //
 //Extension func '@typeKind typeName' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
 class GGS_string extensionGetter_typeName (const class GGS_typeKind & inObject,
-                                           class Compiler * inCompiler
+                                           Compiler * inCompiler
                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -165,7 +25,7 @@ class GGS_string extensionGetter_typeName (const class GGS_typeKind & inObject,
 //--------------------------------------------------------------------------------------------------
 
 class GGS_string extensionGetter_typeName (const class GGS_propertyKind & inObject,
-                                           class Compiler * inCompiler
+                                           Compiler * inCompiler
                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -226,7 +86,10 @@ class GGS_autoLayoutTableViewControllerDeclarationAST_2E_weak : public GGS_abstr
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -272,7 +135,10 @@ class GGS_autoLayoutTableViewControllerPropertyGeneration : public GGS_propertyG
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -400,7 +266,10 @@ class GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak : public GGS_p
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -469,7 +338,10 @@ class GGS_autoLayoutTableViewControllerGeneration : public GGS_abstractFileGener
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -620,7 +492,10 @@ class GGS_autoLayoutTableViewControllerGeneration_2E_weak : public GGS_abstractF
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -883,7 +758,10 @@ class GGS_XcodeProjectDescriptor : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -904,7 +782,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_XcodeProjectDescriptor
 void extensionSetter_addTIFF_5F_file (class GGS_XcodeProjectDescriptor & ioObject,
                                       const class GGS_string constin_inFileName,
                                       class GGS_string & out_outFileRef,
-                                      class Compiler * inCompiler
+                                      Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -915,7 +793,7 @@ void extensionSetter_addTIFF_5F_file (class GGS_XcodeProjectDescriptor & ioObjec
 
 void extensionSetter_getReferenceKey (class GGS_XcodeProjectDescriptor & ioObject,
                                       class GGS_string & out_outRef,
-                                      class Compiler * inCompiler
+                                      Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -927,7 +805,7 @@ void extensionSetter_getReferenceKey (class GGS_XcodeProjectDescriptor & ioObjec
 void extensionSetter_addInfoPlistFile (class GGS_XcodeProjectDescriptor & ioObject,
                                        const class GGS_string constin_inFileName,
                                        class GGS_string & out_outFileRef,
-                                       class Compiler * inCompiler
+                                       Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -939,7 +817,7 @@ void extensionSetter_addInfoPlistFile (class GGS_XcodeProjectDescriptor & ioObje
 void extensionSetter_addXIBFile (class GGS_XcodeProjectDescriptor & ioObject,
                                  const class GGS_string constin_inFileName,
                                  class GGS_string & out_outFileRef,
-                                 class Compiler * inCompiler
+                                 Compiler * inCompiler
                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -951,7 +829,7 @@ void extensionSetter_addXIBFile (class GGS_XcodeProjectDescriptor & ioObject,
 void extensionSetter_addFrameworkFile (class GGS_XcodeProjectDescriptor & ioObject,
                                        const class GGS_string constin_inFileName,
                                        class GGS_string & out_outFileRef,
-                                       class Compiler * inCompiler
+                                       Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -963,7 +841,7 @@ void extensionSetter_addFrameworkFile (class GGS_XcodeProjectDescriptor & ioObje
 void extensionSetter_addMFile (class GGS_XcodeProjectDescriptor & ioObject,
                                const class GGS_string constin_inFileName,
                                class GGS_string & out_outFileRef,
-                               class Compiler * inCompiler
+                               Compiler * inCompiler
                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -975,6 +853,106 @@ void extensionSetter_addMFile (class GGS_XcodeProjectDescriptor & ioObject,
 void extensionSetter_addSwiftFile (class GGS_XcodeProjectDescriptor & ioObject,
                                    const class GGS_string constin_inFileName,
                                    class GGS_string & out_outFileRef,
-                                   class Compiler * inCompiler
+                                   Compiler * inCompiler
                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension mutating proc '@XcodeProjectDescriptor addMMFile'
+//
+//--------------------------------------------------------------------------------------------------
+
+void extensionSetter_addMMFile (class GGS_XcodeProjectDescriptor & ioObject,
+                                const class GGS_string constin_inFileName,
+                                class GGS_string & out_outFileRef,
+                                Compiler * inCompiler
+                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension mutating proc '@XcodeProjectDescriptor addCppFile'
+//
+//--------------------------------------------------------------------------------------------------
+
+void extensionSetter_addCppFile (class GGS_XcodeProjectDescriptor & ioObject,
+                                 const class GGS_string constin_inFileName,
+                                 class GGS_string & out_outFileRef,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension mutating proc '@XcodeProjectDescriptor addHeaderFile'
+//
+//--------------------------------------------------------------------------------------------------
+
+void extensionSetter_addHeaderFile (class GGS_XcodeProjectDescriptor & ioObject,
+                                    const class GGS_string constin_inFileName,
+                                    class GGS_string & out_outFileRef,
+                                    Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension mutating proc '@XcodeProjectDescriptor addBuildFile'
+//
+//--------------------------------------------------------------------------------------------------
+
+void extensionSetter_addBuildFile (class GGS_XcodeProjectDescriptor & ioObject,
+                                   const class GGS_string constin_inFileReference,
+                                   const class GGS_string constin_inFileName,
+                                   class GGS_string & out_outBuildRef,
+                                   Compiler * inCompiler
+                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension mutating proc '@XcodeProjectDescriptor addToolTarget'
+//
+//--------------------------------------------------------------------------------------------------
+
+void extensionSetter_addToolTarget (class GGS_XcodeProjectDescriptor & ioObject,
+                                    const class GGS_string constin_inTargetName,
+                                    const class GGS_string constin_inProductFileName,
+                                    const class GGS__5B_string_5D_ constin_inSourceList,
+                                    const class GGS__5B_string_5D_ constin_inToolFrameworksFileRefList,
+                                    const class GGS__5B_string_5D_ constin_inBuildConfigurationSettingList,
+                                    class GGS_string & out_outTargetRef,
+                                    class GGS_string & out_outProductFileRef,
+                                    Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension mutating proc '@XcodeProjectDescriptor addAppTarget'
+//
+//--------------------------------------------------------------------------------------------------
+
+void extensionSetter_addAppTarget (class GGS_XcodeProjectDescriptor & ioObject,
+                                   const class GGS_string constin_inTargetName,
+                                   const class GGS_string constin_inProductFileName,
+                                   const class GGS__5B_string_5D_ constin_inSourceList,
+                                   const class GGS__5B_string_5D_ constin_inFrameworksFileRefList,
+                                   const class GGS__5B_string_5D_ constin_inResourceFileBuildRefs,
+                                   const class GGS__5B_string_5D_ constin_inBuildConfigurationSettingList,
+                                   const class GGS__5B_string_5D_ constin_inDependentTargetRefList,
+                                   const class GGS__5B__32_string_5D_ constin_inProductCopyList,
+                                   const class GGS_string constin_inInfoPList,
+                                   class GGS_string & out_outProductFileRef,
+                                   Compiler * inCompiler
+                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension mutating proc '@XcodeProjectDescriptor addGroup'
+//
+//--------------------------------------------------------------------------------------------------
+
+void extensionSetter_addGroup (class GGS_XcodeProjectDescriptor & ioObject,
+                               const class GGS_string constin_inGroupName,
+                               const class GGS_string constin_inGroupPath,
+                               const class GGS__5B_string_5D_ constin_inChildrenRefs,
+                               class GGS_string & out_outGroupRef,
+                               Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
 

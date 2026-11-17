@@ -23,7 +23,7 @@ void routine_analyzeRegularBinding_3F__3F__3F__3F__3F__3F__3F__3F__26_ (const cl
                                                                         const class GGS__5B_regularBinding_5D_ constinArgument6,
                                                                         const class GGS_string constinArgument7,
                                                                         class GGS__5B_regularBindingsGeneration_5D_ & ioArgument8,
-                                                                        class Compiler * inCompiler
+                                                                        Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -52,7 +52,7 @@ extern const cDirectoryWrapper gWrapperDirectory_3_transientManager ;
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_transientManager_transientComputationFunctionFile (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_transientManager_transientComputationFunctionFile (Compiler * inCompiler,
                                                                                   const class GGS_string & in_OWNER_5F_NAME,
                                                                                   const class GGS_string & in_TRANSIENT_5F_NAME,
                                                                                   const class GGS__5B_transientDependencyForGeneration_5D_ & in_DEPENDENCY_5F_LIST,
@@ -69,7 +69,7 @@ GGS_string filewrapperTemplate_transientManager_transientComputationFunctionFile
 void routine_generateCode_3F__3F__3F_ (const class GGS_string constinArgument0,
                                        const class GGS_generationStruct constinArgument1,
                                        const class GGS_string constinArgument2,
-                                       class Compiler * inCompiler
+                                       Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -81,7 +81,7 @@ void routine_generateCode_3F__3F__3F_ (const class GGS_string constinArgument0,
 void routine_generateEBManagedObjectContext_3F__3F__26_ (const class GGS__5B_entityForGeneratingEBManagedObjectContext_5D_ constinArgument0,
                                                          const class GGS_string constinArgument1,
                                                          class GGS_stringset & ioArgument2,
-                                                         class Compiler * inCompiler
+                                                         Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -94,7 +94,7 @@ void routine_generateStandardProperties_3F__3F__3F__26_ (const class GGS_string 
                                                          const class GGS__5B_string_5D_ constinArgument1,
                                                          const class GGS__5B_transientExternType_5D_ constinArgument2,
                                                          class GGS_stringset & ioArgument3,
-                                                         class Compiler * inCompiler
+                                                         Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -120,7 +120,7 @@ extern const cDirectoryWrapper gWrapperDirectory_0_standard_5F_properties ;
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_standard_5F_properties_scalarProperty (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_standard_5F_properties_scalarProperty (Compiler * inCompiler,
                                                                       const class GGS_string & in_TYPE,
                                                                       const class GGS_bool & in_TRANSIENT,
                                                                       const class GGS_string & in_COMPARISON_5F_METHOD
@@ -132,7 +132,7 @@ GGS_string filewrapperTemplate_standard_5F_properties_scalarProperty (class Comp
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_standard_5F_properties_classProperty (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_standard_5F_properties_classProperty (Compiler * inCompiler,
                                                                      const class GGS_string & in_CLASS_5F_NAME,
                                                                      const class GGS_bool & in_TRANSIENT
                                                                      COMMA_LOCATION_ARGS) ;
@@ -147,7 +147,7 @@ void routine_generateClassProperty_3F__3F__3F_transient_26_ (const class GGS_str
                                                              const class GGS_string constinArgument1,
                                                              const class GGS_bool constinArgument2,
                                                              class GGS_stringset & ioArgument3,
-                                                             class Compiler * inCompiler
+                                                             Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -161,7 +161,7 @@ void routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (const class GG
                                                                   const class GGS_bool constinArgument2,
                                                                   const class GGS_string constinArgument3,
                                                                   class GGS_stringset & ioArgument4,
-                                                                  class Compiler * inCompiler
+                                                                  Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -190,7 +190,7 @@ extern const cDirectoryWrapper gWrapperDirectory_3_enumGenerationTemplate ;
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (Compiler * inCompiler,
                                                                              const class GGS_string & in_ENUM_5F_TYPE_5F_NAME,
                                                                              const class GGS__5B_lstring_5D_ & in_CONSTANT_5F_ORDERED_5F_LIST,
                                                                              const class GGS_bool & in_CASE_5F_ITERABLE
@@ -202,7 +202,7 @@ GGS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (cla
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_enumGenerationTemplate_enumEBExtensionGenerationInSwift (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_enumGenerationTemplate_enumEBExtensionGenerationInSwift (Compiler * inCompiler,
                                                                                         const class GGS_string & in_ENUM_5F_TYPE_5F_NAME,
                                                                                         const class GGS__5B_lstring_5D_ & in_CONSTANT_5F_ORDERED_5F_LIST,
                                                                                         const class GGS_enumFuncMap & in_FUNCTION_5F_MAP
@@ -234,7 +234,7 @@ extern const cDirectoryWrapper gWrapperDirectory_3_entityGenerationTemplate ;
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationInSwift (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationInSwift (Compiler * inCompiler,
                                                                                      const class GGS_string & in_ENTITY_5F_NAME,
                                                                                      const class GGS_string & in_SUPER_5F_CLASS_5F_NAME,
                                                                                      const class GGS__5B_propertyGeneration_5D_ & in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
@@ -263,7 +263,7 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationInSw
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplementationInSwift (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplementationInSwift (Compiler * inCompiler,
                                                                                            const class GGS_string & in_ENTITY_5F_NAME,
                                                                                            const class GGS_string & in_SUPER_5F_CLASS_5F_NAME,
                                                                                            const class GGS_bool & in_HANDLING_5F_OPPOSITE,
@@ -294,7 +294,7 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplementati
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementationInSwift (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementationInSwift (Compiler * inCompiler,
                                                                                           const class GGS_string & in_ENTITY_5F_NAME,
                                                                                           const class GGS_string & in_SUPER_5F_CLASS_5F_NAME,
                                                                                           const class GGS_bool & in_HANDLING_5F_OPPOSITE,
@@ -319,7 +319,7 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementatio
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_entityGenerationTemplate_managedObjectFactory (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_entityGenerationTemplate_managedObjectFactory (Compiler * inCompiler,
                                                                               const class GGS__5B_entityForGeneratingEBManagedObjectContext_5D_ & in_ENTITY_5F_LIST
                                                                               COMMA_LOCATION_ARGS) ;
 
@@ -349,7 +349,7 @@ extern const cDirectoryWrapper gWrapperDirectory_3_computedPropertyManager ;
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_computedPropertyManager_computedComputationFunctionFile (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_computedPropertyManager_computedComputationFunctionFile (Compiler * inCompiler,
                                                                                         const class GGS_string & in_OWNER_5F_NAME,
                                                                                         const class GGS_string & in_COMPUTED_5F_PROPERTY_5F_NAME,
                                                                                         const class GGS_typeKind & in_TRANSIENT_5F_TYPE
@@ -381,7 +381,7 @@ extern const cDirectoryWrapper gWrapperDirectory_3_actionGenerationTemplate ;
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (Compiler * inCompiler,
                                                                           const class GGS_string & in_EXTENDED_5F_CLASS_5F_NAME,
                                                                           const class GGS_string & in_ACTION_5F_NAME
                                                                           COMMA_LOCATION_ARGS) ;

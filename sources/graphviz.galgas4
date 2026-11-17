@@ -26,7 +26,7 @@ proc graphvizAnalysis (
   let @semanticContext inSemanticContext,
   let [@lstring] inGraphvizList)
 {
-  if @uint.errorCount == 0 then
+  if @application.errorCount == 0 then
     for rootEntityName in inGraphvizList do
       graphvizRootEntityAnalysis (inSourceFileDirectory, inSemanticContext, rootEntityName.string)
       graphvizRootEntityStrongAnalysis (inSourceFileDirectory, inSemanticContext, rootEntityName.string)
@@ -227,7 +227,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
     for node in undefinedNodeList do
       s += "\n -- " + node
     end
-    error (.nowhere : s)
+    error .nowhere : s
   end
 //-- Check accessibility
   if undefinedNodeList.count == 0 then
@@ -238,7 +238,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
     let accessibleNodeSet = @stringset (!lstringArray: accessibleNodeList)
     for node in nodeList do
       if not accessibleNodeSet.contains (node) then
-        error (.nowhere : node + " entity is not reachable via strong reference from " + inRootEntityName)
+        error .nowhere : node + " entity is not reachable via strong reference from " + inRootEntityName
       end
     end
   end

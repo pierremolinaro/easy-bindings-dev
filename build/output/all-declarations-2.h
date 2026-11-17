@@ -15,7 +15,7 @@
 //--------------------------------------------------------------------------------------------------
 
 class GGS_string extensionGetter_modelStringFunctionArgument (const class GGS_observablePropertyAST & inObject,
-                                                              class Compiler * inCompiler
+                                                              Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -26,7 +26,7 @@ class GGS_string extensionGetter_modelStringFunctionArgument (const class GGS_ob
 
 class GGS_bool extensionGetter_needs_5F_unwSelf (const class GGS_observablePropertyAST & inObject,
                                                  const class GGS_bool & constinArgument0,
-                                                 class Compiler * inCompiler
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -36,7 +36,7 @@ class GGS_bool extensionGetter_needs_5F_unwSelf (const class GGS_observablePrope
 //--------------------------------------------------------------------------------------------------
 
 class GGS_location extensionGetter_location (const class GGS_observablePropertyAST & inObject,
-                                             class Compiler * inCompiler
+                                             Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ void extensionMethod_analyzeObservableProperty (const class GGS_observableProper
                                                 class GGS_string & out_outSwiftTypeStringForTransientFunctionArgument,
                                                 class GGS_string & out_outProtocolTypeString,
                                                 class GGS_string & out_outDefaultValue,
-                                                class Compiler * inCompiler
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -62,7 +62,7 @@ void extensionMethod_analyzeObservableProperty (const class GGS_observableProper
 //
 //--------------------------------------------------------------------------------------------------
 
-class GGS_string function_preferencesName (class Compiler * inCompiler
+class GGS_string function_preferencesName (Compiler * inCompiler
                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -120,7 +120,10 @@ class GGS_autoLayoutViewClassDeclarationAST : public GGS_abstractDeclarationAST 
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -268,7 +271,10 @@ class GGS_autoLayoutViewClassDeclarationAST_2E_weak : public GGS_abstractDeclara
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -334,7 +340,10 @@ class GGS_autoLayoutClassParameterType_2E_typeEnum : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -404,7 +413,10 @@ class GGS_autoLayoutClassParameterType_2E_typeEnum_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -423,7 +435,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutClassParamet
 //--------------------------------------------------------------------------------------------------
 
 class GGS_string extensionGetter_string (const class GGS_autoLayoutClassParameterType & inObject,
-                                         class Compiler * inCompiler
+                                         Compiler * inCompiler
                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -1375,13 +1387,12 @@ class GGS__5B_astAbstractViewInstructionDeclaration_5D_ final : public AC_GALGAS
 //--------------------------------- Initializers
   public: static GGS__5B_astAbstractViewInstructionDeclaration_5D_ init (Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_astAbstractViewInstructionDeclaration_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_astAbstractViewInstructionDeclaration & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -1444,11 +1455,14 @@ class GGS__5B_astAbstractViewInstructionDeclaration_5D_ final : public AC_GALGAS
                                                                                   COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_astAbstractViewInstructionDeclaration readSubscript__3F_ (const class GGS_uint & in0,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_astAbstractViewInstructionDeclaration readSubcript__3F_ (const class GGS_uint & in0,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -1551,13 +1565,12 @@ class GGS__5B_astAutoLayoutViewFunctionCall_5D_ final : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS__5B_astAutoLayoutViewFunctionCall_5D_ init (Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_astAutoLayoutViewFunctionCall_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_astAutoLayoutViewFunctionCall & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -1620,11 +1633,14 @@ class GGS__5B_astAutoLayoutViewFunctionCall_5D_ final : public AC_GALGAS_root {
                                                                           COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_astAutoLayoutViewFunctionCall readSubscript__3F_ (const class GGS_uint & in0,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_astAutoLayoutViewFunctionCall readSubcript__3F_ (const class GGS_uint & in0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -1727,13 +1743,12 @@ class GGS__5B_astNewStackViewDeclaration_5D_ final : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS__5B_astNewStackViewDeclaration_5D_ init (Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_astNewStackViewDeclaration_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_astNewStackViewDeclaration & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -1796,11 +1811,14 @@ class GGS__5B_astNewStackViewDeclaration_5D_ final : public AC_GALGAS_root {
                                                                        COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_astNewStackViewDeclaration readSubscript__3F_ (const class GGS_uint & in0,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_astNewStackViewDeclaration readSubcript__3F_ (const class GGS_uint & in0,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -1903,13 +1921,12 @@ class GGS__5B_autoLayoutViewClassBindingSpecification_5D_ final : public AC_GALG
 //--------------------------------- Initializers
   public: static GGS__5B_autoLayoutViewClassBindingSpecification_5D_ init (Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_autoLayoutViewClassBindingSpecification_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_autoLayoutViewClassBindingSpecification & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -1972,11 +1989,14 @@ class GGS__5B_autoLayoutViewClassBindingSpecification_5D_ final : public AC_GALG
                                                                                     COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_autoLayoutViewClassBindingSpecification readSubscript__3F_ (const class GGS_uint & in0,
-                                                                                Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_autoLayoutViewClassBindingSpecification readSubcript__3F_ (const class GGS_uint & in0,
+                                                                               Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -2079,13 +2099,12 @@ class GGS__5B_controllerBindingOption_5D_ final : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS__5B_controllerBindingOption_5D_ init (Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_controllerBindingOption_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_controllerBindingOption & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -2148,11 +2167,14 @@ class GGS__5B_controllerBindingOption_5D_ final : public AC_GALGAS_root {
                                                                     COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_controllerBindingOption readSubscript__3F_ (const class GGS_uint & in0,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_controllerBindingOption readSubcript__3F_ (const class GGS_uint & in0,
+                                                               Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -2255,13 +2277,12 @@ class GGS__5B_outletClassBindingSpecificationModel_5D_ final : public AC_GALGAS_
 //--------------------------------- Initializers
   public: static GGS__5B_outletClassBindingSpecificationModel_5D_ init (Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_outletClassBindingSpecificationModel_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_outletClassBindingSpecificationModel & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -2324,11 +2345,14 @@ class GGS__5B_outletClassBindingSpecificationModel_5D_ final : public AC_GALGAS_
                                                                                  COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_outletClassBindingSpecificationModel readSubscript__3F_ (const class GGS_uint & in0,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_outletClassBindingSpecificationModel readSubcript__3F_ (const class GGS_uint & in0,
+                                                                            Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -2431,13 +2455,12 @@ class GGS__5B_outletClassBindingSpecification_5D_ final : public AC_GALGAS_root 
 //--------------------------------- Initializers
   public: static GGS__5B_outletClassBindingSpecification_5D_ init (Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_outletClassBindingSpecification_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_outletClassBindingSpecification & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -2500,11 +2523,14 @@ class GGS__5B_outletClassBindingSpecification_5D_ final : public AC_GALGAS_root 
                                                                             COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_outletClassBindingSpecification readSubscript__3F_ (const class GGS_uint & in0,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_outletClassBindingSpecification readSubcript__3F_ (const class GGS_uint & in0,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -2546,7 +2572,10 @@ class GGS_abstractBooleanMultipleBindingExpressionAST : public AC_GALGAS_referen
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -2573,11 +2602,11 @@ class cPtr_abstractBooleanMultipleBindingExpressionAST : public AbstractStrongPt
 
 
 //--- Extension proc analyzeExpressionForMultipleBinding
-  public: virtual void method_analyzeExpressionForMultipleBinding (const class GGS_bool arg_inPreferences,
-           const class GGS_propertyMap arg_inRootObservablePropertyMap,
-           const class GGS_semanticContext arg_inSemanticContext,
-           const class GGS_propertyMap arg_inCurrentObservablePropertyMap,
-           const class GGS_propertyMap arg_inPreferencesObservablePropertyMap,
+  public: virtual void method_analyzeExpressionForMultipleBinding (const class GGS_bool arg__inPreferences,
+           const class GGS_propertyMap arg__inRootObservablePropertyMap,
+           const class GGS_semanticContext arg__inSemanticContext,
+           const class GGS_propertyMap arg__inCurrentObservablePropertyMap,
+           const class GGS_propertyMap arg__inPreferencesObservablePropertyMap,
            class GGS_abstractBooleanMultipleBindingExpressionForGeneration & arg_outEnableExpression,
            class GGS_typeKind & arg_outType,
            class GGS_location & arg_outErrorLocation,
@@ -2634,7 +2663,10 @@ class GGS_andBooleanMultipleBindingExpressionAST : public GGS_abstractBooleanMul
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -2663,11 +2695,11 @@ class cPtr_andBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanM
 
 
 //--- Extension proc analyzeExpressionForMultipleBinding
-  public: virtual void method_analyzeExpressionForMultipleBinding (const class GGS_bool arg_inPreferences,
-           const class GGS_propertyMap arg_inRootObservablePropertyMap,
-           const class GGS_semanticContext arg_inSemanticContext,
-           const class GGS_propertyMap arg_inCurrentObservablePropertyMap,
-           const class GGS_propertyMap arg_inPreferencesObservablePropertyMap,
+  public: virtual void method_analyzeExpressionForMultipleBinding (const class GGS_bool arg__inPreferences,
+           const class GGS_propertyMap arg__inRootObservablePropertyMap,
+           const class GGS_semanticContext arg__inSemanticContext,
+           const class GGS_propertyMap arg__inCurrentObservablePropertyMap,
+           const class GGS_propertyMap arg__inPreferencesObservablePropertyMap,
            class GGS_abstractBooleanMultipleBindingExpressionForGeneration & arg_outEnableExpression,
            class GGS_typeKind & arg_outType,
            class GGS_location & arg_outErrorLocation,
@@ -2740,7 +2772,10 @@ class GGS_arrayControllerDeclarationAST : public GGS_abstractDeclarationAST {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -2818,7 +2853,10 @@ class GGS_arrayControllerBoundModelAST : public AC_GALGAS_root {
   public: class GGS_bool getter_isSelfToManyRelationship (LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -2922,7 +2960,10 @@ class GGS_astAbstractViewInstructionDeclaration : public AC_GALGAS_reference_cla
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -3067,7 +3108,10 @@ class GGS_astComputedHorizontalViewDeclaration : public GGS_astAbstractViewDecla
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -3184,7 +3228,10 @@ class GGS_astComputedVerticalViewDeclaration : public GGS_astAbstractViewDeclara
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -3328,7 +3375,10 @@ class GGS_astComputedViewInstruction : public GGS_astAbstractViewInstructionDecl
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -3459,7 +3509,10 @@ class GGS_astDividerInstructionDeclaration : public GGS_astAbstractViewInstructi
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -3557,7 +3610,10 @@ class GGS_astGutterInstructionDeclaration : public GGS_astAbstractViewInstructio
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -3664,7 +3720,10 @@ class GGS_astHStackViewInstructionDeclaration : public GGS_astAbstractViewInstru
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -3742,7 +3801,10 @@ class GGS_optionalHiddenBinding : public AC_GALGAS_root {
   public: class GGS_bool getter_isNoBinding (LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -3849,7 +3911,10 @@ class GGS_astLocalViewInstruction : public GGS_astAbstractViewInstructionDeclara
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -3947,7 +4012,10 @@ class GGS_astSeparatorInstructionDeclaration : public GGS_astAbstractViewInstruc
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -4042,7 +4110,10 @@ class GGS_astSpaceViewInstruction : public GGS_astAbstractViewInstructionDeclara
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -4150,7 +4221,10 @@ class GGS_astVStackViewInstructionDeclaration : public GGS_astAbstractViewInstru
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -4279,7 +4353,10 @@ class GGS_autoLayoutTableViewControllerDeclarationAST : public GGS_abstractDecla
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -4401,7 +4478,10 @@ class GGS_comparisonMultipleBindingExpressionAST : public GGS_abstractBooleanMul
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -4489,7 +4569,10 @@ class GGS_multipleBindingComparisonAST : public AC_GALGAS_root {
   public: class GGS_bool getter_isNotEqual (LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -4519,11 +4602,11 @@ class cPtr_comparisonMultipleBindingExpressionAST : public cPtr_abstractBooleanM
 
 
 //--- Extension proc analyzeExpressionForMultipleBinding
-  public: virtual void method_analyzeExpressionForMultipleBinding (const class GGS_bool arg_inPreferences,
-           const class GGS_propertyMap arg_inRootObservablePropertyMap,
-           const class GGS_semanticContext arg_inSemanticContext,
-           const class GGS_propertyMap arg_inCurrentObservablePropertyMap,
-           const class GGS_propertyMap arg_inPreferencesObservablePropertyMap,
+  public: virtual void method_analyzeExpressionForMultipleBinding (const class GGS_bool arg__inPreferences,
+           const class GGS_propertyMap arg__inRootObservablePropertyMap,
+           const class GGS_semanticContext arg__inSemanticContext,
+           const class GGS_propertyMap arg__inCurrentObservablePropertyMap,
+           const class GGS_propertyMap arg__inPreferencesObservablePropertyMap,
            class GGS_abstractBooleanMultipleBindingExpressionForGeneration & arg_outEnableExpression,
            class GGS_typeKind & arg_outType,
            class GGS_location & arg_outErrorLocation,
@@ -4602,7 +4685,10 @@ class GGS_computedPropertyDeclarationAST : public GGS_abstractDeclarationAST {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -4740,7 +4826,10 @@ class GGS_entityDeclarationAST : public GGS_abstractDeclarationAST {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -4877,7 +4966,10 @@ class GGS_enumerationDeclarationAST : public GGS_abstractDeclarationAST {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -4976,7 +5068,10 @@ class GGS_literalIntMultipleBindingExpressionAST : public GGS_abstractBooleanMul
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -5004,11 +5099,11 @@ class cPtr_literalIntMultipleBindingExpressionAST : public cPtr_abstractBooleanM
 
 
 //--- Extension proc analyzeExpressionForMultipleBinding
-  public: virtual void method_analyzeExpressionForMultipleBinding (const class GGS_bool arg_inPreferences,
-           const class GGS_propertyMap arg_inRootObservablePropertyMap,
-           const class GGS_semanticContext arg_inSemanticContext,
-           const class GGS_propertyMap arg_inCurrentObservablePropertyMap,
-           const class GGS_propertyMap arg_inPreferencesObservablePropertyMap,
+  public: virtual void method_analyzeExpressionForMultipleBinding (const class GGS_bool arg__inPreferences,
+           const class GGS_propertyMap arg__inRootObservablePropertyMap,
+           const class GGS_semanticContext arg__inSemanticContext,
+           const class GGS_propertyMap arg__inCurrentObservablePropertyMap,
+           const class GGS_propertyMap arg__inPreferencesObservablePropertyMap,
            class GGS_abstractBooleanMultipleBindingExpressionForGeneration & arg_outEnableExpression,
            class GGS_typeKind & arg_outType,
            class GGS_location & arg_outErrorLocation,
@@ -5069,7 +5164,10 @@ class GGS_negateBooleanMultipleBindingExpressionAST : public GGS_abstractBoolean
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -5097,11 +5195,11 @@ class cPtr_negateBooleanMultipleBindingExpressionAST : public cPtr_abstractBoole
 
 
 //--- Extension proc analyzeExpressionForMultipleBinding
-  public: virtual void method_analyzeExpressionForMultipleBinding (const class GGS_bool arg_inPreferences,
-           const class GGS_propertyMap arg_inRootObservablePropertyMap,
-           const class GGS_semanticContext arg_inSemanticContext,
-           const class GGS_propertyMap arg_inCurrentObservablePropertyMap,
-           const class GGS_propertyMap arg_inPreferencesObservablePropertyMap,
+  public: virtual void method_analyzeExpressionForMultipleBinding (const class GGS_bool arg__inPreferences,
+           const class GGS_propertyMap arg__inRootObservablePropertyMap,
+           const class GGS_semanticContext arg__inSemanticContext,
+           const class GGS_propertyMap arg__inCurrentObservablePropertyMap,
+           const class GGS_propertyMap arg__inPreferencesObservablePropertyMap,
            class GGS_abstractBooleanMultipleBindingExpressionForGeneration & arg_outEnableExpression,
            class GGS_typeKind & arg_outType,
            class GGS_location & arg_outErrorLocation,
@@ -5162,7 +5260,10 @@ class GGS_observablePropertyInMultipleBindingExpressionAST : public GGS_abstract
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -5190,11 +5291,11 @@ class cPtr_observablePropertyInMultipleBindingExpressionAST : public cPtr_abstra
 
 
 //--- Extension proc analyzeExpressionForMultipleBinding
-  public: virtual void method_analyzeExpressionForMultipleBinding (const class GGS_bool arg_inPreferences,
-           const class GGS_propertyMap arg_inRootObservablePropertyMap,
-           const class GGS_semanticContext arg_inSemanticContext,
-           const class GGS_propertyMap arg_inCurrentObservablePropertyMap,
-           const class GGS_propertyMap arg_inPreferencesObservablePropertyMap,
+  public: virtual void method_analyzeExpressionForMultipleBinding (const class GGS_bool arg__inPreferences,
+           const class GGS_propertyMap arg__inRootObservablePropertyMap,
+           const class GGS_semanticContext arg__inSemanticContext,
+           const class GGS_propertyMap arg__inCurrentObservablePropertyMap,
+           const class GGS_propertyMap arg__inPreferencesObservablePropertyMap,
            class GGS_abstractBooleanMultipleBindingExpressionForGeneration & arg_outEnableExpression,
            class GGS_typeKind & arg_outType,
            class GGS_location & arg_outErrorLocation,
@@ -5258,7 +5359,10 @@ class GGS_orBooleanMultipleBindingExpressionAST : public GGS_abstractBooleanMult
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -5287,11 +5391,11 @@ class cPtr_orBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanMu
 
 
 //--- Extension proc analyzeExpressionForMultipleBinding
-  public: virtual void method_analyzeExpressionForMultipleBinding (const class GGS_bool arg_inPreferences,
-           const class GGS_propertyMap arg_inRootObservablePropertyMap,
-           const class GGS_semanticContext arg_inSemanticContext,
-           const class GGS_propertyMap arg_inCurrentObservablePropertyMap,
-           const class GGS_propertyMap arg_inPreferencesObservablePropertyMap,
+  public: virtual void method_analyzeExpressionForMultipleBinding (const class GGS_bool arg__inPreferences,
+           const class GGS_propertyMap arg__inRootObservablePropertyMap,
+           const class GGS_semanticContext arg__inSemanticContext,
+           const class GGS_propertyMap arg__inCurrentObservablePropertyMap,
+           const class GGS_propertyMap arg__inPreferencesObservablePropertyMap,
            class GGS_abstractBooleanMultipleBindingExpressionForGeneration & arg_outEnableExpression,
            class GGS_typeKind & arg_outType,
            class GGS_location & arg_outErrorLocation,
@@ -5367,7 +5471,10 @@ class GGS_proxyDeclarationAST : public GGS_abstractDeclarationAST {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -5437,7 +5544,10 @@ class GGS_proxyKind : public AC_GALGAS_root {
   public: class GGS_bool getter_isToManyProxy (LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -5560,7 +5670,10 @@ class GGS_selectionControllerDeclarationAST : public GGS_abstractDeclarationAST 
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -5688,7 +5801,10 @@ class GGS_toOneRelationshipAST : public GGS_abstractDeclarationAST {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -5803,7 +5919,10 @@ class GGS_transientClassDeclarationAST : public GGS_abstractDeclarationAST {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -5917,7 +6036,10 @@ class GGS_transientDeclarationAST : public GGS_abstractDeclarationAST {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -6033,7 +6155,10 @@ class GGS_xorBooleanMultipleBindingExpressionAST : public GGS_abstractBooleanMul
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -6062,11 +6187,11 @@ class cPtr_xorBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanM
 
 
 //--- Extension proc analyzeExpressionForMultipleBinding
-  public: virtual void method_analyzeExpressionForMultipleBinding (const class GGS_bool arg_inPreferences,
-           const class GGS_propertyMap arg_inRootObservablePropertyMap,
-           const class GGS_semanticContext arg_inSemanticContext,
-           const class GGS_propertyMap arg_inCurrentObservablePropertyMap,
-           const class GGS_propertyMap arg_inPreferencesObservablePropertyMap,
+  public: virtual void method_analyzeExpressionForMultipleBinding (const class GGS_bool arg__inPreferences,
+           const class GGS_propertyMap arg__inRootObservablePropertyMap,
+           const class GGS_semanticContext arg__inSemanticContext,
+           const class GGS_propertyMap arg__inCurrentObservablePropertyMap,
+           const class GGS_propertyMap arg__inPreferencesObservablePropertyMap,
            class GGS_abstractBooleanMultipleBindingExpressionForGeneration & arg_outEnableExpression,
            class GGS_typeKind & arg_outType,
            class GGS_location & arg_outErrorLocation,
@@ -6847,7 +6972,10 @@ class GGS__32_lstring : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -6922,7 +7050,10 @@ class GGS_astAutoLayoutViewFunctionCall : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -7065,7 +7196,10 @@ class GGS_astDeclarationStruct : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -7140,7 +7274,10 @@ class GGS_astNewStackViewDeclaration : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -7237,7 +7374,10 @@ class GGS_autoLayoutViewClassBindingSpecification : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -7312,7 +7452,10 @@ class GGS_controllerBindingOption : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -7409,7 +7552,10 @@ class GGS_outletClassBindingSpecification : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -7484,7 +7630,10 @@ class GGS_outletClassBindingSpecificationModel : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -7528,7 +7677,10 @@ class GGS_atomicClassDeclarationAST : public GGS_abstractDeclarationAST {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -7652,7 +7804,10 @@ class GGS_atomicClassDeclarationAST_2E_weak : public GGS_abstractDeclarationAST_
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -7712,6 +7867,10 @@ class GGS_entityStrongReferenceGraph final : public AC_GALGAS_root {
   public: class GGS_location getter_locationForKey (const GGS_string & inKey,
                                                     Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) const ;
+
+  public: GGS_string getter_graphviz (UNUSED_LOCATION_ARGS) const ;
+
+  public: GGS__5B_stringString_5D_ getter_edges (UNUSED_LOCATION_ARGS) const ;
 
 //--------------------------------- Setters
   public: void setter_addEdge (const class GGS_lstring & inSourceNodeKey,
@@ -7784,10 +7943,6 @@ class GGS_entityStrongReferenceGraph final : public AC_GALGAS_root {
                                                      Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) const ;
 
-  public: GGS_string getter_graphviz (UNUSED_LOCATION_ARGS) const ;
-
-  public: class GGS__32_stringlist getter_edges (UNUSED_LOCATION_ARGS) const ;
-
   friend class SharedGraph_entityStrongReferenceGraph ;
 
 
@@ -7849,7 +8004,10 @@ class GGS_entityStrongReferenceGraph final : public AC_GALGAS_root {
                                                                          COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -7949,13 +8107,12 @@ class GGS__5B_controllerBindingOptionDecorated_5D_ final : public AC_GALGAS_root
 //--------------------------------- Initializers
   public: static GGS__5B_controllerBindingOptionDecorated_5D_ init (Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_controllerBindingOptionDecorated_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_controllerBindingOptionDecorated & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -8018,11 +8175,14 @@ class GGS__5B_controllerBindingOptionDecorated_5D_ final : public AC_GALGAS_root
                                                                              COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_controllerBindingOptionDecorated readSubscript__3F_ (const class GGS_uint & in0,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_controllerBindingOptionDecorated readSubcript__3F_ (const class GGS_uint & in0,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8125,13 +8285,12 @@ class GGS__5B_outletBindingSpecificationModel_5D_ final : public AC_GALGAS_root 
 //--------------------------------- Initializers
   public: static GGS__5B_outletBindingSpecificationModel_5D_ init (Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
-//--------------------------------- += operator (with expression)
+//--------------------------------- += operator
   public: void plusAssignOperation (const GGS__5B_outletBindingSpecificationModel_5D_ inOperand,
-                                    class Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-
-//--------------------------------- ++= operator, collection value
+//--------------------------------- ++= operator
   public: void plusPlusAssignOperation (const GGS_outletBindingSpecificationModel & inOperand
                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -8194,11 +8353,14 @@ class GGS__5B_outletBindingSpecificationModel_5D_ final : public AC_GALGAS_root 
                                                                             COMMA_LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
-  public: class GGS_outletBindingSpecificationModel readSubscript__3F_ (const class GGS_uint & in0,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) const ;
+//--------------------------------- Read subcripts
+  public: class GGS_outletBindingSpecificationModel readSubcript__3F_ (const class GGS_uint & in0,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const ;
 
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8287,7 +8449,10 @@ class GGS_autoLayoutViewBindingSpecificationMap_2E_element : public AC_GALGAS_ro
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8355,7 +8520,10 @@ class GGS_autoLayoutViewBindingSpecificationMap_2E_element_3F_ : public AC_GALGA
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8430,7 +8598,10 @@ class GGS_outletBindingSpecificationModel : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8505,7 +8676,10 @@ class GGS_controllerBindingOptionDecorated : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8591,7 +8765,10 @@ class GGS_outletBindingSpecificationMap_2E_element : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8659,7 +8836,10 @@ class GGS_outletBindingSpecificationMap_2E_element_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8723,7 +8903,10 @@ class GGS_arrayControllerBoundModelAST_2E_rootToManyRelationship : public AC_GAL
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8791,7 +8974,10 @@ class GGS_arrayControllerBoundModelAST_2E_rootToManyRelationship_3F_ : public AC
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8861,7 +9047,10 @@ class GGS_arrayControllerDeclarationAST_2E_weak : public GGS_abstractDeclaration
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8927,7 +9116,10 @@ class GGS_multipleBindingDescriptor_2E_binding : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -8997,7 +9189,10 @@ class GGS_multipleBindingDescriptor_2E_binding_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -9045,7 +9240,10 @@ class GGS_arrayControllerPropertyGeneration : public GGS_propertyGeneration {
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -9173,7 +9371,10 @@ class GGS_arrayControllerPropertyGeneration_2E_weak : public GGS_propertyGenerat
 
 //--------------------------------- Getters
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection
@@ -9241,7 +9442,10 @@ class GGS_arrayControllerModelKind : public AC_GALGAS_root {
   public: class GGS_bool getter_isTransientArray (LOCATION_ARGS) const ;
 
 
-//--------------------------------- Read subscripts
+//--------------------------------- Read subcripts
+
+
+//--------------------------------- Write subcripts
 
 
 //--------------------------------- Introspection

@@ -5,7 +5,6 @@
 //--------------------------------------------------------------------------------------------------
 
 #include "all-predefined-types.h"
-#include "Compiler.h"
 
 //--------------------------------------------------------------------------------------------------
 
@@ -384,30 +383,6 @@ GGS_string GGS_bigint::getter_xString (UNUSED_LOCATION_ARGS) const {
 //--------------------------------------------------------------------------------------------------
 
 #ifdef PRAGMA_MARK_ALLOWED
-  #pragma mark Incrementation, decrementation
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_bigint::increment_operation (Compiler * /* inCompiler */
-                                         COMMA_UNUSED_LOCATION_ARGS) {
-  if (isValid ()) {
-    mValue += 1 ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_bigint::decrement_operation (Compiler * /* inCompiler */
-                                         COMMA_UNUSED_LOCATION_ARGS) {
-  if (isValid ()) {
-    mValue -= 1 ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifdef PRAGMA_MARK_ALLOWED
   #pragma mark Bit manipulation
 #endif
 
@@ -453,6 +428,21 @@ GGS_bigint GGS_bigint::getter_abs (UNUSED_LOCATION_ARGS) const {
   GGS_bigint result ;
   if (isValid ()) {
     result = GGS_bigint (mValue.abs ()) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_u_38_ GGS_bigint::getter_u_38_ (Compiler * inCompiler
+                                COMMA_LOCATION_ARGS) const {
+  GGS_u_38_ result ;
+  if (isValid ()) {
+    if (mValue.fitsInU8 ()) {
+      result = GGS_u_38_ (mValue.u8 ()) ;
+    }else{
+      inCompiler->onTheFlyRunTimeError ("@bigint to @u8 conversion overflow" COMMA_THERE) ;
+    }
   }
   return result ;
 }
@@ -547,7 +537,7 @@ GGS_bigint GGS_bigint::add_operation (const GGS_bigint & inOperand,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bigint GGS_bigint::substract_operation (const GGS_bigint & inOperand,
+GGS_bigint GGS_bigint::subtract_operation (const GGS_bigint & inOperand,
                                                   Compiler * /* inCompiler */
                                                   COMMA_UNUSED_LOCATION_ARGS) const {
   GGS_bigint result ;

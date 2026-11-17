@@ -10,106 +10,6 @@
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension mutating proc '@XcodeProjectDescriptor addMMFile'
-//
-//--------------------------------------------------------------------------------------------------
-
-void extensionSetter_addMMFile (class GGS_XcodeProjectDescriptor & ioObject,
-                                const class GGS_string constin_inFileName,
-                                class GGS_string & out_outFileRef,
-                                class Compiler * inCompiler
-                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension mutating proc '@XcodeProjectDescriptor addCppFile'
-//
-//--------------------------------------------------------------------------------------------------
-
-void extensionSetter_addCppFile (class GGS_XcodeProjectDescriptor & ioObject,
-                                 const class GGS_string constin_inFileName,
-                                 class GGS_string & out_outFileRef,
-                                 class Compiler * inCompiler
-                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension mutating proc '@XcodeProjectDescriptor addHeaderFile'
-//
-//--------------------------------------------------------------------------------------------------
-
-void extensionSetter_addHeaderFile (class GGS_XcodeProjectDescriptor & ioObject,
-                                    const class GGS_string constin_inFileName,
-                                    class GGS_string & out_outFileRef,
-                                    class Compiler * inCompiler
-                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension mutating proc '@XcodeProjectDescriptor addBuildFile'
-//
-//--------------------------------------------------------------------------------------------------
-
-void extensionSetter_addBuildFile (class GGS_XcodeProjectDescriptor & ioObject,
-                                   const class GGS_string constin_inFileReference,
-                                   const class GGS_string constin_inFileName,
-                                   class GGS_string & out_outBuildRef,
-                                   class Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension mutating proc '@XcodeProjectDescriptor addToolTarget'
-//
-//--------------------------------------------------------------------------------------------------
-
-void extensionSetter_addToolTarget (class GGS_XcodeProjectDescriptor & ioObject,
-                                    const class GGS_string constin_inTargetName,
-                                    const class GGS_string constin_inProductFileName,
-                                    const class GGS__5B_string_5D_ constin_inSourceList,
-                                    const class GGS__5B_string_5D_ constin_inToolFrameworksFileRefList,
-                                    const class GGS__5B_string_5D_ constin_inBuildConfigurationSettingList,
-                                    class GGS_string & out_outTargetRef,
-                                    class GGS_string & out_outProductFileRef,
-                                    class Compiler * inCompiler
-                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension mutating proc '@XcodeProjectDescriptor addAppTarget'
-//
-//--------------------------------------------------------------------------------------------------
-
-void extensionSetter_addAppTarget (class GGS_XcodeProjectDescriptor & ioObject,
-                                   const class GGS_string constin_inTargetName,
-                                   const class GGS_string constin_inProductFileName,
-                                   const class GGS__5B_string_5D_ constin_inSourceList,
-                                   const class GGS__5B_string_5D_ constin_inFrameworksFileRefList,
-                                   const class GGS__5B_string_5D_ constin_inResourceFileBuildRefs,
-                                   const class GGS__5B_string_5D_ constin_inBuildConfigurationSettingList,
-                                   const class GGS__5B_string_5D_ constin_inDependentTargetRefList,
-                                   const class GGS__5B__32_string_5D_ constin_inProductCopyList,
-                                   const class GGS_string constin_inInfoPList,
-                                   class GGS_string & out_outProductFileRef,
-                                   class Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension mutating proc '@XcodeProjectDescriptor addGroup'
-//
-//--------------------------------------------------------------------------------------------------
-
-void extensionSetter_addGroup (class GGS_XcodeProjectDescriptor & ioObject,
-                               const class GGS_string constin_inGroupName,
-                               const class GGS_string constin_inGroupPath,
-                               const class GGS__5B_string_5D_ constin_inChildrenRefs,
-                               class GGS_string & out_outGroupRef,
-                               class Compiler * inCompiler
-                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
 //Extension mutating proc '@XcodeProjectDescriptor addGroupWithFiles'
 //
 //--------------------------------------------------------------------------------------------------
@@ -125,7 +25,7 @@ void extensionSetter_addGroupWithFiles (class GGS_XcodeProjectDescriptor & ioObj
                                         class GGS__5B_string_5D_ & io_ioFrameWorkFileBuildRefs,
                                         class GGS__5B_string_5D_ & io_ioResourceFileBuildRefs,
                                         class GGS_string & out_outGroupRef,
-                                        class Compiler * inCompiler
+                                        Compiler * inCompiler
                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -137,7 +37,7 @@ void extensionSetter_addGroupWithFiles (class GGS_XcodeProjectDescriptor & ioObj
 void extensionSetter_addICNS_5F_file (class GGS_XcodeProjectDescriptor & ioObject,
                                       const class GGS_string constin_inFileName,
                                       class GGS_string & out_outFileRef,
-                                      class Compiler * inCompiler
+                                      Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -148,7 +48,7 @@ void extensionSetter_addICNS_5F_file (class GGS_XcodeProjectDescriptor & ioObjec
 
 void extensionSetter_placeGroupAsMainGroup (class GGS_XcodeProjectDescriptor & ioObject,
                                             const class GGS_string constin_inGroupRef,
-                                            class Compiler * inCompiler
+                                            Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -159,7 +59,7 @@ void extensionSetter_placeGroupAsMainGroup (class GGS_XcodeProjectDescriptor & i
 
 void extensionSetter_addSettingsToDefaultConfiguration (class GGS_XcodeProjectDescriptor & ioObject,
                                                         const class GGS__5B_string_5D_ constin_inSettingList,
-                                                        class Compiler * inCompiler
+                                                        Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -171,7 +71,7 @@ void extensionSetter_addSettingsToDefaultConfiguration (class GGS_XcodeProjectDe
 void extensionMethod_generateAtPath (const class GGS_XcodeProjectDescriptor inObject,
                                      const class GGS_string constin_inPath,
                                      const class GGS_string constin_inCacheFilePath,
-                                     class Compiler * inCompiler
+                                     Compiler * inCompiler
                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -197,7 +97,7 @@ extern const cDirectoryWrapper gWrapperDirectory_0_xcodeProjectGenerationFilewra
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (Compiler * inCompiler,
                                                                             const class GGS_string & in_PROJECT_5F_REF,
                                                                             const class GGS_string & in_MAIN_5F_GROUP_5F_REF,
                                                                             const class GGS__5B_XCodeGroup_5D_ & in_GROUPS,
@@ -222,12 +122,66 @@ GGS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (clas
 
 //--------------------------------------------------------------------------------------------------
 //
+//Abstract extension proc '@abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_analyzeExpressionForMultipleBinding (class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
+                                                              const class GGS_bool constin__5F_inPreferences,
+                                                              const class GGS_propertyMap constin__5F_inRootObservablePropertyMap,
+                                                              const class GGS_semanticContext constin__5F_inSemanticContext,
+                                                              const class GGS_propertyMap constin__5F_inCurrentObservablePropertyMap,
+                                                              const class GGS_propertyMap constin__5F_inPreferencesObservablePropertyMap,
+                                                              class GGS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
+                                                              class GGS_typeKind & out_outType,
+                                                              class GGS_location & out_outErrorLocation,
+                                                              Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension proc '@astAbstractViewDeclaration checkView'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_checkView (class cPtr_astAbstractViewDeclaration * inObject,
+                                    const class GGS_string constin_inViewName,
+                                    const class GGS_autoLayoutViewDeclarationMap constin_inViewDeclarationMap,
+                                    const class GGS_bool constin_inPreferences,
+                                    const class GGS_propertyMap constin_inRootObservablePropertyMap,
+                                    const class GGS_propertyMap constin_inPreferencesPropertyMap,
+                                    const class GGS_semanticContext constin_inSemanticContext,
+                                    const class GGS_propertyMap constin_inObservablePropertyMap,
+                                    const class GGS_actionMap constin_inActionMap,
+                                    const class GGS_string constin_inReceiverSwiftTypeName,
+                                    const class GGS_classMap constin_inClassMap,
+                                    class GGS__5B_abstractViewInstructionGeneration_5D_ & io_ioImplicitViewFunctionGenerationList,
+                                    class GGS_autoLayoutConfiguratorMap & io_ioConfiguratorMap,
+                                    class GGS_autoLayoutOutletMap & io_ioOutletMap,
+                                    class GGS_abstractViewGeneration & out_outGeneration,
+                                    Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension func '@abstractViewGeneration generateViewBuilder'
+//
+//--------------------------------------------------------------------------------------------------
+
+class GGS_string callExtensionGetter_generateViewBuilder (const class cPtr_abstractViewGeneration * inObject,
+                                                          const class GGS_bool constin_inPreferences,
+                                                          const class GGS_string constin_inViewName,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
 //Extension func '@propertyMap.element isAbstract' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
 class GGS_bool extensionGetter_isAbstract (const class GGS_propertyMap_2E_element & inObject,
-                                           class Compiler * inCompiler
+                                           Compiler * inCompiler
                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -237,7 +191,7 @@ class GGS_bool extensionGetter_isAbstract (const class GGS_propertyMap_2E_elemen
 //--------------------------------------------------------------------------------------------------
 
 void routine_println_3F_ (const class GGS_string constinArgument0,
-                          class Compiler * inCompiler
+                          Compiler * inCompiler
                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -247,7 +201,7 @@ void routine_println_3F_ (const class GGS_string constinArgument0,
 //--------------------------------------------------------------------------------------------------
 
 void routine_print_3F_ (const class GGS_string constinArgument0,
-                        class Compiler * inCompiler
+                        Compiler * inCompiler
                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -273,7 +227,7 @@ extern const cDirectoryWrapper gWrapperDirectory_0_autoLayoutTableViewController
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_autoLayoutTableViewControllerImplementation (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_autoLayoutTableViewControllerImplementation (Compiler * inCompiler,
                                                                                                                             const class GGS_string & in_OWNER_5F_NAME,
                                                                                                                             const class GGS_string & in_TABLE_5F_VIEW_5F_CONTROLLER_5F_NAME,
                                                                                                                             const class GGS_string & in_MODEL_5F_STRING,
@@ -296,7 +250,7 @@ void routine_generateTestFile_3F__3F__3F__3F_ (const class GGS_string constinArg
                                                const class GGS_string constinArgument1,
                                                const class GGS__5B_mainXibDescriptor_5D_ constinArgument2,
                                                const class GGS_string constinArgument3,
-                                               class Compiler * inCompiler
+                                               Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
@@ -322,7 +276,7 @@ extern const cDirectoryWrapper gWrapperDirectory_0_testFiles ;
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_testFiles_test_5F_py (class Compiler * inCompiler,
+GGS_string filewrapperTemplate_testFiles_test_5F_py (Compiler * inCompiler,
                                                      const class GGS_string & in_BUNDLE_5F_IDENTIFIER,
                                                      const class GGS_string & in_PROJECT_5F_NAME,
                                                      const class GGS__5B_string_5D_ & in_OUTLET_5F_IDENTIFIER_5F_LIST

@@ -1579,7 +1579,9 @@ void GGS__5B_astAutoLayoutViewInstructionParameter_5D_::removeAll (void) {
 
 void GGS__5B_astAutoLayoutViewInstructionParameter_5D_::plusPlusAssignOperation (const GGS_astAutoLayoutViewInstructionParameter & inValue
                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1844,9 +1846,9 @@ GGS_astAutoLayoutViewInstructionParameter GGS__5B_astAutoLayoutViewInstructionPa
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_astAutoLayoutViewInstructionParameter GGS__5B_astAutoLayoutViewInstructionParameter_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                                                                 Compiler * inCompiler
-                                                                                                                 COMMA_LOCATION_ARGS) const {
+GGS_astAutoLayoutViewInstructionParameter GGS__5B_astAutoLayoutViewInstructionParameter_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                                                                Compiler * inCompiler
+                                                                                                                COMMA_LOCATION_ARGS) const {
   GGS_astAutoLayoutViewInstructionParameter result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -1854,7 +1856,7 @@ GGS_astAutoLayoutViewInstructionParameter GGS__5B_astAutoLayoutViewInstructionPa
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -2153,7 +2155,9 @@ void GGS__5B_autoLayoutTableViewControllerBoundColumnAST_5D_::removeAll (void) {
 
 void GGS__5B_autoLayoutTableViewControllerBoundColumnAST_5D_::plusPlusAssignOperation (const GGS_autoLayoutTableViewControllerBoundColumnAST & inValue
                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2418,9 +2422,9 @@ GGS_autoLayoutTableViewControllerBoundColumnAST GGS__5B_autoLayoutTableViewContr
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutTableViewControllerBoundColumnAST GGS__5B_autoLayoutTableViewControllerBoundColumnAST_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                                                                             Compiler * inCompiler
-                                                                                                                             COMMA_LOCATION_ARGS) const {
+GGS_autoLayoutTableViewControllerBoundColumnAST GGS__5B_autoLayoutTableViewControllerBoundColumnAST_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                                                                            Compiler * inCompiler
+                                                                                                                            COMMA_LOCATION_ARGS) const {
   GGS_autoLayoutTableViewControllerBoundColumnAST result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -2428,7 +2432,7 @@ GGS_autoLayoutTableViewControllerBoundColumnAST GGS__5B_autoLayoutTableViewContr
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -2547,7 +2551,9 @@ void GGS__5B_autoLayoutTableViewControllerAttributeAST_5D_::removeAll (void) {
 
 void GGS__5B_autoLayoutTableViewControllerAttributeAST_5D_::plusPlusAssignOperation (const GGS_autoLayoutTableViewControllerAttributeAST & inValue
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2812,9 +2818,9 @@ GGS_autoLayoutTableViewControllerAttributeAST GGS__5B_autoLayoutTableViewControl
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutTableViewControllerAttributeAST GGS__5B_autoLayoutTableViewControllerAttributeAST_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                                                                         Compiler * inCompiler
-                                                                                                                         COMMA_LOCATION_ARGS) const {
+GGS_autoLayoutTableViewControllerAttributeAST GGS__5B_autoLayoutTableViewControllerAttributeAST_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                                                                        Compiler * inCompiler
+                                                                                                                        COMMA_LOCATION_ARGS) const {
   GGS_autoLayoutTableViewControllerAttributeAST result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -2822,7 +2828,7 @@ GGS_autoLayoutTableViewControllerAttributeAST GGS__5B_autoLayoutTableViewControl
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -3139,7 +3145,9 @@ void GGS__5B_arrayControllerBindingAST_5D_::removeAll (void) {
 
 void GGS__5B_arrayControllerBindingAST_5D_::plusPlusAssignOperation (const GGS_arrayControllerBindingAST & inValue
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3404,9 +3412,9 @@ GGS_arrayControllerBindingAST GGS__5B_arrayControllerBindingAST_5D_::getter_last
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_arrayControllerBindingAST GGS__5B_arrayControllerBindingAST_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) const {
+GGS_arrayControllerBindingAST GGS__5B_arrayControllerBindingAST_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                                        Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) const {
   GGS_arrayControllerBindingAST result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -3414,7 +3422,7 @@ GGS_arrayControllerBindingAST GGS__5B_arrayControllerBindingAST_5D_::readSubscri
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -3533,7 +3541,9 @@ void GGS__5B_typeKind_5D_::removeAll (void) {
 
 void GGS__5B_typeKind_5D_::plusPlusAssignOperation (const GGS_typeKind & inValue
                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3798,9 +3808,9 @@ GGS_typeKind GGS__5B_typeKind_5D_::getter_last (Compiler * inCompiler
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_typeKind GGS__5B_typeKind_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                       Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) const {
+GGS_typeKind GGS__5B_typeKind_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) const {
   GGS_typeKind result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -3808,7 +3818,7 @@ GGS_typeKind GGS__5B_typeKind_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -3927,7 +3937,9 @@ void GGS__5B__32_string_5D_::removeAll (void) {
 
 void GGS__5B__32_string_5D_::plusPlusAssignOperation (const GGS__32_string & inValue
                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4192,9 +4204,9 @@ GGS__32_string GGS__5B__32_string_5D_::getter_last (Compiler * inCompiler
 
 //--------------------------------------------------------------------------------------------------
 
-GGS__32_string GGS__5B__32_string_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                           Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) const {
+GGS__32_string GGS__5B__32_string_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const {
   GGS__32_string result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -4202,7 +4214,7 @@ GGS__32_string GGS__5B__32_string_5D_::readSubscript__3F_ (const GGS_uint & inIn
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -4410,7 +4422,9 @@ void GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_::removeAl
 
 void GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_::plusPlusAssignOperation (const GGS_autoLayoutTableViewControllerBoundColumnForGeneration & inValue
                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4675,9 +4689,9 @@ GGS_autoLayoutTableViewControllerBoundColumnForGeneration GGS__5B_autoLayoutTabl
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutTableViewControllerBoundColumnForGeneration GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                                                                                                 Compiler * inCompiler
-                                                                                                                                                 COMMA_LOCATION_ARGS) const {
+GGS_autoLayoutTableViewControllerBoundColumnForGeneration GGS__5B_autoLayoutTableViewControllerBoundColumnForGeneration_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                                                                                                Compiler * inCompiler
+                                                                                                                                                COMMA_LOCATION_ARGS) const {
   GGS_autoLayoutTableViewControllerBoundColumnForGeneration result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -4685,7 +4699,7 @@ GGS_autoLayoutTableViewControllerBoundColumnForGeneration GGS__5B_autoLayoutTabl
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -4933,7 +4947,9 @@ void GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_::removeA
 
 void GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_::plusPlusAssignOperation (const GGS_autoLayoutTableViewControllerSortedColumnForGeneration & inValue
                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5198,9 +5214,9 @@ GGS_autoLayoutTableViewControllerSortedColumnForGeneration GGS__5B_autoLayoutTab
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutTableViewControllerSortedColumnForGeneration GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                                                                                                   Compiler * inCompiler
-                                                                                                                                                   COMMA_LOCATION_ARGS) const {
+GGS_autoLayoutTableViewControllerSortedColumnForGeneration GGS__5B_autoLayoutTableViewControllerSortedColumnForGeneration_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                                                                                                  Compiler * inCompiler
+                                                                                                                                                  COMMA_LOCATION_ARGS) const {
   GGS_autoLayoutTableViewControllerSortedColumnForGeneration result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -5208,7 +5224,7 @@ GGS_autoLayoutTableViewControllerSortedColumnForGeneration GGS__5B_autoLayoutTab
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -5426,7 +5442,9 @@ void GGS__5B_autoLayoutClassParameter_5D_::removeAll (void) {
 
 void GGS__5B_autoLayoutClassParameter_5D_::plusPlusAssignOperation (const GGS_autoLayoutClassParameter & inValue
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5691,9 +5709,9 @@ GGS_autoLayoutClassParameter GGS__5B_autoLayoutClassParameter_5D_::getter_last (
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutClassParameter GGS__5B_autoLayoutClassParameter_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) const {
+GGS_autoLayoutClassParameter GGS__5B_autoLayoutClassParameter_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                                      Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) const {
   GGS_autoLayoutClassParameter result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -5701,7 +5719,7 @@ GGS_autoLayoutClassParameter GGS__5B_autoLayoutClassParameter_5D_::readSubscript
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -6256,7 +6274,9 @@ void GGS__5B_mainXibElement_5D_::removeAll (void) {
 
 void GGS__5B_mainXibElement_5D_::plusPlusAssignOperation (const GGS_mainXibElement & inValue
                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6521,9 +6541,9 @@ GGS_mainXibElement GGS__5B_mainXibElement_5D_::getter_last (Compiler * inCompile
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_mainXibElement GGS__5B_mainXibElement_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) const {
+GGS_mainXibElement GGS__5B_mainXibElement_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const {
   GGS_mainXibElement result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -6531,7 +6551,7 @@ GGS_mainXibElement GGS__5B_mainXibElement_5D_::readSubscript__3F_ (const GGS_uin
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -6887,7 +6907,9 @@ void GGS__5B_mainXibDescriptor_5D_::removeAll (void) {
 
 void GGS__5B_mainXibDescriptor_5D_::plusPlusAssignOperation (const GGS_mainXibDescriptor & inValue
                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7152,9 +7174,9 @@ GGS_mainXibDescriptor GGS__5B_mainXibDescriptor_5D_::getter_last (Compiler * inC
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_mainXibDescriptor GGS__5B_mainXibDescriptor_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) const {
+GGS_mainXibDescriptor GGS__5B_mainXibDescriptor_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const {
   GGS_mainXibDescriptor result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -7162,7 +7184,7 @@ GGS_mainXibDescriptor GGS__5B_mainXibDescriptor_5D_::readSubscript__3F_ (const G
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -11024,7 +11046,9 @@ void GGS__5B_outletDeclarationAST_5D_::removeAll (void) {
 
 void GGS__5B_outletDeclarationAST_5D_::plusPlusAssignOperation (const GGS_outletDeclarationAST & inValue
                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11289,9 +11313,9 @@ GGS_outletDeclarationAST GGS__5B_outletDeclarationAST_5D_::getter_last (Compiler
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_outletDeclarationAST GGS__5B_outletDeclarationAST_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                               Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) const {
+GGS_outletDeclarationAST GGS__5B_outletDeclarationAST_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                              Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) const {
   GGS_outletDeclarationAST result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -11299,7 +11323,7 @@ GGS_outletDeclarationAST GGS__5B_outletDeclarationAST_5D_::readSubscript__3F_ (c
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -11418,7 +11442,9 @@ void GGS__5B_astViewDeclaration_5D_::removeAll (void) {
 
 void GGS__5B_astViewDeclaration_5D_::plusPlusAssignOperation (const GGS_astViewDeclaration & inValue
                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11683,9 +11709,9 @@ GGS_astViewDeclaration GGS__5B_astViewDeclaration_5D_::getter_last (Compiler * i
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_astViewDeclaration GGS__5B_astViewDeclaration_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) const {
+GGS_astViewDeclaration GGS__5B_astViewDeclaration_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const {
   GGS_astViewDeclaration result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -11693,7 +11719,7 @@ GGS_astViewDeclaration GGS__5B_astViewDeclaration_5D_::readSubscript__3F_ (const
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -11812,7 +11838,9 @@ void GGS__5B_astAutoLayoutOutletLinker_5D_::removeAll (void) {
 
 void GGS__5B_astAutoLayoutOutletLinker_5D_::plusPlusAssignOperation (const GGS_astAutoLayoutOutletLinker & inValue
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12077,9 +12105,9 @@ GGS_astAutoLayoutOutletLinker GGS__5B_astAutoLayoutOutletLinker_5D_::getter_last
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_astAutoLayoutOutletLinker GGS__5B_astAutoLayoutOutletLinker_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) const {
+GGS_astAutoLayoutOutletLinker GGS__5B_astAutoLayoutOutletLinker_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                                        Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) const {
   GGS_astAutoLayoutOutletLinker result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -12087,7 +12115,7 @@ GGS_astAutoLayoutOutletLinker GGS__5B_astAutoLayoutOutletLinker_5D_::readSubscri
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -12769,7 +12797,9 @@ void GGS__5B_regularBindingsGeneration_5D_::removeAll (void) {
 
 void GGS__5B_regularBindingsGeneration_5D_::plusPlusAssignOperation (const GGS_regularBindingsGeneration & inValue
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13034,9 +13064,9 @@ GGS_regularBindingsGeneration GGS__5B_regularBindingsGeneration_5D_::getter_last
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_regularBindingsGeneration GGS__5B_regularBindingsGeneration_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) const {
+GGS_regularBindingsGeneration GGS__5B_regularBindingsGeneration_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                                        Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) const {
   GGS_regularBindingsGeneration result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -13044,7 +13074,7 @@ GGS_regularBindingsGeneration GGS__5B_regularBindingsGeneration_5D_::readSubscri
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -13163,7 +13193,9 @@ void GGS__5B_multipleBindingGeneration_5D_::removeAll (void) {
 
 void GGS__5B_multipleBindingGeneration_5D_::plusPlusAssignOperation (const GGS_multipleBindingGeneration & inValue
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13428,9 +13460,9 @@ GGS_multipleBindingGeneration GGS__5B_multipleBindingGeneration_5D_::getter_last
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_multipleBindingGeneration GGS__5B_multipleBindingGeneration_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) const {
+GGS_multipleBindingGeneration GGS__5B_multipleBindingGeneration_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                                        Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) const {
   GGS_multipleBindingGeneration result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -13438,7 +13470,7 @@ GGS_multipleBindingGeneration GGS__5B_multipleBindingGeneration_5D_::readSubscri
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -13557,7 +13589,9 @@ void GGS__5B_actionBindingForGeneration_5D_::removeAll (void) {
 
 void GGS__5B_actionBindingForGeneration_5D_::plusPlusAssignOperation (const GGS_actionBindingForGeneration & inValue
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13822,9 +13856,9 @@ GGS_actionBindingForGeneration GGS__5B_actionBindingForGeneration_5D_::getter_la
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_actionBindingForGeneration GGS__5B_actionBindingForGeneration_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) const {
+GGS_actionBindingForGeneration GGS__5B_actionBindingForGeneration_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                                          Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const {
   GGS_actionBindingForGeneration result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -13832,7 +13866,7 @@ GGS_actionBindingForGeneration GGS__5B_actionBindingForGeneration_5D_::readSubsc
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -14060,7 +14094,9 @@ void GGS__5B_tableViewBindingGeneration_5D_::removeAll (void) {
 
 void GGS__5B_tableViewBindingGeneration_5D_::plusPlusAssignOperation (const GGS_tableViewBindingGeneration & inValue
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14325,9 +14361,9 @@ GGS_tableViewBindingGeneration GGS__5B_tableViewBindingGeneration_5D_::getter_la
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_tableViewBindingGeneration GGS__5B_tableViewBindingGeneration_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) const {
+GGS_tableViewBindingGeneration GGS__5B_tableViewBindingGeneration_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                                          Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const {
   GGS_tableViewBindingGeneration result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -14335,7 +14371,7 @@ GGS_tableViewBindingGeneration GGS__5B_tableViewBindingGeneration_5D_::readSubsc
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -14543,7 +14579,9 @@ void GGS__5B_ebViewGraphicControllerBindingGeneration_5D_::removeAll (void) {
 
 void GGS__5B_ebViewGraphicControllerBindingGeneration_5D_::plusPlusAssignOperation (const GGS_ebViewGraphicControllerBindingGeneration & inValue
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14808,9 +14846,9 @@ GGS_ebViewGraphicControllerBindingGeneration GGS__5B_ebViewGraphicControllerBind
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_ebViewGraphicControllerBindingGeneration GGS__5B_ebViewGraphicControllerBindingGeneration_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                                                                       Compiler * inCompiler
-                                                                                                                       COMMA_LOCATION_ARGS) const {
+GGS_ebViewGraphicControllerBindingGeneration GGS__5B_ebViewGraphicControllerBindingGeneration_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                                                                      Compiler * inCompiler
+                                                                                                                      COMMA_LOCATION_ARGS) const {
   GGS_ebViewGraphicControllerBindingGeneration result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -14818,7 +14856,7 @@ GGS_ebViewGraphicControllerBindingGeneration GGS__5B_ebViewGraphicControllerBind
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -15026,7 +15064,9 @@ void GGS__5B_viewGeneration_5D_::removeAll (void) {
 
 void GGS__5B_viewGeneration_5D_::plusPlusAssignOperation (const GGS_viewGeneration & inValue
                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -15291,9 +15331,9 @@ GGS_viewGeneration GGS__5B_viewGeneration_5D_::getter_last (Compiler * inCompile
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_viewGeneration GGS__5B_viewGeneration_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) const {
+GGS_viewGeneration GGS__5B_viewGeneration_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const {
   GGS_viewGeneration result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -15301,7 +15341,7 @@ GGS_viewGeneration GGS__5B_viewGeneration_5D_::readSubscript__3F_ (const GGS_uin
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -15420,7 +15460,9 @@ void GGS__5B_abstractViewInstructionGeneration_5D_::removeAll (void) {
 
 void GGS__5B_abstractViewInstructionGeneration_5D_::plusPlusAssignOperation (const GGS_abstractViewInstructionGeneration & inValue
                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -15685,9 +15727,9 @@ GGS_abstractViewInstructionGeneration GGS__5B_abstractViewInstructionGeneration_
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_abstractViewInstructionGeneration GGS__5B_abstractViewInstructionGeneration_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                                                         Compiler * inCompiler
-                                                                                                         COMMA_LOCATION_ARGS) const {
+GGS_abstractViewInstructionGeneration GGS__5B_abstractViewInstructionGeneration_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                                                        Compiler * inCompiler
+                                                                                                        COMMA_LOCATION_ARGS) const {
   GGS_abstractViewInstructionGeneration result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -15695,7 +15737,7 @@ GGS_abstractViewInstructionGeneration GGS__5B_abstractViewInstructionGeneration_
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -15885,7 +15927,9 @@ void GGS__5B_autoLayoutOutletLinkerGeneration_5D_::removeAll (void) {
 
 void GGS__5B_autoLayoutOutletLinkerGeneration_5D_::plusPlusAssignOperation (const GGS_autoLayoutOutletLinkerGeneration & inValue
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -16150,9 +16194,9 @@ GGS_autoLayoutOutletLinkerGeneration GGS__5B_autoLayoutOutletLinkerGeneration_5D
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutOutletLinkerGeneration GGS__5B_autoLayoutOutletLinkerGeneration_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                                                       Compiler * inCompiler
-                                                                                                       COMMA_LOCATION_ARGS) const {
+GGS_autoLayoutOutletLinkerGeneration GGS__5B_autoLayoutOutletLinkerGeneration_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                                                      Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) const {
   GGS_autoLayoutOutletLinkerGeneration result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -16160,7 +16204,7 @@ GGS_autoLayoutOutletLinkerGeneration GGS__5B_autoLayoutOutletLinkerGeneration_5D
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -16279,7 +16323,9 @@ void GGS__5B_propertyGeneration_5D_::removeAll (void) {
 
 void GGS__5B_propertyGeneration_5D_::plusPlusAssignOperation (const GGS_propertyGeneration & inValue
                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -16544,9 +16590,9 @@ GGS_propertyGeneration GGS__5B_propertyGeneration_5D_::getter_last (Compiler * i
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_propertyGeneration GGS__5B_propertyGeneration_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) const {
+GGS_propertyGeneration GGS__5B_propertyGeneration_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const {
   GGS_propertyGeneration result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -16554,7 +16600,7 @@ GGS_propertyGeneration GGS__5B_propertyGeneration_5D_::readSubscript__3F_ (const
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -16837,7 +16883,7 @@ void GGS_decoratedOutletMap::findNearestKey (const String & inKey,
 //--------------------------------------------------------------------------------------------------
 
 GGS_decoratedOutletMap_2E_element_3F_ GGS_decoratedOutletMap
-::readSubscript__3F_ (const class GGS_string & inKey,
+::readSubcript__3F_ (const class GGS_string & inKey,
                       Compiler * /* inCompiler */
                       COMMA_UNUSED_LOCATION_ARGS) const {
   GGS_decoratedOutletMap_2E_element_3F_ result ;

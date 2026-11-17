@@ -5,7 +5,6 @@
 //--------------------------------------------------------------------------------------------------
 
 #include "all-predefined-types.h"
-#include "Compiler.h"
 
 //--------------------------------------------------------------------------------------------------
 
@@ -186,46 +185,6 @@ void GGS_sint::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_sint::increment_operation_no_overflow (void) {
-  mSIntValue += 1 ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_sint::decrement_operation_no_overflow (void) {
-  mSIntValue -= 1 ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_sint::increment_operation (Compiler * inCompiler
-                                    COMMA_LOCATION_ARGS) {
-  if (isValid ()) {
-    if (mSIntValue == INT32_MAX) {
-      inCompiler->onTheFlyRunTimeError ("@sint ++ operation overflow" COMMA_THERE) ;
-      drop () ;
-    }else{
-      mSIntValue += 1 ;
-    }
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_sint::decrement_operation (Compiler * inCompiler
-                                    COMMA_LOCATION_ARGS) {
-  if (isValid ()) {
-    if (mSIntValue == INT32_MIN) {
-      inCompiler->onTheFlyRunTimeError ("@sint -- operation underflow" COMMA_THERE) ;
-      drop () ;
-    }else{
-      mSIntValue -= 1 ;
-    }
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GGS_sint::plusAssignOperation (const GGS_sint inOperand,
                                     Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) {
@@ -300,7 +259,7 @@ void GGS_sint::divAssignOperation (const GGS_sint inOperand,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_sint GGS_sint::add_operation_no_ovf (const GGS_sint & inOperand) const {
+GGS_sint GGS_sint::wrapping_add_operation (const GGS_sint & inOperand) const {
   GGS_sint result ;
   if (isValid () && inOperand.isValid ()) {
     result = GGS_sint (mSIntValue + inOperand.mSIntValue) ;
@@ -347,7 +306,7 @@ GGS_bool GGS_sint::getter_canAdd (const GGS_sint & inOperand
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_sint GGS_sint::substract_operation (const GGS_sint & inOperand,
+GGS_sint GGS_sint::subtract_operation (const GGS_sint & inOperand,
                                         Compiler * inCompiler
                                         COMMA_LOCATION_ARGS) const {
   GGS_sint result ;
@@ -378,7 +337,7 @@ GGS_bool GGS_sint::getter_canSubstract (const GGS_sint & inOperand
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_sint GGS_sint::substract_operation_no_ovf (const GGS_sint & inOperand2) const {
+GGS_sint GGS_sint::wrapping_subtract_operation (const GGS_sint & inOperand2) const {
   GGS_sint result ;
   if (isValid () && inOperand2.isValid ()) {
     result = GGS_sint (mSIntValue - inOperand2.mSIntValue) ;
@@ -388,7 +347,7 @@ GGS_sint GGS_sint::substract_operation_no_ovf (const GGS_sint & inOperand2) cons
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_sint GGS_sint::multiply_operation_no_ovf (const GGS_sint & inOperand2) const {
+GGS_sint GGS_sint::wrapping_multiply_operation (const GGS_sint & inOperand2) const {
   GGS_sint result ;
   if (isValid () && inOperand2.isValid ()) {
     result = GGS_sint (mSIntValue * inOperand2.mSIntValue) ;
@@ -469,7 +428,7 @@ GGS_bool GGS_sint::getter_canDivide (const GGS_sint & inOperand
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_sint GGS_sint::divide_operation_no_ovf (const GGS_sint & inOperand) const {
+GGS_sint GGS_sint::wrapping_divide_operation (const GGS_sint & inOperand) const {
   GGS_sint result ;
   if (isValid () && inOperand.isValid ()) {
     result = GGS_sint ((inOperand.mSIntValue == 0) ? 0 : (mSIntValue / inOperand.mSIntValue)) ;

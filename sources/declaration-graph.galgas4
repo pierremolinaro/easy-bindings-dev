@@ -4,44 +4,26 @@
 
 abstract class @abstractDeclarationAST {
   public var @lstring mClassName
-}
 
-//------------------------------------------------------------------------------------------------
+  abstract proc enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph)
 
-abstract proc @abstractDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph)
+  abstract func nodeKey () -> @lstring
 
-//------------------------------------------------------------------------------------------------
+  abstract proc firstAnalysisPhase (?!@semanticContext ioSemanticContext,
+                                    ?!@generationStruct ioGeneration)
 
-abstract func @abstractDeclarationAST.nodeKey() -> @lstring
+  proc secondAnalysisPhase (?!@semanticContext _ioSemanticContext,
+                            ?!@generationStruct _ioGeneration) {
+  }
 
-//------------------------------------------------------------------------------------------------
+  proc thirdAnalysisPhase (?!@semanticContext _ioSemanticContext,
+                           ?!@generationStruct _ioGeneration) {
+  }
 
-abstract proc @abstractDeclarationAST.firstAnalysisPhase(
-    ?!@semanticContext ioSemanticContext,
-    ?!@generationStruct ioGeneration)
+  proc fourthAnalysisPhase (?!@semanticContext _ioSemanticContext,
+                            ?!@generationStruct _ioGeneration) {
+  }
 
-//------------------------------------------------------------------------------------------------
-
-proc @abstractDeclarationAST.secondAnalysisPhase(
-    ?!@semanticContext _ioSemanticContext,
-    ?!@generationStruct _ioGeneration)
-{
-}
-
-//------------------------------------------------------------------------------------------------
-
-proc @abstractDeclarationAST.thirdAnalysisPhase(
-    ?!@semanticContext _ioSemanticContext,
-    ?!@generationStruct _ioGeneration)
-{
-}
-
-//------------------------------------------------------------------------------------------------
-
-proc @abstractDeclarationAST.fourthAnalysisPhase(
-    ?!@semanticContext _ioSemanticContext,
-    ?!@generationStruct _ioGeneration)
-{
 }
 
 //------------------------------------------------------------------------------------------------
@@ -72,7 +54,7 @@ proc sortProperties(
   outSortedDeclarationListAST = []
   if declarationPrecedenceGraph.undefinedNodeCount > 0 then
     for nodeName in  declarationPrecedenceGraph.undefinedNodeReferenceList do
-      error (nodeName : "the property " + nodeName + " is not defined")
+      error nodeName : "the property " + nodeName + " is not defined"
     end
   else
     declarationPrecedenceGraph.topologicalSort
@@ -88,9 +70,9 @@ proc sortProperties(
       for declaration in  unsortedSemanticDeclarationListAST do
         s += "\n-  " + declaration.nodeKey
       end
-      error (.nowhere : s)
+      error .nowhere : s
       for declaration in  unsortedSemanticDeclarationListAST do
-        error (declaration.nodeKey : "the " + declaration.nodeKey + " property is declared here")
+        error declaration.nodeKey : "the " + declaration.nodeKey + " property is declared here"
       end
     end
   end

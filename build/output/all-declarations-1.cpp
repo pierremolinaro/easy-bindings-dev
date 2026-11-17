@@ -223,7 +223,7 @@ void GGS_autoLayoutOutletMap::findNearestKey (const String & inKey,
 //--------------------------------------------------------------------------------------------------
 
 GGS_autoLayoutOutletMap_2E_element_3F_ GGS_autoLayoutOutletMap
-::readSubscript__3F_ (const class GGS_string & inKey,
+::readSubcript__3F_ (const class GGS_string & inKey,
                       Compiler * /* inCompiler */
                       COMMA_UNUSED_LOCATION_ARGS) const {
   GGS_autoLayoutOutletMap_2E_element_3F_ result ;
@@ -743,7 +743,7 @@ void GGS_autoLayoutConfiguratorMap::findNearestKey (const String & inKey,
 //--------------------------------------------------------------------------------------------------
 
 GGS_autoLayoutConfiguratorMap_2E_element_3F_ GGS_autoLayoutConfiguratorMap
-::readSubscript__3F_ (const class GGS_string & inKey,
+::readSubcript__3F_ (const class GGS_string & inKey,
                       Compiler * /* inCompiler */
                       COMMA_UNUSED_LOCATION_ARGS) const {
   GGS_autoLayoutConfiguratorMap_2E_element_3F_ result ;
@@ -1133,7 +1133,9 @@ void GGS__5B_simpleStoredProperty_5D_::removeAll (void) {
 
 void GGS__5B_simpleStoredProperty_5D_::plusPlusAssignOperation (const GGS_simpleStoredProperty & inValue
                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1398,9 +1400,9 @@ GGS_simpleStoredProperty GGS__5B_simpleStoredProperty_5D_::getter_last (Compiler
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_simpleStoredProperty GGS__5B_simpleStoredProperty_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                               Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) const {
+GGS_simpleStoredProperty GGS__5B_simpleStoredProperty_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                              Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) const {
   GGS_simpleStoredProperty result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -1408,7 +1410,7 @@ GGS_simpleStoredProperty GGS__5B_simpleStoredProperty_5D_::readSubscript__3F_ (c
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -1626,7 +1628,9 @@ void GGS__5B_externSwiftFunction_5D_::removeAll (void) {
 
 void GGS__5B_externSwiftFunction_5D_::plusPlusAssignOperation (const GGS_externSwiftFunction & inValue
                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1891,9 +1895,9 @@ GGS_externSwiftFunction GGS__5B_externSwiftFunction_5D_::getter_last (Compiler *
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_externSwiftFunction GGS__5B_externSwiftFunction_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) const {
+GGS_externSwiftFunction GGS__5B_externSwiftFunction_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                            Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) const {
   GGS_externSwiftFunction result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -1901,7 +1905,7 @@ GGS_externSwiftFunction GGS__5B_externSwiftFunction_5D_::readSubscript__3F_ (con
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -3573,7 +3577,9 @@ void GGS__5B_XCodeGroup_5D_::removeAll (void) {
 
 void GGS__5B_XCodeGroup_5D_::plusPlusAssignOperation (const GGS_XCodeGroup & inValue
                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3838,9 +3844,9 @@ GGS_XCodeGroup GGS__5B_XCodeGroup_5D_::getter_last (Compiler * inCompiler
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_XCodeGroup GGS__5B_XCodeGroup_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                           Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) const {
+GGS_XCodeGroup GGS__5B_XCodeGroup_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const {
   GGS_XCodeGroup result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -3848,7 +3854,7 @@ GGS_XCodeGroup GGS__5B_XCodeGroup_5D_::readSubscript__3F_ (const GGS_uint & inIn
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -3967,7 +3973,9 @@ void GGS__5B_XCodeToolTarget_5D_::removeAll (void) {
 
 void GGS__5B_XCodeToolTarget_5D_::plusPlusAssignOperation (const GGS_XCodeToolTarget & inValue
                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4232,9 +4240,9 @@ GGS_XCodeToolTarget GGS__5B_XCodeToolTarget_5D_::getter_last (Compiler * inCompi
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_XCodeToolTarget GGS__5B_XCodeToolTarget_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const {
+GGS_XCodeToolTarget GGS__5B_XCodeToolTarget_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                    Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) const {
   GGS_XCodeToolTarget result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -4242,7 +4250,7 @@ GGS_XCodeToolTarget GGS__5B_XCodeToolTarget_5D_::readSubscript__3F_ (const GGS_u
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -4361,7 +4369,9 @@ void GGS__5B_XCodeAppTarget_5D_::removeAll (void) {
 
 void GGS__5B_XCodeAppTarget_5D_::plusPlusAssignOperation (const GGS_XCodeAppTarget & inValue
                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4626,9 +4636,9 @@ GGS_XCodeAppTarget GGS__5B_XCodeAppTarget_5D_::getter_last (Compiler * inCompile
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_XCodeAppTarget GGS__5B_XCodeAppTarget_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) const {
+GGS_XCodeAppTarget GGS__5B_XCodeAppTarget_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const {
   GGS_XCodeAppTarget result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -4636,7 +4646,7 @@ GGS_XCodeAppTarget GGS__5B_XCodeAppTarget_5D_::readSubscript__3F_ (const GGS_uin
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -4755,7 +4765,9 @@ void GGS__5B_BuildFile_5D_::removeAll (void) {
 
 void GGS__5B_BuildFile_5D_::plusPlusAssignOperation (const GGS_BuildFile & inValue
                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5020,9 +5032,9 @@ GGS_BuildFile GGS__5B_BuildFile_5D_::getter_last (Compiler * inCompiler
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_BuildFile GGS__5B_BuildFile_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                         Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) const {
+GGS_BuildFile GGS__5B_BuildFile_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) const {
   GGS_BuildFile result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -5030,7 +5042,7 @@ GGS_BuildFile GGS__5B_BuildFile_5D_::readSubscript__3F_ (const GGS_uint & inInde
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -5746,7 +5758,7 @@ void GGS_outletClassMap::findNearestKey (const String & inKey,
 //--------------------------------------------------------------------------------------------------
 
 GGS_outletClassMap_2E_element_3F_ GGS_outletClassMap
-::readSubscript__3F_ (const class GGS_string & inKey,
+::readSubcript__3F_ (const class GGS_string & inKey,
                       Compiler * /* inCompiler */
                       COMMA_UNUSED_LOCATION_ARGS) const {
   GGS_outletClassMap_2E_element_3F_ result ;
@@ -7275,7 +7287,9 @@ void GGS__5B_abstractDeclarationAST_5D_::removeAll (void) {
 
 void GGS__5B_abstractDeclarationAST_5D_::plusPlusAssignOperation (const GGS_abstractDeclarationAST & inValue
                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7540,9 +7554,9 @@ GGS_abstractDeclarationAST GGS__5B_abstractDeclarationAST_5D_::getter_last (Comp
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_abstractDeclarationAST GGS__5B_abstractDeclarationAST_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                                   Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) const {
+GGS_abstractDeclarationAST GGS__5B_abstractDeclarationAST_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                                  Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) const {
   GGS_abstractDeclarationAST result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -7550,7 +7564,7 @@ GGS_abstractDeclarationAST GGS__5B_abstractDeclarationAST_5D_::readSubscript__3F
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -7748,7 +7762,7 @@ class SharedGraph_declarationPrecedenceGraph : public SharedObject {
 
   public: String getter_graphviz (void) const ;
 
-  public: void edges (GGS__32_stringlist & ioList) const ;
+  public: void edges (GGS__5B_stringString_5D_ & ioList) const ;
 
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: void checkGraph (LOCATION_ARGS) const ;
@@ -8572,24 +8586,24 @@ GGS_string GGS_declarationPrecedenceGraph::getter_graphviz (UNUSED_LOCATION_ARGS
 
 //--------------------------------------------------------------------------------------------------
 
-void SharedGraph_declarationPrecedenceGraph::edges (GGS__32_stringlist & ioList) const {
+void SharedGraph_declarationPrecedenceGraph::edges (GGS__5B_stringString_5D_ & ioList) const {
   GenericUniqueArray <GraphEdge> edgeArray ; mDirectedGraph.getEdges (edgeArray) ;
   for (int32_t i=0 ; i<edgeArray.count () ; i++) {
     const GraphEdge edge = edgeArray (i COMMA_HERE) ;
-    ioList.addAssignOperation (
+    const GGS_stringString v = GGS_stringString (
       mNodeArray ((int32_t) edge.mSource COMMA_HERE)->mKey,
       mNodeArray ((int32_t) edge.mTarget COMMA_HERE)->mKey
-      COMMA_HERE
     ) ;
+    ioList.plusPlusAssignOperation (v COMMA_HERE) ;
   }
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS__32_stringlist GGS_declarationPrecedenceGraph::getter_edges (LOCATION_ARGS) const {
-  GGS__32_stringlist result ;
+GGS__5B_stringString_5D_ GGS_declarationPrecedenceGraph::getter_edges (LOCATION_ARGS) const {
+  GGS__5B_stringString_5D_ result ;
   if (isValid ()) {
-    result = GGS__32_stringlist::init (nullptr COMMA_THERE) ;
+    result = GGS__5B_stringString_5D_::init (nullptr COMMA_THERE) ;
     mSharedGraph->edges (result) ;
   }
   return result ;
@@ -9148,6 +9162,49 @@ const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_declarationPrecedenceGraph ("
 
 const GALGAS_TypeDescriptor * GGS_declarationPrecedenceGraph::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_declarationPrecedenceGraph ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension proc '@abstractDefaultValue analyzeDefaultValueType'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_analyzeDefaultValueType (cPtr_abstractDefaultValue * inObject,
+                                                  const GGS__5B_typeKind_5D_ constin_inAttributeActualTypeList,
+                                                  const GGS_propertyMap constin_inPreferencesPropertyMap,
+                                                  GGS_string & out_outSwiftDefaultValueAsString,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) {
+//--- Drop output arguments
+  out_outSwiftDefaultValueAsString.drop () ;
+//--- Find proc
+  if (nullptr != inObject) {
+    macroValidSharedObject (inObject, cPtr_abstractDefaultValue) ;
+    inObject->method_analyzeDefaultValueType (constin_inAttributeActualTypeList, constin_inPreferencesPropertyMap, out_outSwiftDefaultValueAsString, inCompiler COMMA_THERE) ;
+  }
+}
+//--------------------------------------------------------------------------------------------------
+//Extension proc '@abstractDefaultValue enterDefaultValuePrecedence'
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_abstractDefaultValue::method_enterDefaultValuePrecedence (const GGS_lstring /* constinArgument__5F_inNode */,
+                                                                    GGS_declarationPrecedenceGraph & /* ioArgument__5F_ioGraph */,
+                                                                    Compiler * /* inCompiler */
+                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_enterDefaultValuePrecedence (cPtr_abstractDefaultValue * inObject,
+                                                      const GGS_lstring constin__5F_inNode,
+                                                      GGS_declarationPrecedenceGraph & io__5F_ioGraph,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) {
+  if (nullptr != inObject) {
+    macroValidSharedObject (inObject, cPtr_abstractDefaultValue) ;
+    inObject->method_enterDefaultValuePrecedence (constin__5F_inNode, io__5F_ioGraph, inCompiler COMMA_THERE) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10682,49 +10739,6 @@ const GALGAS_TypeDescriptor * GGS_prefsAsDefaultValue_2E_weak::staticTypeDescrip
 }
 
 //--------------------------------------------------------------------------------------------------
-//
-//Abstract extension proc '@abstractDefaultValue analyzeDefaultValueType'
-//
-//--------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_analyzeDefaultValueType (cPtr_abstractDefaultValue * inObject,
-                                                  const GGS__5B_typeKind_5D_ constin_inAttributeActualTypeList,
-                                                  const GGS_propertyMap constin_inPreferencesPropertyMap,
-                                                  GGS_string & out_outSwiftDefaultValueAsString,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) {
-//--- Drop output arguments
-  out_outSwiftDefaultValueAsString.drop () ;
-//--- Find proc
-  if (nullptr != inObject) {
-    macroValidSharedObject (inObject, cPtr_abstractDefaultValue) ;
-    inObject->method_analyzeDefaultValueType (constin_inAttributeActualTypeList, constin_inPreferencesPropertyMap, out_outSwiftDefaultValueAsString, inCompiler COMMA_THERE) ;
-  }
-}
-//--------------------------------------------------------------------------------------------------
-//Extension proc '@abstractDefaultValue enterDefaultValuePrecedence'
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_abstractDefaultValue::method_enterDefaultValuePrecedence (const GGS_lstring /* constinArgument__5F_inNode */,
-                                                                    GGS_declarationPrecedenceGraph & /* ioArgument__5F_ioGraph */,
-                                                                    Compiler * /* inCompiler */
-                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_enterDefaultValuePrecedence (cPtr_abstractDefaultValue * inObject,
-                                                      const GGS_lstring constin__5F_inNode,
-                                                      GGS_declarationPrecedenceGraph & io__5F_ioGraph,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) {
-  if (nullptr != inObject) {
-    macroValidSharedObject (inObject, cPtr_abstractDefaultValue) ;
-    inObject->method_enterDefaultValuePrecedence (constin__5F_inNode, io__5F_ioGraph, inCompiler COMMA_THERE) ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
 //Class for element of '@_5B_enumerationFunctionAST_5D_' array
 //--------------------------------------------------------------------------------------------------
 
@@ -10776,7 +10790,9 @@ void GGS__5B_enumerationFunctionAST_5D_::removeAll (void) {
 
 void GGS__5B_enumerationFunctionAST_5D_::plusPlusAssignOperation (const GGS_enumerationFunctionAST & inValue
                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11041,9 +11057,9 @@ GGS_enumerationFunctionAST GGS__5B_enumerationFunctionAST_5D_::getter_last (Comp
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_enumerationFunctionAST GGS__5B_enumerationFunctionAST_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                                   Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) const {
+GGS_enumerationFunctionAST GGS__5B_enumerationFunctionAST_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                                  Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) const {
   GGS_enumerationFunctionAST result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -11051,7 +11067,7 @@ GGS_enumerationFunctionAST GGS__5B_enumerationFunctionAST_5D_::readSubscript__3F
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -11334,7 +11350,7 @@ void GGS_classMap::findNearestKey (const String & inKey,
 //--------------------------------------------------------------------------------------------------
 
 GGS_classMap_2E_element_3F_ GGS_classMap
-::readSubscript__3F_ (const class GGS_string & inKey,
+::readSubcript__3F_ (const class GGS_string & inKey,
                       Compiler * /* inCompiler */
                       COMMA_UNUSED_LOCATION_ARGS) const {
   GGS_classMap_2E_element_3F_ result ;
@@ -11358,9 +11374,9 @@ GGS_classMap_2E_element_3F_ GGS_classMap
 //--------------------------------------------------------------------------------------------------
 
 GGS_classMap_2E_element GGS_classMap
-::readSubscript__3F_searchKey (const GGS_lstring & inLKey,
-                               Compiler * inCompiler
-                               COMMA_LOCATION_ARGS) const {
+::readSubcript__3F_searchKey (const GGS_lstring & inLKey,
+                              Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) const {
   GGS_classMap_2E_element result ;
   if (isValid () && inLKey.isValid ()) {
     const String key = inLKey.mProperty_string.stringValue () ;
@@ -12022,7 +12038,7 @@ void GGS_bindingSpecificationMap::findNearestKey (const String & inKey,
 //--------------------------------------------------------------------------------------------------
 
 GGS_bindingSpecificationMap_2E_element_3F_ GGS_bindingSpecificationMap
-::readSubscript__3F_ (const class GGS_string & inKey,
+::readSubcript__3F_ (const class GGS_string & inKey,
                       Compiler * /* inCompiler */
                       COMMA_UNUSED_LOCATION_ARGS) const {
   GGS_bindingSpecificationMap_2E_element_3F_ result ;
@@ -12569,7 +12585,7 @@ void GGS_autolayoutViewClassMap::findNearestKey (const String & inKey,
 //--------------------------------------------------------------------------------------------------
 
 GGS_autolayoutViewClassMap_2E_element_3F_ GGS_autolayoutViewClassMap
-::readSubscript__3F_ (const class GGS_string & inKey,
+::readSubcript__3F_ (const class GGS_string & inKey,
                       Compiler * /* inCompiler */
                       COMMA_UNUSED_LOCATION_ARGS) const {
   GGS_autolayoutViewClassMap_2E_element_3F_ result ;
@@ -13516,7 +13532,7 @@ void GGS_autoLayoutBindingSpecificationMap::findNearestKey (const String & inKey
 //--------------------------------------------------------------------------------------------------
 
 GGS_autoLayoutBindingSpecificationMap_2E_element_3F_ GGS_autoLayoutBindingSpecificationMap
-::readSubscript__3F_ (const class GGS_string & inKey,
+::readSubcript__3F_ (const class GGS_string & inKey,
                       Compiler * /* inCompiler */
                       COMMA_UNUSED_LOCATION_ARGS) const {
   GGS_autoLayoutBindingSpecificationMap_2E_element_3F_ result ;
@@ -14063,7 +14079,7 @@ void GGS_astAutoLayoutViewFunctionMap::findNearestKey (const String & inKey,
 //--------------------------------------------------------------------------------------------------
 
 GGS_astAutoLayoutViewFunctionMap_2E_element_3F_ GGS_astAutoLayoutViewFunctionMap
-::readSubscript__3F_ (const class GGS_string & inKey,
+::readSubcript__3F_ (const class GGS_string & inKey,
                       Compiler * /* inCompiler */
                       COMMA_UNUSED_LOCATION_ARGS) const {
   GGS_astAutoLayoutViewFunctionMap_2E_element_3F_ result ;
@@ -14358,7 +14374,9 @@ void GGS__5B_observablePropertyAST_5D_::removeAll (void) {
 
 void GGS__5B_observablePropertyAST_5D_::plusPlusAssignOperation (const GGS_observablePropertyAST & inValue
                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14623,9 +14641,9 @@ GGS_observablePropertyAST GGS__5B_observablePropertyAST_5D_::getter_last (Compil
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_observablePropertyAST GGS__5B_observablePropertyAST_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                                 Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) const {
+GGS_observablePropertyAST GGS__5B_observablePropertyAST_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const {
   GGS_observablePropertyAST result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -14633,7 +14651,7 @@ GGS_observablePropertyAST GGS__5B_observablePropertyAST_5D_::readSubscript__3F_ 
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;
@@ -16058,7 +16076,9 @@ void GGS__5B_bindingOption_5D_::removeAll (void) {
 
 void GGS__5B_bindingOption_5D_::plusPlusAssignOperation (const GGS_bindingOption & inValue
                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  mSharedArray.appendObject (inValue) ;
+  if (isValid ()) {
+    mSharedArray.appendObject (inValue) ;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -16323,9 +16343,9 @@ GGS_bindingOption GGS__5B_bindingOption_5D_::getter_last (Compiler * inCompiler
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bindingOption GGS__5B_bindingOption_5D_::readSubscript__3F_ (const GGS_uint & inIndex,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) const {
+GGS_bindingOption GGS__5B_bindingOption_5D_::readSubcript__3F_ (const GGS_uint & inIndex,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) const {
   GGS_bindingOption result ;
   if (isValid () && inIndex.isValid ()) {
     const uint32_t idx = inIndex.uintValue () ;
@@ -16333,7 +16353,7 @@ GGS_bindingOption GGS__5B_bindingOption_5D_::readSubscript__3F_ (const GGS_uint 
       result = mSharedArray (int32_t (idx) COMMA_HERE) ;
     }else{
       String errorMessage ;
-      errorMessage.appendCString ("subscript value (") ;
+      errorMessage.appendCString ("subcript value (") ;
       errorMessage.appendUnsigned (idx) ;
       errorMessage.appendCString (") too large (array size is") ;
       errorMessage.appendSigned (mSharedArray.count ()) ;

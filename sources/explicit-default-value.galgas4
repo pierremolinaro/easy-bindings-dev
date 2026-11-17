@@ -3,6 +3,15 @@
 //------------------------------------------------------------------------------------------------
 
 abstract class @abstractDefaultValue {
+
+  abstract proc analyzeDefaultValueType (let [@typeKind] inAttributeActualTypeList,
+                                         let @propertyMap inPreferencesPropertyMap,
+                                         !@string outSwiftDefaultValueAsString)
+
+  proc enterDefaultValuePrecedence (let @lstring _inNode,
+                                    ?!@declarationPrecedenceGraph _ioGraph) {
+  }
+
 }
 
 //------------------------------------------------------------------------------------------------
@@ -89,20 +98,6 @@ syntax extension easyBindings_syntax {
 //   SEMANTICS
 //------------------------------------------------------------------------------------------------
 
-abstract proc @abstractDefaultValue.analyzeDefaultValueType (
-  let [@typeKind] inAttributeActualTypeList,
-  let @propertyMap inPreferencesPropertyMap,
-  !@string outSwiftDefaultValueAsString)
-
-//------------------------------------------------------------------------------------------------
-
-proc @abstractDefaultValue.enterDefaultValuePrecedence(
-   let @lstring _inNode,
-   ?!@declarationPrecedenceGraph _ioGraph) {
-}
-
-//------------------------------------------------------------------------------------------------
-
 override proc @boolAsDefaultValue.analyzeDefaultValueType (
   let [@typeKind] inAttributeActualTypeList,
   let @propertyMap _inPreferencesPropertyMap,
@@ -125,9 +120,9 @@ override proc @boolAsDefaultValue.analyzeDefaultValueType (
     end
   end
   if not found then
-    error (self.mValue
+    error self.mValue
     : "only a boolean attribute can be initialized by YES or NO"
-    )
+    
   end
 }
 
@@ -152,7 +147,7 @@ override proc @integerAsDefaultValue.analyzeDefaultValueType (
      found = true
     case uint32Type :
       if self.mNegative then
-        error (self.mValue : "Uint32 value should be ≥ 0")
+        error self.mValue : "Uint32 value should be ≥ 0"
       end
       outSwiftDefaultValueAsString = self.mValue.uint.string
       found = true
@@ -168,9 +163,9 @@ override proc @integerAsDefaultValue.analyzeDefaultValueType (
     end
   end
   if not found then
-    error (self.mValue
+    error self.mValue
     : "only an integer attribute can be initialized by an integer constant"
-    )
+    
   end
 }
 
@@ -198,9 +193,9 @@ override proc @doubleAsDefaultValue.analyzeDefaultValueType (
     end
   end
   if not found then
-    error (self.mValue
+    error self.mValue
     : "only a double attribute can be initialized by a floating point constant"
-    )
+    
   end
 }
 
@@ -231,9 +226,9 @@ override proc @stringAsDefaultValue.analyzeDefaultValueType (
     end
   end
   if not found then
-    error (self.mValue
+    error self.mValue
     : "only a string attribute can be initialized by a string constant"
-    )
+    
   end
 }
 
@@ -310,78 +305,78 @@ override proc @identifierAsDefaultValue.analyzeDefaultValueType (
         elsif self.mValue.string == "distantPast" then
           outSwiftDefaultValueAsString = "Date.distantPast"
         else
-          error (self.mValue : "unknown predefined date")
+          error self.mValue : "unknown predefined date"
         end
       else
-        error (self.mValue : "unknown predefined date")
+        error self.mValue : "unknown predefined date"
       end
     case bezierPathType :
       found = true
       if self.mValue.string == "empty" then
         outSwiftDefaultValueAsString = "NSBezierPath ()"
       else
-        error (self.mValue : "only 'empty' is accepted as default NSBezierPath")
+        error self.mValue : "only 'empty' is accepted as default NSBezierPath"
       end
     case bezierPathArrayType :
       found = true
       if self.mValue.string == "empty" then
         outSwiftDefaultValueAsString = "BezierPathArray ()"
       else
-        error (self.mValue : "only 'empty' is accepted as default BezierPathArray")
+        error self.mValue : "only 'empty' is accepted as default BezierPathArray"
       end
     case enumType (@string enumTypeName, @enumConstantMap constantMap, *) :
       found = true
       if constantMap.contains (self.mValue.string) then
         outSwiftDefaultValueAsString = enumTypeName + "." + self.mValue.string
       else
-        error (self.mValue
+        error self.mValue
         : "the '" + enumTypeName + "' enumeration does not define '" + self.mValue + "' constant"
-        spoil outSwiftDefaultValueAsString)
+        spoil outSwiftDefaultValueAsString
       end
     case entityType (2*) :
-      error (self.mValue : "invalid entity type")
+      error self.mValue : "invalid entity type"
     case classType (*) :
-      error (self.mValue : "invalid class type")
+      error self.mValue : "invalid class type"
     case boolType :
-      error (self.mValue : "invalid bool type")
+      error self.mValue : "invalid bool type"
     case dataType :
       found = true
       if self.mValue.string == "empty" then
         outSwiftDefaultValueAsString = "Data ()"
       else
-        error (self.mValue : "only 'empty' is accepted as default Data")
+        error self.mValue : "only 'empty' is accepted as default Data"
       end
     case canariLengthType :
-      error (self.mValue : "invalid CanariLength type")
+      error self.mValue : "invalid CanariLength type"
     case canariAngleType :
-      error (self.mValue : "invalid CanariAngle type")
+      error self.mValue : "invalid CanariAngle type"
     case canariLengthUnitType :
-      error (self.mValue : "invalid CanariLengthUnit type")
+      error self.mValue : "invalid CanariLengthUnit type"
     case doubleType :
-      error (self.mValue : "invalid double type")
+      error self.mValue : "invalid double type"
     case integerType :
-      error (self.mValue : "invalid integer type")
+      error self.mValue : "invalid integer type"
     case uint32Type :
-      error (self.mValue : "invalid UInt32 type")
+      error self.mValue : "invalid UInt32 type"
     case stringType :
-      error (self.mValue : "invalid string type")
+      error self.mValue : "invalid string type"
     case fontType :
-      error (self.mValue : "invalid font type")
+      error self.mValue : "invalid font type"
     case colorType :
       if predefinedColors ().contains (self.mValue.string) then
         outSwiftDefaultValueAsString = "NSColor." + self.mValue.string
         found = true
       else
-        error (self.mValue : "unknown predefined color")
+        error self.mValue : "unknown predefined color"
       end
     case transientPropertyExternType (*) :
-      error (self.mValue : "invalid image type")
+      error self.mValue : "invalid image type"
     end
   end
   if not found then
-    error (self.mValue
+    error self.mValue
     : "unknow type for this identifier"
-    )
+    
   end
 }
 
@@ -400,16 +395,16 @@ override proc @prefsAsDefaultValue.analyzeDefaultValueType (
       found = type == t
     end
     if not found then
-      error (self.mPrefPropertyName : "the atomic property type is not compatible")
+      error self.mPrefPropertyName : "the atomic property type is not compatible"
     end
   case toMany (4*) :
-    error (self.mPrefPropertyName : "an atomic property is required here")
+    error self.mPrefPropertyName : "an atomic property is required here"
   case toOne (5*) :
-    error (self.mPrefPropertyName : "an atomic property is required here")
+    error self.mPrefPropertyName : "an atomic property is required here"
   case arrayController (2*) :
-    error (self.mPrefPropertyName : "an atomic property is required here")
+    error self.mPrefPropertyName : "an atomic property is required here"
   case selectionController (*) :
-    error (self.mPrefPropertyName : "an atomic property is required here")
+    error self.mPrefPropertyName : "an atomic property is required here"
   end
   outSwiftDefaultValueAsString = "preferences_" + self.mPrefPropertyName
 }

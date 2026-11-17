@@ -44,7 +44,7 @@ syntax extension easyBindings_syntax {
     or
       $@attribute$ (?let attribute)
       if attribute.string != "CaseIterable" then
-        error (attribute : "only @CaseIterable attribute is allowed here" fixit #replaceBy "@CaseIterable" )
+        error attribute : "only @CaseIterable attribute is allowed here" fixit #replaceBy "@CaseIterable" 
       end
       caseIterable = true
     end
@@ -132,13 +132,13 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
         enumConstantMap.searchKey (association.mValue0, ?let idx)
         !?associationSortedList.insert (idx, association.mValue1.string)
         if definedConstantNameSet.contains (association.mValue0) then
-          error (association.mValue0 : "Duplicated constant")
+          error association.mValue0 : "Duplicated constant"
         end
         !?definedConstantNameSet.insert (association.mValue0)
       end
       for s in self.mEnumConstantNameList do
         if not definedConstantNameSet.contains (s) then
-          error (enumFunc.mFunctionName : "No association for '" + s + "' constant")
+          error enumFunc.mFunctionName : "No association for '" + s + "' constant"
         end
       end
       !?enumFuncMap.insertKey (enumFunc.mFunctionName, associationSortedList)
